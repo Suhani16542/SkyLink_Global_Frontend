@@ -1,36 +1,183 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SkyLink Global Services - Frontend
 
-## Getting Started
+Scalable, SEO-first Next.js frontend architecture for **SkyLink Global Services** — a B2B EXIM Consultancy, Global Logistics, and Trade Compliance company.
 
-First, run the development server:
+---
+
+## 🚀 Tech Stack
+
+* **Framework:** Next.js (App Router)
+* **Language:** TypeScript
+* **Styling:** Tailwind CSS
+* **Code Quality:** ESLint
+* **Path Alias:** `@/*` mapped to `./src/*`
+
+---
+
+## 📁 Project Structure
+
+```text
+SkyLink_Global_Frontend/
+├── public/
+│   ├── images/
+│   ├── icons/
+│   └── logos/
+├── src/
+│   ├── app/
+│   │   ├── (public)/
+│   │   │   ├── layout.tsx
+│   │   │   ├── about/
+│   │   │   │   └── page.tsx
+│   │   │   ├── services/
+│   │   │   │   ├── page.tsx
+│   │   │   │   └── [slug]/
+│   │   │   │       └── page.tsx
+│   │   │   ├── industries/
+│   │   │   │   └── page.tsx
+│   │   │   ├── contact/
+│   │   │   │   └── page.tsx
+│   │   │   ├── request-consultation/
+│   │   │   │   └── page.tsx
+│   │   │   └── blog/
+│   │   │       ├── page.tsx
+│   │   │       └── [slug]/
+│   │   │           └── page.tsx
+│   │   ├── admin/
+│   │   │   ├── layout.tsx (noindex, nofollow)
+│   │   │   ├── login/
+│   │   │   │   └── page.tsx
+│   │   │   ├── dashboard/
+│   │   │   │   └── page.tsx
+│   │   │   ├── leads/
+│   │   │   │   ├── page.tsx
+│   │   │   │   └── [id]/
+│   │   │   │       └── page.tsx
+│   │   │   ├── customers/
+│   │   │   │   └── page.tsx
+│   │   │   ├── quotations/
+│   │   │   │   └── page.tsx
+│   │   │   ├── shipments/
+│   │   │   │   ├── page.tsx
+│   │   │   │   └── [id]/
+│   │   │   │       └── page.tsx
+│   │   │   ├── documents/
+│   │   │   │   └── page.tsx
+│   │   │   ├── services/
+│   │   │   │   └── page.tsx
+│   │   │   └── settings/
+│   │   │       └── page.tsx
+│   │   ├── api/
+│   │   │   └── health/
+│   │   │       └── route.ts
+│   │   ├── layout.tsx
+│   │   ├── page.tsx
+│   │   ├── globals.css
+│   │   ├── sitemap.ts
+│   │   └── robots.ts
+│   │
+│   ├── components/
+│   │   ├── ui/
+│   │   ├── public/
+│   │   ├── admin/
+│   │   ├── layout/
+│   │   ├── forms/
+│   │   └── seo/
+│   │       ├── JsonLd.tsx
+│   │       ├── OrganizationSchema.tsx
+│   │       ├── LocalBusinessSchema.tsx
+│   │       ├── ServiceSchema.tsx
+│   │       ├── BreadcrumbSchema.tsx
+│   │       └── ArticleSchema.tsx
+│   │
+│   ├── data/
+│   │   ├── services.ts
+│   │   ├── industries.ts
+│   │   └── blog.ts
+│   │
+│   ├── lib/
+│   │   ├── seo/
+│   │   │   ├── metadata.ts
+│   │   │   ├── schema.ts
+│   │   │   └── constants.ts
+│   │   ├── api/
+│   │   │   ├── client.ts
+│   │   │   └── endpoints.ts
+│   │   └── utils/
+│   │       ├── cn.ts
+│   │       └── formatters.ts
+│   │
+│   ├── types/
+│   │   ├── service.ts
+│   │   ├── industry.ts
+│   │   ├── blog.ts
+│   │   ├── admin.ts
+│   │   ├── seo.ts
+│   │   └── index.ts
+│   │
+│   ├── hooks/
+│   │   └── index.ts
+│   │
+│   └── config/
+│       ├── site.ts
+│       └── env.ts
+│
+├── .env.local
+├── .env.example
+├── .gitignore
+├── eslint.config.mjs
+├── next.config.ts
+├── package.json
+├── postcss.config.mjs
+├── tsconfig.json
+└── README.md
+```
+
+---
+
+## 🚦 Getting Started
+
+### 1. Install Dependencies
+
+```bash
+npm install
+```
+
+### 2. Configure Environment Variables
+
+Copy `.env.example` to `.env.local` if not already present:
+
+```bash
+cp .env.example .env.local
+```
+
+### 3. Run Development Server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 4. Build for Production
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+```
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🔍 SEO & Crawl Architecture
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+* **Dynamic Metadata:** Standardized via `src/lib/seo/metadata.ts` with title templates, OpenGraph, Twitter/X cards, and canonical URLs.
+* **JSON-LD Schemas:** Modular components in `src/components/seo/` supporting `Organization`, `LocalBusiness`, `Service`, `BreadcrumbList`, and `Article` schemas.
+* **Sitemap:** Dynamic generator at `src/app/sitemap.ts` (`/sitemap.xml`).
+* **Robots.txt:** Configured via `src/app/robots.ts` (`/robots.txt`) with `/admin/` and `/api/` disallowed.
+* **Admin Route Protection:** All `/admin/*` routes have `robots: { index: false, follow: false }` metadata.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 🛡️ Production & Scalability Features
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. **Server Components by Default:** High performance, zero unnecessary client-side JavaScript.
+2. **Prepared API Layer:** Typed API client (`src/lib/api/client.ts`) and centralized endpoint map (`src/lib/api/endpoints.ts`).
+3. **Domain Types:** Strongly typed models for Services, Industries, Blog, Leads, Quotations, and Shipments.
