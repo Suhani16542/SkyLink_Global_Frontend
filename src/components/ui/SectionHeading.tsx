@@ -59,7 +59,7 @@ export function SectionHeading({
         <ScrollReveal effect="fade-up" delay={160} duration={700}>
           <p
             className={cn(
-              'mt-3.5 text-sm sm:text-base leading-relaxed',
+              'mt-4 text-base sm:text-lg leading-relaxed font-normal',
               light ? 'text-neutral-300' : 'text-neutral-600'
             )}
           >

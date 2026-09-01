@@ -15,51 +15,51 @@ import { StaggerContainer } from '@/components/animation/StaggerContainer';
 const workflowSteps = [
   {
     step: '01',
-    title: 'Consultation & Scoping',
-    subtitle: 'Trade Lane & Regulatory Audit',
-    desc: 'Corridor feasibility analysis, HS code tariff classification, and export incentive eligibility evaluation.',
+    title: 'Consultation & Trade Audit',
+    subtitle: 'Corridor & Tariff Feasibility',
+    desc: 'Corridor feasibility analysis, HS code GRI tariff classification, Incoterms® 2020 contract structuring, and statutory incentive scoping.',
     icon: FileSearch,
-    details: ['DGFT policy applicability', 'Incentive mapping (RoDTEP/EPCG)', 'Duty drawback scoping'],
+    details: ['DGFT foreign trade policy audit', 'Incentive mapping (RoDTEP/EPCG/Advance Auth)', 'Incoterms risk boundary advisory (FOB/CIF/DDP)'],
   },
   {
     step: '02',
-    title: 'Documentation Preparation',
-    subtitle: 'Zero-Defect Documentation',
-    desc: 'Drafting statutory commercial invoices, packing lists, e-BRC tracking templates, and Certificates of Origin.',
+    title: 'Zero-Defect Documentation',
+    subtitle: 'Commercial & Statutory Alignment',
+    desc: 'Drafting statutory commercial invoices, packing lists, digital Certificates of Origin (FTA/CEPA), and UCP 600 Letter of Credit vetting.',
     icon: FileCheck2,
-    details: ['Chamber of Commerce legalization', 'Letter of Credit (LC) compliance', 'Bill of Entry review'],
+    details: ['Chamber of Commerce FTA legalization', 'Letter of Credit (LC) compliance review', 'Pre-shipment inspection certificates'],
   },
   {
     step: '03',
-    title: 'Statutory Compliance & Licensing',
-    subtitle: 'DGFT & Customs Authorization',
-    desc: 'Filing pre-arrival documentation on ICEGATE and managing statutory approvals with port customs officers.',
+    title: 'Statutory Clearance & EDI',
+    subtitle: 'DGFT & ICEGATE Electronic Filing',
+    desc: 'Filing pre-arrival electronic Shipping Bills / Bills of Entry on ICEGATE and managing statutory compliance with port customs officials.',
     icon: ShieldCheck,
-    details: ['ICEGATE clearance protocols', 'Advance Authorisation validation', 'Statutory duty remissions'],
+    details: ['ICEGATE EDI clearance protocols', 'Advance Authorisation / EPCG license debit', 'Faceless Assessment query resolution'],
   },
   {
     step: '04',
-    title: 'Logistics Planning & Booking',
-    subtitle: 'Direct Carrier Allocation',
-    desc: 'Securing vessel space, container stuffing coordination, drayage transport, and cold-chain pre-cooling.',
+    title: 'Carrier Booking & Multimodal Drayage',
+    subtitle: 'Direct Vessel Space Allocation',
+    desc: 'Securing vessel space on Tier-1 shipping lines, container stuffing supervision, port drayage, and cold-chain thermal pre-cooling.',
     icon: Compass,
-    details: ['Tier-1 shipping line booking', 'Specialized reefer inspection', 'Multimodal route optimization'],
+    details: ['Tier-1 shipping line service contracting', 'Reefer container pre-trip inspection (PTI)', 'Multimodal Bill of Lading (FBL) issuance'],
   },
   {
     step: '05',
-    title: 'Shipment & Live Tracking',
-    subtitle: 'Multimodal Transit & Telemetry',
-    desc: 'Real-time container milestone tracking, port gate logging, and active 24/7 reefer temperature telemetry.',
+    title: 'Shipment & Live Telemetry',
+    subtitle: 'Multimodal Transit & Active Monitoring',
+    desc: 'Real-time container milestone tracking, port terminal gate logging, and 24/7 active IoT reefer temperature telemetry.',
     icon: Ship,
-    details: ['IoT thermal monitoring', 'Vessel ETA synchronization', 'Transshipment supervision'],
+    details: ['IoT real-time temperature & GPS tracking', 'Carrier vessel ETA synchronization', 'Transshipment & feeder hub supervision'],
   },
   {
     step: '06',
-    title: 'Delivery & Incentive Closure',
-    subtitle: 'Destination Clearance & Realization',
-    desc: 'Overseeing destination customs release, final-mile delivery haulage, and complete bank realization closure.',
+    title: 'Destination Release & Realization',
+    subtitle: 'Final Door Delivery & Incentive Scrip',
+    desc: 'Destination customs release under DAP/DDP, final-mile warehouse delivery, e-BRC realization closure, and duty credit scrip crediting.',
     icon: CheckCircle2,
-    details: ['e-BRC realization audit', 'Duty drawback credit', 'Complete digital compliance dossier'],
+    details: ['Destination port customs green-channel', 'e-BRC EDPMS foreign exchange closure', 'RoDTEP & Duty Drawback cash credit ledger'],
   },
 ];
 
@@ -130,22 +130,22 @@ export function HowItWorksTimeline() {
                   </div>
 
                   <span
-                    className={`text-[10px] font-bold uppercase tracking-wider block mb-1 ${
-                      isSelected ? 'text-sky-300' : 'text-neutral-400'
+                    className={`text-xs font-bold uppercase tracking-wider block mb-1.5 ${
+                      isSelected ? 'text-sky-300' : 'text-neutral-500'
                     }`}
                   >
                     {item.subtitle}
                   </span>
                   <h3
-                    className={`text-lg font-bold ${
+                    className={`text-lg sm:text-xl font-bold tracking-tight ${
                       isSelected ? 'text-white' : 'text-neutral-900'
                     }`}
                   >
                     {item.title}
                   </h3>
                   <p
-                    className={`mt-2 text-xs sm:text-sm leading-relaxed ${
-                      isSelected ? 'text-neutral-300' : 'text-neutral-600'
+                    className={`mt-2.5 text-sm sm:text-[15px] leading-relaxed font-normal ${
+                      isSelected ? 'text-neutral-200' : 'text-neutral-600'
                     }`}
                   >
                     {item.desc}
@@ -154,24 +154,24 @@ export function HowItWorksTimeline() {
 
                 {/* Sub-item bullet points */}
                 <div
-                  className={`mt-5 pt-4 border-t ${
-                    isSelected ? 'border-white/10' : 'border-neutral-200'
+                  className={`mt-6 pt-4 border-t ${
+                    isSelected ? 'border-white/15' : 'border-neutral-200'
                   }`}
                 >
-                  <ul className="space-y-1.5 text-xs">
+                  <ul className="space-y-2 text-xs sm:text-sm">
                     {item.details.map((detail, dIdx) => (
                       <li
                         key={dIdx}
-                        className={`flex items-center gap-2 ${
-                          isSelected ? 'text-sky-200' : 'text-neutral-600'
+                        className={`flex items-start gap-2.5 ${
+                          isSelected ? 'text-sky-100' : 'text-neutral-600'
                         }`}
                       >
                         <span
-                          className={`w-1.5 h-1.5 rounded-full ${
+                          className={`w-1.5 h-1.5 rounded-full mt-1.5 shrink-0 ${
                             isSelected ? 'bg-sky-400' : 'bg-[#0284C7]'
                           }`}
                         />
-                        <span>{detail}</span>
+                        <span className="leading-snug">{detail}</span>
                       </li>
                     ))}
                   </ul>

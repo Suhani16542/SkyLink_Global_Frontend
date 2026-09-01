@@ -3,24 +3,24 @@ import type { Service } from '@/types';
 export const servicesData: Service[] = [
   {
     id: 'licensing-registrations',
-    title: 'Licensing & Registrations',
+    title: 'Licensing & Statutory Registrations',
     slug: 'licensing-registrations',
     shortDescription:
-      'Turnkey statutory approvals including DGFT IEC registration, RCMC certification, AEO certification, and industrial licensing.',
+      'Turnkey foreign trade authorizations including DGFT IEC registration, RCMC certification, AEO status, SCOMET permits, and industrial licensing.',
     description:
-      'Navigating statutory foreign trade registrations is the critical foundation for seamless cross-border commerce. We manage end-to-end applications, statutory liaison, and compliance certifications with DGFT, Export Promotion Councils (EPCs), CBIC, and regulatory boards.',
+      'Navigating statutory foreign trade registrations is the critical baseline for cross-border operations. We manage end-to-end applications, statutory liaison, and compliance certifications with DGFT, Export Promotion Councils (EPCs), CBIC, and regulatory commodity boards.',
     features: [
-      'Importer-Exporter Code (IEC) Issuance & Annual Profile Updation',
-      'Registration-cum-Membership Certificate (RCMC) with respective EPCs/Commodity Boards',
+      'Importer-Exporter Code (IEC) Issuance, Annual Profile Renewal & Modifications',
+      'Registration-cum-Membership Certificate (RCMC) with EPCs (EEPC, FIEO, APEDA, Pharmexcil, MPEDA)',
       'Authorized Economic Operator (AEO T1, T2, T3 & LO) Certification Advisory',
-      'Special Economic Zone (SEZ) & 100% EOU Unit Approvals',
-      'SCOMET (Special Chemicals, Organisms, Materials, Equipment & Technologies) Licensing',
+      'Special Economic Zone (SEZ) & 100% Export Oriented Unit (EOU) Approvals',
+      'SCOMET (Dual-Use Items) Export Authorization & Regulatory Clearances',
     ],
     benefits: [
-      'Accelerated registration with zero statutory objections',
-      'Priority customs green-channel clearance via AEO certification',
-      'Full eligibility for central and state export promotion schemes',
-      'Protection against non-compliance penalties and licensing suspensions',
+      'Expedited licensing with zero statutory show-cause interventions',
+      'Priority customs green-channel clearance via certified AEO status',
+      'Full eligibility for central and state export promotion incentive schemes',
+      'Continuous compliance audit readiness protecting against license suspension',
     ],
     faqs: [
       {
@@ -29,12 +29,12 @@ export const servicesData: Service[] = [
           'Standard IEC issuance is completed within 24-48 hours once documentation is verified. RCMC approval timelines depend on the specific Export Promotion Council, typically taking 3-7 business days with our direct liaison.',
       },
       {
-        question: 'What is the advantage of obtaining AEO status?',
+        question: 'What is the operational advantage of obtaining AEO status?',
         answer:
-          'AEO (Authorized Economic Operator) certification provides faster customs clearance with lower inspection rates, deferred duty payment privileges, and higher bank guarantee waivers.',
+          'AEO (Authorized Economic Operator) certification provides faster customs clearance with lower inspection rates, deferred duty payment privileges, higher bank guarantee waivers, and reciprocal green-channel privileges in partner nations.',
       },
     ],
-    seoTitle: 'EXIM Licensing & Registrations | DGFT, IEC & AEO Advisory',
+    seoTitle: 'EXIM Licensing & Registrations | DGFT, IEC, RCMC & AEO Advisory',
     seoDescription:
       'Comprehensive EXIM licensing services including IEC registration, RCMC certification, AEO status, and DGFT statutory liaison.',
   },
@@ -43,32 +43,32 @@ export const servicesData: Service[] = [
     title: 'Export Incentives & Government Schemes',
     slug: 'export-incentives',
     shortDescription:
-      'Maximize cash remissions and duty exemptions across RoDTEP, RoSCTL, Advance Authorisation, and EPCG schemes.',
+      'Maximize cash remissions and duty exemptions across RoDTEP, RoSCTL, Advance Authorisation, and EPCG schemes under Foreign Trade Policy.',
     description:
-      'Ensure your enterprise claims every available rupee and dollar in statutory export incentives. We conduct thorough incentive audits, prepare statutory reconciliation statements, and secure direct duty credit scrips.',
+      'Ensure your enterprise claims every available statutory export benefit under the Foreign Trade Policy (FTP 2023). We conduct comprehensive trade incentive audits, prepare statutory reconciliation statements, and secure direct duty credit scrips and duty-free import licenses.',
     features: [
-      'Remission of Duties and Taxes on Exported Products (RoDTEP) Filings',
-      'Rebate of State and Central Taxes and Levies (RoSCTL) for Textiles & Apparel',
-      'Advance Authorisation Scheme for Duty-Free Raw Material Procurement',
-      'Export Promotion Capital Goods (EPCG) Scheme for Zero-Duty Capital Machinery',
-      'Duty Drawback (All Industry Rates & Brand Rate Fixation)',
+      'Remission of Duties and Taxes on Exported Products (RoDTEP) Electronic Filings',
+      'Rebate of State and Central Taxes and Levies (RoSCTL) for Textiles, Garments & Made-ups',
+      'Advance Authorisation Scheme for Duty-Free Input Raw Material Procurement',
+      'Export Promotion Capital Goods (EPCG) Scheme for Zero-Duty Capital Machinery Imports',
+      'Duty Drawback (All Industry Rates & Section 74/75 Brand Rate Fixation)',
     ],
     benefits: [
-      'Up to 4-8% direct improvement in gross export margins',
-      'Zero customs duty on imported inputs and manufacturing machinery',
-      'Timely redemption and clubbing of EPCG/Advance Authorisation licenses',
-      'Zero unutilized duty scrips and accelerated cash flow recovery',
+      'Up to 4-8% direct improvement in gross export margins through systematic claims',
+      'Zero basic customs duty and IGST on imported inputs and manufacturing machinery',
+      'Timely redemption and clubbing of EPCG and Advance Authorisation obligations (EODC)',
+      'Zero unutilized duty credit scrips and accelerated cash flow recovery',
     ],
     faqs: [
       {
         question: 'What is the difference between RoDTEP and Duty Drawback?',
         answer:
-          'Duty Drawback refunds basic customs duties paid on imported inputs used in export manufacture, whereas RoDTEP reimburses embedded non-creditable central, state, and local levies (like electricity taxes, VAT on fuel, stamp duties).',
+          'Duty Drawback refunds basic customs duties paid on imported inputs used in export manufacture, whereas RoDTEP reimburses embedded non-creditable central, state, and local levies (like electricity taxes, VAT on fuel, stamp duties). Both can be structured synergistically.',
       },
       {
         question: 'How do you assist with EPCG Export Obligation (EO) fulfillment?',
         answer:
-          'We manage the entire EO monitoring lifecycle, submit periodic installation certificates, handle average export maintenance, and obtain the final Export Obligation Discharge Certificate (EODC).',
+          'We manage the entire EO monitoring lifecycle, submit periodic installation certificates, handle average export maintenance, and obtain the final Export Obligation Discharge Certificate (EODC) from DGFT.',
       },
     ],
     seoTitle: 'Export Incentives & Schemes | RoDTEP, EPCG & Advance Authorisation',
@@ -77,30 +77,30 @@ export const servicesData: Service[] = [
   },
   {
     id: 'documentation-liaison',
-    title: 'Documentation & Government Liaison',
+    title: 'Cross-Border Documentation & Liaison',
     slug: 'documentation-liaison',
     shortDescription:
-      'Flawless cross-border trade documentation, bank realization (e-BRC), and direct representation with DGFT and customs.',
+      'Zero-defect trade documentation, Letter of Credit (LC) compliance, e-BRC realization, and direct representation with DGFT and Customs.',
     description:
-      'Single-window documentation management ensuring absolute compliance with international trade laws, foreign exchange regulations (FEMA/RBI), and bilateral trade agreements.',
+      'Single-window documentation management ensuring absolute compliance with international trade laws, Uniform Customs and Practice for Documentary Credits (UCP 600), foreign exchange regulations (FEMA/RBI), and bilateral Free Trade Agreements.',
     features: [
-      'Digital Certificate of Origin (Preferential under FTAs & Non-Preferential)',
-      'Electronic Bank Realisation Certificate (e-BRC) Reconciliation & Closure',
-      'Bill of Lading / Air Waybill Verification & Endorsements',
-      'DGFT Policy Clarifications, Representations & Committee Hearings',
-      'Customs Valuation & SVB (Special Valuation Branch) Documentation',
+      'Digital Certificate of Origin (Preferential under CEPA/FTA & Non-Preferential)',
+      'Letter of Credit (LC) Scrutiny & Compliance under UCP 600 / ISBP Guidelines',
+      'Electronic Bank Realisation Certificate (e-BRC) Reconciliation & EDPMS / IDPMS Closure',
+      'Multimodal Bill of Lading (FBL) and Air Waybill Verification & Endorsements',
+      'Direct Representation for DGFT Policy Clarifications, Norms Committees & Grievances',
     ],
     benefits: [
-      'Zero documentation discrepancy delays and eliminated bank penalties',
-      'Full tariff concessions under Free Trade Agreements (FTAs/CEPAs)',
+      'Zero documentation discrepancy rejections and eliminated bank amendment penalties',
+      'Full tariff concessions under Free Trade Agreements (FTAs, CEPAs, CECA)',
       'Fast resolution of complex DGFT policy and procedural bottlenecks',
-      'Audit-ready electronic records for all cross-border transactions',
+      'Audit-ready electronic trade dossiers for all cross-border transactions',
     ],
     faqs: [
       {
         question: 'Why is e-BRC reconciliation critical for exporters?',
         answer:
-          'Without e-BRC realization linked to your shipping bills on the DGFT portal, DGFT will deny or recover export incentives, and the RBI/ED may flag the enterprise under the Caution Listing database (EDPMS).',
+          'Without e-BRC realization linked to your shipping bills on the DGFT portal, DGFT will deny or recover export incentives, and the RBI/ED may flag the enterprise under the EDPMS Caution Listing database.',
       },
     ],
     seoTitle: 'EXIM Documentation & Government Liaison | DGFT & Customs Liaison',
@@ -109,30 +109,30 @@ export const servicesData: Service[] = [
   },
   {
     id: 'logistics-shipping',
-    title: 'Logistics & International Shipping',
+    title: 'International Freight & Multimodal Logistics',
     slug: 'logistics-shipping',
     shortDescription:
-      'Direct carrier allocations, competitive ocean freight negotiation, air cargo charters, and multimodal port coordination.',
+      'Direct Tier-1 ocean & air carrier allocations, competitive freight contracting, multimodal corridor routing, and full Incoterms® execution.',
     description:
-      'We link manufacturers, exporters, and importers directly with major global shipping lines and air freight carriers. Our logistics architecture eliminates middlemen markups while guaranteeing predictable vessel space allocations.',
+      'We link manufacturers, exporters, and importers directly with major global shipping lines (Maersk, MSC, CMA CGM, Hapag-Lloyd) and scheduled air cargo carriers. Our logistics architecture eliminates broker markups while guaranteeing predictable vessel space allocations across all Incoterms® (EXW, FCA, FOB, CFR, CIF, CPT, CIP, DAP, DPU, DDP).',
     features: [
       'Full Container Load (FCL) & Less than Container Load (LCL) Ocean Freight',
-      'Time-Critical Air Cargo & Scheduled Consolidation Services',
-      'Direct Tier-1 Carrier Space Contracting & Spot Rate Optimization',
-      'Intermodal Rail & Road Transit to Major Inland Container Depots (ICDs)',
-      'Port Handling, Stevedoring & First-Mile/Last-Mile Drayage',
+      'Time-Critical Air Cargo Charters & Scheduled Consolidation Corridors',
+      'Direct Tier-1 Carrier Space Contracting & Transparent All-In Spot Rate Negotiation',
+      'Incoterms® 2020 Operational Execution (Factory Gate EXW/FCA to Destination DDP/DAP)',
+      'Intermodal Rail & Road Transit to Major Inland Container Depots (ICDs) and Gateway Ports',
     ],
     benefits: [
-      '15-25% reduction in freight costs through direct volume negotiations',
-      'Guaranteed container allocations even during peak shipping seasons',
-      'End-to-end cargo visibility from factory gate to final consignee warehouse',
-      'Minimization of detention and demurrage liabilities through proactive tracking',
+      '15-25% reduction in landed freight costs through direct volume negotiations',
+      'Guaranteed container allocations even during peak shipping cycles and equipment shortages',
+      'End-to-end cargo visibility from factory floor to final consignee warehouse',
+      'Proactive detention and demurrage mitigation via integrated gate logging',
     ],
     faqs: [
       {
         question: 'How do you secure better freight rates than standard forwarders?',
         answer:
-          'We leverage consolidated multi-client volume contracts and direct API integrations with leading global shipping lines (Maersk, MSC, CMA CGM, Hapag-Lloyd) without multi-layer broker margins.',
+          'We leverage consolidated multi-client volume contracts and direct Tier-1 carrier service agreements (SCAs) without multi-layer broker margins, passing wholesale ocean and air rates directly to our clients.',
       },
     ],
     seoTitle: 'Global Logistics & International Freight Forwarding | Ocean & Air Freight',
@@ -144,27 +144,27 @@ export const servicesData: Service[] = [
     title: 'Customs Clearance & Regulatory Compliance',
     slug: 'customs-compliance',
     shortDescription:
-      'Authorized customs brokerage, accurate HS code classification, valuation scrutiny, and post-clearance audit defense.',
+      'Authorized customs brokerage, accurate HS code classification, valuation scrutiny, faceless assessment defense, and port gate clearance.',
     description:
-      'Navigating customs regulations requires meticulous technical accuracy. Our licensed customs compliance team ensures error-free filing of Shipping Bills and Bills of Entry across major sea ports, airports, and ICDs.',
+      'Navigating customs regulations requires meticulous technical accuracy. Our licensed customs compliance team ensures error-free filing of Shipping Bills and Bills of Entry across major sea ports (Nhava Sheva, Mundra, Chennai), airports, and inland container depots (ICDs).',
     features: [
       'Harmonized System (HS) Code Classification & General Rules of Interpretation (GRI)',
-      'Electronic Bill of Entry & Shipping Bill Filing via ICEGATE',
-      'Customs Valuation Advisory & SVB Assessment Assistance',
-      'Handling of Faceless Assessment Queries & Dispute Resolution',
-      'Post-Clearance Audit (PCA) Readiness & Internal Compliance Reviews',
+      'Electronic Bill of Entry & Shipping Bill Filing via ICEGATE EDI',
+      'Customs Valuation Advisory & Special Valuation Branch (SVB) Documentation',
+      'Handling of Faceless Assessment First-Check / Second-Check Customs Queries',
+      'Post-Clearance Audit (PCA) Readiness & Internal Regulatory Reviews',
     ],
     benefits: [
-      'Immediate turnaround with minimal query interventions from customs officers',
-      'Elimination of misclassification penalties, seizures, and tariff disputes',
-      'Optimized duty payment through lawful notification benefits',
-      'Comprehensive defense during audits and show-cause proceedings',
+      'Immediate port turnaround with zero demurrage and minimal customs inspection delays',
+      'Elimination of misclassification penalties, cargo seizures, and tariff disputes',
+      'Optimized duty payment through lawful customs exemption notification benefits',
+      'Comprehensive legal representation during departmental audits and show-cause proceedings',
     ],
     faqs: [
       {
         question: 'What happens if an incorrect HS code is applied on an export or import?',
         answer:
-          'Misclassification can trigger immediate seizure of goods, severe statutory fines under the Customs Act, demand for differential duties with retrospective interest, and loss of export incentives.',
+          'Misclassification can trigger immediate seizure of cargo, statutory penalties under Section 112/114 of the Customs Act, demands for differential duties with retrospective interest, and denial of export incentives.',
       },
     ],
     seoTitle: 'Customs Clearance & Brokerage | HS Code & Regulatory Compliance',
@@ -173,30 +173,30 @@ export const servicesData: Service[] = [
   },
   {
     id: 'warehousing-distribution',
-    title: 'Warehousing & Global Distribution',
+    title: 'Bonded Warehousing & Global Distribution',
     slug: 'warehousing-distribution',
     shortDescription:
-      'Customs bonded warehousing, Free Trade Warehousing Zones (FTWZ), cross-docking, and hub-and-spoke inventory distribution.',
+      'Customs bonded warehousing under MOOWR (Section 65), Free Trade Warehousing Zones (FTWZ), cross-docking, and inventory distribution.',
     description:
-      'Strategic warehousing infrastructure positioned at major port hinterlands and key logistics corridors, enabling duty deferment, repackaging, and streamlined distribution.',
+      'Strategic warehousing infrastructure positioned at major port hinterlands and key logistics corridors, enabling duty deferment, repackaging, quality inspection, and streamlined regional distribution.',
     features: [
-      'Public & Private Customs Bonded Warehouses (Section 58 & 65 MOOWR)',
-      'Free Trade and Warehousing Zone (FTWZ) Storage & Transshipment',
-      'Cross-Docking, Consolidation & Deconsolidation Hubs',
-      'Pick, Pack, Kitting, Quality Inspection & Relabeling Services',
-      'WMS (Warehouse Management System) with Real-Time Stock Tracking',
+      'Customs Bonded Warehousing under Section 58 & Section 65 MOOWR Regulations',
+      'Free Trade and Warehousing Zone (FTWZ) Storage, De-consolidation & Transshipment',
+      'Cross-Docking, Consolidation & Hub-and-Spoke Logistics Architecture',
+      'Pick, Pack, Kitting, Quality Inspection & Relabeling under Bonded Status',
+      'Enterprise WMS (Warehouse Management System) with Real-Time Inventory Telemetry',
     ],
     benefits: [
-      'Deferred customs duty until goods enter domestic tariff area',
-      'Manufacturing and other operations in bonded warehouse without upfront duty (MOOWR)',
-      'Faster fulfillment for domestic and regional international markets',
-      'Reduced inventory holding costs and optimized supply chain cash flow',
+      'Deferred customs duty payment until goods are cleared for domestic consumption',
+      'Manufacture and value-addition in bonded warehouse with zero upfront duty (MOOWR)',
+      'Faster regional order fulfillment with minimized stock-out risks',
+      'Optimized supply chain working capital and reduced carrying costs',
     ],
     faqs: [
       {
         question: 'What is the benefit of the MOOWR scheme in bonded warehousing?',
         answer:
-          'Under MOOWR (Manufacture and Other Operations in Warehouse Regulations), you can import capital goods and raw materials without paying customs duties until the finished goods are cleared for domestic sale (and zero duty if exported).',
+          'Under MOOWR (Manufacture and Other Operations in Warehouse Regulations), you can import capital goods and raw materials without paying customs duties or IGST until the finished goods enter the domestic market (and 100% duty waiver if exported).',
       },
     ],
     seoTitle: 'Bonded Warehousing & FTWZ Logistics | SkyLink Global Services',
@@ -208,21 +208,21 @@ export const servicesData: Service[] = [
     title: 'Cold Chain Logistics & Temperature Control',
     slug: 'cold-chain-solutions',
     shortDescription:
-      'GDP and FDA-compliant refrigerated transit for pharmaceuticals, biologicals, fresh produce, and seafood.',
+      'GDP and US FDA-compliant refrigerated transit (-25°C to +25°C) for pharmaceuticals, biologics, APIs, and deep-freeze perishables.',
     description:
-      'Preserving thermal integrity across international trade lanes demands validated packaging, continuous telemetry, and emergency contingency protocols. We ensure complete cold-chain continuity from origin cold-storage to final destination.',
+      'Preserving thermal integrity across international trade lanes demands validated packaging, continuous telemetry, and emergency contingency protocols. We ensure complete cold-chain continuity from origin cold-storage to destination consignee.',
     features: [
-      'Reefer Containers (-25°C to +25°C, Ultra-Low Deep Freeze -80°C)',
-      'Active & Passive Thermal Packaging Validation',
-      'Real-Time IoT Temperature, Humidity & GPS Telemetry Monitoring',
-      'GDP (Good Distribution Practice) Certified Pharma Logistics Protocols',
-      'Expedited Customs Clearance for Time & Temperature-Sensitive Life Sciences',
+      'Reefer Containers (-25°C Deep Freeze to +25°C Controlled Room Temperature, Ultra-Low -80°C)',
+      'Active & Passive Thermal Packaging Validation & Pre-Cooling Protocols',
+      'Real-Time IoT Temperature, Humidity, Shock & Geofencing GPS Telemetry Monitoring',
+      'GDP (Good Distribution Practice), US FDA, and European Union Life Science Compliance',
+      'Pre-Arrival Customs Green-Channel Expedited Clearance for Perishables and Pharma',
     ],
     benefits: [
-      'Zero thermal excursions and guaranteed product efficacy upon arrival',
-      'Full regulatory compliance with US FDA, EU GDP, and WHO standards',
-      'Comprehensive temperature log audit trails provided with every shipment',
-      'Specialized handling for high-value APIs, vaccines, seafood, and fruits',
+      'Zero thermal excursions and guaranteed product potency upon arrival',
+      'Full regulatory compliance with international pharmacopeia standards',
+      'Comprehensive time-temperature audit logs provided with every shipment',
+      'Specialized handling for high-value APIs, vaccines, seafood, and fresh agricultural produce',
     ],
     faqs: [
       {
@@ -240,21 +240,21 @@ export const servicesData: Service[] = [
     title: 'Trade Tax & GST Advisory',
     slug: 'tax-gst-advisory',
     shortDescription:
-      'Strategic GST structuring on export/import, Letter of Undertaking (LUT) filings, and expedited Input Tax Credit (ITC) refunds.',
+      'Cross-border GST structuring, Letter of Undertaking (LUT) filings, and expedited Input Tax Credit (ITC) & IGST refund reconciliation.',
     description:
-      'Cross-border tax structuring designed to eliminate double taxation, maximize cash flow, and ensure complete compliance with Goods & Services Tax (GST) and customs duty statutes.',
+      'Cross-border tax structuring designed to eliminate double taxation, maximize cash flow, and ensure complete statutory harmony between Goods & Services Tax (GST) returns and customs ICEGATE shipping data.',
     features: [
-      'Export without Payment of Tax under Letter of Undertaking (LUT)',
-      'Expedited Processing & Liaison for Accumulated ITC Refunds on Exports',
-      'Integrated GST (IGST) Refund Verification with Customs ICEGATE Systems',
-      'Advisory on High Seas Sales, Merchanting Trade, and In-Transit Sales Tax',
-      'Cross-Border Transfer Pricing & Related Party Customs Valuation (SVB)',
+      'Export without Payment of Output Tax under compliant Letter of Undertaking (LUT)',
+      'Expedited Processing & Departmental Liaison for Accumulated ITC Refunds on Exports',
+      'Integrated GST (IGST) Refund Verification and ICEGATE SB005 Error Resolution',
+      'Advisory on High Seas Sales, Merchanting Trade, and In-Transit Sales Tax Structuring',
+      'Cross-Border Transfer Pricing & Special Valuation Branch (SVB) Related-Party Customs Filing',
     ],
     benefits: [
-      'Rapid liquidation of blocked capital in GST refund pipelines',
-      'Zero cash outflow on output GST through compliant LUT filings',
+      'Rapid liquidation of working capital tied up in GST refund pipelines',
+      'Zero cash outflow on output GST through compliant LUT structuring',
       'Seamless matching between GSTR-1, GSTR-3B, and ICEGATE shipping data',
-      'Protection against retrospective tax demands and departmental notices',
+      'Protection against retrospective tax demands and departmental audit notices',
     ],
     faqs: [
       {
@@ -272,27 +272,27 @@ export const servicesData: Service[] = [
     title: 'Trade Risk Management & Marine Insurance',
     slug: 'trade-risk-management',
     shortDescription:
-      'All-risk marine cargo insurance, foreign exchange hedging strategies, geopolitical trade lane advisory, and dispute resolution.',
+      'Incoterms® 2020 contract risk allocation, Institute Cargo Clauses (A/B/C) marine cargo indemnity, and dispute defense.',
     description:
-      'Protect your cross-border transactions against maritime hazards, cargo loss, carrier insolvencies, currency fluctuations, and contractual counterparty defaults with comprehensive trade risk frameworks.',
+      'Protect cross-border transactions against maritime perils, physical cargo loss, carrier insolvencies, currency volatility, and contractual counterparty defaults with comprehensive trade risk frameworks.',
     features: [
-      'Institute Cargo Clauses (A, B, C) Marine Cargo Insurance Broking',
-      'Incoterms® 2020 Risk Allocation Advisory for Commercial Contracts',
-      'Trade Sanctions, Restricted Entity Screening & Geopolitical Risk Review',
+      'Institute Cargo Clauses (A, B, C) Marine Cargo Insurance Broking & Policy Structuring',
+      'Incoterms® 2020 Contract Risk Demarcation (EXW, FOB, CIF, CIP, DAP, DDP)',
+      'Trade Sanctions, Restricted Party Screening & Geopolitical Corridor Assessment',
       'Demurrage, Detention & General Average Claim Defense',
-      'International Commercial Dispute Advisory & Carrier Liability Claims',
+      'International Commercial Dispute Advisory & Carrier Liability Claims Recovery',
     ],
     benefits: [
-      '100% financial protection against catastrophic loss or damage during transit',
+      '100% financial protection against catastrophic loss or physical damage during transit',
       'Clear contractual risk boundaries eliminating legal ambiguity with overseas buyers',
-      'Protection against unexpected General Average contributions',
-      'Proactive rerouting advisory to bypass conflict zones and port congestions',
+      'Protection against unexpected General Average contributions on maritime vessels',
+      'Proactive rerouting advisory to bypass conflict zones and congested gateway ports',
     ],
     faqs: [
       {
         question: 'What is General Average and why is marine insurance essential?',
         answer:
-          'Under maritime law, General Average requires all cargo owners on a vessel to proportionally share the financial losses if cargo is jettisoned or expenses are incurred to save the ship in an emergency. Marine insurance fully indemnifies you against these sudden multi-million dollar claims.',
+          'Under maritime law, General Average requires all cargo owners on a vessel to proportionally share the financial losses if cargo is jettisoned or extraordinary expenses are incurred to save the ship in an emergency. Marine insurance fully indemnifies you against these sudden multi-million dollar liabilities.',
       },
     ],
     seoTitle: 'Trade Risk Management & Marine Cargo Insurance | SkyLink Global Services',
@@ -308,3 +308,4 @@ export async function getAllServices(): Promise<Service[]> {
 export async function getServiceBySlug(slug: string): Promise<Service | undefined> {
   return servicesData.find((service) => service.slug === slug);
 }
+

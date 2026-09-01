@@ -1,132 +1,70 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
-interface SkyLinkLogoProps {
+export interface SkyLinkLogoProps {
   variant?: 'light' | 'dark';
   showTagline?: boolean;
   className?: string;
-  size?: 'sm' | 'md' | 'lg';
+  size?: 'sm' | 'md' | 'lg' | 'xl' | 'navbar' | 'footer';
   href?: string;
+  priority?: boolean;
 }
 
 export function SkyLinkLogo({
   variant = 'dark',
-  showTagline = false,
   className = '',
-  size = 'md',
+  size = 'navbar',
   href = '/',
+  priority = true,
 }: SkyLinkLogoProps) {
   const isLight = variant === 'light';
 
-  const iconSizes = {
-    sm: 'w-7 h-7',
-    md: 'w-9 h-9',
-    lg: 'w-12 h-12',
+  // Responsive sizing ensuring the logo is prominent, perfectly proportioned, and fits 70-78px navbar height
+  const sizeClasses = {
+    sm: 'h-10 sm:h-12 w-auto max-h-12',
+    md: 'h-12 sm:h-14 md:h-16 w-auto max-h-16',
+    lg: 'h-20 sm:h-24 md:h-28 w-auto max-h-28',
+    xl: 'h-28 sm:h-36 md:h-44 w-auto max-h-44',
+    navbar: 'h-12 sm:h-14 md:h-16 lg:h-[64px] w-auto max-h-[68px]',
+    footer: 'h-28 sm:h-32 md:h-36 lg:h-40 w-auto max-h-[160px]',
   };
 
-  const titleSizes = {
-    sm: 'text-lg',
-    md: 'text-xl',
-    lg: 'text-2xl',
-  };
-
-  const subtitleSizes = {
-    sm: 'text-[8px]',
-    md: 'text-[9px]',
-    lg: 'text-[11px]',
-  };
+  const selectedSizeClass = sizeClasses[size] || sizeClasses.navbar;
 
   const content = (
-    <div className={`flex items-center gap-2.5 group select-none ${className}`}>
-      {/* Brand Icon Badge */}
-      <div
-        className={`${iconSizes[size]} relative flex items-center justify-center rounded-lg shadow-sm transition-transform duration-300 group-hover:scale-105 ${
-          isLight
-            ? 'bg-white/10 ring-1 ring-white/20'
-            : 'bg-gradient-to-br from-[#0A2540] to-[#0284C7] shadow-[#0284C7]/20 ring-1 ring-[#0284C7]/30'
-        }`}
-      >
-        <svg
-          viewBox="0 0 40 40"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          className="w-full h-full p-1.5"
-        >
-          {/* Globe Latitude & Longitude lines */}
-          <circle
-            cx="20"
-            cy="20"
-            r="16"
-            stroke={isLight ? '#38BDF8' : '#38BDF8'}
-            strokeWidth="1.75"
-            strokeDasharray="2 2"
-            opacity="0.6"
-          />
-          <ellipse
-            cx="20"
-            cy="20"
-            rx="8"
-            ry="16"
-            stroke={isLight ? '#E0F2FE' : '#93C5FD'}
-            strokeWidth="1.5"
-            opacity="0.75"
-          />
-          {/* Aerodynamic Global Logistics Flight / Route Arc */}
-          <path
-            d="M6 26C12 12 28 8 34 16"
-            stroke={isLight ? '#FFFFFF' : '#FFFFFF'}
-            strokeWidth="2.5"
-            strokeLinecap="round"
-          />
-          {/* Forward Arrow / Aircraft Node */}
-          <polygon
-            points="34,16 29,14 31,19"
-            fill={isLight ? '#38BDF8' : '#38BDF8'}
-          />
-          {/* Central Connecting Node */}
-          <circle cx="20" cy="20" r="3" fill={isLight ? '#38BDF8' : '#0284C7'} />
-          <circle cx="20" cy="20" r="1.5" fill="#FFFFFF" />
-        </svg>
-      </div>
-
-      {/* Typography */}
-      <div className="flex flex-col">
-        <div className="flex items-baseline leading-none">
-          <span
-            className={`font-black tracking-tight ${titleSizes[size]} ${
-              isLight ? 'text-white' : 'text-[#0A2540]'
-            }`}
-          >
-            Sky<span className={isLight ? 'text-[#38BDF8]' : 'text-[#0284C7]'}>Link</span>
-          </span>
-        </div>
-        <span
-          className={`font-bold tracking-[0.22em] uppercase leading-none mt-1 ${subtitleSizes[size]} ${
-            isLight ? 'text-neutral-300' : 'text-neutral-500'
-          }`}
-        >
-          GLOBAL SERVICES
-        </span>
-        {showTagline && (
-          <span
-            className={`text-[9px] font-medium tracking-normal mt-0.5 ${
-              isLight ? 'text-sky-200/80' : 'text-neutral-400'
-            }`}
-          >
-            Connecting Markets. Delivering Opportunities.
-          </span>
-        )}
-      </div>
+    <div
+      className={`relative inline-flex items-center transition-transform duration-300 group-hover:scale-[1.02] ${
+        isLight
+          ? 'bg-white rounded-xl p-2.5 sm:p-3 shadow-md border border-white/20'
+          : ''
+      }`}
+    >
+      <Image
+        src="/logos/skylink-logo.png"
+        alt="SkyLink Global Services"
+        width={320}
+        height={320}
+        priority={priority}
+        className={`${selectedSizeClass} object-contain`}
+        quality={100}
+        unoptimized
+      />
     </div>
   );
 
   if (href) {
     return (
-      <Link href={href} aria-label="SkyLink Global Services Home">
+      <Link
+        href={href}
+        className={`inline-flex items-center group select-none shrink-0 ${className}`}
+        aria-label="SkyLink Global Services Home"
+      >
         {content}
       </Link>
     );
   }
 
-  return content;
+  return <div className={`inline-flex ${className}`}>{content}</div>;
 }
+

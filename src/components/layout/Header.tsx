@@ -24,7 +24,7 @@ export function Header() {
   const closeMobileMenu = () => setMobileMenuOpen(false);
 
   return (
-    <>
+    <header className="sticky top-0 z-40 w-full">
       {/* Top Utility Contact Bar */}
       <div className="hidden lg:block bg-[#07192D] text-neutral-300 text-xs py-2 border-b border-white/10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex items-center justify-between">
@@ -72,22 +72,24 @@ export function Header() {
         </div>
       </div>
 
-      {/* Main Sticky Header */}
-      <header
-        className={`sticky top-0 z-40 w-full transition-all duration-300 ${
-          isScrolled
-            ? 'bg-white/95 backdrop-blur-md shadow-md border-b border-neutral-200/80 py-2.5'
-            : 'bg-white border-b border-neutral-200 py-3.5'
+      {/* Main Header */}
+      <div
+        className={`w-full transition-shadow duration-300 bg-white border-b border-neutral-200 py-1.5 sm:py-2 ${
+          isScrolled ? 'shadow-md' : ''
         }`}
       >
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 min-h-[64px] sm:min-h-[68px]">
           {/* Logo */}
-          <SkyLinkLogo size={isScrolled ? 'sm' : 'md'} showTagline={!isScrolled} />
+          <SkyLinkLogo
+            size="navbar"
+            className="ml-1 sm:ml-2 md:ml-4 lg:ml-6"
+            priority
+          />
 
           {/* Desktop Navigation */}
           <nav
             aria-label="Main Navigation"
-            className="hidden md:flex items-center gap-7 text-sm font-semibold text-neutral-700"
+            className="hidden md:flex items-center gap-6 lg:gap-8 text-[15px] lg:text-base font-medium lg:font-semibold text-neutral-800"
           >
             {siteConfig.mainNav.map((item) => {
               const isActive =
@@ -100,7 +102,7 @@ export function Header() {
                   href={item.href}
                   className={`transition-colors py-1 relative ${
                     isActive
-                      ? 'text-[#0284C7] font-bold'
+                      ? 'text-[#0284C7] font-semibold'
                       : 'text-neutral-700 hover:text-[#0A2540]'
                   }`}
                 >
@@ -119,6 +121,7 @@ export function Header() {
               href="/request-consultation"
               variant="secondary"
               size="sm"
+              className="text-[14px] font-semibold"
               rightIcon={<ArrowRight className="w-3.5 h-3.5" />}
             >
               Request Consultation
@@ -137,7 +140,7 @@ export function Header() {
 
         {/* Mobile Slide-Over Drawer */}
         {mobileMenuOpen && (
-          <div className="md:hidden fixed inset-x-0 top-[61px] bottom-0 bg-white/95 backdrop-blur-lg border-b border-neutral-200 z-50 p-6 flex flex-col justify-between overflow-y-auto animate-in fade-in slide-in-from-top-4 duration-200">
+          <div className="md:hidden fixed inset-x-0 top-full bottom-0 bg-white/95 backdrop-blur-lg border-b border-neutral-200 z-50 p-6 flex flex-col justify-between overflow-y-auto animate-in fade-in slide-in-from-top-4 duration-200">
             <nav className="space-y-4">
               {siteConfig.mainNav.map((item) => {
                 const isActive =
@@ -200,7 +203,7 @@ export function Header() {
             </div>
           </div>
         )}
-      </header>
-    </>
+      </div>
+    </header>
   );
 }

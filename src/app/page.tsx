@@ -10,9 +10,17 @@ import { Footer } from '@/components/layout/Footer';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { SectionHeading } from '@/components/ui/SectionHeading';
-import { HeroVisual } from '@/components/home/HeroVisual';
+import { HeroSection } from '@/components/home/HeroSection';
+import { StatsCounterSection } from '@/components/home/StatsCounterSection';
+import { GlobalTradeFlow } from '@/components/home/GlobalTradeFlow';
+import { StrategicPartnerSection } from '@/components/home/StrategicPartnerSection';
+import { WhySkyLinkBento } from '@/components/home/WhySkyLinkBento';
+import { ServicesBentoGrid } from '@/components/home/ServicesBentoGrid';
+import { IncotermsMatrix } from '@/components/home/IncotermsMatrix';
 import { GlobalRouteMap } from '@/components/home/GlobalRouteMap';
 import { HowItWorksTimeline } from '@/components/home/HowItWorksTimeline';
+import { LogisticsRiskJourney } from '@/components/home/LogisticsRiskJourney';
+import { IndustriesMosaic } from '@/components/home/IndustriesMosaic';
 import { ValueComparisonSection } from '@/components/home/ValueComparisonSection';
 import { ScrollReveal } from '@/components/animation/ScrollReveal';
 import { StaggerContainer } from '@/components/animation/StaggerContainer';
@@ -22,17 +30,11 @@ import {
   ArrowRight,
   ShieldCheck,
   Globe2,
-  Ship,
-  Building2,
-  CheckCircle2,
-  AlertTriangle,
   Users,
   Network,
   Scale,
   ThermometerSnowflake,
-  TrendingDown,
-  Coins,
-  Percent,
+  CheckCircle2,
 } from 'lucide-react';
 
 export const metadata: Metadata = constructMetadata({
@@ -41,28 +43,6 @@ export const metadata: Metadata = constructMetadata({
     'Connecting Markets. Delivering Opportunities. End-to-end EXIM consultancy, international freight forwarding, customs clearance, and global trade compliance.',
   path: '/',
 });
-
-// Curated high-res imagery mapping for services
-const serviceImages: Record<string, string> = {
-  'licensing-registrations': 'https://images.unsplash.com/photo-1450133064473-71024230f91b?q=80&w=800&auto=format&fit=crop',
-  'export-incentives': 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=800&auto=format&fit=crop',
-  'documentation-liaison': 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=800&auto=format&fit=crop',
-  'logistics-shipping': 'https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?q=80&w=800&auto=format&fit=crop',
-  'customs-compliance': 'https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=800&auto=format&fit=crop',
-  'warehousing-distribution': 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=800&auto=format&fit=crop',
-  'cold-chain-solutions': 'https://images.unsplash.com/photo-1587293852726-70cdb56c2866?q=80&w=800&auto=format&fit=crop',
-  'tax-gst-advisory': 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=800&auto=format&fit=crop',
-  'trade-risk-management': 'https://images.unsplash.com/photo-1505705694340-019e1e335916?q=80&w=800&auto=format&fit=crop',
-};
-
-// Curated high-res imagery mapping for industries
-const industryImages: Record<string, string> = {
-  pharmaceuticals: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=800&auto=format&fit=crop',
-  seafood: 'https://images.unsplash.com/photo-1534482421-64566f976cfa?q=80&w=800&auto=format&fit=crop',
-  perishables: 'https://images.unsplash.com/photo-1610348725531-843dff563e2c?q=80&w=800&auto=format&fit=crop',
-  manufacturing: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=800&auto=format&fit=crop',
-  'general-cargo': 'https://images.unsplash.com/photo-1553413077-190dd305871c?q=80&w=800&auto=format&fit=crop',
-};
 
 export default async function HomePage() {
   const services = await getAllServices();
@@ -76,255 +56,53 @@ export default async function HomePage() {
 
       <main className="flex-1">
         {/* ========================================================================= */}
-        {/* 1. HERO SECTION (Cinematic Staggered Entrance Animation) */}
+        {/* 1. HERO SECTION (Editorial Authority + Interactive Live Maritime Telemetry) */}
         {/* ========================================================================= */}
-        <section className="relative overflow-hidden bg-gradient-to-b from-[#07192D] via-[#0A2540] to-[#0A2540] text-white pt-12 pb-20 lg:pt-20 lg:pb-32">
-          {/* Subtle Ambient Background Grids */}
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
-
-          <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-              {/* Left Column: Headlines & CTAs */}
-              <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
-                {/* 1. Authority Eyebrow Badge (Appears 1st) */}
-                <ScrollReveal effect="fade-down" delay={50} duration={600}>
-                  <div className="inline-flex items-center gap-2 rounded-full bg-sky-500/10 border border-sky-400/30 px-4 py-1.5 text-xs font-semibold text-sky-300 backdrop-blur-md">
-                    <ShieldCheck className="w-4 h-4 text-emerald-400" />
-                    <span>DGFT &amp; Customs Authorized EXIM Facilitation</span>
-                  </div>
-                </ScrollReveal>
-
-                {/* 2. Main Heading (Appears 2nd) */}
-                <ScrollReveal effect="fade-up" delay={150} duration={700}>
-                  <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-[1.12]">
-                    Connecting Markets.{' '}
-                    <span className="text-gradient-sky">
-                      Delivering Opportunities.
-                    </span>
-                  </h1>
-                </ScrollReveal>
-
-                {/* 3. 3 Business Pillars Subtitle (Appears 3rd) */}
-                <ScrollReveal effect="fade-up" delay={250} duration={650}>
-                  <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2.5 text-sm sm:text-base font-bold text-sky-300">
-                    <span className="bg-sky-950/60 px-3 py-1 rounded-lg border border-sky-500/30">
-                      EXIM Consultancy
-                    </span>
-                    <span className="text-white/40">•</span>
-                    <span className="bg-sky-950/60 px-3 py-1 rounded-lg border border-sky-500/30">
-                      Global Logistics
-                    </span>
-                    <span className="text-white/40">•</span>
-                    <span className="bg-sky-950/60 px-3 py-1 rounded-lg border border-sky-500/30">
-                      Trade Compliance
-                    </span>
-                  </div>
-                </ScrollReveal>
-
-                {/* 4. Supporting Description (Appears 4th) */}
-                <ScrollReveal effect="fade-up" delay={350} duration={700}>
-                  <p className="text-base sm:text-lg text-neutral-300 max-w-2xl leading-relaxed mx-auto lg:mx-0">
-                    SkyLink Global Services empowers enterprises with strategic foreign trade policy advisory, direct Tier-1 carrier freight forwarding, flawless customs clearance, and GDP-compliant cold chain solutions across all major international trade corridors.
-                  </p>
-                </ScrollReveal>
-
-                {/* 5. Hero CTAs (Appears 5th) */}
-                <ScrollReveal effect="fade-up" delay={450} duration={700}>
-                  <div className="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
-                    <Button
-                      href="/request-consultation"
-                      variant="secondary"
-                      size="lg"
-                      rightIcon={<ArrowRight className="w-4 h-4" />}
-                      className="w-full sm:w-auto shadow-lg shadow-sky-500/30 hover:scale-[1.02] transition-transform"
-                    >
-                      Request a Consultation
-                    </Button>
-                    <Button
-                      href="/services"
-                      variant="outline"
-                      size="lg"
-                      className="w-full sm:w-auto text-white border-white/20 hover:bg-white/10"
-                    >
-                      Explore Our Services
-                    </Button>
-                  </div>
-                </ScrollReveal>
-
-                {/* 6. Quick Trust Highlights (Appears 6th) */}
-                <ScrollReveal effect="fade-up" delay={550} duration={700}>
-                  <div className="pt-6 border-t border-white/10 grid grid-cols-3 gap-4 text-center lg:text-left">
-                    <div>
-                      <div className="text-2xl sm:text-3xl font-extrabold text-white">100%</div>
-                      <div className="text-xs text-neutral-400">Statutory Compliance</div>
-                    </div>
-                    <div>
-                      <div className="text-2xl sm:text-3xl font-extrabold text-sky-400">20%+</div>
-                      <div className="text-xs text-neutral-400">Logistics Cost Savings</div>
-                    </div>
-                    <div>
-                      <div className="text-2xl sm:text-3xl font-extrabold text-white">Zero</div>
-                      <div className="text-xs text-neutral-400">Demurrage Focus</div>
-                    </div>
-                  </div>
-                </ScrollReveal>
-              </div>
-
-              {/* Right Column: Hero Visual with Real Cargo Vessel & Animated Floating Cards */}
-              <div className="lg:col-span-5">
-                <HeroVisual />
-              </div>
-            </div>
-          </div>
-        </section>
+        <HeroSection />
 
         {/* ========================================================================= */}
-        {/* 2. WHAT SETS US APART / TRUST HIGHLIGHTS (Staggered Cards Reveal) */}
+        {/* 2. GLOBAL IMPACT STATISTICS SECTION (Large Typography & Whitespace) */}
         {/* ========================================================================= */}
-        <section className="py-12 bg-neutral-50 border-b border-neutral-200">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <StaggerContainer
-              staggerDelay={70}
-              baseDelay={0}
-              className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-6"
-            >
-              {[
-                { title: 'End-to-End Trade Facilitation', icon: Globe2, desc: 'Single-window operations' },
-                { title: 'Strong Manufacturer Network', icon: Building2, desc: 'Direct B2B coordination' },
-                { title: 'Multiple Shipping Lines', icon: Ship, desc: 'Tier-1 maritime carriers' },
-                { title: 'Competitive Freight Negotiation', icon: Percent, desc: 'All-in transparent rates' },
-                { title: 'Regulatory Expertise', icon: Scale, desc: 'DGFT & Customs mastery' },
-                { title: 'Global Coordination Desk', icon: Network, desc: '24/7 telemetry monitoring' },
-              ].map((item, idx) => {
-                const IconComp = item.icon;
-                return (
-                  <div
-                    key={idx}
-                    className="flex flex-col items-center text-center p-5 rounded-2xl bg-white border border-neutral-200 shadow-xs hover-lift transition-all group h-full"
-                  >
-                    <div className="w-12 h-12 rounded-xl bg-sky-50 text-[#0284C7] group-hover:bg-[#0284C7] group-hover:text-white flex items-center justify-center mb-3 transition-colors">
-                      <IconComp className="w-6 h-6" />
-                    </div>
-                    <span className="text-xs sm:text-sm font-bold text-neutral-900 leading-snug">
-                      {item.title}
-                    </span>
-                    <span className="text-[11px] text-neutral-500 mt-1">
-                      {item.desc}
-                    </span>
-                  </div>
-                );
-              })}
-            </StaggerContainer>
-          </div>
-        </section>
+        <StatsCounterSection />
 
         {/* ========================================================================= */}
-        {/* 3. INTRODUCTION: Your Partner in Global Trade (Split Image & Content Reveal) */}
+        {/* 3. HOW SKYLINK CONNECTS GLOBAL TRADE (Continuous Open Trade Flow - NO CARDS) */}
         {/* ========================================================================= */}
-        <section className="py-20 sm:py-28 bg-white">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-              {/* Left Column: Image Reveal from Left */}
-              <ScrollReveal effect="fade-right" delay={50} duration={800} className="lg:col-span-6">
-                <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border border-neutral-200 bg-neutral-900 group">
-                  <Image
-                    src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1200&auto=format&fit=crop"
-                    alt="International automated cargo port with container gantry cranes and shipping logistics"
-                    fill
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#07192D]/80 via-transparent to-transparent" />
-                  
-                  {/* Floating Overlay Badge on Image */}
-                  <div className="absolute bottom-6 left-6 right-6 glass-panel-dark p-4 rounded-2xl border border-white/20">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold">
-                        <ShieldCheck className="w-5 h-5" />
-                      </div>
-                      <div>
-                        <div className="text-xs font-bold text-white uppercase tracking-wider">
-                          Certified Port Gate Clearance
-                        </div>
-                        <div className="text-xs text-neutral-300">
-                          Rapid ICEGATE clearance with zero demurrage holds
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </ScrollReveal>
-
-              {/* Right Column: Editorial Copy & Stats Counter Pills */}
-              <ScrollReveal effect="fade-left" delay={150} duration={800} className="lg:col-span-6 space-y-6">
-                <span className="text-xs font-bold uppercase tracking-wider text-[#0284C7] bg-sky-50 px-3 py-1 rounded-full border border-sky-200">
-                  Strategic Trade Partner
-                </span>
-                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0A2540] tracking-tight">
-                  Your Partner in Global Trade
-                </h2>
-                <p className="text-base text-neutral-600 leading-relaxed">
-                  SkyLink Global Services is a trusted partner in international trade facilitation, offering end-to-end EXIM consultancy, global logistics coordination, and statutory compliance management.
-                </p>
-                <p className="text-base text-neutral-600 leading-relaxed">
-                  We bridge the gap between regulatory mandates and commercial logistics, enabling manufacturers, exporters, and importers to navigate complex foreign trade policies, customs classifications, and global freight routes with complete confidence.
-                </p>
-
-                {/* 4 Feature Highlights Grid with Stagger */}
-                <StaggerContainer staggerDelay={70} className="grid grid-cols-2 gap-4 pt-2">
-                  <div className="p-4 rounded-xl bg-neutral-50 border border-neutral-200">
-                    <div className="text-lg font-bold text-neutral-900">EXIM Expertise</div>
-                    <div className="text-xs text-neutral-500 mt-0.5">DGFT, Advance Auth &amp; EPCG</div>
-                  </div>
-                  <div className="p-4 rounded-xl bg-neutral-50 border border-neutral-200">
-                    <div className="text-lg font-bold text-neutral-900">Global Network</div>
-                    <div className="text-xs text-neutral-500 mt-0.5">Coordinated multi-port desks</div>
-                  </div>
-                  <div className="p-4 rounded-xl bg-neutral-50 border border-neutral-200">
-                    <div className="text-lg font-bold text-neutral-900">Logistics Velocity</div>
-                    <div className="text-xs text-neutral-500 mt-0.5">Tier-1 carrier vessel bookings</div>
-                  </div>
-                  <div className="p-4 rounded-xl bg-neutral-50 border border-neutral-200">
-                    <div className="text-lg font-bold text-neutral-900">Compliance Shield</div>
-                    <div className="text-xs text-neutral-500 mt-0.5">100% legal tariff protection</div>
-                  </div>
-                </StaggerContainer>
-
-                <div className="pt-2">
-                  <Button href="/about" variant="primary" size="md">
-                    Learn More About Us &rarr;
-                  </Button>
-                </div>
-              </ScrollReveal>
-            </div>
-          </div>
-        </section>
+        <GlobalTradeFlow />
 
         {/* ========================================================================= */}
-        {/* 4. WHO WE ARE: Editorial Split Animation with Overlapping Visuals */}
+        {/* 4. STRATEGIC TRADE PARTNER: Editorial Authority & Institutional Pillars */}
         {/* ========================================================================= */}
-        <section className="py-20 sm:py-28 bg-neutral-50 border-y border-neutral-200">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <StrategicPartnerSection />
+
+        {/* ========================================================================= */}
+        {/* 4. WHO WE ARE: Foundation & 4 Institutional Pillars */}
+        {/* ========================================================================= */}
+        {/* 5. WHO WE ARE: Foundation & 4 Institutional Pillars */}
+        {/* ========================================================================= */}
+        <section className="py-20 sm:py-28 bg-gradient-to-b from-neutral-50 via-white to-neutral-50 border-y border-neutral-200 relative overflow-hidden">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
             <SectionHeading
-              badge="Our Foundation"
+              badge="Our Institutional Foundation"
               title="Built to Bridge Businesses and Global Markets"
               subtitle="SkyLink operates across DGFT regulations, customs procedures, GST advisory, and multimodal logistics to deliver dependable trade execution."
             />
 
-            {/* Overlapping Visual & 4 Feature Blocks */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center mt-12">
-              {/* Left 5 Cols: Overlapping Imagery Reveal */}
+            {/* Overlapping Visual & 4 Elevated Institutional Cards */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center mt-14">
+              {/* Left 5 Cols: Layered Multi-Modal Imagery */}
               <ScrollReveal effect="fade-right" delay={100} duration={800} className="lg:col-span-5 relative">
-                <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-xl border border-neutral-200">
+                <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border border-neutral-200/80 bg-neutral-900 group">
                   <Image
                     src="https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?q=80&w=1200&auto=format&fit=crop"
                     alt="Global trade container logistics vessel and multimodal transportation operations"
                     fill
                     sizes="(max-width: 768px) 100vw, 40vw"
-                    className="object-cover object-center"
+                    className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#07192D]/70 via-transparent to-transparent" />
                 </div>
-                {/* Overlapping Secondary Card */}
+                {/* Overlapping Floating Secondary Badge Card */}
                 <div className="hidden sm:block absolute -bottom-6 -right-6 w-3/5 rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
                   <div className="relative aspect-[4/3]">
                     <Image
@@ -334,11 +112,14 @@ export default async function HomePage() {
                       sizes="30vw"
                       className="object-cover object-center"
                     />
+                    <div className="absolute bottom-2 left-2 right-2 glass-panel-dark px-2.5 py-1 rounded-lg text-[10px] font-mono font-bold text-white text-center">
+                      GLOBAL FREIGHT DESK
+                    </div>
                   </div>
                 </div>
               </ScrollReveal>
 
-              {/* Right 7 Cols: 4 Animated Feature Cards with Stagger */}
+              {/* Right 7 Cols: 4 Elevated Feature Pillar Cards */}
               <StaggerContainer
                 staggerDelay={90}
                 baseDelay={150}
@@ -349,32 +130,51 @@ export default async function HomePage() {
                     title: 'Regulatory Expertise',
                     desc: 'DGFT, customs, and GST advisory handled by seasoned statutory trade specialists with decades of combined legal experience.',
                     icon: Scale,
+                    tag: 'Statutory Core',
                   },
                   {
-                    title: 'Dedicated Team',
+                    title: 'Dedicated Single Desk',
                     desc: 'Tailored account managers providing single-point accountability for exporters, manufacturers, and global trading houses.',
                     icon: Users,
+                    tag: 'Single SLA',
                   },
                   {
-                    title: 'Global Network',
+                    title: 'Tier-1 Global Network',
                     desc: 'Strategic coordination across Tier-1 shipping lines, air cargo carriers, bonded warehouses, and customs brokers worldwide.',
                     icon: Network,
+                    tag: 'Direct Capacity',
                   },
                   {
-                    title: 'Trusted Process',
-                    desc: 'Transparent, proactive, and zero-defect execution ensuring full statutory incentive recovery and on-time cargo delivery.',
+                    title: 'Zero-Defect Process',
+                    desc: 'Transparent, proactive, and audit-proof execution ensuring full statutory incentive recovery and on-time cargo delivery.',
                     icon: ShieldCheck,
+                    tag: '100% Verified',
                   },
                 ].map((block, idx) => {
                   const IconComp = block.icon;
                   return (
-                    <Card key={idx} variant="bordered" className="p-6 bg-white hover-lift h-full">
-                      <div className="w-12 h-12 rounded-xl bg-sky-50 text-[#0284C7] flex items-center justify-center mb-4 border border-sky-100">
-                        <IconComp className="w-6 h-6" />
+                    <div
+                      key={idx}
+                      className="p-6 rounded-3xl bg-white border border-neutral-200/80 shadow-xs hover:shadow-xl hover:border-sky-300 transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1 relative overflow-hidden"
+                    >
+                      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#0284C7] to-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      <div>
+                        <div className="flex items-center justify-between mb-4">
+                          <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#0A2540] to-[#0284C7] text-white flex items-center justify-center shadow-md shadow-sky-500/20 group-hover:scale-105 transition-transform duration-300">
+                            <IconComp className="w-5 h-5" />
+                          </div>
+                          <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-sky-700 bg-sky-50 px-2.5 py-1 rounded-full border border-sky-200/60">
+                            {block.tag}
+                          </span>
+                        </div>
+                        <h3 className="text-base sm:text-lg font-bold text-[#0A2540] group-hover:text-[#0284C7] transition-colors">
+                          {block.title}
+                        </h3>
+                        <p className="mt-2 text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                          {block.desc}
+                        </p>
                       </div>
-                      <h3 className="text-lg font-bold text-neutral-900">{block.title}</h3>
-                      <p className="mt-2 text-xs sm:text-sm text-neutral-600 leading-relaxed">{block.desc}</p>
-                    </Card>
+                    </div>
                   );
                 })}
               </StaggerContainer>
@@ -383,246 +183,72 @@ export default async function HomePage() {
         </section>
 
         {/* ========================================================================= */}
-        {/* 5. WHY WE EXIST: Storytelling Animation & Real Risk Analysis */}
+        {/* 6. SHIPMENT RISK PIPELINE: Interactive Visual Supply Chain Flow */}
         {/* ========================================================================= */}
-        <section className="py-20 sm:py-28 bg-[#0A2540] text-white relative overflow-hidden">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
-            <SectionHeading
-              badge="Risk Mitigation"
-              title="Every Shipment Carries Real Risk"
-              subtitle="Without professional EXIM guidance, cross-border operations face severe operational, regulatory, and financial hurdles."
-              light
-            />
-
-            {/* Sequential 6 Risk Cards Reveal */}
-            <StaggerContainer
-              staggerDelay={80}
-              baseDelay={100}
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-10"
-            >
-              {[
-                { title: 'Documentation Errors', desc: 'Clerical mistakes resulting in bank query holds and rejection of letter of credit (LC).' },
-                { title: 'Shipment Port Delays', desc: 'Customs holds generating severe demurrage, detention, and missed delivery deadlines.' },
-                { title: 'Lost Government Incentives', desc: 'Unclaimed or unredeemed RoDTEP, RoSCTL, and duty drawback entitlements.' },
-                { title: 'Customs Penalties & Seizures', desc: 'HS code misclassifications triggering severe statutory fines and physical seizures.' },
-                { title: 'Cold-Chain Spoilage', desc: 'Thermal breaches during transit ruining temperature-sensitive pharma or perishables.' },
-                { title: 'Uninsured Cargo Losses', desc: 'Vessel damage, container loss, or General Average claims without marine indemnity.' },
-              ].map((risk, idx) => (
-                <div
-                  key={idx}
-                  className="rounded-2xl bg-white/5 border border-white/10 p-6 hover:bg-white/10 transition-colors h-full"
-                >
-                  <div className="flex items-center gap-2.5 text-amber-400 mb-2">
-                    <AlertTriangle className="w-5 h-5 shrink-0" />
-                    <h3 className="text-base font-bold text-white">{risk.title}</h3>
-                  </div>
-                  <p className="text-xs sm:text-sm text-neutral-300 leading-relaxed">{risk.desc}</p>
-                </div>
-              ))}
-            </StaggerContainer>
-
-            {/* Our Promise Banner Reveal */}
-            <ScrollReveal effect="scale-up" delay={250} duration={800}>
-              <div className="mt-14 rounded-3xl bg-gradient-to-r from-[#0284C7] to-[#0369A1] p-8 sm:p-10 text-center sm:text-left flex flex-col sm:flex-row items-center justify-between gap-6 shadow-2xl border border-white/20">
-                <div>
-                  <span className="text-xs font-bold uppercase tracking-wider text-sky-100 bg-white/10 px-3 py-1 rounded-full border border-white/20">
-                    Our Promise
-                  </span>
-                  <h3 className="text-2xl sm:text-3xl font-extrabold text-white mt-2">
-                    Compliant, cost-effective, and dependable trade support.
-                  </h3>
-                  <p className="text-sm text-sky-100 mt-1 max-w-2xl leading-relaxed">
-                    So your enterprise expands globally without the hidden liabilities and expenses of navigating international borders alone.
-                  </p>
-                </div>
-                <Button href="/request-consultation" variant="primary" size="lg" className="bg-[#07192D] hover:bg-[#0A2540] shrink-0 text-white shadow-xl">
-                  Get Protected Today &rarr;
-                </Button>
-              </div>
-            </ScrollReveal>
-          </div>
-        </section>
+        <LogisticsRiskJourney />
 
         {/* ========================================================================= */}
-        {/* 6. WHY CHOOSE US (Staggered 6-Card Grid Reveal) */}
+        {/* 7. WHY SKYLINK: Asymmetric Bento Grid Advantage */}
         {/* ========================================================================= */}
-        <section className="py-20 sm:py-28 bg-white">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <SectionHeading
-              badge="The SkyLink Advantage"
-              title="Why Businesses Choose SkyLink"
-              subtitle="We combine regulatory trade advisory with high-velocity freight management to protect margins and accelerate transit."
-            />
-
-            <StaggerContainer
-              staggerDelay={90}
-              baseDelay={100}
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mt-12"
-            >
-              {[
-                {
-                  title: 'Compliance Assurance',
-                  desc: 'Avoid customs penalties and port delays with direct, authorized regulatory guidance and tariff scrutiny.',
-                  icon: ShieldCheck,
-                },
-                {
-                  title: 'Specialized Cold-Chain',
-                  desc: 'GDP-certified cold-chain solutions for pharmaceuticals, seafood, and fresh perishables with 24/7 telemetry.',
-                  icon: ThermometerSnowflake,
-                },
-                {
-                  title: 'Cost Optimization',
-                  desc: 'Maximize government incentives (RoDTEP, Drawbacks) while minimizing ocean and air freight rates.',
-                  icon: TrendingDown,
-                },
-                {
-                  title: 'Reliability & Trust',
-                  desc: 'Transparent, proactive, and timely execution with complete milestone tracking and zero hidden broker fees.',
-                  icon: CheckCircle2,
-                },
-                {
-                  title: 'Global Reach',
-                  desc: 'Seamless coordination across premier maritime carriers, air cargo lines, and international port terminals.',
-                  icon: Globe2,
-                },
-                {
-                  title: 'Lower Service Charges',
-                  desc: 'Direct B2B manufacturer-carrier connections eliminate unnecessary broker markups.',
-                  icon: Coins,
-                },
-              ].map((item, idx) => {
-                const IconComp = item.icon;
-                return (
-                  <div
-                    key={idx}
-                    className="p-7 rounded-2xl bg-neutral-50/70 border border-neutral-200 hover-lift hover-glow-sky group flex flex-col justify-between h-full"
-                  >
-                    <div>
-                      <div className="w-12 h-12 rounded-xl bg-sky-50 text-[#0284C7] group-hover:bg-[#0284C7] group-hover:text-white flex items-center justify-center shrink-0 border border-sky-100 transition-colors mb-4">
-                        <IconComp className="w-6 h-6" />
-                      </div>
-                      <h3 className="text-lg font-bold text-neutral-900">{item.title}</h3>
-                      <p className="mt-2 text-xs sm:text-sm text-neutral-600 leading-relaxed">{item.desc}</p>
-                    </div>
-                  </div>
-                );
-              })}
-            </StaggerContainer>
-          </div>
-        </section>
+        <WhySkyLinkBento />
 
         {/* ========================================================================= */}
-        {/* 7. ALL 9 SERVICES SECTION (Staggered Cards with Image Zoom on Hover) */}
+        {/* 8. ALL 9 SERVICES: Premium Services Bento Grid Layout */}
         {/* ========================================================================= */}
-        <section className="py-20 sm:py-28 bg-neutral-50 border-t border-neutral-200">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <SectionHeading
-              badge="Comprehensive Capabilities"
-              title="Our End-to-End Trade Services"
-              subtitle="From statutory DGFT registrations to refrigerated ocean freight and customs brokerage, we handle every stage of cross-border commerce."
-            />
-
-            <StaggerContainer
-              staggerDelay={85}
-              baseDelay={100}
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12"
-            >
-              {services.map((srv) => (
-                <div
-                  key={srv.id}
-                  className="rounded-3xl border border-neutral-200 bg-white overflow-hidden hover-lift shadow-sm flex flex-col justify-between group h-full"
-                >
-                  {/* Top Image Banner */}
-                  <div className="relative aspect-[16/9] w-full overflow-hidden bg-neutral-900">
-                    <Image
-                      src={serviceImages[srv.slug] || serviceImages['logistics-shipping']}
-                      alt={`SkyLink ${srv.title} logistics and EXIM trade solution`}
-                      fill
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#07192D]/80 via-transparent to-transparent" />
-                    <span className="absolute bottom-3 left-4 text-[10px] font-mono font-bold uppercase tracking-wider text-sky-300 bg-[#07192D]/80 px-2.5 py-1 rounded-md border border-white/10 backdrop-blur-md">
-                      EXIM PRACTICE
-                    </span>
-                  </div>
-
-                  {/* Card Content */}
-                  <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
-                    <div>
-                      <h3 className="text-xl font-bold text-neutral-900 group-hover:text-[#0284C7] transition-colors">
-                        <Link href={`/services/${srv.slug}`}>{srv.title}</Link>
-                      </h3>
-                      <p className="mt-2 text-xs sm:text-sm text-neutral-600 leading-relaxed line-clamp-3">
-                        {srv.shortDescription}
-                      </p>
-                    </div>
-
-                    <div className="pt-3 border-t border-neutral-100 flex items-center justify-between">
-                      <Link
-                        href={`/services/${srv.slug}`}
-                        className="inline-flex items-center text-xs font-bold text-[#0284C7] hover:text-[#0369A1] gap-1 transition-colors"
-                      >
-                        <span>Explore Capabilities</span>
-                        <ArrowRight className="w-3.5 h-3.5" />
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </StaggerContainer>
-
-            <ScrollReveal effect="fade-up" delay={200} className="mt-14 text-center">
-              <Button href="/services" variant="primary" size="lg">
-                View Full Services Catalog &rarr;
-              </Button>
-            </ScrollReveal>
-          </div>
-        </section>
+        <ServicesBentoGrid services={services} />
 
         {/* ========================================================================= */}
-        {/* 8. GLOBAL LOGISTICS VISUAL MAP SECTION */}
+        {/* 9. INCOTERMS® 2020: Interactive Trade Journey Dashboard */}
+        {/* ========================================================================= */}
+        <IncotermsMatrix />
+
+        {/* ========================================================================= */}
+        {/* 10. GLOBAL CONNECTIVITY: Active Trade Corridors & Route Map */}
         {/* ========================================================================= */}
         <GlobalRouteMap />
 
         {/* ========================================================================= */}
-        {/* 9. HOW IT WORKS: 6-Step Visual Process Timeline */}
+        {/* 11. HOW SKYLINK MANAGES GLOBAL TRADE: 6-Stage Process Timeline */}
         {/* ========================================================================= */}
         <HowItWorksTimeline />
 
         {/* ========================================================================= */}
-        {/* 10. COLD CHAIN LOGISTICS DEDICATED SECTION (Split Reveal) */}
+        {/* 12. GDP / FDA COLD CHAIN LOGISTICS DEDICATED SECTION */}
         {/* ========================================================================= */}
-        <section className="py-20 sm:py-28 bg-gradient-to-b from-sky-50 via-white to-sky-50 border-t border-neutral-200">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <section className="py-20 sm:py-28 bg-[#07192D] text-white relative overflow-hidden border-y border-white/10">
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none opacity-50" />
+          <div className="absolute top-1/2 left-1/3 -translate-y-1/2 w-[700px] h-[350px] bg-cyan-500/10 rounded-full blur-[160px] pointer-events-none" />
+
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
               {/* Left 6 Cols: Cold Chain Content Reveal */}
               <ScrollReveal effect="fade-right" delay={80} duration={800} className="lg:col-span-6 space-y-6">
-                <span className="text-xs font-bold uppercase tracking-wider text-[#0284C7] bg-sky-100 px-3 py-1 rounded-full border border-sky-200">
-                  Specialized Cold Chain Infrastructure
+                <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/15 border border-cyan-400/30 text-xs font-bold text-cyan-300 uppercase tracking-wider">
+                  <ThermometerSnowflake className="w-3.5 h-3.5 text-cyan-400 animate-pulse" />
+                  <span>Specialized Cold Chain Infrastructure</span>
                 </span>
-                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0A2540] tracking-tight">
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.15]">
                   GDP &amp; FDA Compliant Temperature-Controlled Logistics
                 </h2>
-                <p className="text-base text-neutral-600 leading-relaxed">
-                  Preserving product efficacy for high-value pharmaceuticals, biologics, active ingredients, and deep-freeze seafood requires uncompromising thermal discipline.
+                <p className="text-sm sm:text-base text-neutral-300 leading-relaxed">
+                  Preserving product efficacy for high-value pharmaceuticals, biologics, active ingredients, and deep-freeze seafood requires uncompromising thermal discipline and continuous real-time IoT monitoring.
                 </p>
 
                 <div className="space-y-3 pt-2">
                   {[
                     'Reefer Containers (-25°C Deep Freeze to +25°C Controlled Room Temp)',
                     'Real-Time IoT Temperature, Humidity & Geofencing Telemetry',
-                    'GDP, US FDA, and European Union Regulatory Compliance',
+                    'GDP, US FDA, and European Union Regulatory Adherence',
                     'Pre-Arrival Customs Green-Channel Release for Life Sciences',
                   ].map((feat, idx) => (
-                    <div key={idx} className="flex items-center gap-3 text-sm text-neutral-800 font-semibold">
-                      <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" />
+                    <div key={idx} className="flex items-center gap-3 text-xs sm:text-sm text-neutral-200 font-medium">
+                      <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
                       <span>{feat}</span>
                     </div>
                   ))}
                 </div>
 
-                <div className="pt-3">
+                <div className="pt-4 flex items-center gap-4">
                   <Button href="/services/cold-chain-solutions" variant="secondary" size="md">
                     Explore Cold Chain Capabilities &rarr;
                   </Button>
@@ -631,35 +257,35 @@ export default async function HomePage() {
 
               {/* Right 6 Cols: Cold Chain Live Visual Monitor Reveal */}
               <ScrollReveal effect="fade-left" delay={180} duration={800} className="lg:col-span-6 relative">
-                <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border border-sky-200 bg-[#07192D]">
+                <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border border-white/20 bg-[#07192D] group">
                   <Image
                     src="https://images.unsplash.com/photo-1587293852726-70cdb56c2866?q=80&w=1200&auto=format&fit=crop"
                     alt="Refrigerated cold chain cargo container with pharmaceutical temperature control"
                     fill
                     sizes="(max-width: 768px) 100vw, 50vw"
-                    className="object-cover object-center"
+                    className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#07192D]/90 via-[#07192D]/30 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#07192D] via-[#07192D]/40 to-transparent" />
 
                   {/* Telemetry Card Floating Inside */}
-                  <div className="absolute bottom-6 left-6 right-6 glass-panel-dark p-5 rounded-2xl border border-white/20">
+                  <div className="absolute bottom-5 left-5 right-5 glass-panel-dark p-5 rounded-2xl border border-white/20 backdrop-blur-md shadow-2xl">
                     <div className="flex items-center justify-between border-b border-white/10 pb-3 mb-3">
                       <div className="flex items-center gap-2">
-                        <ThermometerSnowflake className="w-5 h-5 text-sky-400 animate-pulse" />
+                        <ThermometerSnowflake className="w-5 h-5 text-cyan-400 animate-pulse" />
                         <span className="font-bold text-white text-xs sm:text-sm">Active Thermal Stream</span>
                       </div>
-                      <span className="text-[10px] font-mono font-bold text-emerald-400 bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-500/30">
+                      <span className="text-[10px] font-mono font-bold text-emerald-400 bg-emerald-950/80 px-2.5 py-0.5 rounded-full border border-emerald-500/30">
                         GDP VALIDATED
                       </span>
                     </div>
                     <div className="grid grid-cols-2 gap-3 text-xs">
-                      <div>
-                        <span className="text-neutral-400 text-[10px]">Pharma Active Range</span>
-                        <div className="text-base font-bold text-sky-300 mt-0.5">+2°C to +8°C</div>
+                      <div className="p-2.5 rounded-xl bg-white/5 border border-white/10">
+                        <span className="text-neutral-400 text-[10px] block">Pharma Active Range</span>
+                        <div className="text-sm sm:text-base font-bold text-cyan-300 font-mono mt-0.5">+2°C to +8°C</div>
                       </div>
-                      <div>
-                        <span className="text-neutral-400 text-[10px]">Seafood Deep Freeze</span>
-                        <div className="text-base font-bold text-sky-300 mt-0.5">-25°C to -40°C</div>
+                      <div className="p-2.5 rounded-xl bg-white/5 border border-white/10">
+                        <span className="text-neutral-400 text-[10px] block">Seafood Deep Freeze</span>
+                        <div className="text-sm sm:text-base font-bold text-cyan-300 font-mono mt-0.5">-25°C to -40°C</div>
                       </div>
                     </div>
                   </div>
@@ -670,76 +296,17 @@ export default async function HomePage() {
         </section>
 
         {/* ========================================================================= */}
-        {/* 11. INDUSTRIES SHOWCASE (Staggered Industry Cards Reveal) */}
+        {/* 13. TAILORED SOLUTIONS: Asymmetric Sector Mosaic */}
         {/* ========================================================================= */}
-        <section className="py-20 sm:py-28 bg-[#07192D] text-white">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <SectionHeading
-              badge="Sector Expertise"
-              title="Tailored Solutions for Key Global Industries"
-              subtitle="Industry-specific trade compliance, validated cold-chain transit, and project cargo forwarding."
-              light
-            />
-
-            <StaggerContainer
-              staggerDelay={90}
-              baseDelay={100}
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12"
-            >
-              {industries.map((ind) => (
-                <div
-                  key={ind.id}
-                  className="rounded-3xl border border-white/15 bg-[#0A2540]/80 overflow-hidden hover-lift shadow-xl flex flex-col justify-between group h-full"
-                >
-                  {/* Industry Image Banner */}
-                  <div className="relative aspect-[16/10] w-full overflow-hidden">
-                    <Image
-                      src={industryImages[ind.slug] || industryImages['manufacturing']}
-                      alt={`${ind.title} international trade and logistics solutions`}
-                      fill
-                      sizes="(max-width: 768px) 100vw, 33vw"
-                      className="object-cover object-center group-hover:scale-110 transition-transform duration-700"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0A2540] via-transparent to-transparent" />
-                    <span className="absolute bottom-3 left-4 text-[10px] font-mono font-bold uppercase tracking-wider text-sky-300 bg-[#07192D]/80 px-2.5 py-1 rounded-md border border-white/10 backdrop-blur-md">
-                      VERTICAL
-                    </span>
-                  </div>
-
-                  {/* Industry Content */}
-                  <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
-                    <div>
-                      <h3 className="text-xl font-bold text-white group-hover:text-sky-300 transition-colors">
-                        {ind.title}
-                      </h3>
-                      <p className="mt-2 text-xs sm:text-sm text-neutral-300 leading-relaxed line-clamp-3">
-                        {ind.description}
-                      </p>
-                    </div>
-
-                    <div className="pt-3 border-t border-white/10 flex items-center justify-between">
-                      <Link
-                        href={`/industries#${ind.slug}`}
-                        className="inline-flex items-center text-xs font-bold text-sky-400 hover:text-sky-300 gap-1"
-                      >
-                        <span>Explore Solutions</span>
-                        <ArrowRight className="w-3.5 h-3.5" />
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </StaggerContainer>
-          </div>
-        </section>
+        <IndustriesMosaic industries={industries} />
 
         {/* ========================================================================= */}
-        {/* 12. VALUE / PERFORMANCE COMPARISON: Traditional Agent vs SkyLink */}
+        {/* 14. VALUE / PERFORMANCE COMPARISON: Traditional Agent vs SkyLink */}
         {/* ========================================================================= */}
         <ValueComparisonSection />
 
         {/* ========================================================================= */}
-        {/* 13. FINAL HIGH-IMPACT HERO CTA (With Scroll Reveal) */}
+        {/* 15. FINAL HIGH-IMPACT HERO CTA: Trade Launchpad */}
         {/* ========================================================================= */}
         <section className="relative py-24 sm:py-32 bg-[#07192D] text-white overflow-hidden">
           {/* Background Logistics Image with Deep Navy Overlay */}
@@ -749,25 +316,25 @@ export default async function HomePage() {
               alt="Global trade cargo ship navigating international waters"
               fill
               sizes="100vw"
-              className="object-cover object-center opacity-25"
+              className="object-cover object-center opacity-20"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-[#07192D] via-[#0A2540]/90 to-[#07192D]" />
           </div>
 
           <div className="relative z-10 mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center space-y-6">
             <ScrollReveal effect="fade-down" delay={50}>
-              <span className="inline-block rounded-full bg-sky-400/20 px-4 py-1 text-xs font-bold uppercase tracking-wider text-sky-300 border border-sky-400/30 backdrop-blur-md">
-                Let&apos;s Talk Trade
+              <span className="inline-block rounded-full bg-sky-400/20 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-sky-300 border border-sky-400/30 backdrop-blur-md shadow-sm">
+                Let&apos;s Accelerate Your Trade Operations
               </span>
             </ScrollReveal>
             <ScrollReveal effect="fade-up" delay={150}>
               <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-tight">
-                Ready to simplify your import-export operations?
+                Ready to optimize your global import-export operations?
               </h2>
             </ScrollReveal>
             <ScrollReveal effect="fade-up" delay={250}>
               <p className="text-base sm:text-xl text-neutral-300 max-w-2xl mx-auto leading-relaxed">
-                Connect with our EXIM consultants today for a comprehensive evaluation of your trade lanes, customs tariffs, and logistics costs.
+                Connect with our senior EXIM consultants today for a comprehensive evaluation of your trade corridors, customs tariffs, statutory incentives, and freight budgets.
               </p>
             </ScrollReveal>
             <ScrollReveal effect="scale-up" delay={350}>
@@ -787,7 +354,7 @@ export default async function HomePage() {
                   size="lg"
                   className="w-full sm:w-auto text-white border-white/20 hover:bg-white/10"
                 >
-                  Contact Us
+                  Contact Our Trade Desk
                 </Button>
               </div>
             </ScrollReveal>

@@ -102,21 +102,21 @@ export default async function ServicesPage() {
                   </span>
                 </div>
 
-                <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
+                <div className="p-6 sm:p-7 flex-1 flex flex-col justify-between space-y-4">
                   <div>
-                    <h2 className="text-xl font-bold text-neutral-900 group-hover:text-[#0284C7] transition-colors">
+                    <h2 className="text-xl sm:text-2xl font-bold text-neutral-900 group-hover:text-[#0284C7] transition-colors">
                       <Link href={`/services/${service.slug}`}>{service.title}</Link>
                     </h2>
-                    <p className="mt-2 text-xs sm:text-sm text-neutral-600 leading-relaxed line-clamp-3">
+                    <p className="mt-2.5 text-sm sm:text-[15px] text-neutral-600 leading-relaxed font-normal line-clamp-3">
                       {service.shortDescription}
                     </p>
 
-                    <div className="mt-4 pt-3 border-t border-neutral-100 space-y-1.5">
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-neutral-400 block mb-1">
+                    <div className="mt-4 pt-3 border-t border-neutral-100 space-y-2">
+                      <span className="text-xs font-bold uppercase tracking-wider text-neutral-400 block mb-1">
                         Core Capabilities
                       </span>
                       {service.features.slice(0, 3).map((feat, idx) => (
-                        <div key={idx} className="flex items-center gap-2 text-xs text-neutral-700">
+                        <div key={idx} className="flex items-center gap-2 text-xs sm:text-sm text-neutral-700 font-medium">
                           <CheckCircle2 className="w-3.5 h-3.5 text-[#0284C7] shrink-0" />
                           <span className="truncate">{feat}</span>
                         </div>
@@ -127,7 +127,7 @@ export default async function ServicesPage() {
                   <div className="pt-3 border-t border-neutral-100 flex items-center justify-between">
                     <Link
                       href={`/services/${service.slug}`}
-                      className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0284C7] hover:text-[#0369A1] transition-colors"
+                      className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#0284C7] hover:text-[#0369A1] transition-colors"
                     >
                       <span>Detailed Specifications</span>
                       <ArrowRight className="w-3.5 h-3.5" />
@@ -144,20 +144,20 @@ export default async function ServicesPage() {
       <section className="py-20 bg-[#07192D] text-white text-center">
         <div className="mx-auto max-w-4xl px-4 space-y-4">
           <ScrollReveal effect="fade-up" delay={0}>
-            <h2 className="text-2xl sm:text-4xl font-bold text-white">
+            <h2 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
               Need a custom trade package or dedicated EXIM consultation?
             </h2>
           </ScrollReveal>
           <ScrollReveal effect="fade-up" delay={80}>
-            <p className="text-sm sm:text-base text-neutral-300">
+            <p className="text-base sm:text-lg text-neutral-300 leading-relaxed font-normal">
               Our trade compliance team can structure a tailored proposal for your business requirements.
             </p>
           </ScrollReveal>
-          <ScrollReveal effect="scale-up" delay={160} className="pt-4 flex justify-center gap-4">
-            <Button href="/request-consultation" variant="secondary" size="md">
+          <ScrollReveal effect="scale-up" delay={160} className="pt-4 flex flex-wrap justify-center gap-4">
+            <Button href="/request-consultation" variant="secondary" size="lg" className="font-semibold">
               Request Free Proposal
             </Button>
-            <Button href="/contact" variant="outline" size="md" className="text-white border-white/20 hover:bg-white/10">
+            <Button href="/contact" variant="outline" size="lg" className="text-white border-white/20 hover:bg-white/10 font-semibold">
               Contact Support
             </Button>
           </ScrollReveal>
