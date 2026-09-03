@@ -35,17 +35,17 @@ const tradeStages: TradeStage[] = [
   },
   {
     step: '03',
-    label: 'GLOBAL SHIPPING',
-    sublabel: 'Ocean Vessel & Air Transit',
-    icon: Ship,
-    color: '#0EA5E9', // Cyan Blue
-  },
-  {
-    step: '04',
     label: 'CUSTOMS CLEARANCE',
     sublabel: 'Green-Channel EDI Release',
     icon: FileCheck2,
     color: '#10B981', // Emerald Green
+  },
+  {
+    step: '04',
+    label: 'GLOBAL SHIPPING',
+    sublabel: 'Ocean Vessel & Air Transit',
+    icon: Ship,
+    color: '#0EA5E9', // Cyan Blue
   },
   {
     step: '05',

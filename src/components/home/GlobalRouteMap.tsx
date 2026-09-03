@@ -137,7 +137,7 @@ export function GlobalRouteMap() {
           </ScrollReveal>
           <ScrollReveal effect="fade-up" delay={160}>
             <p className="text-sm sm:text-base text-neutral-300 leading-relaxed">
-              SkyLink coordinates direct Tier-1 maritime carrier allocations and scheduled air freight paths linking Indian manufacturing clusters with premier international gateway ports.
+              SkyLink coordinates direct premier maritime carrier allocations and scheduled air freight paths linking Indian manufacturing clusters with premier international gateway ports.
             </p>
           </ScrollReveal>
         </div>
@@ -326,8 +326,8 @@ export function GlobalRouteMap() {
 
             {/* Live Overlay Metrics in Bottom Bar */}
             <div className="relative z-10 grid grid-cols-1 sm:grid-cols-3 gap-3 p-3.5 rounded-2xl glass-panel-dark border border-white/15 backdrop-blur-md">
-              <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-xl bg-sky-500/20 text-sky-300 flex items-center justify-center shrink-0">
+              <div className="flex items-center gap-3 p-2 rounded-xl bg-white/5 border border-white/10 hover-lift-sm sheen-card group/metric transition-all duration-300">
+                <div className="w-9 h-9 rounded-xl bg-sky-500/20 text-sky-300 flex items-center justify-center shrink-0 group-hover/metric:scale-110 transition-transform duration-300">
                   <Ship className="w-4 h-4" />
                 </div>
                 <div>
@@ -336,8 +336,8 @@ export function GlobalRouteMap() {
                 </div>
               </div>
 
-              <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-xl bg-emerald-500/20 text-emerald-300 flex items-center justify-center shrink-0">
+              <div className="flex items-center gap-3 p-2 rounded-xl bg-white/5 border border-white/10 hover-lift-sm sheen-card group/metric transition-all duration-300">
+                <div className="w-9 h-9 rounded-xl bg-emerald-500/20 text-emerald-300 flex items-center justify-center shrink-0 group-hover/metric:scale-110 transition-transform duration-300">
                   <Plane className="w-4 h-4" />
                 </div>
                 <div>
@@ -346,8 +346,8 @@ export function GlobalRouteMap() {
                 </div>
               </div>
 
-              <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-xl bg-purple-500/20 text-purple-300 flex items-center justify-center shrink-0">
+              <div className="flex items-center gap-3 p-2 rounded-xl bg-white/5 border border-white/10 hover-lift-sm sheen-card group/metric transition-all duration-300">
+                <div className="w-9 h-9 rounded-xl bg-purple-500/20 text-purple-300 flex items-center justify-center shrink-0 group-hover/metric:scale-110 transition-transform duration-300">
                   <ShieldCheck className="w-4 h-4" />
                 </div>
                 <div>

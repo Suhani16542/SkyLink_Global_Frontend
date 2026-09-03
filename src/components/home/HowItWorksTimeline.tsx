@@ -52,10 +52,10 @@ const workflowSteps = [
     step: '04',
     title: 'Carrier Booking & Multimodal Drayage',
     subtitle: 'Direct Vessel Space Allocation',
-    desc: 'Securing vessel space on Tier-1 shipping lines, container stuffing supervision, port drayage, and cold-chain thermal pre-cooling.',
+    desc: 'Securing vessel space on premier shipping lines, container stuffing supervision, port drayage, and cold-chain thermal pre-cooling.',
     icon: Compass,
     details: [
-      'Tier-1 shipping line service contracting',
+      'Premier shipping line service contracting',
       'Reefer container pre-trip inspection (PTI)',
       'Multimodal Bill of Lading (FBL) issuance',
     ],
@@ -105,7 +105,7 @@ export function HowItWorksTimeline() {
       <div
         key={keyStr}
         onClick={() => setActiveStep(stepIdx)}
-        className={`w-[260px] sm:w-[300px] shrink-0 select-none relative rounded-xl sm:rounded-2xl p-4 sm:p-5 border transition-all duration-300 cursor-pointer flex flex-col justify-between hover-lift ${
+        className={`w-[260px] sm:w-[300px] shrink-0 select-none relative rounded-xl sm:rounded-2xl p-4 sm:p-5 border transition-all duration-300 cursor-pointer flex flex-col justify-between hover-lift sheen-card group ${
           isSelected
             ? 'bg-gradient-to-b from-[#0A2540] to-[#07192D] text-white border-sky-400/40 shadow-xl scale-[1.02]'
             : 'bg-neutral-50/80 hover:bg-white text-neutral-900 border-neutral-200 shadow-sm'
@@ -115,16 +115,16 @@ export function HowItWorksTimeline() {
           {/* Top Bar with Step and Icon */}
           <div className="flex items-center justify-between mb-3">
             <span
-              className={`text-xl sm:text-2xl font-black font-mono ${
+              className={`text-xl sm:text-2xl font-black font-mono transition-colors ${
                 isSelected ? 'text-sky-400' : 'text-[#0284C7]'
               }`}
             >
               {item.step}
             </span>
             <div
-              className={`w-9 h-9 rounded-lg flex items-center justify-center transition-colors ${
+              className={`w-9 h-9 rounded-lg flex items-center justify-center transition-all duration-300 group-hover:scale-110 ${
                 isSelected
-                  ? 'bg-sky-500/20 text-sky-300 border border-sky-400/30'
+                  ? 'bg-sky-500/20 text-sky-300 border border-sky-400/30 shadow-xs'
                   : 'bg-sky-100/80 text-[#0284C7]'
               }`}
             >

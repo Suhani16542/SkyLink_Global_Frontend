@@ -6,9 +6,9 @@ export const servicesData: Service[] = [
     title: 'Licensing & Statutory Registrations',
     slug: 'licensing-registrations',
     shortDescription:
-      'Turnkey foreign trade authorizations including DGFT IEC registration, RCMC certification, AEO status, SCOMET permits, and industrial licensing.',
+      'Secures mandatory DGFT authorizations (IEC, RCMC, AEO, SCOMET) to establish legal trading authority and prevent customs holds.',
     description:
-      'Navigating statutory foreign trade registrations is the critical baseline for cross-border operations. We manage end-to-end applications, statutory liaison, and compliance certifications with DGFT, Export Promotion Councils (EPCs), CBIC, and regulatory commodity boards.',
+      'Establishes legal authority for cross-border operations and unlocks government incentive eligibility. Secures verified IEC codes, Export Promotion Council memberships (RCMC), and certified AEO status for priority customs clearance.',
     features: [
       'Importer-Exporter Code (IEC) Issuance, Annual Profile Renewal & Modifications',
       'Registration-cum-Membership Certificate (RCMC) with EPCs (EEPC, FIEO, APEDA, Pharmexcil, MPEDA)',
@@ -43,9 +43,9 @@ export const servicesData: Service[] = [
     title: 'Export Incentives & Government Schemes',
     slug: 'export-incentives',
     shortDescription:
-      'Maximize cash remissions and duty exemptions across RoDTEP, RoSCTL, Advance Authorisation, and EPCG schemes under Foreign Trade Policy.',
+      'Recovers maximum cash remissions and duty exemptions across RoDTEP, RoSCTL, Advance Authorisation, and EPCG schemes.',
     description:
-      'Ensure your enterprise claims every available statutory export benefit under the Foreign Trade Policy (FTP 2023). We conduct comprehensive trade incentive audits, prepare statutory reconciliation statements, and secure direct duty credit scrips and duty-free import licenses.',
+      'Reclaims legitimate statutory subsidies and eliminates upfront import duties on manufacturing machinery and raw materials, boosting gross export profitability by 4% to 8%.',
     features: [
       'Remission of Duties and Taxes on Exported Products (RoDTEP) Electronic Filings',
       'Rebate of State and Central Taxes and Levies (RoSCTL) for Textiles, Garments & Made-ups',
@@ -80,9 +80,9 @@ export const servicesData: Service[] = [
     title: 'Cross-Border Documentation & Liaison',
     slug: 'documentation-liaison',
     shortDescription:
-      'Zero-defect trade documentation, Letter of Credit (LC) compliance, e-BRC realization, and direct representation with DGFT and Customs.',
+      'Prevents bank payment rejections, ICEGATE queries, and LC discrepancies with zero-defect compliance dossiers.',
     description:
-      'Single-window documentation management ensuring absolute compliance with international trade laws, Uniform Customs and Practice for Documentary Credits (UCP 600), foreign exchange regulations (FEMA/RBI), and bilateral Free Trade Agreements.',
+      'Ensures discrepancy-free trade documentation, digital Certificates of Origin, and complete UCP 600 Letter of Credit compliance to eliminate bank delays and accelerate export proceeds realization (e-BRC closure).',
     features: [
       'Digital Certificate of Origin (Preferential under CEPA/FTA & Non-Preferential)',
       'Letter of Credit (LC) Scrutiny & Compliance under UCP 600 / ISBP Guidelines',
@@ -112,13 +112,13 @@ export const servicesData: Service[] = [
     title: 'International Freight & Multimodal Logistics',
     slug: 'logistics-shipping',
     shortDescription:
-      'Direct Tier-1 ocean & air carrier allocations, competitive freight contracting, multimodal corridor routing, and full Incoterms® execution.',
+      'Secures direct wholesale vessel space, reliable container allocations, and competitive ocean/air freight rates across all Incoterms®.',
     description:
-      'We link manufacturers, exporters, and importers directly with major global shipping lines (Maersk, MSC, CMA CGM, Hapag-Lloyd) and scheduled air cargo carriers. Our logistics architecture eliminates broker markups while guaranteeing predictable vessel space allocations across all Incoterms® (EXW, FCA, FOB, CFR, CIF, CPT, CIP, DAP, DPU, DDP).',
+      'Lowers landed logistics costs by 15–25% through direct premier carrier volume contracts (Maersk, MSC, CMA CGM), eliminating middleman markups and guaranteeing space during peak freight cycles.',
     features: [
       'Full Container Load (FCL) & Less than Container Load (LCL) Ocean Freight',
       'Time-Critical Air Cargo Charters & Scheduled Consolidation Corridors',
-      'Direct Tier-1 Carrier Space Contracting & Transparent All-In Spot Rate Negotiation',
+      'Direct Premier Carrier Space Contracting & Transparent All-In Spot Rate Negotiation',
       'Incoterms® 2020 Operational Execution (Factory Gate EXW/FCA to Destination DDP/DAP)',
       'Intermodal Rail & Road Transit to Major Inland Container Depots (ICDs) and Gateway Ports',
     ],
@@ -132,7 +132,7 @@ export const servicesData: Service[] = [
       {
         question: 'How do you secure better freight rates than standard forwarders?',
         answer:
-          'We leverage consolidated multi-client volume contracts and direct Tier-1 carrier service agreements (SCAs) without multi-layer broker margins, passing wholesale ocean and air rates directly to our clients.',
+          'We leverage consolidated multi-client volume contracts and direct premier carrier service agreements (SCAs) without multi-layer broker margins, passing wholesale ocean and air rates directly to our clients.',
       },
     ],
     seoTitle: 'Global Logistics & International Freight Forwarding | Ocean & Air Freight',
@@ -144,9 +144,9 @@ export const servicesData: Service[] = [
     title: 'Customs Clearance & Regulatory Compliance',
     slug: 'customs-compliance',
     shortDescription:
-      'Authorized customs brokerage, accurate HS code classification, valuation scrutiny, faceless assessment defense, and port gate clearance.',
+      'Accelerates cargo release and eliminates demurrage penalties through authorized brokerage and pre-arrival ICEGATE EDI filing.',
     description:
-      'Navigating customs regulations requires meticulous technical accuracy. Our licensed customs compliance team ensures error-free filing of Shipping Bills and Bills of Entry across major sea ports (Nhava Sheva, Mundra, Chennai), airports, and inland container depots (ICDs).',
+      'Eliminates port dwell time and tariff misclassification penalties through pre-arrival electronic customs filings, SVB related-party defense, and certified AEO green-channel release.',
     features: [
       'Harmonized System (HS) Code Classification & General Rules of Interpretation (GRI)',
       'Electronic Bill of Entry & Shipping Bill Filing via ICEGATE EDI',
@@ -176,9 +176,9 @@ export const servicesData: Service[] = [
     title: 'Bonded Warehousing & Global Distribution',
     slug: 'warehousing-distribution',
     shortDescription:
-      'Customs bonded warehousing under MOOWR (Section 65), Free Trade Warehousing Zones (FTWZ), cross-docking, and inventory distribution.',
+      'Defers customs duties and improves working capital cash flow using MOOWR Section 65 and FTWZ bonded facilities.',
     description:
-      'Strategic warehousing infrastructure positioned at major port hinterlands and key logistics corridors, enabling duty deferment, repackaging, quality inspection, and streamlined regional distribution.',
+      'Protects supply chain working capital by legally deferring customs duty payments until domestic market entry, enabling in-bond manufacturing, and supporting flexible regional distribution.',
     features: [
       'Customs Bonded Warehousing under Section 58 & Section 65 MOOWR Regulations',
       'Free Trade and Warehousing Zone (FTWZ) Storage, De-consolidation & Transshipment',
@@ -208,9 +208,9 @@ export const servicesData: Service[] = [
     title: 'Cold Chain Logistics & Temperature Control',
     slug: 'cold-chain-solutions',
     shortDescription:
-      'GDP and US FDA-compliant refrigerated transit (-25°C to +25°C) for pharmaceuticals, biologics, APIs, and deep-freeze perishables.',
+      'Protects product quality and temperature integrity throughout the supply chain (-25°C to +25°C).',
     description:
-      'Preserving thermal integrity across international trade lanes demands validated packaging, continuous telemetry, and emergency contingency protocols. We ensure complete cold-chain continuity from origin cold-storage to destination consignee.',
+      'Prevents cargo spoilage and preserves pharmaceutical potency through validated reefer equipment, continuous 24/7 IoT temperature telemetry, and GDP/FDA life science compliance.',
     features: [
       'Reefer Containers (-25°C Deep Freeze to +25°C Controlled Room Temperature, Ultra-Low -80°C)',
       'Active & Passive Thermal Packaging Validation & Pre-Cooling Protocols',
@@ -240,9 +240,9 @@ export const servicesData: Service[] = [
     title: 'Trade Tax & GST Advisory',
     slug: 'tax-gst-advisory',
     shortDescription:
-      'Cross-border GST structuring, Letter of Undertaking (LUT) filings, and expedited Input Tax Credit (ITC) & IGST refund reconciliation.',
+      'Liquidates blocked export working capital by resolving ICEGATE errors and accelerating ITC / IGST refunds.',
     description:
-      'Cross-border tax structuring designed to eliminate double taxation, maximize cash flow, and ensure complete statutory harmony between Goods & Services Tax (GST) returns and customs ICEGATE shipping data.',
+      'Maximizes cash flow and prevents audit penalties through compliant Letter of Undertaking (LUT) zero-tax structures, rapid Input Tax Credit (ITC) refund realization, and ICEGATE mismatch resolution.',
     features: [
       'Export without Payment of Output Tax under compliant Letter of Undertaking (LUT)',
       'Expedited Processing & Departmental Liaison for Accumulated ITC Refunds on Exports',
@@ -272,9 +272,9 @@ export const servicesData: Service[] = [
     title: 'Trade Risk Management & Marine Insurance',
     slug: 'trade-risk-management',
     shortDescription:
-      'Incoterms® 2020 contract risk allocation, Institute Cargo Clauses (A/B/C) marine cargo indemnity, and dispute defense.',
+      'Shields cross-border shipments against maritime catastrophes, physical loss, and contractual disputes with all-risk coverage.',
     description:
-      'Protect cross-border transactions against maritime perils, physical cargo loss, carrier insolvencies, currency volatility, and contractual counterparty defaults with comprehensive trade risk frameworks.',
+      'Provides complete balance sheet protection against catastrophic maritime loss, General Average liabilities, and foreign buyer defaults through structured Institute Cargo Clauses (A) policies.',
     features: [
       'Institute Cargo Clauses (A, B, C) Marine Cargo Insurance Broking & Policy Structuring',
       'Incoterms® 2020 Contract Risk Demarcation (EXW, FOB, CIF, CIP, DAP, DDP)',

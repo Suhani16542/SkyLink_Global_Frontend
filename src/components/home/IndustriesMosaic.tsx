@@ -1,9 +1,16 @@
 'use client';
 
-import React from 'react';
+import React, { useRef, useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight, Sparkles, CheckCircle2 } from 'lucide-react';
+import {
+  ArrowRight,
+  ChevronLeft,
+  ChevronRight,
+  ThermometerSnowflake,
+  ShieldCheck,
+  Layers,
+} from 'lucide-react';
 import { ScrollReveal } from '@/components/animation/ScrollReveal';
 import type { EnrichedIndustry } from '@/data/industries';
 
@@ -13,7 +20,7 @@ interface IndustriesMosaicProps {
 
 const industryImages: Record<string, string> = {
   pharmaceuticals:
-    'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=1200&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=800&auto=format&fit=crop',
   seafood:
     'https://images.unsplash.com/photo-1534482421-64566f976cfa?q=80&w=800&auto=format&fit=crop',
   perishables:
@@ -24,206 +31,260 @@ const industryImages: Record<string, string> = {
     'https://images.unsplash.com/photo-1553413077-190dd305871c?q=80&w=800&auto=format&fit=crop',
 };
 
+const industryBadges: Record<string, { badge: string; highlight: string }> = {
+  pharmaceuticals: {
+    badge: 'GDP & FDA COLD CHAIN',
+    highlight: '+2°C to +8°C Active Telemetry',
+  },
+  seafood: {
+    badge: 'DEEP FREEZE REEFER',
+    highlight: '-25°C to -40°C Super-Freezer',
+  },
+  perishables: {
+    badge: 'CONTROLLED ATMOSPHERE',
+    highlight: 'O2/CO2 Shelf-Life Extension',
+  },
+  manufacturing: {
+    badge: 'JIT & PROJECT CARGO',
+    highlight: 'EPCG & MOOWR Duty Deferment',
+  },
+  'general-cargo': {
+    badge: 'EXIM CONSOLIDATION',
+    highlight: 'RoDTEP & Drawback Optimization',
+  },
+};
+
 export function IndustriesMosaic({ industries }: IndustriesMosaicProps) {
-  const pharma =
-    industries.find((i) => i.slug === 'pharmaceuticals') || industries[0];
-  const seafood =
-    industries.find((i) => i.slug === 'seafood') || industries[1];
-  const otherIndustries = industries.filter(
-    (i) => i.slug !== 'pharmaceuticals' && i.slug !== 'seafood'
-  );
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [isHovered, setIsHovered] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
+
+  // Check scroll boundary
+  const checkScroll = () => {
+    if (scrollContainerRef.current) {
+      const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current;
+      setCanScrollLeft(scrollLeft > 15);
+      setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 15);
+    }
+  };
+
+  useEffect(() => {
+    checkScroll();
+    const el = scrollContainerRef.current;
+    if (el) {
+      el.addEventListener('scroll', checkScroll);
+      window.addEventListener('resize', checkScroll);
+      return () => {
+        el.removeEventListener('scroll', checkScroll);
+        window.removeEventListener('resize', checkScroll);
+      };
+    }
+  }, [industries]);
+
+  // Scroll to a specific card index
+  const scrollToIndex = useCallback((index: number) => {
+    if (scrollContainerRef.current) {
+      const cards = scrollContainerRef.current.children;
+      const targetCard = cards[index] as HTMLElement;
+      if (targetCard) {
+        scrollContainerRef.current.scrollTo({
+          left: targetCard.offsetLeft - 24,
+          behavior: 'smooth',
+        });
+        setActiveIndex(index);
+      }
+    }
+  }, []);
+
+  // When cursor is hovered over the section, advance cards one-by-one
+  useEffect(() => {
+    if (!isHovered) return;
+
+    const interval = setInterval(() => {
+      setActiveIndex((prev) => {
+        const next = (prev + 1) % industries.length;
+        scrollToIndex(next);
+        return next;
+      });
+    }, 2400);
+
+    return () => clearInterval(interval);
+  }, [isHovered, industries.length, scrollToIndex]);
+
+  const handleScroll = (direction: 'left' | 'right') => {
+    const newIdx =
+      direction === 'left'
+        ? Math.max(0, activeIndex - 1)
+        : Math.min(industries.length - 1, activeIndex + 1);
+    scrollToIndex(newIdx);
+  };
 
   return (
-    <section className="py-20 sm:py-28 bg-[#07192D] text-white relative overflow-hidden">
-      {/* Background ambient lighting */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-[#0284C7]/10 rounded-full blur-[160px] pointer-events-none -z-10" />
+    <section
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className="relative min-h-[500px] sm:min-h-[560px] lg:min-h-[600px] py-12 sm:py-16 bg-neutral-900 text-white overflow-hidden flex flex-col justify-between border-y border-white/20 select-none group"
+    >
+      {/* High-definition Vibrant Background Image - Cursor Controlled Zoom In / Zoom Out */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <Image
+          src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=2000&auto=format&fit=crop"
+          alt="Global transportation, logistics vessel, and container corridor"
+          fill
+          priority={false}
+          sizes="100vw"
+          className={`object-cover object-center transition-transform duration-1000 ease-out ${
+            isHovered ? 'scale-112' : 'scale-100'
+          }`}
+        />
+        {/* Minimal light gradients so background colors & white details remain fully visible */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/20 to-black/40" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#07192D]/90 via-transparent to-black/35" />
+      </div>
 
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Section Heading */}
-        <div className="text-center max-w-3xl mx-auto space-y-3 mb-14">
-          <ScrollReveal effect="fade-down" delay={0}>
-            <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sky-500/10 border border-sky-400/30 text-xs font-semibold text-sky-300">
-              <Sparkles className="w-3.5 h-3.5 text-sky-400" />
-              <span>Tailored Vertical Expertise</span>
-            </span>
-          </ScrollReveal>
-          <ScrollReveal effect="fade-up" delay={80}>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
-              Sector-Specific Cross-Border Solutions
-            </h2>
-          </ScrollReveal>
-          <ScrollReveal effect="fade-up" delay={160}>
-            <p className="text-sm sm:text-base text-neutral-300 leading-relaxed">
-              Every industry faces unique regulatory mandates, temperature sensitivities, and tariff classifications. We deliver customized logistics architecture tailored to each commodity profile.
-            </p>
-          </ScrollReveal>
-        </div>
-
-        {/* Top Tier Mosaic (7 cols + 5 cols) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-6">
-          {/* Card 1: Large Featured Pharma (7 cols) */}
-          <ScrollReveal
-            effect="fade-right"
-            delay={100}
-            duration={750}
-            className="lg:col-span-7 rounded-3xl border border-white/15 bg-gradient-to-b from-[#0A2540] to-[#07192D] overflow-hidden shadow-2xl flex flex-col justify-between group hover-lift"
-          >
-            <div className="relative aspect-[16/9] sm:aspect-[21/10] w-full overflow-hidden bg-neutral-900">
-              <Image
-                src={industryImages['pharmaceuticals']}
-                alt="Pharmaceutical cold chain logistics and life sciences compliance"
-                fill
-                sizes="(max-width: 1024px) 100vw, 60vw"
-                className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#07192D] via-[#07192D]/40 to-transparent" />
-              <span className="absolute top-4 left-4 text-[10px] font-mono font-bold uppercase tracking-wider text-sky-300 bg-[#07192D]/90 px-3 py-1 rounded-full border border-white/15 backdrop-blur-md">
-                HIGH-PRECISION VERTICAL
-              </span>
-              <div className="absolute bottom-4 left-6 right-6">
-                <span className="text-xs font-mono uppercase text-sky-300 font-bold block">
-                  GDP &amp; US FDA Compliant
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10 w-full flex-1 flex flex-col justify-between">
+        {/* Top Header Row with Only Bold Heading & Badges & Controls */}
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-6 sm:mb-10">
+          {/* Left Column: Badges & DP World-Style Large Bold Heading */}
+          <div className="space-y-3 max-w-3xl">
+            <ScrollReveal effect="fade-down" delay={0}>
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-black/60 border border-sky-400/50 text-xs font-bold text-sky-300 backdrop-blur-md shadow-md">
+                  <ThermometerSnowflake className="w-3.5 h-3.5 text-cyan-400 animate-pulse" />
+                  <span>SPECIALIZED COLD CHAIN &amp; VERTICALS</span>
                 </span>
-                <h3 className="text-xl sm:text-2xl font-extrabold text-white">
-                  {pharma.title}
-                </h3>
-              </div>
-            </div>
-
-            <div className="p-6 sm:p-8 flex-1 flex flex-col justify-between space-y-6">
-              <p className="text-xs sm:text-sm text-neutral-300 leading-relaxed">
-                {pharma.description}
-              </p>
-
-              {/* Highlights */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                {pharma.keyHighlights.map((hl, idx) => (
-                  <div key={idx} className="p-3 rounded-2xl bg-white/5 border border-white/10 text-xs">
-                    <div className="flex items-center gap-1.5 text-emerald-400 font-bold mb-1">
-                      <CheckCircle2 className="w-3.5 h-3.5" />
-                      <span>Validated</span>
-                    </div>
-                    <span className="text-neutral-200 text-[11px] leading-snug block">{hl}</span>
-                  </div>
-                ))}
-              </div>
-
-              <div className="pt-4 border-t border-white/10 flex items-center justify-between">
-                <span className="text-xs font-mono text-sky-300 font-bold">API • Biologicals • Clinical Trials</span>
-                <Link
-                  href={`/industries#${pharma.slug}`}
-                  className="inline-flex items-center gap-1.5 text-xs font-bold text-sky-400 hover:text-sky-300"
-                >
-                  <span>Explore Pharma Desk</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </Link>
-              </div>
-            </div>
-          </ScrollReveal>
-
-          {/* Card 2: Seafood (5 cols) */}
-          <ScrollReveal
-            effect="fade-left"
-            delay={160}
-            duration={750}
-            className="lg:col-span-5 rounded-3xl border border-white/15 bg-gradient-to-b from-[#0A2540] to-[#07192D] overflow-hidden shadow-2xl flex flex-col justify-between group hover-lift"
-          >
-            <div className="relative aspect-[16/9] w-full overflow-hidden bg-neutral-900">
-              <Image
-                src={industryImages['seafood']}
-                alt="Seafood and marine exports cold chain"
-                fill
-                sizes="(max-width: 1024px) 100vw, 40vw"
-                className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#07192D] via-[#07192D]/40 to-transparent" />
-              <span className="absolute top-4 left-4 text-[10px] font-mono font-bold uppercase tracking-wider text-sky-300 bg-[#07192D]/90 px-3 py-1 rounded-full border border-white/15 backdrop-blur-md">
-                DEEP FREEZE LOGISTICS
-              </span>
-              <div className="absolute bottom-4 left-6 right-6">
-                <span className="text-xs font-mono uppercase text-sky-300 font-bold block">
-                  -25°C to -40°C Reefer Transit
+                <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-black/60 border border-emerald-400/50 text-xs font-semibold text-emerald-300 backdrop-blur-md shadow-md">
+                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+                  <span>GDP / US FDA VALIDATED</span>
                 </span>
-                <h3 className="text-xl font-extrabold text-white">
-                  {seafood.title}
-                </h3>
               </div>
-            </div>
+            </ScrollReveal>
 
-            <div className="p-6 sm:p-7 flex-1 flex flex-col justify-between space-y-4">
-              <p className="text-xs sm:text-sm text-neutral-300 leading-relaxed">
-                {seafood.description}
-              </p>
+            <ScrollReveal effect="fade-up" delay={60}>
+              <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white uppercase tracking-tight leading-none drop-shadow-xl">
+                Sector-Specific Solutions
+              </h2>
+            </ScrollReveal>
+          </div>
 
-              <div className="space-y-2 pt-2">
-                {seafood.keyHighlights.map((hl, idx) => (
-                  <div key={idx} className="flex items-center gap-2 text-xs text-neutral-200">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-sky-400 shrink-0" />
-                    <span>{hl}</span>
-                  </div>
-                ))}
-              </div>
-
-              <div className="pt-3 border-t border-white/10 flex items-center justify-between text-xs">
-                <span className="text-neutral-400 font-mono">MPEDA &amp; EIA Compliant</span>
-                <Link
-                  href={`/industries#${seafood.slug}`}
-                  className="font-bold text-sky-400 inline-flex items-center gap-1 hover:text-sky-300"
-                >
-                  <span>View Solutions</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </Link>
-              </div>
-            </div>
-          </ScrollReveal>
-        </div>
-
-        {/* Bottom Tier: 3 Remaining Industry Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {otherIndustries.map((ind, idx) => (
-            <ScrollReveal
-              key={ind.id}
-              effect="fade-up"
-              delay={120 + idx * 70}
-              duration={650}
-              className="rounded-3xl border border-white/15 bg-[#0A2540]/80 overflow-hidden shadow-xl flex flex-col justify-between group hover-lift h-full"
-            >
-              <div className="relative aspect-[16/10] w-full overflow-hidden bg-neutral-900">
-                <Image
-                  src={industryImages[ind.slug] || industryImages['manufacturing']}
-                  alt={`${ind.title} logistics`}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                  className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
+          {/* Right Column: Navigation Controls & Indicators */}
+          <ScrollReveal effect="fade-left" delay={100} className="flex items-center gap-3 shrink-0 self-start md:self-center">
+            {/* Step Indicators */}
+            <div className="hidden sm:flex items-center gap-1.5 px-3 py-2 rounded-full bg-black/50 border border-white/20 backdrop-blur-md">
+              {industries.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => scrollToIndex(i)}
+                  aria-label={`Go to slide ${i + 1}`}
+                  className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                    activeIndex === i ? 'w-6 bg-sky-400' : 'w-2 bg-white/40 hover:bg-white/70'
+                  }`}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0A2540] via-transparent to-transparent" />
-                <span className="absolute bottom-3 left-4 text-[10px] font-mono font-bold uppercase tracking-wider text-sky-300 bg-[#07192D]/85 px-2.5 py-1 rounded-md border border-white/10 backdrop-blur-md">
-                  VERTICAL
-                </span>
-              </div>
+              ))}
+            </div>
 
-              <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
-                <div>
-                  <h3 className="text-lg font-bold text-white group-hover:text-sky-300 transition-colors">
+            <button
+              onClick={() => handleScroll('left')}
+              disabled={!canScrollLeft}
+              aria-label="Previous Industry"
+              className={`p-3 rounded-full border backdrop-blur-md transition-all duration-300 ${
+                canScrollLeft
+                  ? 'bg-black/60 hover:bg-sky-500 text-white border-white/40 hover:border-sky-400 shadow-xl cursor-pointer hover:scale-105 active:scale-95'
+                  : 'bg-black/30 text-neutral-500 border-white/10 cursor-not-allowed opacity-40'
+              }`}
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+            <button
+              onClick={() => handleScroll('right')}
+              disabled={!canScrollRight}
+              aria-label="Next Industry"
+              className={`p-3 rounded-full border backdrop-blur-md transition-all duration-300 ${
+                canScrollRight
+                  ? 'bg-black/60 hover:bg-sky-500 text-white border-white/40 hover:border-sky-400 shadow-xl cursor-pointer hover:scale-105 active:scale-95'
+                  : 'bg-black/30 text-neutral-500 border-white/10 cursor-not-allowed opacity-40'
+              }`}
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+            <Link
+              href="/industries"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-black/60 hover:bg-sky-500 border border-sky-400/50 text-xs font-bold text-sky-300 hover:text-white transition-all shadow-xl backdrop-blur-md"
+            >
+              <Layers className="w-4 h-4" />
+              <span>All Verticals</span>
+            </Link>
+          </ScrollReveal>
+        </div>
+
+        {/* Bottom Horizontal Elongated ("Lamba") Landscape Cards Track */}
+        <div
+          ref={scrollContainerRef}
+          className="flex gap-5 sm:gap-6 overflow-x-auto pb-4 pt-2 px-1 no-scrollbar scroll-smooth snap-x snap-mandatory cursor-grab active:cursor-grabbing"
+          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+        >
+          {industries.map((ind, idx) => {
+            const badgeInfo = industryBadges[ind.slug] || {
+              badge: 'CUSTOM COMMODITY DESK',
+              highlight: '100% Statutory Compliance',
+            };
+            const imageUrl =
+              industryImages[ind.slug] ||
+              'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=800&auto=format&fit=crop';
+            const isActive = activeIndex === idx;
+
+            return (
+              <Link
+                key={ind.id || idx}
+                href={`/industries#${ind.slug}`}
+                onMouseEnter={() => setActiveIndex(idx)}
+                className={`w-[320px] sm:w-[420px] md:w-[480px] lg:w-[520px] h-[190px] sm:h-[210px] shrink-0 snap-start rounded-2xl relative overflow-hidden group/card border transition-all duration-500 flex flex-col justify-between p-4 sm:p-5 shadow-2xl ${
+                  isActive
+                    ? 'border-sky-400 shadow-sky-500/40 scale-[1.02]'
+                    : 'border-white/30 hover:border-sky-400/80 shadow-black/60'
+                }`}
+              >
+                {/* Background Image of the Card */}
+                <div className="absolute inset-0 z-0 overflow-hidden bg-neutral-900">
+                  <Image
+                    src={imageUrl}
+                    alt={`${ind.title} trade solutions`}
+                    fill
+                    sizes="(max-width: 768px) 320px, 520px"
+                    className="object-cover object-center group-hover/card:scale-110 transition-transform duration-700 ease-out"
+                  />
+                  {/* Card Dark Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-black/30 group-hover/card:via-black/45 transition-colors duration-500" />
+                </div>
+
+                {/* Card Top: Category Badge & Arrow */}
+                <div className="relative z-10 flex items-center justify-between gap-2">
+                  <span className="text-[9px] sm:text-[10px] font-mono font-bold uppercase tracking-wider text-sky-300 bg-black/80 px-3 py-1 rounded-full border border-white/25 backdrop-blur-md shadow-sm">
+                    {badgeInfo.badge}
+                  </span>
+                  <div className="w-8 h-8 rounded-full bg-white/20 group-hover/card:bg-sky-500 flex items-center justify-center text-white transition-all duration-300 group-hover/card:scale-110 shadow-md">
+                    <ArrowRight className="w-4 h-4 group-hover/card:translate-x-0.5 transition-transform" />
+                  </div>
+                </div>
+
+                {/* Card Bottom: Highlight & Title & Description */}
+                <div className="relative z-10 space-y-1">
+                  <div className="text-[10px] sm:text-[11px] font-mono text-cyan-300 font-semibold flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+                    <span>{badgeInfo.highlight}</span>
+                  </div>
+                  <h3 className="text-base sm:text-lg lg:text-xl font-extrabold text-white group-hover/card:text-sky-200 transition-colors line-clamp-1 leading-snug drop-shadow-md">
                     {ind.title}
                   </h3>
-                  <p className="mt-2 text-xs sm:text-sm text-neutral-300 leading-relaxed line-clamp-3">
+                  <p className="text-[11px] sm:text-xs text-neutral-300 line-clamp-1 leading-relaxed opacity-95 group-hover/card:opacity-100">
                     {ind.description}
                   </p>
                 </div>
-
-                <div className="pt-3 border-t border-white/10 flex items-center justify-between text-xs">
-                  <Link
-                    href={`/industries#${ind.slug}`}
-                    className="inline-flex items-center gap-1 font-bold text-sky-400 hover:text-sky-300"
-                  >
-                    <span>Explore Solutions</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </Link>
-                </div>
-              </div>
-            </ScrollReveal>
-          ))}
+              </Link>
+            );
+          })}
         </div>
       </div>
     </section>

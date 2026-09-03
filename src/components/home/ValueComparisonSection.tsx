@@ -1,171 +1,304 @@
 'use client';
 
-import React, { useEffect, useRef, useState } from 'react';
-import { Check, X, ShieldCheck, BarChart3 } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
+import {
+  ArrowRight,
+  TrendingDown,
+  TrendingUp,
+  ShieldCheck,
+  Zap,
+  Sparkles,
+  CheckCircle2,
+  XCircle,
+  SlidersHorizontal,
+} from 'lucide-react';
 import { ScrollReveal } from '@/components/animation/ScrollReveal';
 
-const comparisonMetrics = [
+interface ComparisonPoint {
+  id: string;
+  category: string;
+  label: string;
+  traditional: {
+    title: string;
+    impact: string;
+    loss: string;
+  };
+  skylink: {
+    title: string;
+    impact: string;
+    gain: string;
+    metric: string;
+  };
+}
+
+const comparisonPoints: ComparisonPoint[] = [
   {
-    category: 'Export Logistics Cost',
-    traditional: 'High markups via multiple sub-brokers & NVOCC layers',
-    traditionalScore: 40,
-    skylink: 'Direct Tier-1 volume shipping contracts with 15–20% baseline savings',
-    skylinkScore: 95,
+    id: 'freight-tariffs',
+    category: 'Procurement',
+    label: 'Freight Cost & Rate Transparency',
+    traditional: {
+      title: 'Layered sub-broker markups with hidden DTHC surcharges',
+      impact: 'Unpredictable spot pricing eroding 8–12% of export margins per container lane.',
+      loss: '+15% Excess Overhead',
+    },
+    skylink: {
+      title: 'Direct premier volume shipping line contracts',
+      impact: 'Guaranteed all-in fixed tariffs with zero hidden destination charges and priority space allocation.',
+      gain: '18% Average Cost Savings',
+      metric: '18% Net Savings',
+    },
   },
   {
-    category: 'Freight Rate Optimization',
-    traditional: 'Rigid spot tariffs with hidden destination terminal charges (DTHC)',
-    traditionalScore: 45,
-    skylink: 'Transparent all-in fixed tariffs, multi-carrier bidding & route modeling',
-    skylinkScore: 92,
+    id: 'customs-speed',
+    category: 'Clearance',
+    label: 'Customs & Port Dwell Time',
+    traditional: {
+      title: 'Reactive filing causing ICEGATE red-channel holds',
+      impact: 'Clerical HS code misclassifications leading to port queries, container detention, and demurrage penalties.',
+      loss: '3–5 Days Avg Delay',
+    },
+    skylink: {
+      title: 'Pre-arrival statutory audit & Green-Channel release',
+      impact: 'Zero-defect documentation verified against current CBIC rules before vessel arrives at berth.',
+      gain: '0-Demurrage Release',
+      metric: '99.8% First-Pass',
+    },
   },
   {
-    category: 'Documentation Accuracy',
-    traditional: 'Frequent clerical errors causing ICEGATE holds & bank query rejections',
-    traditionalScore: 50,
-    skylink: 'Zero-defect statutory pre-checks & direct DGFT liaison audits',
-    skylinkScore: 99,
+    id: 'incentives-recovery',
+    category: 'Fiscal',
+    label: 'Statutory Export Incentive Realization',
+    traditional: {
+      title: 'Unassisted forwarding with unclaimed RoDTEP / Drawback',
+      impact: 'Exporters lose legitimate statutory subsidies due to lack of electronic script filing liaison.',
+      loss: 'Unclaimed Cash Flow',
+    },
+    skylink: {
+      title: 'End-to-end RoDTEP, RoSCTL & Drawback recovery',
+      impact: 'Automated script filing, e-BRC realization tracking, and EPCG/Advance Authorisation EODC redemption.',
+      gain: '100% Realized Benefits',
+      metric: '100% Monetized',
+    },
   },
   {
-    category: 'Response Time & Visibility',
-    traditional: 'Manual email updates with blind transit points and slow escalation',
-    traditionalScore: 35,
-    skylink: 'Dedicated single point of contact with 24/7 telemetry monitoring',
-    skylinkScore: 94,
-  },
-  {
-    category: 'Incentive Maximization',
-    traditional: 'Freight forwarding only; unassisted RoDTEP/EPCG incentive recovery',
-    traditionalScore: 25,
-    skylink: 'Integrated statutory recovery (RoDTEP, RoSCTL, Duty Drawback, Advance Auth)',
-    skylinkScore: 98,
-  },
-  {
-    category: 'Cold Chain Compliance',
-    traditional: 'Passive loggers without real-time thermal excursion notification',
-    traditionalScore: 40,
-    skylink: 'GDP & FDA certified active IoT thermal telemetry with pre-arrival customs priority',
-    skylinkScore: 96,
+    id: 'live-telemetry',
+    category: 'Operations',
+    label: 'Real-Time Telemetry & SLA Accountability',
+    traditional: {
+      title: 'Manual status emails with transshipment blind spots',
+      impact: 'Fragmented response times, blind transshipment dwells, and zero visibility into thermal deviations.',
+      loss: 'Blind Transit Gaps',
+    },
+    skylink: {
+      title: 'Active 24/7 IoT tracking & single-desk SLA',
+      impact: 'Live temperature, humidity, and milestone telemetry with dedicated single account manager accountability.',
+      gain: '< 15 Min SLA Response',
+      metric: '24/7 Live Stream',
+    },
   },
 ];
 
 export function ValueComparisonSection() {
-  const [inView, setInView] = useState(false);
-  const sectionRef = useRef<HTMLDivElement | null>(null);
+  const [activeIdx, setActiveIdx] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const current = comparisonPoints[activeIdx];
 
+  // Auto-progress tabs smoothly
   useEffect(() => {
-    if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      const raf = requestAnimationFrame(() => setInView(true));
-      return () => cancelAnimationFrame(raf);
-    }
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setInView(true);
-          observer.unobserve(entry.target);
-        }
-      },
-      { threshold: 0.15 }
-    );
-
-    const elem = sectionRef.current;
-    if (elem) observer.observe(elem);
-
-    return () => {
-      if (elem) observer.unobserve(elem);
-    };
-  }, []);
+    if (!isAutoPlaying) return;
+    const timer = setInterval(() => {
+      setActiveIdx((prev) => (prev + 1) % comparisonPoints.length);
+    }, 5500);
+    return () => clearInterval(timer);
+  }, [isAutoPlaying]);
 
   return (
-    <section ref={sectionRef} className="py-20 sm:py-28 bg-neutral-50 border-t border-neutral-200">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Header with ScrollReveal */}
-        <div className="text-center max-w-3xl mx-auto space-y-3 mb-16">
+    <section
+      onMouseEnter={() => setIsAutoPlaying(false)}
+      onMouseLeave={() => setIsAutoPlaying(true)}
+      className="py-12 sm:py-16 lg:py-20 bg-white text-neutral-900 relative overflow-hidden border-t border-neutral-200 select-none"
+    >
+      {/* Subtle Background Geometric Accents on Pure White with Animated Glow */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#00000004_1px,transparent_1px),linear-gradient(to_bottom,#00000004_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none" />
+      <div className="absolute top-1/3 right-10 w-[500px] h-[500px] bg-sky-100/40 rounded-full blur-[120px] pointer-events-none animate-pulse-glow -z-10" />
+      <div className="absolute bottom-5 left-10 w-[400px] h-[400px] bg-emerald-100/30 rounded-full blur-[120px] pointer-events-none animate-pulse-glow -z-10" />
+
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Compact Editorial Header with High Impact */}
+        <div className="max-w-4xl mb-8 sm:mb-10 space-y-3">
           <ScrollReveal effect="fade-down" delay={0}>
-            <div className="inline-flex items-center gap-2 rounded-full bg-sky-50 border border-sky-200 px-3.5 py-1.5 text-xs font-bold text-[#0284C7]">
-              <BarChart3 className="w-4 h-4 text-[#0284C7]" />
-              <span>Comparative Operational Benchmark</span>
+            <div className="inline-flex items-center gap-2 text-xs font-mono font-bold tracking-wider uppercase text-sky-700 bg-sky-50 px-3.5 py-1.5 rounded-full border border-sky-200/80 shadow-xs">
+              <span className="w-2 h-2 rounded-full bg-sky-500 animate-ping" />
+              <span>Operational Efficiency Matrix</span>
             </div>
           </ScrollReveal>
-          <ScrollReveal effect="fade-up" delay={80}>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0A2540] tracking-tight">
-              Traditional Shipping Agent vs. SkyLink Global
+
+          <ScrollReveal effect="fade-up" delay={50}>
+            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black text-[#0A2540] tracking-tight leading-[1.06]">
+              The Traditional Model <br className="hidden sm:inline" />
+              <span className="text-neutral-400 font-light italic">vs.</span> The SkyLink Standard
             </h2>
           </ScrollReveal>
-          <ScrollReveal effect="fade-up" delay={160}>
-            <p className="text-sm sm:text-base text-neutral-600 leading-relaxed">
-              See how combining licensed statutory EXIM trade consulting with direct carrier logistics infrastructure provides superior risk protection and cost reduction.
+
+          <ScrollReveal effect="fade-up" delay={100}>
+            <p className="text-base sm:text-lg text-neutral-600 leading-relaxed max-w-3xl font-normal">
+              Compare standard freight forwarding brokerage friction against our integrated statutory trade advisory and direct premier carrier logistics infrastructure.
             </p>
           </ScrollReveal>
         </div>
 
-        {/* Comparison Table Grid */}
-        <ScrollReveal effect="scale-up" delay={200} duration={750}>
-          <div className="rounded-3xl border border-neutral-200 bg-white shadow-xl overflow-hidden">
-            {/* Header Row */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 bg-[#0A2540] text-white py-5 px-6 sm:px-8 items-center">
-              <div className="lg:col-span-4 text-xs sm:text-sm font-bold uppercase tracking-wider text-neutral-300">
-                Operational &amp; Financial Metric
-              </div>
-              <div className="lg:col-span-4 text-xs sm:text-sm font-bold uppercase tracking-wider text-neutral-300 mt-2 lg:mt-0">
-                Traditional Shipping Agent
-              </div>
-              <div className="lg:col-span-4 text-xs sm:text-sm font-bold uppercase tracking-wider text-sky-300 mt-2 lg:mt-0 flex items-center gap-1.5">
-                <ShieldCheck className="w-4 h-4 text-emerald-400" />
-                <span>SkyLink Global Services</span>
-              </div>
+        {/* Cardless Interactive Navigation Bar with Animated Progress Line */}
+        <div className="flex border-b border-neutral-200 overflow-x-auto no-scrollbar gap-6 lg:gap-10 mb-8 sm:mb-12">
+          {comparisonPoints.map((item, idx) => {
+            const isActive = activeIdx === idx;
+            return (
+              <button
+                key={item.id}
+                onClick={() => {
+                  setActiveIdx(idx);
+                  setIsAutoPlaying(false);
+                }}
+                className={`pb-3.5 text-left transition-all duration-300 relative cursor-pointer shrink-0 group ${
+                  isActive ? 'text-[#0A2540] scale-[1.01]' : 'text-neutral-400 hover:text-neutral-800'
+                }`}
+              >
+                <div className="flex items-center gap-2 mb-1">
+                  <span
+                    className={`text-xs font-mono font-bold uppercase tracking-wider transition-colors ${
+                      isActive ? 'text-sky-600' : 'text-neutral-400'
+                    }`}
+                  >
+                    0{idx + 1}
+                  </span>
+                  <span className="text-xs font-mono text-neutral-400 font-medium">
+                    {item.category}
+                  </span>
+                </div>
+                <span className="text-sm sm:text-base lg:text-lg font-extrabold block tracking-tight">
+                  {item.label}
+                </span>
+
+                {/* Animated Indicator Line */}
+                <div
+                  className={`absolute bottom-0 left-0 right-0 h-0.5 rounded-full transition-all duration-500 ${
+                    isActive ? 'bg-[#0284C7] shadow-sm shadow-sky-500/50 scale-100' : 'bg-transparent group-hover:bg-neutral-200 scale-95'
+                  }`}
+                />
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Cardless Open Dual-Track Visual Stage on Clean White */}
+        <div key={current.id} className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center animate-fade-in transition-all duration-500">
+          {/* Left Side: Traditional Forwarding Breakdown */}
+          <div className="lg:col-span-5 space-y-4">
+            <div className="flex items-center gap-2 text-xs font-mono font-bold uppercase text-rose-600 tracking-wider">
+              <span className="w-2 h-2 rounded-full bg-rose-500" />
+              <span>Standard Forwarding Pitfalls</span>
             </div>
 
-            {/* Metric Rows */}
-            <div className="divide-y divide-neutral-200 text-sm">
-              {comparisonMetrics.map((row, idx) => (
-                <div
-                  key={idx}
-                  className="grid grid-cols-1 lg:grid-cols-12 p-6 sm:p-8 items-center gap-6 hover:bg-neutral-50/70 transition-colors"
-                >
-                  {/* Metric Name */}
-                  <div className="lg:col-span-4 space-y-1">
-                    <span className="text-xs font-bold text-neutral-400 block uppercase tracking-wider">
-                      Metric 0{idx + 1}
-                    </span>
-                    <div className="text-base font-bold text-neutral-900">{row.category}</div>
-                  </div>
+            <h3 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-neutral-900 leading-snug tracking-tight">
+              {current.traditional.title}
+            </h3>
 
-                  {/* Traditional Agent */}
-                  <div className="lg:col-span-4 space-y-2 p-4 rounded-xl bg-neutral-50 border border-neutral-200">
-                    <div className="flex items-start gap-2.5 text-xs sm:text-sm text-neutral-600">
-                      <X className="w-4 h-4 text-red-500 shrink-0 mt-0.5" />
-                      <span>{row.traditional}</span>
-                    </div>
-                    {/* Visual Progress Bar (Animated from 0 -> value) */}
-                    <div className="w-full bg-neutral-200 h-2 rounded-full overflow-hidden">
-                      <div
-                        className="bg-neutral-400 h-full rounded-full transition-all duration-1000 ease-out"
-                        style={{ width: inView ? `${row.traditionalScore}%` : '0%' }}
-                      />
-                    </div>
-                  </div>
+            <p className="text-sm sm:text-base text-neutral-600 leading-relaxed font-normal">
+              {current.traditional.impact}
+            </p>
 
-                  {/* SkyLink Advantage */}
-                  <div className="lg:col-span-4 space-y-2 p-4 rounded-xl bg-sky-50/70 border border-sky-200">
-                    <div className="flex items-start gap-2.5 text-xs sm:text-sm font-semibold text-[#0A2540]">
-                      <Check className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                      <span>{row.skylink}</span>
-                    </div>
-                    {/* Visual Progress Bar (Animated from 0 -> value) */}
-                    <div className="w-full bg-sky-200 h-2 rounded-full overflow-hidden">
-                      <div
-                        className="bg-[#0284C7] h-full rounded-full shadow-xs transition-all duration-1000 ease-out"
-                        style={{ width: inView ? `${row.skylinkScore}%` : '0%' }}
-                      />
-                    </div>
-                  </div>
-                </div>
-              ))}
+            <div className="pt-3 border-t border-neutral-200 flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-rose-50 border border-rose-200 flex items-center justify-center text-rose-600 shrink-0 shadow-xs">
+                <TrendingDown className="w-5 h-5" />
+              </div>
+              <div>
+                <span className="text-[11px] font-mono text-neutral-400 uppercase block font-semibold">
+                  Compounded Friction Cost
+                </span>
+                <span className="text-base sm:text-lg font-bold text-rose-700 font-mono">
+                  {current.traditional.loss}
+                </span>
+              </div>
             </div>
           </div>
-        </ScrollReveal>
+
+          {/* Center Vertical Divider with Animated VS Badge */}
+          <div className="hidden lg:flex lg:col-span-2 flex-col items-center justify-center self-stretch">
+            <div className="w-px flex-1 bg-gradient-to-b from-transparent via-neutral-300 to-transparent" />
+            <div className="my-4 w-10 h-10 rounded-full border border-neutral-300 bg-white flex items-center justify-center text-xs font-mono font-black text-neutral-500 shadow-md transition-transform hover:scale-110">
+              VS
+            </div>
+            <div className="w-px flex-1 bg-gradient-to-b from-transparent via-neutral-300 to-transparent" />
+          </div>
+
+          {/* Right Side: The SkyLink Standard */}
+          <div className="lg:col-span-5 space-y-4">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2 text-xs font-mono font-bold uppercase text-emerald-700 tracking-wider">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                <span>The SkyLink Advantage</span>
+              </div>
+              <span className="text-xs font-mono font-bold text-sky-800 bg-sky-50 px-3 py-1 rounded-full border border-sky-200 shadow-xs">
+                {current.skylink.metric}
+              </span>
+            </div>
+
+            <h3 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-[#0A2540] leading-snug tracking-tight">
+              {current.skylink.title}
+            </h3>
+
+            <p className="text-sm sm:text-base text-neutral-700 leading-relaxed font-normal">
+              {current.skylink.impact}
+            </p>
+
+            <div className="pt-3 border-t border-neutral-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-600 shrink-0 shadow-xs">
+                  <TrendingUp className="w-5 h-5" />
+                </div>
+                <div>
+                  <span className="text-[11px] font-mono text-neutral-400 uppercase block font-semibold">
+                    Audited Outcome
+                  </span>
+                  <span className="text-base sm:text-lg font-bold text-emerald-700 font-mono">
+                    {current.skylink.gain}
+                  </span>
+                </div>
+              </div>
+
+              {/* Big Impact Action Button */}
+              <Link
+                href="/request-consultation"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#0A2540] hover:bg-[#0284C7] text-white text-xs sm:text-sm font-bold shadow-lg shadow-neutral-900/15 transition-all duration-300 hover:scale-105 active:scale-95 group/btn shrink-0"
+              >
+                <span>Audit This Lane</span>
+                <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        {/* Compact Minimalist Bottom Statistics Row (Cardless) */}
+        <div className="mt-12 sm:mt-16 pt-8 sm:pt-10 border-t border-neutral-200 grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+          {[
+            { value: '18%', label: 'Average Baseline Freight Savings', sub: 'Direct premier carrier volume contracting' },
+            { value: '99.8%', label: 'First-Pass Customs Clearance', sub: 'Pre-arrival verified statutory documentation' },
+            { value: '100%', label: 'Export Incentive Recovery', sub: 'RoDTEP, RoSCTL & Duty Drawback monetized' },
+            { value: '< 15m', label: 'Dedicated Account SLA Response', sub: '24/7 continuous active telemetry stream' },
+          ].map((stat, i) => (
+            <div key={i} className="space-y-1 group cursor-default">
+              <div className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#0A2540] group-hover:text-[#0284C7] tracking-tight font-mono transition-colors duration-300">
+                {stat.value}
+              </div>
+              <div className="text-xs sm:text-sm font-extrabold text-neutral-900">
+                {stat.label}
+              </div>
+              <div className="text-[11px] text-neutral-500 font-normal leading-snug">
+                {stat.sub}
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

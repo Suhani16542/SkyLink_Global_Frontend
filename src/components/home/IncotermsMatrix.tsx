@@ -48,7 +48,7 @@ export const incotermsData: IncotermDetail[] = [
     category: 'maritime',
     categoryLabel: 'Sea & Inland Waterway',
     summary:
-      'The seller delivers goods on board the vessel nominated by the buyer at the named port of shipment. The seller clears goods for export.',
+      'Protects export margins by transferring ocean freight booking and destination risk to the buyer once cargo is loaded at the origin port.',
     riskTransfer: 'When goods are loaded safely on board the vessel at port of origin.',
     costTransfer: 'Seller pays until loaded on board; buyer pays ocean freight, insurance, and import clearance.',
     sellerResponsibilities: [
@@ -82,7 +82,7 @@ export const incotermsData: IncotermDetail[] = [
     category: 'maritime',
     categoryLabel: 'Sea & Inland Waterway',
     summary:
-      'The seller delivers goods on board the vessel, procures minimum marine cargo insurance, and pays ocean freight to the named destination port.',
+      'Increases export deal conversion by bundling competitive ocean freight and marine cargo insurance into a single destination-landed price.',
     riskTransfer: 'When goods are loaded on board the vessel at origin port (same as FOB).',
     costTransfer: 'Seller pays ocean freight and insurance to destination port; buyer assumes import clearance and inland haulage.',
     sellerResponsibilities: [
@@ -98,7 +98,7 @@ export const incotermsData: IncotermDetail[] = [
       'Transit risks after loading (protected by insurance policy transferred by seller)',
     ],
     skylinkAdvisory:
-      'SkyLink leverages Tier-1 maritime carrier contracts to secure competitive ocean freight rates and all-risk Institute Cargo Clauses (A) insurance to protect cross-border margins.',
+      'SkyLink leverages premier maritime carrier contracts to secure competitive ocean freight rates and all-risk Institute Cargo Clauses (A) insurance to protect cross-border margins.',
     matrix: {
       packaging: 'seller',
       originDrayage: 'seller',
@@ -116,7 +116,7 @@ export const incotermsData: IncotermDetail[] = [
     category: 'maritime',
     categoryLabel: 'Sea & Inland Waterway',
     summary:
-      'The seller delivers goods on board the vessel and pays freight to the destination port, but is not responsible for procuring marine insurance.',
+      'Optimizes pricing for overseas buyers managing their own insurance policies while allowing the exporter to retain full control of vessel scheduling.',
     riskTransfer: 'When goods are placed on board the vessel at the port of shipment.',
     costTransfer: 'Seller pays ocean freight to destination port; buyer pays insurance and destination charges.',
     sellerResponsibilities: [
@@ -148,7 +148,7 @@ export const incotermsData: IncotermDetail[] = [
     category: 'multimodal',
     categoryLabel: 'Any Mode of Transport (Multimodal)',
     summary:
-      'The seller delivers goods, cleared for export, to the carrier or person nominated by the buyer at the named premises or inland terminal.',
+      'Eliminates terminal demurrage and container roll-over risk by transferring cargo responsibility directly at the inland container depot (ICD) or factory.',
     riskTransfer: 'When goods are loaded onto buyer’s transport or made available at named terminal.',
     costTransfer: 'Seller pays up to delivery to buyer’s carrier; buyer pays subsequent main carriage.',
     sellerResponsibilities: [
@@ -180,7 +180,7 @@ export const incotermsData: IncotermDetail[] = [
     category: 'multimodal',
     categoryLabel: 'Any Mode of Transport (Multimodal)',
     summary:
-      'The seller bears maximum responsibility: delivers goods cleared for import, having paid all customs duties, taxes, and destination transport to the buyer’s doorstep.',
+      'Provides overseas buyers with a hassle-free, fully cleared door-to-door delivery with all import duties and taxes managed upfront.',
     riskTransfer: 'When goods are placed at buyer’s disposal, cleared for import, ready for unloading.',
     costTransfer: 'Seller pays all costs including freight, insurance, import duties, and destination delivery.',
     sellerResponsibilities: [
@@ -212,7 +212,7 @@ export const incotermsData: IncotermDetail[] = [
     category: 'multimodal',
     categoryLabel: 'Any Mode of Transport (Multimodal)',
     summary:
-      'The seller delivers goods when placed at the buyer’s disposal on the arriving means of transport, ready for unloading at the named place. Buyer handles import clearance.',
+      'Enables seamless doorstep delivery to the buyer’s warehouse while keeping local import duties and customs payments with the destination buyer.',
     riskTransfer: 'When goods arrive at the named destination, ready for unloading by the buyer.',
     costTransfer: 'Seller pays all transit freight to destination; buyer pays import customs duties and local taxes.',
     sellerResponsibilities: [
@@ -243,7 +243,7 @@ export const incotermsData: IncotermDetail[] = [
     category: 'multimodal',
     categoryLabel: 'Any Mode of Transport (Multimodal)',
     summary:
-      'The seller delivers goods to their appointed carrier and pays freight to the named destination. Risk transfers to buyer upon first carrier handover.',
+      'Guarantees predictable multimodal freight costs to destination terminal with early risk transfer once handed over to the first carrier.',
     riskTransfer: 'When goods are handed over to the first carrier contracted by the seller.',
     costTransfer: 'Seller pays freight to destination; buyer pays insurance, destination handling, and import clearance.',
     sellerResponsibilities: [
@@ -274,7 +274,7 @@ export const incotermsData: IncotermDetail[] = [
     category: 'multimodal',
     categoryLabel: 'Any Mode of Transport (Multimodal)',
     summary:
-      'Seller pays carriage and high-level Institute Cargo Clauses (A) all-risk insurance to the named destination. Risk transfers upon first carrier handover.',
+      'Secures mandatory all-risk Institute Cargo Clauses (A) insurance and multimodal transport for high-value pharmaceuticals, electronics, and machinery.',
     riskTransfer: 'When goods are handed over to the first carrier contracted by seller.',
     costTransfer: 'Seller pays freight and all-risk insurance to destination; buyer handles import clearance.',
     sellerResponsibilities: [
@@ -305,7 +305,7 @@ export const incotermsData: IncotermDetail[] = [
     category: 'multimodal',
     categoryLabel: 'Any Mode of Transport (Multimodal)',
     summary:
-      'The seller makes goods available at their premises (factory/warehouse). Buyer bears maximum responsibility, including loading and export clearance.',
+      'Minimizes seller logistical liabilities by transferring all transport, customs, and transit risk to the foreign buyer at the factory gate.',
     riskTransfer: 'At seller’s premises before loading onto buyer’s transport vehicle.',
     costTransfer: 'Buyer pays all freight, loading, insurance, export/import clearance, and duties.',
     sellerResponsibilities: [
@@ -336,7 +336,7 @@ export const incotermsData: IncotermDetail[] = [
     category: 'multimodal',
     categoryLabel: 'Any Mode of Transport (Multimodal)',
     summary:
-      'The only Incoterm where seller is responsible for unloading goods at the destination terminal or warehouse. Buyer clears import customs.',
+      'Ensures turnkey delivery and certified unloading for oversized industrial machinery and project cargo at destination terminals.',
     riskTransfer: 'Once goods have been unloaded at the named destination place.',
     costTransfer: 'Seller pays freight and unloading costs; buyer pays import customs duties.',
     sellerResponsibilities: [
@@ -633,7 +633,7 @@ export function IncotermsMatrix() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 pt-8 items-start">
               {/* Left 6 Cols: Precise Risk & Cost Demarcations */}
               <div className="lg:col-span-6 space-y-4">
-                <div className="p-4 rounded-2xl bg-white/5 border border-white/10">
+                <div className="p-4 rounded-2xl bg-white/5 border border-white/10 hover-lift-sm sheen-card transition-all duration-300">
                   <div className="flex items-center gap-2 text-sky-400 mb-1.5">
                     <ShieldCheck className="w-4 h-4" />
                     <span className="text-xs font-bold uppercase tracking-wider">
@@ -645,7 +645,7 @@ export function IncotermsMatrix() {
                   </p>
                 </div>
 
-                <div className="p-4 rounded-2xl bg-white/5 border border-white/10">
+                <div className="p-4 rounded-2xl bg-white/5 border border-white/10 hover-lift-sm sheen-card transition-all duration-300">
                   <div className="flex items-center gap-2 text-emerald-400 mb-1.5">
                     <FileCheck2 className="w-4 h-4" />
                     <span className="text-xs font-bold uppercase tracking-wider">
@@ -659,7 +659,7 @@ export function IncotermsMatrix() {
               </div>
 
               {/* Right 6 Cols: SkyLink Strategic Advisory Note */}
-              <div className="lg:col-span-6 p-5 sm:p-6 rounded-2xl bg-gradient-to-br from-sky-950/60 to-[#0A2540] border border-sky-500/30">
+              <div className="lg:col-span-6 p-5 sm:p-6 rounded-2xl bg-gradient-to-br from-sky-950/60 to-[#0A2540] border border-sky-500/30 hover-lift-sm sheen-card transition-all duration-300">
                 <div className="flex items-center gap-2 text-sky-300 mb-2">
                   <Sparkles className="w-4 h-4 text-sky-400" />
                   <span className="text-xs font-bold uppercase tracking-wider">

@@ -123,7 +123,7 @@ End-to-end cold chain integrity is not an accident—it is the result of discipl
 In traditional international trade, an exporter rarely deals with the actual vessel operator or airline. Instead, bookings pass through a complex chain of local agents, non-vessel operating common carriers (NVOCCs), and multi-tier forwarders, each adding significant markups, documentation charges, and origin/destination fees.
 
 #### 1. Transparency in Ocean & Air Freight Tariffs
-By aggregating multi-client volumes and contracting directly with Tier-1 ocean shipping lines and scheduled air cargo operators, modern B2B trade facilitators eliminate unnecessary broker margins while securing preferential bunker adjustment factors (BAF) and demurrage free-days.
+By aggregating multi-client volumes and contracting directly with premier ocean shipping lines and scheduled air cargo operators, modern B2B trade facilitators eliminate unnecessary broker margins while securing preferential bunker adjustment factors (BAF) and demurrage free-days.
 
 #### 2. Mitigating Hidden Destination & DTHC Charges
 Exporters frequently experience friction with overseas buyers due to unexpected Destination Terminal Handling Charges (DTHC), delivery order (DO) release fees, or exorbitant detention rates imposed by unregulated local receiving agents. Transparent all-in contracting fixes these rates upfront.

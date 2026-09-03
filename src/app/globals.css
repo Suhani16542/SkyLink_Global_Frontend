@@ -145,6 +145,22 @@
   }
 }
 
+@keyframes zoomInOut {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.12);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.animate-zoom-in-out {
+  animation: zoomInOut 16s ease-in-out infinite alternate;
+}
+
 .animate-float-slow {
   animation: floatSlow 6s ease-in-out infinite;
 }
@@ -210,7 +226,7 @@
   animation: beamGlow 3s ease-in-out infinite;
 }
 
-/* Interactive Card Hover Elevations */
+/* Interactive Card Hover Elevations & Micro-interactions */
 .hover-lift {
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
 }
@@ -219,9 +235,60 @@
   box-shadow: 0 16px 32px -8px rgba(10, 37, 64, 0.12);
 }
 
+.hover-lift-sm {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease;
+}
+.hover-lift-sm:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px -6px rgba(10, 37, 64, 0.08);
+}
+
 .hover-glow-sky:hover {
   box-shadow: 0 0 30px -5px rgba(2, 132, 199, 0.25);
   border-color: rgba(2, 132, 199, 0.4);
+}
+
+/* Subtle Shimmer Sheen on hover */
+.sheen-card {
+  position: relative;
+  overflow: hidden;
+}
+.sheen-card::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    60deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.06) 50%,
+    transparent 60%
+  );
+  transform: translateX(-100%) rotate(25deg);
+  transition: transform 0.8s ease-in-out;
+  pointer-events: none;
+}
+.sheen-card:hover::after {
+  transform: translateX(100%) rotate(25deg);
+}
+
+/* Soft Indicator Pulse */
+.pulse-dot {
+  box-shadow: 0 0 0 0 rgba(14, 165, 233, 0.7);
+  animation: pulseDot 2s infinite;
+}
+@keyframes pulseDot {
+  0% {
+    box-shadow: 0 0 0 0 rgba(14, 165, 233, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 6px rgba(14, 165, 233, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(14, 165, 233, 0);
+  }
 }
 
 /* Reduced Motion Override */

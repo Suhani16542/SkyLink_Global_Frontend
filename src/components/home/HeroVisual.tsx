@@ -85,7 +85,7 @@ export function HeroVisual() {
                 Carrier Volume Network
               </span>
               <div className="text-xs sm:text-sm font-bold text-white mt-0.5">
-                Direct Tier-1 Maritime &amp; Air Line Allocation
+                Direct Premier Maritime &amp; Air Line Allocation
               </div>
             </div>
           </div>

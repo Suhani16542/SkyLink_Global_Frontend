@@ -71,14 +71,32 @@ export default async function HomePage() {
         <GlobalTradeFlow />
 
         {/* ========================================================================= */}
-        {/* 4. STRATEGIC TRADE PARTNER: Editorial Authority & Institutional Pillars */}
+        {/* 4. WHY US: The SkyLink Advantage & Single-Window Governance */}
+        {/* ========================================================================= */}
+        <WhySkyLinkBento />
+
+        {/* ========================================================================= */}
+        {/* 5. FULL SERVICES DIRECTORY: All 9 Core Commercial Practices Bento Grid */}
+        {/* ========================================================================= */}
+        <ServicesBentoGrid services={services} />
+
+        {/* ========================================================================= */}
+        {/* 6. COLD CHAIN SOLUTIONS & SECTOR-SPECIFIC VERTICALS (Cinematic Mosaic) */}
+        {/* ========================================================================= */}
+        <IndustriesMosaic industries={industries} />
+
+        {/* ========================================================================= */}
+        {/* 7. IMPORTANCE OF INCOTERMS: Incoterms® 2020 Risk & Responsibility Matrix */}
+        {/* ========================================================================= */}
+        <IncotermsMatrix />
+
+        {/* ========================================================================= */}
+        {/* 8. STRATEGIC TRADE PARTNER: Editorial Authority & Institutional Pillars */}
         {/* ========================================================================= */}
         <StrategicPartnerSection />
 
         {/* ========================================================================= */}
-        {/* 4. WHO WE ARE: Foundation & 4 Institutional Pillars */}
-        {/* ========================================================================= */}
-        {/* 5. WHO WE ARE: Foundation & 4 Institutional Pillars */}
+        {/* 9. WHO WE ARE: Foundation & 4 Institutional Pillars */}
         {/* ========================================================================= */}
         <section className="py-20 sm:py-28 bg-gradient-to-b from-neutral-50 via-white to-neutral-50 border-y border-neutral-200 relative overflow-hidden">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
@@ -139,8 +157,8 @@ export default async function HomePage() {
                     tag: 'Single SLA',
                   },
                   {
-                    title: 'Tier-1 Global Network',
-                    desc: 'Strategic coordination across Tier-1 shipping lines, air cargo carriers, bonded warehouses, and customs brokers worldwide.',
+                    title: 'Premium Logistics Platform',
+                    desc: 'Strategic coordination across premier shipping lines, air cargo carriers, bonded warehouses, and customs brokers worldwide.',
                     icon: Network,
                     tag: 'Direct Capacity',
                   },
@@ -155,12 +173,12 @@ export default async function HomePage() {
                   return (
                     <div
                       key={idx}
-                      className="p-6 rounded-3xl bg-white border border-neutral-200/80 shadow-xs hover:shadow-xl hover:border-sky-300 transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1 relative overflow-hidden"
+                      className="p-6 rounded-3xl bg-white border border-neutral-200/80 shadow-xs hover:shadow-xl hover:border-sky-300 hover-lift sheen-card transition-all duration-300 flex flex-col justify-between group relative overflow-hidden"
                     >
                       <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#0284C7] to-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                       <div>
                         <div className="flex items-center justify-between mb-4">
-                          <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#0A2540] to-[#0284C7] text-white flex items-center justify-center shadow-md shadow-sky-500/20 group-hover:scale-105 transition-transform duration-300">
+                          <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#0A2540] to-[#0284C7] text-white flex items-center justify-center shadow-md shadow-sky-500/20 group-hover:scale-110 group-hover:rotate-1 transition-all duration-300">
                             <IconComp className="w-5 h-5" />
                           </div>
                           <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-sky-700 bg-sky-50 px-2.5 py-1 rounded-full border border-sky-200/60">
@@ -183,125 +201,22 @@ export default async function HomePage() {
         </section>
 
         {/* ========================================================================= */}
-        {/* 6. SHIPMENT RISK PIPELINE: Interactive Visual Supply Chain Flow */}
+        {/* 10. SHIPMENT RISK PIPELINE: Interactive Visual Supply Chain Flow */}
         {/* ========================================================================= */}
         <LogisticsRiskJourney />
 
         {/* ========================================================================= */}
-        {/* 7. WHY SKYLINK: Asymmetric Bento Grid Advantage */}
-        {/* ========================================================================= */}
-        <WhySkyLinkBento />
-
-        {/* ========================================================================= */}
-        {/* 8. ALL 9 SERVICES: Premium Services Bento Grid Layout */}
-        {/* ========================================================================= */}
-        <ServicesBentoGrid services={services} />
-
-        {/* ========================================================================= */}
-        {/* 9. INCOTERMS® 2020: Interactive Trade Journey Dashboard */}
-        {/* ========================================================================= */}
-        <IncotermsMatrix />
-
-        {/* ========================================================================= */}
-        {/* 10. GLOBAL CONNECTIVITY: Active Trade Corridors & Route Map */}
+        {/* 11. GLOBAL CONNECTIVITY: Active Trade Corridors & Route Map */}
         {/* ========================================================================= */}
         <GlobalRouteMap />
 
         {/* ========================================================================= */}
-        {/* 11. HOW SKYLINK MANAGES GLOBAL TRADE: 6-Stage Process Timeline */}
+        {/* 12. HOW SKYLINK MANAGES GLOBAL TRADE: 6-Stage Process Timeline */}
         {/* ========================================================================= */}
         <HowItWorksTimeline />
 
         {/* ========================================================================= */}
-        {/* 12. GDP / FDA COLD CHAIN LOGISTICS DEDICATED SECTION */}
-        {/* ========================================================================= */}
-        <section className="py-20 sm:py-28 bg-[#07192D] text-white relative overflow-hidden border-y border-white/10">
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none opacity-50" />
-          <div className="absolute top-1/2 left-1/3 -translate-y-1/2 w-[700px] h-[350px] bg-cyan-500/10 rounded-full blur-[160px] pointer-events-none" />
-
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-              {/* Left 6 Cols: Cold Chain Content Reveal */}
-              <ScrollReveal effect="fade-right" delay={80} duration={800} className="lg:col-span-6 space-y-6">
-                <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/15 border border-cyan-400/30 text-xs font-bold text-cyan-300 uppercase tracking-wider">
-                  <ThermometerSnowflake className="w-3.5 h-3.5 text-cyan-400 animate-pulse" />
-                  <span>Specialized Cold Chain Infrastructure</span>
-                </span>
-                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.15]">
-                  GDP &amp; FDA Compliant Temperature-Controlled Logistics
-                </h2>
-                <p className="text-sm sm:text-base text-neutral-300 leading-relaxed">
-                  Preserving product efficacy for high-value pharmaceuticals, biologics, active ingredients, and deep-freeze seafood requires uncompromising thermal discipline and continuous real-time IoT monitoring.
-                </p>
-
-                <div className="space-y-3 pt-2">
-                  {[
-                    'Reefer Containers (-25°C Deep Freeze to +25°C Controlled Room Temp)',
-                    'Real-Time IoT Temperature, Humidity & Geofencing Telemetry',
-                    'GDP, US FDA, and European Union Regulatory Adherence',
-                    'Pre-Arrival Customs Green-Channel Release for Life Sciences',
-                  ].map((feat, idx) => (
-                    <div key={idx} className="flex items-center gap-3 text-xs sm:text-sm text-neutral-200 font-medium">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-                      <span>{feat}</span>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="pt-4 flex items-center gap-4">
-                  <Button href="/services/cold-chain-solutions" variant="secondary" size="md">
-                    Explore Cold Chain Capabilities &rarr;
-                  </Button>
-                </div>
-              </ScrollReveal>
-
-              {/* Right 6 Cols: Cold Chain Live Visual Monitor Reveal */}
-              <ScrollReveal effect="fade-left" delay={180} duration={800} className="lg:col-span-6 relative">
-                <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border border-white/20 bg-[#07192D] group">
-                  <Image
-                    src="https://images.unsplash.com/photo-1587293852726-70cdb56c2866?q=80&w=1200&auto=format&fit=crop"
-                    alt="Refrigerated cold chain cargo container with pharmaceutical temperature control"
-                    fill
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#07192D] via-[#07192D]/40 to-transparent" />
-
-                  {/* Telemetry Card Floating Inside */}
-                  <div className="absolute bottom-5 left-5 right-5 glass-panel-dark p-5 rounded-2xl border border-white/20 backdrop-blur-md shadow-2xl">
-                    <div className="flex items-center justify-between border-b border-white/10 pb-3 mb-3">
-                      <div className="flex items-center gap-2">
-                        <ThermometerSnowflake className="w-5 h-5 text-cyan-400 animate-pulse" />
-                        <span className="font-bold text-white text-xs sm:text-sm">Active Thermal Stream</span>
-                      </div>
-                      <span className="text-[10px] font-mono font-bold text-emerald-400 bg-emerald-950/80 px-2.5 py-0.5 rounded-full border border-emerald-500/30">
-                        GDP VALIDATED
-                      </span>
-                    </div>
-                    <div className="grid grid-cols-2 gap-3 text-xs">
-                      <div className="p-2.5 rounded-xl bg-white/5 border border-white/10">
-                        <span className="text-neutral-400 text-[10px] block">Pharma Active Range</span>
-                        <div className="text-sm sm:text-base font-bold text-cyan-300 font-mono mt-0.5">+2°C to +8°C</div>
-                      </div>
-                      <div className="p-2.5 rounded-xl bg-white/5 border border-white/10">
-                        <span className="text-neutral-400 text-[10px] block">Seafood Deep Freeze</span>
-                        <div className="text-sm sm:text-base font-bold text-cyan-300 font-mono mt-0.5">-25°C to -40°C</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </ScrollReveal>
-            </div>
-          </div>
-        </section>
-
-        {/* ========================================================================= */}
-        {/* 13. TAILORED SOLUTIONS: Asymmetric Sector Mosaic */}
-        {/* ========================================================================= */}
-        <IndustriesMosaic industries={industries} />
-
-        {/* ========================================================================= */}
-        {/* 14. VALUE / PERFORMANCE COMPARISON: Traditional Agent vs SkyLink */}
+        {/* 13. VALUE / PERFORMANCE COMPARISON: Traditional Agent vs SkyLink */}
         {/* ========================================================================= */}
         <ValueComparisonSection />
 

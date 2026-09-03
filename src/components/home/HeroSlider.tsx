@@ -62,7 +62,7 @@ const slides: HeroSlide[] = [
     headingPrefix: 'Moving Your Business',
     headingHighlight: 'Across Global Borders.',
     description:
-      'Reliable logistics coordination and end-to-end shipment support designed to keep international trade moving efficiently. We secure direct Tier-1 vessel space, optimize air cargo routing, and eliminate transit bottlenecks so your freight arrives on schedule every time.',
+      'Reliable logistics coordination and end-to-end shipment support designed to keep international trade moving efficiently. We secure direct premier vessel space, optimize air cargo routing, and eliminate transit bottlenecks so your freight arrives on schedule every time.',
     primaryCta: {
       text: 'Explore Logistics',
       href: '/services/logistics-shipping',

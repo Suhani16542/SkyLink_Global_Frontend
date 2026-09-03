@@ -55,7 +55,7 @@ export function WhySkyLinkBento() {
                   End-to-End EXIM Orchestration &amp; Direct Statutory Liaison
                 </h3>
                 <p className="text-sm sm:text-base text-neutral-200 leading-relaxed max-w-xl font-normal">
-                  Unlike fragmented freight forwarders who hand off customs clearance to third-party sub-agents, SkyLink operates a single-window model: managing DGFT authorizations, ICEGATE filings, and Tier-1 carrier allocations with unified accountability.
+                  Unlike fragmented freight forwarders who hand off customs clearance to third-party sub-agents, SkyLink operates a single-window model: managing DGFT authorizations, ICEGATE filings, and premier carrier allocations with unified accountability.
                 </p>
 
                 {/* 3 Pillar Bullet Badges */}
@@ -95,10 +95,10 @@ export function WhySkyLinkBento() {
               effect="fade-up"
               delay={100}
               duration={600}
-              className="rounded-3xl p-7 sm:p-8 bg-neutral-50/80 border border-neutral-200 flex flex-col justify-between hover-lift group"
+              className="rounded-3xl p-7 sm:p-8 bg-neutral-50/80 border border-neutral-200 flex flex-col justify-between hover-lift sheen-card group"
             >
               <div>
-                <div className="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-5 border border-emerald-100 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
+                <div className="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-5 border border-emerald-100 group-hover:bg-emerald-600 group-hover:text-white group-hover:scale-110 group-hover:rotate-1 transition-all duration-300">
                   <TrendingDown className="w-6 h-6" />
                 </div>
                 <span className="text-xs font-bold uppercase tracking-wider text-emerald-700 block mb-1">
@@ -113,8 +113,8 @@ export function WhySkyLinkBento() {
               </div>
 
               <div className="mt-6 pt-4 border-t border-neutral-200/80 flex items-center justify-between text-xs sm:text-sm font-bold text-emerald-700">
-                <span>Direct Tier-1 Carrier Contracting</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                <span>Direct Premier Carrier Contracting</span>
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform duration-200" />
               </div>
             </ScrollReveal>
 
@@ -123,10 +123,10 @@ export function WhySkyLinkBento() {
               effect="fade-up"
               delay={150}
               duration={600}
-              className="rounded-3xl p-7 bg-white border border-neutral-200 shadow-sm flex flex-col justify-between hover-lift group"
+              className="rounded-3xl p-7 bg-white border border-neutral-200 shadow-sm flex flex-col justify-between hover-lift sheen-card group"
             >
               <div>
-                <div className="w-12 h-12 rounded-2xl bg-sky-50 text-[#0284C7] flex items-center justify-center mb-5 border border-sky-100 group-hover:bg-[#0284C7] group-hover:text-white transition-colors">
+                <div className="w-12 h-12 rounded-2xl bg-sky-50 text-[#0284C7] flex items-center justify-center mb-5 border border-sky-100 group-hover:bg-[#0284C7] group-hover:text-white group-hover:scale-110 group-hover:rotate-1 transition-all duration-300">
                   <ThermometerSnowflake className="w-6 h-6" />
                 </div>
                 <span className="text-xs font-bold uppercase tracking-wider text-[#0284C7] block mb-1">
@@ -142,7 +142,7 @@ export function WhySkyLinkBento() {
 
               <div className="mt-6 pt-4 border-t border-neutral-100 text-xs sm:text-sm font-bold text-[#0284C7] flex items-center justify-between">
                 <span>Zero Thermal Excursions</span>
-                <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                <CheckCircle2 className="w-4 h-4 text-emerald-600 group-hover:scale-110 transition-transform" />
               </div>
             </ScrollReveal>
 
@@ -151,10 +151,10 @@ export function WhySkyLinkBento() {
               effect="fade-up"
               delay={200}
               duration={600}
-              className="rounded-3xl p-7 bg-white border border-neutral-200 shadow-sm flex flex-col justify-between hover-lift group"
+              className="rounded-3xl p-7 bg-white border border-neutral-200 shadow-sm flex flex-col justify-between hover-lift sheen-card group"
             >
               <div>
-                <div className="w-12 h-12 rounded-2xl bg-sky-50 text-[#0284C7] flex items-center justify-center mb-5 border border-sky-100 group-hover:bg-[#0284C7] group-hover:text-white transition-colors">
+                <div className="w-12 h-12 rounded-2xl bg-sky-50 text-[#0284C7] flex items-center justify-center mb-5 border border-sky-100 group-hover:bg-[#0284C7] group-hover:text-white group-hover:scale-110 group-hover:rotate-1 transition-all duration-300">
                   <Scale className="w-6 h-6" />
                 </div>
                 <span className="text-xs font-bold uppercase tracking-wider text-[#0284C7] block mb-1">
@@ -164,13 +164,13 @@ export function WhySkyLinkBento() {
                   DGFT, Customs &amp; GST Mastery
                 </h3>
                 <p className="mt-2.5 text-sm sm:text-[15px] text-neutral-600 leading-relaxed font-normal">
-                  Accurate HS code GRI classification, SVB related-party valuation defense, and proactive management of statutory duty drawback claims.
+                  Expert management of DGFT export incentive schemes (Advance Auth, EPCG, RoDTEP), ICEGATE customs clearances, and statutory GST export refunds.
                 </p>
               </div>
 
               <div className="mt-6 pt-4 border-t border-neutral-100 text-xs sm:text-sm font-bold text-[#0284C7] flex items-center justify-between">
                 <span>ICEGATE Pre-Arrival Clearance</span>
-                <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                <CheckCircle2 className="w-4 h-4 text-emerald-600 group-hover:scale-110 transition-transform" />
               </div>
             </ScrollReveal>
 
@@ -179,10 +179,10 @@ export function WhySkyLinkBento() {
               effect="fade-up"
               delay={250}
               duration={600}
-              className="rounded-3xl p-7 bg-white border border-neutral-200 shadow-sm flex flex-col justify-between hover-lift group"
+              className="rounded-3xl p-7 bg-white border border-neutral-200 shadow-sm flex flex-col justify-between hover-lift sheen-card group"
             >
               <div>
-                <div className="w-12 h-12 rounded-2xl bg-sky-50 text-[#0284C7] flex items-center justify-center mb-5 border border-sky-100 group-hover:bg-[#0284C7] group-hover:text-white transition-colors">
+                <div className="w-12 h-12 rounded-2xl bg-sky-50 text-[#0284C7] flex items-center justify-center mb-5 border border-sky-100 group-hover:bg-[#0284C7] group-hover:text-white group-hover:scale-110 group-hover:rotate-1 transition-all duration-300">
                   <Network className="w-6 h-6" />
                 </div>
                 <span className="text-xs font-bold uppercase tracking-wider text-[#0284C7] block mb-1">
@@ -198,7 +198,7 @@ export function WhySkyLinkBento() {
 
               <div className="mt-6 pt-4 border-t border-neutral-100 text-xs sm:text-sm font-bold text-[#0284C7] flex items-center justify-between">
                 <span>Zero-Demurrage Focus</span>
-                <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                <CheckCircle2 className="w-4 h-4 text-emerald-600 group-hover:scale-110 transition-transform" />
               </div>
             </ScrollReveal>
           </div>

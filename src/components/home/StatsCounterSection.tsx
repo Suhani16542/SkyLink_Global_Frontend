@@ -35,8 +35,8 @@ const stats: StatItem[] = [
     value: 20,
     suffix: '%+',
     label: 'Landed Freight Savings',
-    sublabel: 'Achieved via direct Tier-1 carrier volume contracting',
-    highlightTag: 'Tier-1 Contracting',
+    sublabel: 'Achieved via direct premier carrier volume contracting',
+    highlightTag: 'Premier Contracting',
     icon: TrendingDown,
   },
   {

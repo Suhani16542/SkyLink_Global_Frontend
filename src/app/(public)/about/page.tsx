@@ -133,7 +133,7 @@ export default function AboutPage() {
               },
               {
                 title: 'Global Network',
-                desc: 'Strategic coordination across Tier-1 shipping lines, air cargo carriers, bonded warehouses, and customs brokers worldwide.',
+                desc: 'Strategic coordination across premier shipping lines, air cargo carriers, bonded warehouses, and customs brokers worldwide.',
                 icon: Globe2,
               },
               {

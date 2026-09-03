@@ -28,20 +28,20 @@ export function Button({
   ...props
 }: ButtonProps) {
   const baseStyles =
-    'inline-flex items-center justify-center font-semibold rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer select-none';
+    'group inline-flex items-center justify-center font-semibold rounded-lg transition-all duration-300 hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer select-none';
 
   const variants = {
     primary:
-      'bg-[#0A2540] text-white hover:bg-[#07192D] focus:ring-[#0A2540] shadow-sm hover:shadow active:scale-[0.99]',
+      'bg-[#0A2540] text-white hover:bg-[#07192D] focus:ring-[#0A2540] shadow-sm hover:shadow-md active:scale-[0.99]',
     secondary:
-      'bg-[#0284C7] text-white hover:bg-[#0369A1] focus:ring-[#0284C7] shadow-sm hover:shadow-sky-500/20 active:scale-[0.99]',
-    sky: 'bg-sky-50 text-[#0369A1] hover:bg-sky-100 border border-sky-200 focus:ring-sky-400',
+      'bg-[#0284C7] text-white hover:bg-[#0369A1] focus:ring-[#0284C7] shadow-sm hover:shadow-md hover:shadow-sky-500/20 active:scale-[0.99]',
+    sky: 'bg-sky-50 text-[#0369A1] hover:bg-sky-100 border border-sky-200 focus:ring-sky-400 hover:shadow-sm',
     outline:
-      'border border-neutral-300 bg-white text-neutral-800 hover:bg-neutral-50 hover:border-neutral-400 focus:ring-neutral-400',
+      'border border-neutral-300 bg-white text-neutral-800 hover:bg-neutral-50 hover:border-neutral-400 focus:ring-neutral-400 hover:shadow-sm',
     ghost:
       'text-neutral-700 hover:bg-neutral-100 hover:text-neutral-950 focus:ring-neutral-300',
     danger:
-      'bg-red-600 text-white hover:bg-red-700 focus:ring-red-500 shadow-sm',
+      'bg-red-600 text-white hover:bg-red-700 focus:ring-red-500 shadow-sm hover:shadow-md',
   };
 
   const sizes = {
@@ -73,9 +73,9 @@ export function Button({
           />
         </svg>
       )}
-      {!isLoading && leftIcon && <span className="shrink-0">{leftIcon}</span>}
+      {!isLoading && leftIcon && <span className="shrink-0 transition-transform duration-200 group-hover:-translate-x-0.5">{leftIcon}</span>}
       {children}
-      {!isLoading && rightIcon && <span className="shrink-0">{rightIcon}</span>}
+      {!isLoading && rightIcon && <span className="shrink-0 transition-transform duration-200 group-hover:translate-x-1">{rightIcon}</span>}
     </>
   );
 

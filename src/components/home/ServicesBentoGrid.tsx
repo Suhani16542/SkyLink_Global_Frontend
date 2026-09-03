@@ -62,7 +62,7 @@ const serviceMetaMap: Record<string, ServiceMeta> = {
     badgeBg: 'bg-sky-500/15',
     badgeText: 'text-sky-300',
     badgeBorder: 'border-sky-400/30',
-    statBadge: 'Tier-1 Ocean & Air Carrier Rates',
+    statBadge: 'Premier Ocean & Air Carrier Rates',
     icon: Ship,
   },
   'cold-chain-solutions': {
@@ -330,7 +330,7 @@ export function ServicesBentoGrid({ services }: ServicesBentoGridProps) {
                   key={srv.id}
                   onMouseEnter={() => setSpotlightSlug(srv.slug)}
                   onClick={() => setSpotlightSlug(srv.slug)}
-                  className={`rounded-2xl sm:rounded-3xl border p-5 sm:p-6 transition-all duration-300 group cursor-pointer ${
+                  className={`rounded-2xl sm:rounded-3xl border p-5 sm:p-6 transition-all duration-300 group cursor-pointer hover-lift-sm sheen-card ${
                     isSelected
                       ? 'bg-white border-sky-400 shadow-xl shadow-sky-500/10 ring-2 ring-sky-400/30'
                       : 'bg-white border-neutral-200 hover:border-neutral-300 hover:shadow-md hover:bg-neutral-50/50'
@@ -340,13 +340,13 @@ export function ServicesBentoGrid({ services }: ServicesBentoGridProps) {
                     {/* Left: Icon & Title Block */}
                     <div className="flex items-start gap-3.5 flex-1">
                       <div
-                        className={`w-11 h-11 rounded-2xl flex items-center justify-center shrink-0 border transition-colors ${
+                        className={`w-11 h-11 rounded-2xl flex items-center justify-center shrink-0 border transition-all duration-300 ${
                           isSelected
-                            ? 'bg-[#0A2540] text-sky-400 border-sky-500/30 shadow-sm'
-                            : 'bg-sky-50 text-[#0284C7] border-sky-100 group-hover:bg-[#0A2540] group-hover:text-white group-hover:border-[#0A2540]'
+                            ? 'bg-[#0A2540] text-sky-400 border-sky-500/30 shadow-sm scale-105'
+                            : 'bg-sky-50 text-[#0284C7] border-sky-100 group-hover:bg-[#0A2540] group-hover:text-white group-hover:border-[#0A2540] group-hover:scale-110 group-hover:rotate-1'
                         }`}
                       >
-                        <SrvIcon className="w-5 h-5" />
+                        <SrvIcon className="w-5 h-5 transition-transform duration-300 group-hover:scale-105" />
                       </div>
 
                       <div className="space-y-1">
@@ -373,14 +373,14 @@ export function ServicesBentoGrid({ services }: ServicesBentoGridProps) {
                     <div className="shrink-0 sm:self-center pl-2">
                       <Link
                         href={`/services/${srv.slug}`}
-                        className={`w-9 h-9 rounded-xl flex items-center justify-center border transition-all ${
+                        className={`w-9 h-9 rounded-xl flex items-center justify-center border transition-all duration-200 ${
                           isSelected
-                            ? 'bg-[#0284C7] text-white border-[#0284C7]'
-                            : 'bg-neutral-100 text-neutral-500 border-neutral-200 group-hover:bg-[#0284C7] group-hover:text-white group-hover:border-[#0284C7]'
+                            ? 'bg-[#0284C7] text-white border-[#0284C7] shadow-sm'
+                            : 'bg-neutral-100 text-neutral-500 border-neutral-200 group-hover:bg-[#0284C7] group-hover:text-white group-hover:border-[#0284C7] group-hover:translate-x-0.5'
                         }`}
                         aria-label={`View ${srv.title}`}
                       >
-                        <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+                        <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" />
                       </Link>
                     </div>
                   </div>

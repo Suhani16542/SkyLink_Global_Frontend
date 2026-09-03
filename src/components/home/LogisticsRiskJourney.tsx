@@ -98,7 +98,7 @@ const riskStages: RiskStage[] = [
     skylinkShield: {
       heading: 'Institute Cargo Clauses (A) All-Risk Indemnity',
       action:
-        'Direct Tier-1 carrier booking backed by comprehensive all-risk marine cargo insurance and 24/7 active satellite telemetry tracking.',
+        'Direct premier carrier booking backed by comprehensive all-risk marine cargo insurance and 24/7 active satellite telemetry tracking.',
     },
   },
   {
@@ -345,11 +345,11 @@ export function LogisticsRiskJourney() {
               {/* Split Comparison: Unmanaged Vulnerability vs SkyLink Proactive Shield */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6">
                 {/* Left: Unmanaged Risk Box */}
-                <div className="p-6 rounded-2xl bg-red-950/30 border border-red-500/30 space-y-3">
+                <div className="p-6 rounded-2xl bg-red-950/30 border border-red-500/30 space-y-3 hover-lift-sm sheen-card transition-all duration-300">
                   <div className="flex items-center gap-2 text-red-400">
                     <AlertTriangle className="w-5 h-5 shrink-0" />
                     <span className="text-xs font-bold uppercase tracking-wider">
-                      Unmanaged Cross-Border Vulnerability
+                       Unmanaged Cross-Border Vulnerability
                     </span>
                   </div>
                   <h4 className="text-base font-bold text-white">
@@ -361,9 +361,9 @@ export function LogisticsRiskJourney() {
                 </div>
 
                 {/* Right: SkyLink Shield Box */}
-                <div className="p-6 rounded-2xl bg-sky-950/40 border border-sky-500/40 space-y-3">
+                <div className="p-6 rounded-2xl bg-sky-950/40 border border-sky-500/40 space-y-3 hover-lift-sm sheen-card transition-all duration-300 group/shield hover:border-sky-400/60">
                   <div className="flex items-center gap-2 text-sky-400">
-                    <ShieldCheck className="w-5 h-5 shrink-0 text-emerald-400" />
+                    <ShieldCheck className="w-5 h-5 shrink-0 text-emerald-400 group-hover/shield:scale-110 transition-transform duration-300" />
                     <span className="text-xs font-bold uppercase tracking-wider">
                       SkyLink Proactive Operational Shield
                     </span>
