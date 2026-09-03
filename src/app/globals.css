@@ -180,8 +180,19 @@
   animation: marqueeRightToLeft 30s linear infinite;
 }
 
-.animate-marquee-rtl:hover {
-  animation-play-state: paused;
+@keyframes marqueeLeftToRight {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+.animate-marquee-ltr {
+  display: flex;
+  width: max-content;
+  animation: marqueeLeftToRight 32s linear infinite;
 }
 
 .animate-dash-flow {

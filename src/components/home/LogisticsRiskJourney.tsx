@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   AlertTriangle,
   ShieldCheck,
@@ -138,16 +138,83 @@ const riskStages: RiskStage[] = [
 ];
 
 export function LogisticsRiskJourney() {
-  const [activeStageId, setActiveStageId] = useState<string>('documentation');
+  const [activeStageId, setActiveStageId] = useState<string>(riskStages[0].id);
+  const stickyBarRef = useRef<HTMLDivElement | null>(null);
+  const stageRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
+  const isManualScrollRef = useRef<boolean>(false);
+  const manualScrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  const currentStage =
-    riskStages.find((s) => s.id === activeStageId) || riskStages[1];
+  useEffect(() => {
+    const handleScroll = () => {
+      if (isManualScrollRef.current) return;
+
+      const stickyBar = stickyBarRef.current;
+      if (!stickyBar) return;
+
+      const stickyRect = stickyBar.getBoundingClientRect();
+      const thresholdY = stickyRect.bottom + 50;
+
+      let currentId = riskStages[0].id;
+      for (let i = 0; i < riskStages.length; i++) {
+        const stage = riskStages[i];
+        const el = stageRefs.current[stage.id];
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= thresholdY) {
+            currentId = stage.id;
+          }
+        }
+      }
+
+      setActiveStageId((prev) => (prev !== currentId ? currentId : prev));
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (manualScrollTimeoutRef.current) {
+        clearTimeout(manualScrollTimeoutRef.current);
+      }
+    };
+  }, []);
+
+  const scrollToStage = (stageId: string) => {
+    setActiveStageId(stageId);
+    const element = stageRefs.current[stageId];
+    if (!element) return;
+
+    isManualScrollRef.current = true;
+    if (manualScrollTimeoutRef.current) {
+      clearTimeout(manualScrollTimeoutRef.current);
+    }
+
+    const stickyBar = stickyBarRef.current;
+    const stickyHeight = stickyBar ? stickyBar.getBoundingClientRect().height : 140;
+    const headerHeight = window.innerWidth >= 1024 ? 114 : 68;
+    const totalOffset = headerHeight + stickyHeight + 16;
+
+    const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+    const offsetPosition = elementPosition - totalOffset;
+
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: 'smooth',
+    });
+
+    manualScrollTimeoutRef.current = setTimeout(() => {
+      isManualScrollRef.current = false;
+    }, 750);
+  };
 
   return (
-    <section className="py-20 sm:py-28 bg-[#07192D] text-white relative overflow-hidden">
-      {/* Background ambient glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[500px] bg-red-500/5 rounded-full blur-[160px] pointer-events-none -z-10" />
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none opacity-40" />
+    <section className="py-20 sm:py-28 bg-[#07192D] text-white relative">
+      {/* Background ambient glow - clipped in container to avoid horizontal overflow */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none -z-10">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[500px] bg-red-500/5 rounded-full blur-[160px]" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-40" />
+      </div>
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
@@ -170,18 +237,22 @@ export function LogisticsRiskJourney() {
           </ScrollReveal>
         </div>
 
-        {/* Visual Supply Chain Pipeline Track */}
-        <ScrollReveal effect="fade-up" delay={200} className="mb-10">
+        {/* Sticky Visual Supply Chain Pipeline Track (Stage 01 to Stage 06) */}
+        <div
+          ref={stickyBarRef}
+          className="sticky top-[68px] lg:top-[114px] z-30 bg-[#07192D]/95 backdrop-blur-md py-3 sm:py-4 mb-8 sm:mb-10"
+        >
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 relative">
-            {riskStages.map((stage, idx) => {
+            {riskStages.map((stage) => {
               const isSelected = activeStageId === stage.id;
               const IconComp = stage.icon;
 
               return (
                 <button
                   key={stage.id}
-                  onClick={() => setActiveStageId(stage.id)}
-                  className={`p-4 rounded-2xl border text-left transition-all duration-300 flex flex-col justify-between relative group ${
+                  type="button"
+                  onClick={() => scrollToStage(stage.id)}
+                  className={`p-4 rounded-2xl border text-left transition-all duration-300 flex flex-col justify-between relative group cursor-pointer ${
                     isSelected
                       ? 'bg-gradient-to-b from-[#0A2540] to-[#07192D] border-sky-400/60 shadow-xl shadow-sky-500/15 scale-[1.03] ring-1 ring-sky-400/40'
                       : 'bg-white/5 border-white/10 hover:bg-white/10 hover:border-white/20'
@@ -233,89 +304,97 @@ export function LogisticsRiskJourney() {
               );
             })}
           </div>
-        </ScrollReveal>
+        </div>
 
-        {/* Detailed Active Risk vs SkyLink Shield Comparison Card */}
-        <ScrollReveal effect="scale-up" delay={260} duration={750}>
-          <div className="rounded-3xl border border-white/15 bg-gradient-to-b from-[#0A2540] to-[#07192D] p-6 sm:p-8 lg:p-10 shadow-2xl backdrop-blur-xl">
-            {/* Header of Active Stage */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-white/10 gap-4">
-              <div>
-                <span className="text-xs font-mono font-bold uppercase tracking-wider text-sky-400">
-                  Stage {currentStage.stageNum} Breakdown
-                </span>
-                <h3 className="text-xl sm:text-2xl font-extrabold text-white mt-1">
-                  {currentStage.title}
-                </h3>
-                <span className="text-xs text-neutral-400 block mt-0.5">
-                  Milestone Location: {currentStage.location}
-                </span>
+        {/* Detailed Stage Breakdown Content Cards */}
+        <div className="space-y-12 sm:space-y-16">
+          {riskStages.map((stage) => (
+            <div
+              key={stage.id}
+              ref={(el) => {
+                stageRefs.current[stage.id] = el;
+              }}
+              className="rounded-3xl border border-white/15 bg-gradient-to-b from-[#0A2540] to-[#07192D] p-6 sm:p-8 lg:p-10 shadow-2xl backdrop-blur-xl transition-all duration-300 scroll-mt-[260px] lg:scroll-mt-[280px]"
+            >
+              {/* Header of Active Stage */}
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-white/10 gap-4">
+                <div>
+                  <span className="text-xs font-mono font-bold uppercase tracking-wider text-sky-400">
+                    Stage {stage.stageNum} Breakdown
+                  </span>
+                  <h3 className="text-xl sm:text-2xl font-extrabold text-white mt-1">
+                    {stage.title}
+                  </h3>
+                  <span className="text-xs text-neutral-400 block mt-0.5">
+                    Milestone Location: {stage.location}
+                  </span>
+                </div>
+
+                <div className="shrink-0">
+                  <Button
+                    href="/request-consultation"
+                    variant="secondary"
+                    size="sm"
+                    rightIcon={<ArrowRight className="w-4 h-4" />}
+                  >
+                    Protect This Stage
+                  </Button>
+                </div>
               </div>
 
-              <div className="shrink-0">
-                <Button
-                  href="/request-consultation"
-                  variant="secondary"
-                  size="sm"
-                  rightIcon={<ArrowRight className="w-4 h-4" />}
+              {/* Split Comparison: Unmanaged Vulnerability vs SkyLink Proactive Shield */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6">
+                {/* Left: Unmanaged Risk Box */}
+                <div className="p-6 rounded-2xl bg-red-950/30 border border-red-500/30 space-y-3">
+                  <div className="flex items-center gap-2 text-red-400">
+                    <AlertTriangle className="w-5 h-5 shrink-0" />
+                    <span className="text-xs font-bold uppercase tracking-wider">
+                      Unmanaged Cross-Border Vulnerability
+                    </span>
+                  </div>
+                  <h4 className="text-base font-bold text-white">
+                    {stage.unmanagedRisk.heading}
+                  </h4>
+                  <p className="text-xs sm:text-sm text-neutral-300 leading-relaxed">
+                    {stage.unmanagedRisk.impact}
+                  </p>
+                </div>
+
+                {/* Right: SkyLink Shield Box */}
+                <div className="p-6 rounded-2xl bg-sky-950/40 border border-sky-500/40 space-y-3">
+                  <div className="flex items-center gap-2 text-sky-400">
+                    <ShieldCheck className="w-5 h-5 shrink-0 text-emerald-400" />
+                    <span className="text-xs font-bold uppercase tracking-wider">
+                      SkyLink Proactive Operational Shield
+                    </span>
+                  </div>
+                  <h4 className="text-base font-bold text-white">
+                    {stage.skylinkShield.heading}
+                  </h4>
+                  <p className="text-xs sm:text-sm text-sky-100 leading-relaxed">
+                    {stage.skylinkShield.action}
+                  </p>
+                </div>
+              </div>
+
+              {/* Bottom Strategic Promise Banner */}
+              <div className="mt-8 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
+                <div className="flex items-center gap-2 text-sky-300">
+                  <Sparkles className="w-4 h-4 text-sky-400 shrink-0" />
+                  <span>
+                    Eliminate cross-border blind spots with single-window milestone accountability.
+                  </span>
+                </div>
+                <a
+                  href="/contact"
+                  className="text-white hover:text-sky-300 font-bold underline shrink-0 inline-flex items-center gap-1"
                 >
-                  Protect This Stage
-                </Button>
+                  Schedule Supply Chain Risk Audit &rarr;
+                </a>
               </div>
             </div>
-
-            {/* Split Comparison: Unmanaged Vulnerability vs SkyLink Proactive Shield */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6">
-              {/* Left: Unmanaged Risk Box */}
-              <div className="p-6 rounded-2xl bg-red-950/30 border border-red-500/30 space-y-3">
-                <div className="flex items-center gap-2 text-red-400">
-                  <AlertTriangle className="w-5 h-5 shrink-0" />
-                  <span className="text-xs font-bold uppercase tracking-wider">
-                    Unmanaged Cross-Border Vulnerability
-                  </span>
-                </div>
-                <h4 className="text-base font-bold text-white">
-                  {currentStage.unmanagedRisk.heading}
-                </h4>
-                <p className="text-xs sm:text-sm text-neutral-300 leading-relaxed">
-                  {currentStage.unmanagedRisk.impact}
-                </p>
-              </div>
-
-              {/* Right: SkyLink Shield Box */}
-              <div className="p-6 rounded-2xl bg-sky-950/40 border border-sky-500/40 space-y-3">
-                <div className="flex items-center gap-2 text-sky-400">
-                  <ShieldCheck className="w-5 h-5 shrink-0 text-emerald-400" />
-                  <span className="text-xs font-bold uppercase tracking-wider">
-                    SkyLink Proactive Operational Shield
-                  </span>
-                </div>
-                <h4 className="text-base font-bold text-white">
-                  {currentStage.skylinkShield.heading}
-                </h4>
-                <p className="text-xs sm:text-sm text-sky-100 leading-relaxed">
-                  {currentStage.skylinkShield.action}
-                </p>
-              </div>
-            </div>
-
-            {/* Bottom Strategic Promise Banner */}
-            <div className="mt-8 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
-              <div className="flex items-center gap-2 text-sky-300">
-                <Sparkles className="w-4 h-4 text-sky-400 shrink-0" />
-                <span>
-                  Eliminate cross-border blind spots with single-window milestone accountability.
-                </span>
-              </div>
-              <a
-                href="/contact"
-                className="text-white hover:text-sky-300 font-bold underline shrink-0 inline-flex items-center gap-1"
-              >
-                Schedule Supply Chain Risk Audit &rarr;
-              </a>
-            </div>
-          </div>
-        </ScrollReveal>
+          ))}
+        </div>
       </div>
     </section>
   );

@@ -1,9 +1,21 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useMemo } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight, CheckCircle2, ShieldCheck, Sparkles } from 'lucide-react';
+import {
+  ArrowRight,
+  CheckCircle2,
+  ShieldCheck,
+  Sparkles,
+  Ship,
+  Scale,
+  FileCheck2,
+  ThermometerSnowflake,
+  Building2,
+  Coins,
+  Layers,
+} from 'lucide-react';
 import { ScrollReveal } from '@/components/animation/ScrollReveal';
 import { Button } from '@/components/ui/Button';
 import type { Service } from '@/types';
@@ -33,27 +45,139 @@ const serviceImages: Record<string, string> = {
     'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=800&auto=format&fit=crop',
 };
 
-export function ServicesBentoGrid({ services }: ServicesBentoGridProps) {
-  // Find key featured services
-  const heroFreight =
-    services.find((s) => s.slug === 'logistics-shipping') || services[0];
-  const incentives =
-    services.find((s) => s.slug === 'export-incentives') || services[1];
-  const customs =
-    services.find((s) => s.slug === 'customs-compliance') || services[2];
+interface ServiceMeta {
+  category: 'freight' | 'customs' | 'schemes';
+  tag: string;
+  badgeBg: string;
+  badgeText: string;
+  badgeBorder: string;
+  statBadge: string;
+  icon: React.ElementType;
+}
 
-  const otherServices = services.filter(
-    (s) =>
-      s.slug !== 'logistics-shipping' &&
-      s.slug !== 'export-incentives' &&
-      s.slug !== 'customs-compliance'
+const serviceMetaMap: Record<string, ServiceMeta> = {
+  'logistics-shipping': {
+    category: 'freight',
+    tag: 'Core Infrastructure',
+    badgeBg: 'bg-sky-500/15',
+    badgeText: 'text-sky-300',
+    badgeBorder: 'border-sky-400/30',
+    statBadge: 'Tier-1 Ocean & Air Carrier Rates',
+    icon: Ship,
+  },
+  'cold-chain-solutions': {
+    category: 'freight',
+    tag: 'Cold-Chain Telemetry',
+    badgeBg: 'bg-cyan-500/15',
+    badgeText: 'text-cyan-300',
+    badgeBorder: 'border-cyan-400/30',
+    statBadge: '-25°C to +25°C Active IoT Monitoring',
+    icon: ThermometerSnowflake,
+  },
+  'warehousing-distribution': {
+    category: 'freight',
+    tag: '3PL & Distribution',
+    badgeBg: 'bg-blue-500/15',
+    badgeText: 'text-blue-300',
+    badgeBorder: 'border-blue-400/30',
+    statBadge: 'Customs Bonded & Non-Bonded Hubs',
+    icon: Building2,
+  },
+  'customs-compliance': {
+    category: 'customs',
+    tag: 'Customs Brokerage',
+    badgeBg: 'bg-emerald-500/15',
+    badgeText: 'text-emerald-300',
+    badgeBorder: 'border-emerald-400/30',
+    statBadge: 'ICEGATE Pre-Arrival EDI Filing',
+    icon: ShieldCheck,
+  },
+  'licensing-registrations': {
+    category: 'customs',
+    tag: 'Statutory Licensing',
+    badgeBg: 'bg-teal-500/15',
+    badgeText: 'text-teal-300',
+    badgeBorder: 'border-teal-400/30',
+    statBadge: 'IEC • RCMC • AEO Certification',
+    icon: Scale,
+  },
+  'tax-gst-advisory': {
+    category: 'customs',
+    tag: 'EXIM Tax Advisory',
+    badgeBg: 'bg-emerald-500/15',
+    badgeText: 'text-emerald-300',
+    badgeBorder: 'border-emerald-400/30',
+    statBadge: 'SVB Defense & GST Input Reconciliation',
+    icon: Scale,
+  },
+  'export-incentives': {
+    category: 'schemes',
+    tag: 'Statutory Remissions',
+    badgeBg: 'bg-amber-500/15',
+    badgeText: 'text-amber-300',
+    badgeBorder: 'border-amber-400/30',
+    statBadge: 'RoDTEP • RoSCTL • EPCG Redemptions',
+    icon: Coins,
+  },
+  'documentation-liaison': {
+    category: 'schemes',
+    tag: 'Liaison & LC Vetting',
+    badgeBg: 'bg-indigo-500/15',
+    badgeText: 'text-indigo-300',
+    badgeBorder: 'border-indigo-400/30',
+    statBadge: 'UCP 600 Letter of Credit Vetting',
+    icon: FileCheck2,
+  },
+  'trade-risk-management': {
+    category: 'schemes',
+    tag: 'Risk & Insurance',
+    badgeBg: 'bg-rose-500/15',
+    badgeText: 'text-rose-300',
+    badgeBorder: 'border-rose-400/30',
+    statBadge: 'All-Risk Marine Cargo Indemnity',
+    icon: ShieldCheck,
+  },
+};
+
+const categoryTabs = [
+  { id: 'all', label: 'All Capabilities' },
+  { id: 'freight', label: 'Freight & Logistics' },
+  { id: 'customs', label: 'Customs & DGFT' },
+  { id: 'schemes', label: 'Incentives & Trade Advisory' },
+];
+
+export function ServicesBentoGrid({ services }: ServicesBentoGridProps) {
+  const [activeCategory, setActiveCategory] = useState<string>('all');
+  const [spotlightSlug, setSpotlightSlug] = useState<string>(
+    services[0]?.slug || 'logistics-shipping'
   );
 
+  const filteredServices = useMemo(() => {
+    if (activeCategory === 'all') return services;
+    return services.filter((s) => {
+      const meta = serviceMetaMap[s.slug];
+      return meta && meta.category === activeCategory;
+    });
+  }, [services, activeCategory]);
+
+  const spotlightService = useMemo(() => {
+    return (
+      services.find((s) => s.slug === spotlightSlug) ||
+      filteredServices[0] ||
+      services[0]
+    );
+  }, [services, spotlightSlug, filteredServices]);
+
+  const spotlightMeta =
+    serviceMetaMap[spotlightService?.slug] || serviceMetaMap['logistics-shipping'];
+
+  const SpotlightIcon = spotlightMeta.icon;
+
   return (
-    <section className="py-20 sm:py-28 bg-neutral-50 border-t border-neutral-200">
+    <section className="py-20 sm:py-28 bg-neutral-50 border-t border-neutral-200 relative">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Section Heading */}
-        <div className="text-center max-w-3xl mx-auto space-y-3 mb-14">
+        <div className="text-center max-w-3xl mx-auto space-y-3 mb-10 sm:mb-12">
           <ScrollReveal effect="fade-down" delay={0}>
             <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sky-100/80 border border-sky-200 text-xs font-bold text-[#0284C7] uppercase tracking-wider shadow-xs">
               <Sparkles className="w-3.5 h-3.5 text-[#0284C7]" />
@@ -66,218 +190,239 @@ export function ServicesBentoGrid({ services }: ServicesBentoGridProps) {
             </h2>
           </ScrollReveal>
           <ScrollReveal effect="fade-up" delay={160}>
-            <p className="text-sm sm:text-base text-neutral-600 leading-relaxed">
+            <p className="text-sm sm:text-base text-neutral-600 leading-relaxed max-w-2xl mx-auto">
               From statutory DGFT authorizations to refrigerated ocean freight allocations and customs brokerage, we orchestrate every dimension of cross-border commerce.
             </p>
           </ScrollReveal>
         </div>
 
-        {/* Top Tier: Bento Hero Row (7 cols + 5 cols) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-6">
-          {/* Card 1: Large Featured Logistics Hero (7 cols) */}
-          <ScrollReveal
-            effect="fade-right"
-            delay={100}
-            duration={750}
-            className="lg:col-span-7 rounded-3xl border border-neutral-200 bg-white overflow-hidden shadow-sm flex flex-col justify-between group hover-lift relative"
-          >
-            {/* Visual Header with Real Image */}
-            <div className="relative aspect-[16/9] sm:aspect-[21/10] w-full overflow-hidden bg-neutral-900">
-              <Image
-                src={serviceImages['logistics-shipping']}
-                alt="International ocean freight vessel and container shipping logistics"
-                fill
-                sizes="(max-width: 1024px) 100vw, 60vw"
-                className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#07192D]/90 via-[#07192D]/40 to-transparent" />
+        {/* Interactive Category Filter Pills */}
+        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-10 sm:mb-14">
+          {categoryTabs.map((tab) => {
+            const isActive = activeCategory === tab.id;
+            const count =
+              tab.id === 'all'
+                ? services.length
+                : services.filter((s) => serviceMetaMap[s.slug]?.category === tab.id).length;
 
-              <div className="absolute top-4 left-4 flex items-center gap-2">
-                <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-sky-300 bg-[#07192D]/90 px-3 py-1 rounded-full border border-white/15 backdrop-blur-md">
-                  CORE INFRASTRUCTURE
-                </span>
-              </div>
-
-              <div className="absolute bottom-4 left-6 right-6 flex items-end justify-between">
-                <div>
-                  <span className="text-xs font-mono uppercase text-sky-300 font-bold block">
-                    Direct Tier-1 Carrier Allocation
-                  </span>
-                  <h3 className="text-xl sm:text-2xl font-extrabold text-white">
-                    {heroFreight.title}
-                  </h3>
-                </div>
-              </div>
-            </div>
-
-            {/* Content & Feature Highlights */}
-            <div className="p-6 sm:p-8 flex-1 flex flex-col justify-between space-y-6">
-              <p className="text-sm sm:text-base text-neutral-600 leading-relaxed font-normal">
-                {heroFreight.shortDescription}
-              </p>
-
-              {/* Bullet Features Grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
-                {heroFreight.features.slice(0, 4).map((feat, idx) => (
-                  <div key={idx} className="flex items-center gap-2.5 text-xs sm:text-sm font-semibold text-neutral-800">
-                    <CheckCircle2 className="w-4 h-4 text-[#0284C7] shrink-0" />
-                    <span className="truncate">{feat}</span>
-                  </div>
-                ))}
-              </div>
-
-              {/* Footer CTA Strip */}
-              <div className="pt-4 border-t border-neutral-100 flex items-center justify-between">
-                <span className="text-xs sm:text-sm font-bold text-sky-700">FCL • LCL • Air Charter • Incoterms Execution</span>
-                <Link
-                  href={`/services/${heroFreight.slug}`}
-                  className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#0284C7] hover:text-[#0369A1] transition-colors"
+            return (
+              <button
+                key={tab.id}
+                type="button"
+                onClick={() => {
+                  setActiveCategory(tab.id);
+                  const firstOfCategory =
+                    tab.id === 'all'
+                      ? services[0]?.slug
+                      : services.find((s) => serviceMetaMap[s.slug]?.category === tab.id)?.slug;
+                  if (firstOfCategory) setSpotlightSlug(firstOfCategory);
+                }}
+                className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer ${
+                  isActive
+                    ? 'bg-[#0A2540] text-white shadow-md shadow-sky-950/15 ring-2 ring-[#0284C7]/40'
+                    : 'bg-white text-neutral-600 border border-neutral-200 hover:text-neutral-900 hover:border-neutral-300 hover:bg-neutral-100/60'
+                }`}
+              >
+                <span>{tab.label}</span>
+                <span
+                  className={`text-[10px] font-mono px-1.5 py-0.5 rounded-full ${
+                    isActive ? 'bg-white/20 text-sky-200' : 'bg-neutral-100 text-neutral-500'
+                  }`}
                 >
-                  <span>Explore Freight Desk</span>
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
+                  {count}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Split Layout: Sticky Featured Spotlight (Desktop) + Interactive Service Cards Feed */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
+          {/* ========================================================================= */}
+          {/* LEFT: STICKY FEATURED SPOTLIGHT SHOWCASE (Desktop) */}
+          {/* ========================================================================= */}
+          <div className="hidden lg:block lg:col-span-5 lg:sticky lg:top-[114px]">
+            <div className="rounded-3xl border border-white/10 bg-gradient-to-br from-[#0A2540] via-[#07192D] to-[#040D1A] p-6 sm:p-7 text-white shadow-2xl relative overflow-hidden flex flex-col justify-between">
+              {/* Ambient Glow */}
+              <div className="absolute top-0 right-0 w-72 h-72 bg-sky-500/15 rounded-full blur-3xl pointer-events-none" />
+
+              <div className="relative z-10 space-y-5">
+                {/* Visual Image Banner with smooth transition */}
+                <div className="relative aspect-[16/10] w-full rounded-2xl overflow-hidden bg-neutral-900 border border-white/10 shadow-lg">
+                  <Image
+                    src={serviceImages[spotlightService?.slug] || serviceImages['logistics-shipping']}
+                    alt={spotlightService?.title || 'SkyLink Global Service'}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 40vw"
+                    className="object-cover object-center transition-all duration-700 hover:scale-105"
+                    priority
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#07192D]/95 via-[#07192D]/40 to-transparent" />
+
+                  {/* Top Category Tag */}
+                  <div className="absolute top-3 left-3 flex items-center gap-2">
+                    <span
+                      className={`inline-flex items-center gap-1.5 text-[10px] font-mono font-bold uppercase tracking-wider px-2.5 py-1 rounded-full border backdrop-blur-md ${spotlightMeta.badgeBg} ${spotlightMeta.badgeText} ${spotlightMeta.badgeBorder}`}
+                    >
+                      <SpotlightIcon className="w-3 h-3" />
+                      <span>{spotlightMeta.tag}</span>
+                    </span>
+                  </div>
+
+                  {/* Bottom Image Headline */}
+                  <div className="absolute bottom-3 left-4 right-4">
+                    <span className="text-[11px] font-mono text-sky-300 font-semibold block uppercase">
+                      {spotlightMeta.statBadge}
+                    </span>
+                    <h3 className="text-lg sm:text-xl font-extrabold text-white leading-tight mt-0.5">
+                      {spotlightService?.title}
+                    </h3>
+                  </div>
+                </div>
+
+                {/* Description */}
+                <p className="text-xs sm:text-sm text-neutral-300 leading-relaxed font-normal">
+                  {spotlightService?.shortDescription}
+                </p>
+
+                {/* Key Bullet Features */}
+                <div className="space-y-2 pt-1 border-t border-white/10">
+                  <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-sky-400 block">
+                    Core Milestone Scope
+                  </span>
+                  <div className="space-y-1.5">
+                    {spotlightService?.features.slice(0, 3).map((feat, idx) => (
+                      <div key={idx} className="flex items-start gap-2 text-xs text-neutral-200">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
+                        <span className="line-clamp-1">{feat}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Action Button */}
+              <div className="relative z-10 pt-5 mt-5 border-t border-white/10 flex items-center justify-between gap-3">
+                <Button
+                  href={`/services/${spotlightService?.slug}`}
+                  variant="primary"
+                  size="sm"
+                  rightIcon={<ArrowRight className="w-3.5 h-3.5" />}
+                  className="w-full justify-center"
+                >
+                  Explore Complete Service Scope
+                </Button>
               </div>
             </div>
-          </ScrollReveal>
+          </div>
 
-          {/* Right Column: 2 Medium Featured Cards (5 cols stacked) */}
-          <div className="lg:col-span-5 flex flex-col gap-6">
-            {/* Medium Card 1: Export Incentives */}
-            <ScrollReveal
-              effect="fade-left"
-              delay={150}
-              duration={700}
-              className="rounded-3xl border border-neutral-200 bg-white overflow-hidden shadow-sm flex flex-col justify-between group hover-lift flex-1"
-            >
-              <div className="p-6 sm:p-7 flex-1 flex flex-col justify-between space-y-4">
-                <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#0284C7] bg-sky-50 px-2.5 py-1 rounded-md border border-sky-200">
-                      STATUTORY REMISSIONS
-                    </span>
-                    <h3 className="text-lg sm:text-xl font-bold text-neutral-900 group-hover:text-[#0284C7] transition-colors mt-2">
-                      <Link href={`/services/${incentives.slug}`}>{incentives.title}</Link>
-                    </h3>
+          {/* ========================================================================= */}
+          {/* RIGHT: SCROLLABLE SERVICE CARDS FEED */}
+          {/* ========================================================================= */}
+          <div className="lg:col-span-7 space-y-4">
+            {filteredServices.map((srv, idx) => {
+              const meta = serviceMetaMap[srv.slug] || serviceMetaMap['logistics-shipping'];
+              const SrvIcon = meta.icon;
+              const isSelected = spotlightSlug === srv.slug;
+
+              return (
+                <div
+                  key={srv.id}
+                  onMouseEnter={() => setSpotlightSlug(srv.slug)}
+                  onClick={() => setSpotlightSlug(srv.slug)}
+                  className={`rounded-2xl sm:rounded-3xl border p-5 sm:p-6 transition-all duration-300 group cursor-pointer ${
+                    isSelected
+                      ? 'bg-white border-sky-400 shadow-xl shadow-sky-500/10 ring-2 ring-sky-400/30'
+                      : 'bg-white border-neutral-200 hover:border-neutral-300 hover:shadow-md hover:bg-neutral-50/50'
+                  }`}
+                >
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                    {/* Left: Icon & Title Block */}
+                    <div className="flex items-start gap-3.5 flex-1">
+                      <div
+                        className={`w-11 h-11 rounded-2xl flex items-center justify-center shrink-0 border transition-colors ${
+                          isSelected
+                            ? 'bg-[#0A2540] text-sky-400 border-sky-500/30 shadow-sm'
+                            : 'bg-sky-50 text-[#0284C7] border-sky-100 group-hover:bg-[#0A2540] group-hover:text-white group-hover:border-[#0A2540]'
+                        }`}
+                      >
+                        <SrvIcon className="w-5 h-5" />
+                      </div>
+
+                      <div className="space-y-1">
+                        <div className="flex flex-wrap items-center gap-2">
+                          <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#0284C7] bg-sky-50 px-2 py-0.5 rounded-md border border-sky-200">
+                            {meta.tag}
+                          </span>
+                          <span className="text-[10px] font-mono text-neutral-400">
+                            PRACTICE 0{idx + 1}
+                          </span>
+                        </div>
+
+                        <h3 className="text-base sm:text-lg font-bold text-neutral-900 group-hover:text-[#0284C7] transition-colors leading-snug">
+                          <Link href={`/services/${srv.slug}`}>{srv.title}</Link>
+                        </h3>
+
+                        <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed line-clamp-2 pt-0.5">
+                          {srv.shortDescription}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Right: Quick Action Arrow */}
+                    <div className="shrink-0 sm:self-center pl-2">
+                      <Link
+                        href={`/services/${srv.slug}`}
+                        className={`w-9 h-9 rounded-xl flex items-center justify-center border transition-all ${
+                          isSelected
+                            ? 'bg-[#0284C7] text-white border-[#0284C7]'
+                            : 'bg-neutral-100 text-neutral-500 border-neutral-200 group-hover:bg-[#0284C7] group-hover:text-white group-hover:border-[#0284C7]'
+                        }`}
+                        aria-label={`View ${srv.title}`}
+                      >
+                        <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+                      </Link>
+                    </div>
                   </div>
-                  <div className="w-10 h-10 rounded-xl bg-sky-50 text-[#0284C7] flex items-center justify-center shrink-0 border border-sky-100">
-                    <ShieldCheck className="w-5 h-5" />
+
+                  {/* Feature Badges Strip */}
+                  <div className="mt-4 pt-3.5 border-t border-neutral-100 flex flex-wrap items-center justify-between gap-2 text-xs">
+                    <div className="flex flex-wrap items-center gap-1.5 text-[11px] text-neutral-600 font-medium">
+                      {srv.features.slice(0, 2).map((feat, fIdx) => (
+                        <span
+                          key={fIdx}
+                          className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-neutral-100 text-neutral-700"
+                        >
+                          <CheckCircle2 className="w-3 h-3 text-[#0284C7]" />
+                          <span className="truncate max-w-[200px] sm:max-w-none">{feat}</span>
+                        </span>
+                      ))}
+                    </div>
+
+                    <Link
+                      href={`/services/${srv.slug}`}
+                      className="text-xs font-bold text-[#0284C7] hover:text-[#0369A1] inline-flex items-center gap-1 shrink-0 ml-auto"
+                    >
+                      <span>Service Details</span>
+                      <ArrowRight className="w-3 h-3" />
+                    </Link>
                   </div>
                 </div>
-
-                <p className="text-sm sm:text-[15px] text-neutral-600 leading-relaxed font-normal line-clamp-2">
-                  {incentives.shortDescription}
-                </p>
-
-                <div className="pt-3 border-t border-neutral-100 flex items-center justify-between text-xs sm:text-sm">
-                  <span className="text-neutral-500 font-medium">RoDTEP • RoSCTL • EPCG • Drawback</span>
-                  <Link
-                    href={`/services/${incentives.slug}`}
-                    className="font-bold text-[#0284C7] inline-flex items-center gap-1 hover:text-[#0369A1]"
-                  >
-                    <span>View Scheme</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </Link>
-                </div>
-              </div>
-            </ScrollReveal>
-
-            {/* Medium Card 2: Customs Clearance */}
-            <ScrollReveal
-              effect="fade-left"
-              delay={200}
-              duration={700}
-              className="rounded-3xl border border-neutral-200 bg-white overflow-hidden shadow-sm flex flex-col justify-between group hover-lift flex-1"
-            >
-              <div className="p-6 sm:p-7 flex-1 flex flex-col justify-between space-y-4">
-                <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <span className="text-xs font-mono font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-md border border-emerald-200">
-                      CUSTOMS BROKERAGE
-                    </span>
-                    <h3 className="text-lg sm:text-xl font-bold text-neutral-900 group-hover:text-[#0284C7] transition-colors mt-2">
-                      <Link href={`/services/${customs.slug}`}>{customs.title}</Link>
-                    </h3>
-                  </div>
-                  <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 border border-emerald-100">
-                    <ShieldCheck className="w-5 h-5" />
-                  </div>
-                </div>
-
-                <p className="text-sm sm:text-[15px] text-neutral-600 leading-relaxed font-normal line-clamp-2">
-                  {customs.shortDescription}
-                </p>
-
-                <div className="pt-3 border-t border-neutral-100 flex items-center justify-between text-xs sm:text-sm">
-                  <span className="text-neutral-500 font-medium">ICEGATE EDI • HS Code • Faceless Assessment</span>
-                  <Link
-                    href={`/services/${customs.slug}`}
-                    className="font-bold text-[#0284C7] inline-flex items-center gap-1 hover:text-[#0369A1]"
-                  >
-                    <span>View Clearance</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </Link>
-                </div>
-              </div>
-            </ScrollReveal>
+              );
+            })}
           </div>
         </div>
 
-        {/* Bottom Tier: 6 Integrated Specialized Services in 3x2 Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {otherServices.map((srv, idx) => (
-            <ScrollReveal
-              key={srv.id}
-              effect="fade-up"
-              delay={100 + idx * 60}
-              duration={650}
-              className="rounded-3xl border border-neutral-200 bg-white overflow-hidden shadow-sm flex flex-col justify-between group hover-lift h-full"
-            >
-              {/* Card Image Banner */}
-              <div className="relative aspect-[16/9] w-full overflow-hidden bg-neutral-900">
-                <Image
-                  src={serviceImages[srv.slug] || serviceImages['logistics-shipping']}
-                  alt={`SkyLink ${srv.title} trade solution`}
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#07192D]/80 via-transparent to-transparent" />
-                <span className="absolute bottom-3 left-4 text-xs font-mono font-bold uppercase tracking-wider text-sky-300 bg-[#07192D]/85 px-2.5 py-1 rounded-md border border-white/10 backdrop-blur-md">
-                  PRACTICE 0{idx + 4}
-                </span>
-              </div>
-
-              {/* Card Content */}
-              <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
-                <div>
-                  <h3 className="text-lg sm:text-xl font-bold text-neutral-900 group-hover:text-[#0284C7] transition-colors">
-                    <Link href={`/services/${srv.slug}`}>{srv.title}</Link>
-                  </h3>
-                  <p className="mt-2 text-sm sm:text-[15px] text-neutral-600 leading-relaxed font-normal line-clamp-3">
-                    {srv.shortDescription}
-                  </p>
-                </div>
-
-                <div className="pt-3 border-t border-neutral-100 flex items-center justify-between text-xs sm:text-sm">
-                  <Link
-                    href={`/services/${srv.slug}`}
-                    className="inline-flex items-center gap-1 font-bold text-[#0284C7] hover:text-[#0369A1] transition-colors"
-                  >
-                    <span>Explore Scope</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </Link>
-                </div>
-              </div>
-            </ScrollReveal>
-          ))}
-        </div>
-
-        {/* Full Catalog Button */}
-        <ScrollReveal effect="fade-up" delay={200} className="mt-14 text-center">
-          <Button href="/services" variant="primary" size="lg" className="shadow-lg shadow-sky-900/10">
-            View Complete Services Directory &rarr;
+        {/* Bottom Directory Action Strip */}
+        <div className="mt-14 pt-8 border-t border-neutral-200 text-center flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-2 text-xs font-semibold text-neutral-600">
+            <Layers className="w-4 h-4 text-[#0284C7]" />
+            <span>Structured single-window execution across all 9 commercial practices.</span>
+          </div>
+          <Button href="/services" variant="secondary" size="sm" rightIcon={<ArrowRight className="w-4 h-4" />}>
+            View Complete Services Directory
           </Button>
-        </ScrollReveal>
+        </div>
       </div>
     </section>
   );
