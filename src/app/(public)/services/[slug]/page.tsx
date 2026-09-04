@@ -101,7 +101,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
               <Button href="/request-consultation" variant="secondary" size="md">
                 Request Service Proposal
               </Button>
-              <Button href="/contact" variant="outline" size="md" className="text-white border-white/20 hover:bg-white/10">
+              <Button href="/contact" variant="outline-light" size="md">
                 Speak with a Consultant
               </Button>
             </div>

@@ -157,7 +157,7 @@ export default async function ServicesPage() {
             <Button href="/request-consultation" variant="secondary" size="lg" className="font-semibold">
               Request Free Proposal
             </Button>
-            <Button href="/contact" variant="outline" size="lg" className="text-white border-white/20 hover:bg-white/10 font-semibold">
+            <Button href="/contact" variant="outline-light" size="lg" className="font-semibold">
               Contact Support
             </Button>
           </ScrollReveal>

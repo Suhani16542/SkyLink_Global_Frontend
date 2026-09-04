@@ -119,7 +119,7 @@ export const servicesData: Service[] = [
       'Full Container Load (FCL) & Less than Container Load (LCL) Ocean Freight',
       'Time-Critical Air Cargo Charters & Scheduled Consolidation Corridors',
       'Direct Premier Carrier Space Contracting & Transparent All-In Spot Rate Negotiation',
-      'Incoterms® 2020 Operational Execution (Factory Gate EXW/FCA to Destination DDP/DAP)',
+      'Incoterms® Operational Execution (Factory Gate EXW/FCA to Destination DDP/DAP)',
       'Intermodal Rail & Road Transit to Major Inland Container Depots (ICDs) and Gateway Ports',
     ],
     benefits: [
@@ -277,7 +277,7 @@ export const servicesData: Service[] = [
       'Provides complete balance sheet protection against catastrophic maritime loss, General Average liabilities, and foreign buyer defaults through structured Institute Cargo Clauses (A) policies.',
     features: [
       'Institute Cargo Clauses (A, B, C) Marine Cargo Insurance Broking & Policy Structuring',
-      'Incoterms® 2020 Contract Risk Demarcation (EXW, FOB, CIF, CIP, DAP, DDP)',
+      'Incoterms® Contract Risk Demarcation (EXW, FOB, CIF, CIP, DAP, DDP)',
       'Trade Sanctions, Restricted Party Screening & Geopolitical Corridor Assessment',
       'Demurrage, Detention & General Average Claim Defense',
       'International Commercial Dispute Advisory & Carrier Liability Claims Recovery',

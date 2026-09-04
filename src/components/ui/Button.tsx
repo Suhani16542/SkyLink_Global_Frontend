@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { cn } from '@/lib/utils/cn';
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger' | 'sky';
+  variant?: 'primary' | 'secondary' | 'outline' | 'outline-light' | 'ghost' | 'danger' | 'sky';
   size?: 'sm' | 'md' | 'lg';
   href?: string;
   target?: string;
@@ -38,6 +38,8 @@ export function Button({
     sky: 'bg-sky-50 text-[#0369A1] hover:bg-sky-100 border border-sky-200 focus:ring-sky-400 hover:shadow-sm',
     outline:
       'border border-neutral-300 bg-white text-neutral-800 hover:bg-neutral-50 hover:border-neutral-400 focus:ring-neutral-400 hover:shadow-sm',
+    'outline-light':
+      'border border-white/30 bg-white/10 text-white hover:bg-white/20 hover:border-white/60 focus:ring-white/40 backdrop-blur-md shadow-sm',
     ghost:
       'text-neutral-700 hover:bg-neutral-100 hover:text-neutral-950 focus:ring-neutral-300',
     danger:

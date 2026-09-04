@@ -1,17 +1,61 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { SkyLinkLogo } from '@/components/ui/SkyLinkLogo';
 import { Button } from '@/components/ui/Button';
 import { siteConfig } from '@/config/site';
-import { Mail, Phone, Clock, Menu, X, ArrowRight, ShieldCheck, Sparkles } from 'lucide-react';
+import {
+  Mail,
+  Phone,
+  Clock,
+  Menu,
+  X,
+  ArrowRight,
+  ShieldCheck,
+  Sparkles,
+  ChevronDown,
+  Ship,
+  Warehouse,
+  Snowflake,
+  TrendingDown,
+  Calculator,
+  FileText,
+  ShieldAlert,
+  Compass,
+  Scale,
+  Pill,
+  Fish,
+  Wheat,
+  Newspaper,
+  Leaf,
+  Award,
+  Users,
+  Handshake,
+} from 'lucide-react';
+
+interface NavDropdownItem {
+  title: string;
+  href: string;
+  icon?: React.ComponentType<{ className?: string }>;
+  description?: string;
+}
+
+interface NavSection {
+  title: string;
+  href?: string;
+  dropdown?: NavDropdownItem[];
+}
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [mobileOpenSections, setMobileOpenSections] = useState<Record<string, boolean>>({});
+
   const pathname = usePathname();
+  const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,7 +65,180 @@ export function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const closeMobileMenu = () => setMobileMenuOpen(false);
+  const closeMobileMenu = () => {
+    setMobileMenuOpen(false);
+    setMobileOpenSections({});
+  };
+
+  const handleMouseEnter = (key: string) => {
+    if (dropdownTimeoutRef.current) clearTimeout(dropdownTimeoutRef.current);
+    setOpenDropdown(key);
+  };
+
+  const handleMouseLeave = () => {
+    dropdownTimeoutRef.current = setTimeout(() => {
+      setOpenDropdown(null);
+    }, 150);
+  };
+
+  const toggleMobileSection = (key: string) => {
+    setMobileOpenSections((prev) => ({
+      ...prev,
+      [key]: !prev[key],
+    }));
+  };
+
+  // Exact Boardmix Navigation Order
+  const navMenu: NavSection[] = [
+    {
+      title: 'About Us',
+      href: '/about',
+      dropdown: [
+        {
+          title: 'Overview',
+          href: '/about',
+          icon: Compass,
+          description: 'Our mission, heritage, and institutional foundation',
+        },
+      ],
+    },
+    {
+      title: 'Our Services',
+      href: '/services',
+      dropdown: [
+        {
+          title: 'Logistics & Shipping',
+          href: '/services/logistics-shipping',
+          icon: Ship,
+          description: 'Direct vessel space, ocean & air multimodal freight',
+        },
+        {
+          title: 'Warehousing Solutions',
+          href: '/services/warehousing-distribution',
+          icon: Warehouse,
+          description: 'Bonded storage, Section 65 MOOWR & FTWZ transit',
+        },
+        {
+          title: 'Cold Chain Solutions',
+          href: '/services/cold-chain-solutions',
+          icon: Snowflake,
+          description: 'GDP-compliant reefer & 24/7 IoT telemetry',
+        },
+        {
+          title: 'Freight Cost Optimization',
+          href: '/services/export-incentives',
+          icon: TrendingDown,
+          description: 'Tariff advisory, direct carrier contracts & duty recovery',
+        },
+        {
+          title: 'Tax & GST Compliance',
+          href: '/services/tax-gst-advisory',
+          icon: Calculator,
+          description: 'LUT structuring, ITC refunds & ICEGATE mismatch resolution',
+        },
+        {
+          title: 'Documentation & Liaison',
+          href: '/services/documentation-liaison',
+          icon: FileText,
+          description: 'Zero-defect trade dossiers, digital COO & DGFT liaison',
+        },
+        {
+          title: 'Risk Management',
+          href: '/services/customs-compliance',
+          icon: ShieldAlert,
+          description: 'Pre-arrival clearance, HS classification & trade defense',
+        },
+      ],
+    },
+    {
+      title: 'Why Choose Us',
+      dropdown: [
+        {
+          title: 'Skylink Advantage',
+          href: '/#why-skylink',
+          icon: ShieldCheck,
+          description: 'Single-window trade governance & direct carrier access',
+        },
+        {
+          title: 'Traditional vs Skylink',
+          href: '/#value-comparison',
+          icon: Scale,
+          description: 'Operational efficiency comparison matrix',
+        },
+      ],
+    },
+    {
+      title: 'Industries',
+      href: '/industries',
+      dropdown: [
+        {
+          title: 'Pharma',
+          href: '/industries#pharmaceuticals',
+          icon: Pill,
+          description: 'GDP cold chain & expedited ADC port clearance',
+        },
+        {
+          title: 'Seafoods',
+          href: '/industries#seafood',
+          icon: Fish,
+          description: 'Ultra-low deep freeze (-25°C to -40°C) & MPEDA compliance',
+        },
+        {
+          title: 'Specialty Chemicals, Agro Fertilizers & Perishables',
+          href: '/industries#agriculture',
+          icon: Wheat,
+          description: 'APEDA compliance & rapid green-channel transit',
+        },
+      ],
+    },
+    {
+      title: 'News',
+      href: '/blog',
+      dropdown: [
+        {
+          title: 'Blogs / Articles',
+          href: '/blog',
+          icon: Newspaper,
+          description: 'EXIM insights, global supply chain analysis & trade intelligence',
+        },
+      ],
+    },
+    {
+      title: 'Sustainability',
+      href: '/about#sustainability',
+      dropdown: [
+        {
+          title: 'Eco-Route',
+          href: '/about#sustainability',
+          icon: Leaf,
+          description: 'Carbon-efficient multimodal corridors & green logistics',
+        },
+        {
+          title: 'AEO Green',
+          href: '/services/customs-compliance',
+          icon: Award,
+          description: 'Authorized Economic Operator paperless green-channel protocols',
+        },
+      ],
+    },
+    {
+      title: 'Why Collaborate With Us',
+      dropdown: [
+        {
+          title: 'Freight Forwarders Collaboration',
+          href: '/contact?inquiry=collaboration',
+          icon: Handshake,
+          description: 'Partner network, strategic co-loading & agency alliance',
+        },
+        {
+          title: 'Collaboration Enquiry',
+          href: '/request-consultation?type=collaboration',
+          icon: Users,
+          description: 'Submit an institutional trade or logistics partnership request',
+        },
+      ],
+    },
+  ];
 
   return (
     <header className="sticky top-0 z-40 w-full">
@@ -78,50 +295,139 @@ export function Header() {
           isScrolled ? 'shadow-md' : ''
         }`}
       >
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 min-h-[64px] sm:min-h-[68px]">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-3 sm:px-6 lg:px-8 min-h-[64px] sm:min-h-[68px]">
           {/* Logo */}
-          <SkyLinkLogo
-            size="navbar"
-            className="ml-1 sm:ml-2 md:ml-4 lg:ml-6"
-            priority
-          />
+          <SkyLinkLogo size="navbar" priority />
 
           {/* Desktop Navigation */}
           <nav
             aria-label="Main Navigation"
-            className="hidden md:flex items-center gap-6 lg:gap-8 text-[15px] lg:text-base font-medium lg:font-semibold text-neutral-800"
+            className="hidden xl:flex items-center gap-3.5 2xl:gap-5 text-[13.5px] 2xl:text-[14px] font-semibold text-neutral-800"
           >
-            {siteConfig.mainNav.map((item) => {
-              const isActive =
-                item.href === '/'
-                  ? pathname === '/'
-                  : pathname === item.href || pathname.startsWith(`${item.href}/`);
+            {/* 1. Home */}
+            <Link
+              href="/"
+              className={`transition-colors py-1 relative whitespace-nowrap ${
+                pathname === '/'
+                  ? 'text-[#0284C7] font-bold'
+                  : 'text-neutral-700 hover:text-[#0A2540]'
+              }`}
+            >
+              Home
+              {pathname === '/' && (
+                <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#0284C7] rounded-full" />
+              )}
+            </Link>
+
+            {/* Remaining Boardmix Nav Items */}
+            {navMenu.map((item) => {
+              const hasDropdown = item.dropdown && item.dropdown.length > 0;
+              const isOpen = openDropdown === item.title;
+              const isSectionActive =
+                item.href && item.href !== '/'
+                  ? pathname === item.href || pathname.startsWith(`${item.href}/`)
+                  : false;
+
+              if (!hasDropdown) {
+                return (
+                  <Link
+                    key={item.title}
+                    href={item.href || '#'}
+                    className={`transition-colors py-1 relative whitespace-nowrap ${
+                      isSectionActive
+                        ? 'text-[#0284C7] font-bold'
+                        : 'text-neutral-700 hover:text-[#0A2540]'
+                    }`}
+                  >
+                    {item.title}
+                    {isSectionActive && (
+                      <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#0284C7] rounded-full" />
+                    )}
+                  </Link>
+                );
+              }
+
               return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={`transition-colors py-1 relative ${
-                    isActive
-                      ? 'text-[#0284C7] font-semibold'
-                      : 'text-neutral-700 hover:text-[#0A2540]'
-                  }`}
+                <div
+                  key={item.title}
+                  className="relative py-2"
+                  onMouseEnter={() => handleMouseEnter(item.title)}
+                  onMouseLeave={handleMouseLeave}
                 >
-                  {item.title}
-                  {isActive && (
-                    <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#0284C7] rounded-full" />
+                  <button
+                    type="button"
+                    className={`inline-flex items-center gap-1 transition-colors py-1 relative whitespace-nowrap ${
+                      isSectionActive || isOpen
+                        ? 'text-[#0284C7] font-bold'
+                        : 'text-neutral-700 hover:text-[#0A2540]'
+                    }`}
+                  >
+                    <span>{item.title}</span>
+                    <ChevronDown
+                      className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                        isOpen ? 'rotate-180 text-[#0284C7]' : 'text-neutral-400'
+                      }`}
+                    />
+                    {isSectionActive && (
+                      <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#0284C7] rounded-full" />
+                    )}
+                  </button>
+
+                  {/* Dropdown Popover */}
+                  {isOpen && (
+                    <div
+                      className={`absolute top-full left-1/2 -translate-x-1/2 bg-white rounded-xl shadow-2xl border border-neutral-200/90 p-3 z-50 animate-in fade-in-0 zoom-in-95 duration-150 ${
+                        item.dropdown && item.dropdown.length > 4
+                          ? 'w-[560px] grid grid-cols-2 gap-1.5'
+                          : 'w-[320px] space-y-1'
+                      }`}
+                    >
+                      {item.dropdown?.map((subItem) => {
+                        const Icon = subItem.icon;
+                        const isSubActive = pathname === subItem.href;
+                        return (
+                          <Link
+                            key={subItem.title}
+                            href={subItem.href}
+                            onClick={() => setOpenDropdown(null)}
+                            className={`flex items-start gap-2.5 p-2 rounded-lg transition-colors group ${
+                              isSubActive
+                                ? 'bg-sky-50 text-[#0284C7]'
+                                : 'hover:bg-neutral-50 text-neutral-800'
+                            }`}
+                          >
+                            {Icon && (
+                              <div className="p-1.5 rounded-md bg-sky-100/70 text-sky-700 group-hover:bg-[#0284C7] group-hover:text-white transition-colors shrink-0 mt-0.5">
+                                <Icon className="w-3.5 h-3.5" />
+                              </div>
+                            )}
+                            <div>
+                              <div className="text-xs sm:text-[13px] font-semibold text-neutral-900 group-hover:text-[#0284C7] transition-colors leading-snug">
+                                {subItem.title}
+                              </div>
+                              {subItem.description && (
+                                <p className="text-[11px] text-neutral-500 line-clamp-1 mt-0.5 font-normal">
+                                  {subItem.description}
+                                </p>
+                              )}
+                            </div>
+                          </Link>
+                        );
+                      })}
+                    </div>
                   )}
-                </Link>
+                </div>
               );
             })}
           </nav>
 
-          {/* Header Action CTA */}
-          <div className="hidden sm:flex items-center gap-3">
+          {/* Header Action CTA Button */}
+          <div className="hidden sm:flex items-center gap-2.5">
             <Button
               href="/request-consultation"
               variant="secondary"
               size="sm"
-              className="text-[14px] font-semibold"
+              className="text-[13px] font-semibold px-3.5 py-2 shadow-xs"
               rightIcon={<ArrowRight className="w-3.5 h-3.5" />}
             >
               Request Consultation
@@ -132,7 +438,7 @@ export function Header() {
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle navigation menu"
-            className="md:hidden rounded-lg p-2 text-neutral-700 hover:bg-neutral-100 focus:outline-none"
+            className="xl:hidden rounded-lg p-2 text-neutral-700 hover:bg-neutral-100 focus:outline-none"
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -140,58 +446,102 @@ export function Header() {
 
         {/* Mobile Slide-Over Drawer */}
         {mobileMenuOpen && (
-          <div className="md:hidden fixed inset-x-0 top-full bottom-0 bg-white/95 backdrop-blur-lg border-b border-neutral-200 z-50 p-6 flex flex-col justify-between overflow-y-auto animate-in fade-in slide-in-from-top-4 duration-200">
-            <nav className="space-y-4">
-              {siteConfig.mainNav.map((item) => {
-                const isActive =
-                  item.href === '/'
-                    ? pathname === '/'
-                    : pathname === item.href || pathname.startsWith(`${item.href}/`);
+          <div className="xl:hidden fixed inset-x-0 top-full bottom-0 bg-white/98 backdrop-blur-lg border-b border-neutral-200 z-50 p-4 flex flex-col justify-between overflow-y-auto animate-in fade-in slide-in-from-top-4 duration-200">
+            <nav className="space-y-1.5">
+              {/* Mobile: Home */}
+              <Link
+                href="/"
+                onClick={closeMobileMenu}
+                className={`block text-sm font-semibold py-2 px-3 rounded-lg transition-colors ${
+                  pathname === '/'
+                    ? 'bg-sky-50 text-[#0284C7]'
+                    : 'text-neutral-800 hover:bg-neutral-50'
+                }`}
+              >
+                Home
+              </Link>
+
+              {/* Mobile: Boardmix Sections */}
+              {navMenu.map((item) => {
+                const hasDropdown = item.dropdown && item.dropdown.length > 0;
+                const isExpanded = !!mobileOpenSections[item.title];
+
+                if (!hasDropdown) {
+                  return (
+                    <Link
+                      key={item.title}
+                      href={item.href || '#'}
+                      onClick={closeMobileMenu}
+                      className="block text-sm font-semibold py-2 px-3 rounded-lg text-neutral-800 hover:bg-neutral-50"
+                    >
+                      {item.title}
+                    </Link>
+                  );
+                }
+
                 return (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    onClick={closeMobileMenu}
-                    className={`block text-base font-semibold py-2 px-3 rounded-lg transition-colors ${
-                      isActive
-                        ? 'bg-sky-50 text-[#0284C7]'
-                        : 'text-neutral-800 hover:bg-neutral-50'
-                    }`}
-                  >
-                    {item.title}
-                  </Link>
+                  <div key={item.title} className="rounded-lg">
+                    <button
+                      type="button"
+                      onClick={() => toggleMobileSection(item.title)}
+                      className="w-full flex items-center justify-between text-sm font-semibold py-2 px-3 rounded-lg text-neutral-800 hover:bg-neutral-50"
+                    >
+                      <span>{item.title}</span>
+                      <ChevronDown
+                        className={`w-4 h-4 transition-transform duration-200 ${
+                          isExpanded ? 'rotate-180 text-[#0284C7]' : 'text-neutral-400'
+                        }`}
+                      />
+                    </button>
+                    {isExpanded && (
+                      <div className="ml-3 pl-3 border-l-2 border-sky-200 py-1 space-y-1">
+                        {item.dropdown?.map((subItem) => (
+                          <Link
+                            key={subItem.title}
+                            href={subItem.href}
+                            onClick={closeMobileMenu}
+                            className="block text-xs font-medium text-neutral-700 py-1.5 px-2 rounded hover:bg-sky-50 hover:text-[#0284C7]"
+                          >
+                            {subItem.title}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
                 );
               })}
+
+              {/* Mobile: Brand Link */}
               <Link
                 href="/brand"
                 onClick={closeMobileMenu}
-                className="block text-base font-semibold py-2 px-3 rounded-lg text-amber-600 bg-amber-50"
+                className="block text-xs font-semibold py-2 px-3 rounded-lg text-amber-700 bg-amber-50"
               >
                 Motion Logo Showcase
               </Link>
             </nav>
 
-            <div className="mt-8 pt-6 border-t border-neutral-200 space-y-4">
+            <div className="mt-6 pt-4 border-t border-neutral-200 space-y-3">
               <Button
                 href="/request-consultation"
                 variant="secondary"
                 size="md"
-                className="w-full justify-center"
+                className="w-full justify-center text-sm font-semibold"
                 onClick={closeMobileMenu}
               >
                 Request a Consultation
               </Button>
-              <div className="space-y-2 text-xs text-neutral-600">
+              <div className="space-y-1.5 text-xs text-neutral-600">
                 <p className="flex items-center gap-2">
-                  <Mail className="w-4 h-4 text-sky-600" />
+                  <Mail className="w-3.5 h-3.5 text-sky-600" />
                   <a href={`mailto:${siteConfig.contact.email}`}>{siteConfig.contact.email}</a>
                 </p>
                 <p className="flex items-center gap-2">
-                  <Phone className="w-4 h-4 text-sky-600" />
+                  <Phone className="w-3.5 h-3.5 text-sky-600" />
                   <a href={`tel:${siteConfig.contact.phone}`}>{siteConfig.contact.phone}</a>
                 </p>
               </div>
-              <div className="pt-2">
+              <div className="pt-1">
                 <Link
                   href="/admin/login"
                   onClick={closeMobileMenu}

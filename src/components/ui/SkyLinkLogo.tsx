@@ -20,14 +20,14 @@ export function SkyLinkLogo({
 }: SkyLinkLogoProps) {
   const isLight = variant === 'light';
 
-  // Responsive sizing ensuring the logo is prominent, perfectly proportioned, and fits 70-78px navbar height
+  // Responsive sizing ensuring the logo is prominent, perfectly proportioned, and fits cleanly in the navbar
   const sizeClasses = {
     sm: 'h-10 sm:h-12 w-auto max-h-12',
     md: 'h-12 sm:h-14 md:h-16 w-auto max-h-16',
     lg: 'h-20 sm:h-24 md:h-28 w-auto max-h-28',
     xl: 'h-28 sm:h-36 md:h-44 w-auto max-h-44',
-    navbar: 'h-12 sm:h-14 md:h-16 lg:h-[64px] w-auto max-h-[68px]',
-    footer: 'h-28 sm:h-32 md:h-36 lg:h-40 w-auto max-h-[160px]',
+    navbar: 'h-14 sm:h-16 md:h-[62px] lg:h-[66px] w-auto max-h-[66px]',
+    footer: 'h-12 sm:h-14 md:h-16 w-auto max-h-[64px]',
   };
 
   const selectedSizeClass = sizeClasses[size] || sizeClasses.navbar;
@@ -36,15 +36,15 @@ export function SkyLinkLogo({
     <div
       className={`relative inline-flex items-center transition-transform duration-300 group-hover:scale-[1.02] ${
         isLight
-          ? 'bg-white rounded-xl p-2.5 sm:p-3 shadow-md border border-white/20'
+          ? 'bg-white rounded-xl p-2 sm:p-2.5 shadow-md border border-white/20'
           : ''
       }`}
     >
       <Image
         src="/logos/skylink-logo.png"
         alt="SkyLink Global Services"
-        width={320}
-        height={320}
+        width={427}
+        height={378}
         priority={priority}
         className={`${selectedSizeClass} object-contain`}
         quality={100}

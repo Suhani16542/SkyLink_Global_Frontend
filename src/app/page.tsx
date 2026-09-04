@@ -86,7 +86,7 @@ export default async function HomePage() {
         <IndustriesMosaic industries={industries} />
 
         {/* ========================================================================= */}
-        {/* 7. IMPORTANCE OF INCOTERMS: Incoterms® 2020 Risk & Responsibility Matrix */}
+        {/* 7. IMPORTANCE OF INCOTERMS: Incoterms® Risk & Responsibility Matrix */}
         {/* ========================================================================= */}
         <IncotermsMatrix />
 
@@ -265,9 +265,9 @@ export default async function HomePage() {
                 </Button>
                 <Button
                   href="/contact"
-                  variant="outline"
+                  variant="outline-light"
                   size="lg"
-                  className="w-full sm:w-auto text-white border-white/20 hover:bg-white/10"
+                  className="w-full sm:w-auto"
                 >
                   Contact Our Trade Desk
                 </Button>

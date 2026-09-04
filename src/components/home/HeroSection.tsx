@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight, ChevronLeft, ChevronRight, Play, Pause, Volume2, VolumeX } from 'lucide-react';
+import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface HeroSlide {
   id: string;
@@ -59,19 +59,6 @@ const HERO_SLIDES: HeroSlide[] = [
       'https://images.unsplash.com/photo-1553413077-190dd305871c?q=80&w=1920&auto=format&fit=crop',
   },
   {
-    id: 'slide-air-express',
-    themeName: 'Air & Express',
-    badge: 'Global Freight Routing',
-    heading: 'Moving Your Business Forward.',
-    subtext: 'Reliable transportation for every shipment.',
-    primaryCta: { text: 'Explore Logistics', href: '/services/logistics-shipping' },
-    secondaryCta: { text: 'Track Shipment', href: '/services/logistics-shipping' },
-    videoLocal: '/videos/video4-truck.mp4',
-    videoCdn: 'https://assets.mixkit.co/videos/28000/28000-720.mp4',
-    fallbackPoster:
-      'https://images.unsplash.com/photo-1519003722824-194d4455a60c?q=80&w=1920&auto=format&fit=crop',
-  },
-  {
     id: 'slide-port-containers',
     themeName: 'Import & Export',
     badge: 'Port Terminals & Customs',
@@ -91,8 +78,6 @@ const PLAYBACK_RATE = 1.15; // 1.15x energetic playback speed
 
 export function HeroSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
-  const [isMuted, setIsMuted] = useState(true);
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
 
   const nextSlide = useCallback(() => {
@@ -105,60 +90,37 @@ export function HeroSection() {
 
   // Automatic slide rotation
   useEffect(() => {
-    if (isPaused) return;
     const timer = setInterval(() => {
       nextSlide();
     }, SLIDE_DURATION);
 
     return () => clearInterval(timer);
-  }, [nextSlide, isPaused]);
+  }, [nextSlide]);
 
   // Ensure active video is playing and preheat upcoming video
   useEffect(() => {
     const activeVideo = videoRefs.current[currentIndex];
     if (activeVideo) {
-      activeVideo.muted = isMuted;
+      activeVideo.muted = true;
       activeVideo.playbackRate = PLAYBACK_RATE;
-      if (!isPaused) {
-        const playPromise = activeVideo.play();
-        if (playPromise !== undefined) {
-          playPromise.catch(() => {
-            activeVideo.muted = true;
-            activeVideo.play().catch(() => {});
-          });
-        }
+      const playPromise = activeVideo.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          activeVideo.muted = true;
+          activeVideo.play().catch(() => {});
+        });
       }
     }
 
     // Pre-buffer next video
     const nextIdx = (currentIndex + 1) % HERO_SLIDES.length;
     const nextVideo = videoRefs.current[nextIdx];
-    if (nextVideo && nextVideo.paused && !isPaused) {
+    if (nextVideo && nextVideo.paused) {
       nextVideo.muted = true;
       nextVideo.playbackRate = PLAYBACK_RATE;
       nextVideo.play().catch(() => {});
     }
-  }, [currentIndex, isPaused, isMuted]);
-
-  const togglePlayPause = () => {
-    const activeVideo = videoRefs.current[currentIndex];
-    if (!activeVideo) return;
-    if (isPaused) {
-      activeVideo.play().catch(() => {});
-      setIsPaused(false);
-    } else {
-      activeVideo.pause();
-      setIsPaused(true);
-    }
-  };
-
-  const toggleMute = () => {
-    const newMuted = !isMuted;
-    setIsMuted(newMuted);
-    videoRefs.current.forEach((vid) => {
-      if (vid) vid.muted = newMuted;
-    });
-  };
+  }, [currentIndex]);
 
   const activeSlide = HERO_SLIDES[currentIndex];
 
@@ -196,7 +158,7 @@ export function HeroSection() {
               }}
               autoPlay
               loop
-              muted={isMuted}
+              muted
               playsInline
               preload="auto"
               poster={slide.fallbackPoster}
@@ -275,7 +237,7 @@ export function HeroSection() {
       <div className="relative z-10 w-full pb-6 pt-3 px-4 sm:px-6 lg:px-8 bg-gradient-to-t from-black/50 to-transparent">
         <div className="mx-auto max-w-7xl flex flex-wrap items-center justify-between gap-3 sm:gap-4">
           
-          {/* 5 Video Theme Indicators */}
+          {/* Video Theme Indicators */}
           <div className="flex items-center gap-1.5 sm:gap-2.5 flex-wrap">
             {HERO_SLIDES.map((slide, idx) => {
               const isActive = idx === currentIndex;
@@ -303,7 +265,7 @@ export function HeroSection() {
             })}
           </div>
 
-          {/* Controls: Prev/Next & Play/Mute */}
+          {/* Controls: Prev/Next */}
           <div className="flex items-center gap-2 shrink-0">
             <button
               onClick={prevSlide}
@@ -318,24 +280,6 @@ export function HeroSection() {
               aria-label="Next Video"
             >
               <ChevronRight className="w-4 h-4" />
-            </button>
-
-            <button
-              onClick={togglePlayPause}
-              className="p-2 rounded-full bg-black/40 hover:bg-black/60 border border-white/20 text-white transition-all duration-200 cursor-pointer backdrop-blur-md ml-1"
-              aria-label={isPaused ? 'Play' : 'Pause'}
-              title={isPaused ? 'Play' : 'Pause'}
-            >
-              {isPaused ? <Play className="w-4 h-4 text-sky-400" /> : <Pause className="w-4 h-4" />}
-            </button>
-
-            <button
-              onClick={toggleMute}
-              className="p-2 rounded-full bg-black/40 hover:bg-black/60 border border-white/20 text-white transition-all duration-200 cursor-pointer backdrop-blur-md"
-              aria-label={isMuted ? 'Unmute' : 'Mute'}
-              title={isMuted ? 'Unmute' : 'Mute'}
-            >
-              {isMuted ? <VolumeX className="w-4 h-4 text-neutral-400" /> : <Volume2 className="w-4 h-4 text-sky-400" />}
             </button>
           </div>
 
