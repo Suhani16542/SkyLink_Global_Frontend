@@ -4,6 +4,7 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import { AskGptChatbot } from './AskGptChatbot';
 
 interface HeroSlide {
   id: string;
@@ -230,6 +231,9 @@ export function HeroSection() {
 
         </div>
       </div>
+
+      {/* Floating AI Chatbot UI (Right Side of Hero Section) */}
+      <AskGptChatbot />
 
       {/* ========================================================================= */}
       {/* 4. CLEAN MINIMAL BOTTOM DOCK & PAGINATION */}

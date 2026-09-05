@@ -22,15 +22,18 @@ export const metadata: Metadata = constructMetadata({
 });
 
 const serviceImages: Record<string, string> = {
-  'licensing-registrations': 'https://images.unsplash.com/photo-1450133064473-71024230f91b?q=80&w=800&auto=format&fit=crop',
-  'export-incentives': 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=800&auto=format&fit=crop',
-  'documentation-liaison': 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=800&auto=format&fit=crop',
-  'logistics-shipping': 'https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?q=80&w=800&auto=format&fit=crop',
-  'customs-compliance': 'https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=800&auto=format&fit=crop',
-  'warehousing-distribution': 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=800&auto=format&fit=crop',
-  'cold-chain-solutions': 'https://images.unsplash.com/photo-1587293852726-70cdb56c2866?q=80&w=800&auto=format&fit=crop',
-  'tax-gst-advisory': 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=800&auto=format&fit=crop',
-  'trade-risk-management': 'https://images.unsplash.com/photo-1505705694340-019e1e335916?q=80&w=800&auto=format&fit=crop',
+  'logistics-shipping': '/images/services/logistics-shipping.jpg',
+  'warehousing-solutions': '/images/services/warehousing-solutions.jpg',
+  'warehousing-distribution': '/images/services/warehousing-solutions.jpg',
+  'cold-chain-solutions': '/images/services/cold-chain-solutions.jpg',
+  'export-incentives': '/images/services/export-incentives.jpg',
+  'tax-gst-compliance': '/images/services/tax-gst-compliance.jpg',
+  'tax-gst-advisory': '/images/services/tax-gst-compliance.jpg',
+  'documentation-liaison': '/images/services/documentation-liaison.jpg',
+  'risk-management': '/images/services/risk-management.jpg',
+  'trade-risk-management': '/images/services/risk-management.jpg',
+  'customs-compliance': '/images/services/risk-management.jpg',
+  'licensing-registrations': '/images/services/documentation-liaison.jpg',
 };
 
 export default async function ServicesPage() {

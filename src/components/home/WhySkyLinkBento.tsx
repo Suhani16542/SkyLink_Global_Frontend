@@ -48,14 +48,14 @@ export function WhySkyLinkBento() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header matching screenshot */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
-          <div className="max-w-3xl space-y-3">
+          <div className="max-w-2xl space-y-3">
             <ScrollReveal effect="fade-up" delay={0}>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#0A2540] tracking-tight leading-tight">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#0A2540] tracking-tight leading-[1.18] text-balance">
                 Why Global Logistics Partner like SkyLink?
               </h2>
             </ScrollReveal>
             <ScrollReveal effect="fade-up" delay={60}>
-              <p className="text-sm sm:text-base text-neutral-600 leading-relaxed font-normal">
+              <p className="text-sm sm:text-base text-neutral-600 leading-relaxed font-normal text-pretty max-w-xl">
                 We bridge statutory foreign trade advisory and direct carrier execution to protect your export margins, ensure zero customs holds, and deliver predictable international transit.
               </p>
             </ScrollReveal>
@@ -82,7 +82,7 @@ export function WhySkyLinkBento() {
                 effect="fade-up"
                 delay={idx * 60}
                 duration={500}
-                className={`rounded-2xl p-6 sm:p-7 bg-white border transition-all duration-300 flex flex-col justify-between group relative ${
+                className={`rounded-2xl p-6 sm:p-7 bg-white border transition-all duration-300 flex flex-col justify-between group relative overflow-hidden ${
                   item.isHighlighted
                     ? 'border-neutral-200/90 shadow-sm ring-1 ring-emerald-400/40'
                     : 'border-neutral-200/90 shadow-xs hover:border-sky-300 hover:shadow-md'
@@ -123,7 +123,7 @@ export function WhySkyLinkBento() {
                   {/* Title & Description */}
                   <div className="mt-5">
                     <h3
-                      className={`text-base sm:text-lg font-bold leading-snug ${
+                      className={`text-base sm:text-lg font-bold leading-snug text-balance ${
                         item.isHighlighted
                           ? 'text-[#0284C7]'
                           : 'text-[#0A2540] group-hover:text-[#0284C7] transition-colors'
@@ -131,7 +131,7 @@ export function WhySkyLinkBento() {
                     >
                       {item.title}
                     </h3>
-                    <p className="mt-2.5 text-xs sm:text-[13px] text-neutral-600 leading-relaxed font-normal">
+                    <p className="mt-2.5 text-xs sm:text-[13px] text-neutral-600 leading-relaxed font-normal text-pretty">
                       {item.desc}
                     </p>
                   </div>

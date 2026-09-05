@@ -85,17 +85,17 @@ export function StrategicPartnerSection() {
 
                 {/* Micro Checklist */}
                 <div className="space-y-2.5 pt-4 border-t border-white/10 text-xs text-neutral-300 font-medium">
-                  <div className="flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-sky-400 shrink-0 group-hover:scale-110 transition-transform" />
-                    <span>Advance Authorisation &amp; Duty-Free Input Licenses</span>
+                  <div className="flex items-start gap-2.5">
+                    <CheckCircle2 className="w-4 h-4 text-sky-400 shrink-0 mt-0.5 group-hover:scale-110 transition-transform" />
+                    <span className="leading-snug">Advance Authorisation &amp; Duty-Free Input Licenses</span>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-sky-400 shrink-0 group-hover:scale-110 transition-transform" />
-                    <span>EPCG Scheme (Capital Goods) &amp; EODC Redemption</span>
+                  <div className="flex items-start gap-2.5">
+                    <CheckCircle2 className="w-4 h-4 text-sky-400 shrink-0 mt-0.5 group-hover:scale-110 transition-transform" />
+                    <span className="leading-snug">EPCG Scheme (Capital Goods) &amp; EODC Redemption</span>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-sky-400 shrink-0 group-hover:scale-110 transition-transform" />
-                    <span>RoDTEP / RoSCTL Scrips, SCOMET &amp; IEC Authorizations</span>
+                  <div className="flex items-start gap-2.5">
+                    <CheckCircle2 className="w-4 h-4 text-sky-400 shrink-0 mt-0.5 group-hover:scale-110 transition-transform" />
+                    <span className="leading-snug">RoDTEP / RoSCTL Scrips, SCOMET &amp; IEC Authorizations</span>
                   </div>
                 </div>
               </div>

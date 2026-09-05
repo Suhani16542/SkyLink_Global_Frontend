@@ -48,7 +48,7 @@ export function SectionHeading({
       <ScrollReveal effect="fade-up" delay={80} duration={650}>
         <h2
           className={cn(
-            'text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight',
+            'text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-[1.15] sm:leading-[1.18] text-balance',
             light ? 'text-white' : 'text-[#0A2540]'
           )}
         >
@@ -59,7 +59,8 @@ export function SectionHeading({
         <ScrollReveal effect="fade-up" delay={160} duration={700}>
           <p
             className={cn(
-              'mt-4 text-base sm:text-lg leading-relaxed font-normal',
+              'mt-3.5 sm:mt-4 text-sm sm:text-base lg:text-lg leading-relaxed font-normal text-pretty max-w-2xl',
+              isCentered ? 'mx-auto text-center' : 'text-left',
               light ? 'text-neutral-300' : 'text-neutral-600'
             )}
           >

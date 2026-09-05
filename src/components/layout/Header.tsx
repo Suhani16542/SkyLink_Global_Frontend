@@ -96,7 +96,7 @@ export function Header() {
       dropdown: [
         {
           title: 'Overview',
-          href: '/about',
+          href: '/about/overview',
           icon: Compass,
           description: 'Our mission, heritage, and institutional foundation',
         },
@@ -110,13 +110,13 @@ export function Header() {
           title: 'Logistics & Shipping',
           href: '/services/logistics-shipping',
           icon: Ship,
-          description: 'Direct vessel space, ocean & air multimodal freight',
+          description: 'Freight negotiation, route optimization, consolidations & marine insurance',
         },
         {
           title: 'Warehousing Solutions',
-          href: '/services/warehousing-distribution',
+          href: '/services/warehousing-solutions',
           icon: Warehouse,
-          description: 'Bonded storage, Section 65 MOOWR & FTWZ transit',
+          description: 'Bonded storage, WMS inventory & value-added supply chain services',
         },
         {
           title: 'Cold Chain Solutions',
@@ -132,21 +132,21 @@ export function Header() {
         },
         {
           title: 'Tax & GST Compliance',
-          href: '/services/tax-gst-advisory',
+          href: '/services/tax-gst-compliance',
           icon: Calculator,
-          description: 'LUT structuring, ITC refunds & ICEGATE mismatch resolution',
+          description: 'GST refunds on zero-rated supplies, LUT filing & ITC reconciliation',
         },
         {
           title: 'Documentation & Liaison',
           href: '/services/documentation-liaison',
           icon: FileText,
-          description: 'Zero-defect trade dossiers, digital COO & DGFT liaison',
+          description: 'Custom invoices, shipping bills, CoO, ICEGATE & AD code registration',
         },
         {
           title: 'Risk Management',
-          href: '/services/customs-compliance',
+          href: '/services/risk-management',
           icon: ShieldAlert,
-          description: 'Pre-arrival clearance, HS classification & trade defense',
+          description: 'Marine cargo insurance, contingency planning & claims settlement support',
         },
       ],
     },
@@ -155,13 +155,13 @@ export function Header() {
       dropdown: [
         {
           title: 'Skylink Advantage',
-          href: '/#why-skylink',
+          href: '/why-choose-us/skylink-advantage',
           icon: ShieldCheck,
           description: 'Single-window trade governance & direct carrier access',
         },
         {
           title: 'Traditional vs Skylink',
-          href: '/#value-comparison',
+          href: '/why-choose-us/traditional-vs-skylink',
           icon: Scale,
           description: 'Operational efficiency comparison matrix',
         },
@@ -173,19 +173,19 @@ export function Header() {
       dropdown: [
         {
           title: 'Pharma',
-          href: '/industries#pharmaceuticals',
+          href: '/industries/pharma',
           icon: Pill,
           description: 'GDP cold chain & expedited ADC port clearance',
         },
         {
           title: 'Seafoods',
-          href: '/industries#seafood',
+          href: '/industries/seafoods',
           icon: Fish,
           description: 'Ultra-low deep freeze (-25°C to -40°C) & MPEDA compliance',
         },
         {
           title: 'Specialty Chemicals, Agro Fertilizers & Perishables',
-          href: '/industries#agriculture',
+          href: '/industries/specialty-chemicals-agro-fertilizers-perishables',
           icon: Wheat,
           description: 'APEDA compliance & rapid green-channel transit',
         },
@@ -193,29 +193,34 @@ export function Header() {
     },
     {
       title: 'News',
-      href: '/blog',
+      href: '/news/blogs',
       dropdown: [
         {
-          title: 'Blogs / Articles',
-          href: '/blog',
+          title: 'Blogs',
+          href: '/news/blogs',
           icon: Newspaper,
           description: 'EXIM insights, global supply chain analysis & trade intelligence',
+        },
+        {
+          title: 'Articles',
+          href: '/news/articles',
+          icon: FileText,
+          description: 'Technical whitepapers, statutory circulars & regulatory advisories',
         },
       ],
     },
     {
       title: 'Sustainability',
-      href: '/about#sustainability',
       dropdown: [
         {
           title: 'Eco-Route',
-          href: '/about#sustainability',
+          href: '/sustainability/eco-route',
           icon: Leaf,
           description: 'Carbon-efficient multimodal corridors & green logistics',
         },
         {
           title: 'AEO Green',
-          href: '/services/customs-compliance',
+          href: '/sustainability/aeo-green',
           icon: Award,
           description: 'Authorized Economic Operator paperless green-channel protocols',
         },
@@ -226,13 +231,13 @@ export function Header() {
       dropdown: [
         {
           title: 'Freight Forwarders Collaboration',
-          href: '/contact?inquiry=collaboration',
+          href: '/collaborate/freight-forwarders',
           icon: Handshake,
           description: 'Partner network, strategic co-loading & agency alliance',
         },
         {
           title: 'Collaboration Enquiry',
-          href: '/request-consultation?type=collaboration',
+          href: '/collaborate/enquiry',
           icon: Users,
           description: 'Submit an institutional trade or logistics partnership request',
         },
