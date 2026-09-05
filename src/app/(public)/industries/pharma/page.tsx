@@ -2,7 +2,7 @@ import React from 'react';
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { constructMetadata } from '@/lib/seo/metadata';
+import { getPageMetadata } from '@/lib/seo/metadata';
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { Card } from '@/components/ui/Card';
@@ -23,12 +23,8 @@ import {
   Lock,
 } from 'lucide-react';
 
-export const metadata: Metadata = constructMetadata({
-  title: 'Pharmaceutical & Healthcare EXIM Logistics | SkyLink Global Services',
-  description:
-    'GDP-compliant cold-chain logistics, zero-delay ADC customs clearance, validated active/passive packaging, and 24/7 IoT temperature telemetry for pharma exporters.',
-  path: '/industries/pharma',
-});
+export const metadata: Metadata = getPageMetadata('industriesPharma');
+
 
 export default function PharmaIndustryPage() {
   const temperatureRanges = [

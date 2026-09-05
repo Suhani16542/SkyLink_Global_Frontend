@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import type { Metadata } from 'next';
-import { constructMetadata } from '@/lib/seo/metadata';
+import { getPageMetadata } from '@/lib/seo/metadata';
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs';
 import { Button } from '@/components/ui/Button';
 import { ScrollReveal } from '@/components/animation/ScrollReveal';
@@ -18,12 +18,8 @@ import {
   HeartPulse,
 } from 'lucide-react';
 
-export const metadata: Metadata = constructMetadata({
-  title: 'Industries We Serve | SkyLink Global Services — Specialized Sector Trade Solutions',
-  description:
-    'Tailored EXIM consultancy, temperature-controlled cold chain logistics, and customs compliance for pharmaceuticals, seafood, perishables, automotive, and general cargo.',
-  path: '/industries',
-});
+export const metadata: Metadata = getPageMetadata('industries');
+
 
 const industryIcons: Record<string, React.ReactNode> = {
   pharmaceuticals: <HeartPulse className="w-6 h-6 text-sky-400" />,

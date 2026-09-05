@@ -1,14 +1,12 @@
 import React from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
 import type { Metadata } from 'next';
-import { constructMetadata } from '@/lib/seo/metadata';
+import { getPageMetadata } from '@/lib/seo/metadata';
 import { OrganizationSchema } from '@/components/seo/OrganizationSchema';
 import { LocalBusinessSchema } from '@/components/seo/LocalBusinessSchema';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { Button } from '@/components/ui/Button';
-import { Card } from '@/components/ui/Card';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { HeroSection } from '@/components/home/HeroSection';
 import { StatsCounterSection } from '@/components/home/StatsCounterSection';
@@ -29,20 +27,12 @@ import { getAllIndustries } from '@/data/industries';
 import {
   ArrowRight,
   ShieldCheck,
-  Globe2,
   Users,
   Network,
   Scale,
-  ThermometerSnowflake,
-  CheckCircle2,
 } from 'lucide-react';
 
-export const metadata: Metadata = constructMetadata({
-  title: 'SkyLink Global Services | B2B EXIM Consultancy & Global Logistics',
-  description:
-    'Connecting Markets. Delivering Opportunities. End-to-end EXIM consultancy, international freight forwarding, customs clearance, and global trade compliance.',
-  path: '/',
-});
+export const metadata: Metadata = getPageMetadata('home');
 
 export default async function HomePage() {
   const services = await getAllServices();
@@ -103,7 +93,7 @@ export default async function HomePage() {
             <SectionHeading
               badge="Our Institutional Foundation"
               title="Built to Bridge Businesses and Global Markets"
-              subtitle="SkyLink operates across DGFT regulations, customs procedures, GST advisory, and multimodal logistics to deliver dependable trade execution."
+              subtitle="As a dedicated logistics company, SkyLink integrates freight forwarding, customs clearance, warehousing, and international supply chain management to deliver dependable trade execution."
             />
 
             {/* Overlapping Visual & 4 Elevated Institutional Cards */}
@@ -113,7 +103,7 @@ export default async function HomePage() {
                 <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border border-neutral-200/80 bg-neutral-900 group">
                   <Image
                     src="https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?q=80&w=1200&auto=format&fit=crop"
-                    alt="Global trade container logistics vessel and multimodal transportation operations"
+                    alt="International logistics vessel delivering cargo transportation across global trade routes"
                     fill
                     sizes="(max-width: 768px) 100vw, 40vw"
                     className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
@@ -125,7 +115,7 @@ export default async function HomePage() {
                   <div className="relative aspect-[4/3]">
                     <Image
                       src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=800&auto=format&fit=crop"
-                      alt="Air freight logistics and international customs terminal verification"
+                      alt="Air freight forwarding and cargo logistics terminal operations"
                       fill
                       sizes="30vw"
                       className="object-cover object-center"
@@ -145,26 +135,26 @@ export default async function HomePage() {
               >
                 {[
                   {
-                    title: 'Regulatory Expertise',
-                    desc: 'DGFT, customs, and GST advisory handled by seasoned statutory trade specialists with decades of combined legal experience.',
+                    title: 'Regulatory & Trade Compliance',
+                    desc: 'DGFT, customs clearance, and GST advisory handled by seasoned statutory trade specialists with decades of combined legal experience.',
                     icon: Scale,
                     tag: 'Statutory Core',
                   },
                   {
-                    title: 'Dedicated Single Desk',
-                    desc: 'Tailored account managers providing single-point accountability for exporters, manufacturers, and global trading houses.',
+                    title: 'Dedicated Logistics Provider Desk',
+                    desc: 'Tailored account managers providing single-point accountability for exporters, manufacturers, and global enterprises.',
                     icon: Users,
                     tag: 'Single SLA',
                   },
                   {
-                    title: 'Premium Logistics Platform',
-                    desc: 'Strategic coordination across premier shipping lines, air cargo carriers, bonded warehouses, and customs brokers worldwide.',
+                    title: 'Freight Forwarding & Warehousing Network',
+                    desc: 'Strategic coordination across ocean shipping lines, air cargo carriers, bonded warehousing facilities, and 3PL logistics networks worldwide.',
                     icon: Network,
                     tag: 'Direct Capacity',
                   },
                   {
-                    title: 'Zero-Defect Process',
-                    desc: 'Transparent, proactive, and audit-proof execution ensuring full statutory incentive recovery and on-time cargo delivery.',
+                    title: 'End-to-End Cargo Transportation',
+                    desc: 'Transparent, proactive, and audit-proof execution by certified cargo freight forwarders ensuring zero delay and on-time delivery.',
                     icon: ShieldCheck,
                     tag: '100% Verified',
                   },
@@ -228,7 +218,7 @@ export default async function HomePage() {
           <div className="absolute inset-0 z-0">
             <Image
               src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=1600&auto=format&fit=crop"
-              alt="Global trade cargo ship navigating international waters"
+              alt="Global shipping company vessel navigating international trade routes"
               fill
               sizes="100vw"
               className="object-cover object-center opacity-20"
@@ -244,12 +234,12 @@ export default async function HomePage() {
             </ScrollReveal>
             <ScrollReveal effect="fade-up" delay={150}>
               <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-tight">
-                Ready to optimize your global import-export operations?
+                Ready to optimize your supply chain management and logistics?
               </h2>
             </ScrollReveal>
             <ScrollReveal effect="fade-up" delay={250}>
               <p className="text-base sm:text-xl text-neutral-300 max-w-2xl mx-auto leading-relaxed">
-                Connect with our senior EXIM consultants today for a comprehensive evaluation of your trade corridors, customs tariffs, statutory incentives, and freight budgets.
+                Connect with our logistics company specialists today for a comprehensive evaluation of your trade corridors, customs tariffs, freight forwarding rates, and warehousing requirements.
               </p>
             </ScrollReveal>
             <ScrollReveal effect="scale-up" delay={350}>
@@ -269,7 +259,7 @@ export default async function HomePage() {
                   size="lg"
                   className="w-full sm:w-auto"
                 >
-                  Contact Our Trade Desk
+                  Contact Our Logistics Desk
                 </Button>
               </div>
             </ScrollReveal>

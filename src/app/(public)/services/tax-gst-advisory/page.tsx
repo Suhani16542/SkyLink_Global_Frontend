@@ -1,4 +1,7 @@
-import TaxGstCompliancePage, { metadata } from '../tax-gst-compliance/page';
+import type { Metadata } from 'next';
+import { getPageMetadata } from '@/lib/seo/metadata';
+import TaxGstCompliancePage from '../tax-gst-compliance/page';
 
-export { metadata };
+export const metadata: Metadata = getPageMetadata('servicesTaxGstAdvisory');
+
 export default TaxGstCompliancePage;

@@ -2,7 +2,7 @@ import React from 'react';
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { constructMetadata } from '@/lib/seo/metadata';
+import { getPageMetadata } from '@/lib/seo/metadata';
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { Card } from '@/components/ui/Card';
@@ -23,12 +23,8 @@ import {
   Plane,
 } from 'lucide-react';
 
-export const metadata: Metadata = constructMetadata({
-  title: 'Specialty Chemicals, Agro Fertilizers & Perishables Logistics | SkyLink Global Services',
-  description:
-    'Controlled Atmosphere (CA) reefer containerization, APEDA certification, hazardous chemical IMO regulations, and express air cargo block space for agro and chemical exporters.',
-  path: '/industries/specialty-chemicals-agro-fertilizers-perishables',
-});
+export const metadata: Metadata = getPageMetadata('industriesChemicalsAgro');
+
 
 export default function SpecialtyChemicalsAgroPage() {
   const practiceSectors = [

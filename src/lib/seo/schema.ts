@@ -1,18 +1,50 @@
 import { siteConfig } from '@/config/site';
+import { env } from '@/config/env';
 import { getCanonicalUrl } from './metadata';
-import type { Service, BlogPost, BreadcrumbItem } from '@/types';
+import type { Service, BlogPost, BreadcrumbItem, Industry } from '@/types';
+
+/**
+ * Builds Schema.org WebSite JSON-LD
+ */
+export function generateWebSiteSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: siteConfig.name,
+    alternateName: siteConfig.shortName,
+    url: env.siteUrl,
+    description: siteConfig.description,
+    publisher: {
+      '@type': 'Organization',
+      name: siteConfig.name,
+      url: env.siteUrl,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${env.siteUrl}/logos/logo.png`,
+      },
+    },
+  };
+}
 
 /**
  * Builds Schema.org Organization JSON-LD
  */
 export function generateOrganizationSchema() {
+  const sameAs = Object.values(siteConfig.socialLinks || {}).filter(Boolean);
+
   const schema: Record<string, unknown> = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: siteConfig.name,
-    url: siteConfig.url,
-    logo: `${siteConfig.url}/logos/logo.png`,
+    alternateName: siteConfig.shortName,
+    url: env.siteUrl,
+    logo: `${env.siteUrl}/logos/logo.png`,
+    description: siteConfig.description,
   };
+
+  if (sameAs.length > 0) {
+    schema.sameAs = sameAs;
+  }
 
   if (siteConfig.contact.email) {
     schema.email = siteConfig.contact.email;
@@ -32,20 +64,24 @@ export function generateOrganizationSchema() {
 }
 
 /**
- * Builds Schema.org LocalBusiness JSON-LD
+ * Builds Schema.org LocalBusiness / ProfessionalService JSON-LD
  */
 export function generateLocalBusinessSchema() {
   const schema: Record<string, unknown> = {
     '@context': 'https://schema.org',
     '@type': 'ProfessionalService',
     name: siteConfig.name,
-    url: siteConfig.url,
+    url: env.siteUrl,
     image: siteConfig.ogImage,
     priceRange: '$$',
+    description: siteConfig.description,
   };
 
   if (siteConfig.contact.phone) {
     schema.telephone = siteConfig.contact.phone;
+  }
+  if (siteConfig.contact.email) {
+    schema.email = siteConfig.contact.email;
   }
   if (siteConfig.contact.address) {
     schema.address = {
@@ -70,9 +106,27 @@ export function generateServiceSchema(service: Service) {
     provider: {
       '@type': 'Organization',
       name: siteConfig.name,
-      url: siteConfig.url,
+      url: env.siteUrl,
     },
     url: getCanonicalUrl(`/services/${service.slug}`),
+  };
+}
+
+/**
+ * Builds Schema.org Industry / WebPage JSON-LD
+ */
+export function generateIndustrySchema(industry: Industry) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: industry.title,
+    description: industry.description,
+    url: getCanonicalUrl(`/industries/${industry.slug}`),
+    publisher: {
+      '@type': 'Organization',
+      name: siteConfig.name,
+      url: env.siteUrl,
+    },
   };
 }
 
@@ -113,7 +167,7 @@ export function generateArticleSchema(post: BlogPost) {
       name: siteConfig.name,
       logo: {
         '@type': 'ImageObject',
-        url: `${siteConfig.url}/logos/logo.png`,
+        url: `${env.siteUrl}/logos/logo.png`,
       },
     },
     image: post.featuredImage || siteConfig.ogImage,

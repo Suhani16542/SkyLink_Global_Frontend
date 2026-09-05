@@ -2,7 +2,7 @@ import React from 'react';
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { constructMetadata } from '@/lib/seo/metadata';
+import { getPageMetadata } from '@/lib/seo/metadata';
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { Card } from '@/components/ui/Card';
@@ -21,12 +21,8 @@ import {
   FileCheck2,
 } from 'lucide-react';
 
-export const metadata: Metadata = constructMetadata({
-  title: 'Seafood & Marine Exports Logistics | SkyLink Global Services',
-  description:
-    'Ultra-low deep freeze logistics (-25°C to -40°C), MPEDA compliance, EIA health certificate facilitation, and direct reefer container ocean freight for seafood exporters.',
-  path: '/industries/seafoods',
-});
+export const metadata: Metadata = getPageMetadata('industriesSeafoods');
+
 
 export default function SeafoodsIndustryPage() {
   const seafoodFeatures = [

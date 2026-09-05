@@ -1,6 +1,6 @@
 import React from 'react';
 import type { Metadata } from 'next';
-import { constructMetadata } from '@/lib/seo/metadata';
+import { getPageMetadata } from '@/lib/seo/metadata';
 import { ServiceDetailView } from '@/components/services/ServiceDetailView';
 import { ServiceSchema } from '@/components/seo/ServiceSchema';
 import {
@@ -12,13 +12,8 @@ import {
   ClipboardCheck,
 } from 'lucide-react';
 
-export const metadata: Metadata = constructMetadata({
-  title:
-    'Documentation & Liaison: Custom Invoice, Commercial Invoice, Shipping Bills, CoO, ICEGATE, AD Code & Inspection Agency Liaison | SkyLink Global Services',
-  description:
-    'Accurate documentation and effective liaison with authorities are vital for exporters to ensure compliance, avoid delays, and secure incentives. End-to-end support in preparing, validating, and coordinating essential paperwork.',
-  path: '/services/documentation-liaison',
-});
+export const metadata: Metadata = getPageMetadata('servicesDocumentationLiaison');
+
 
 const serviceData = {
   badge: 'Documentation & Regulatory Liaison',

@@ -1,6 +1,6 @@
 import React from 'react';
 import type { Metadata } from 'next';
-import { constructMetadata } from '@/lib/seo/metadata';
+import { getPageMetadata } from '@/lib/seo/metadata';
 import { ServiceDetailView } from '@/components/services/ServiceDetailView';
 import { ServiceSchema } from '@/components/seo/ServiceSchema';
 import {
@@ -12,12 +12,8 @@ import {
   CheckCircle2,
 } from 'lucide-react';
 
-export const metadata: Metadata = constructMetadata({
-  title: 'Warehousing Solutions for Exporters | SkyLink Global Services',
-  description:
-    'As an export consultant, warehousing is not just about storage—it is a strategic function that supports compliance, efficiency, and cost optimization in global trade.',
-  path: '/services/warehousing-solutions',
-});
+export const metadata: Metadata = getPageMetadata('servicesWarehousingSolutions');
+
 
 const serviceData = {
   badge: 'Strategic Warehousing & Distribution',

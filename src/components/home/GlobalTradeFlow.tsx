@@ -29,7 +29,7 @@ const tradeStages: TradeStage[] = [
   {
     step: '02',
     label: 'PORT GATEWAY',
-    sublabel: 'Customs Staging & Drayage',
+    sublabel: 'Customs Staging & 3PL Logistics',
     icon: Anchor,
     color: '#0284C7', // SkyLink Blue
   },
@@ -43,7 +43,7 @@ const tradeStages: TradeStage[] = [
   {
     step: '04',
     label: 'GLOBAL SHIPPING',
-    sublabel: 'Ocean Vessel & Air Transit',
+    sublabel: 'Ocean Freight & Cargo Transportation',
     icon: Ship,
     color: '#0EA5E9', // Cyan Blue
   },
@@ -55,6 +55,7 @@ const tradeStages: TradeStage[] = [
     color: '#6366F1', // Indigo Accent
   },
 ];
+
 
 export function GlobalTradeFlow() {
   const sectionRef = useRef<HTMLDivElement | null>(null);
@@ -141,8 +142,9 @@ export function GlobalTradeFlow() {
 
           <div>
             <p className="text-xs sm:text-sm text-neutral-300 leading-relaxed max-w-2xl mx-auto">
-              From origin to destination, SkyLink helps businesses navigate the complexities of international trade, logistics and compliance.
+              From origin to destination, our logistics company helps businesses navigate cargo transportation, freight forwarding, and international supply chain management.
             </p>
+
           </div>
         </div>
 

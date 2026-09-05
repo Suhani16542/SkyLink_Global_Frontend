@@ -2,7 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import type { Metadata } from 'next';
-import { constructMetadata } from '@/lib/seo/metadata';
+import { getPageMetadata } from '@/lib/seo/metadata';
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
@@ -21,12 +21,8 @@ import {
   BookOpen,
 } from 'lucide-react';
 
-export const metadata: Metadata = constructMetadata({
-  title: 'Global Trade & Logistics Blogs | SkyLink Insights',
-  description:
-    'Read the latest blogs on international trade compliance, customs brokerage, cold-chain logistics engineering, and direct carrier freight negotiation.',
-  path: '/news/blogs',
-});
+export const metadata: Metadata = getPageMetadata('newsBlogs');
+
 
 const blogImages: Record<string, string> = {
   'navigating-global-trade-compliance-2026': 'https://images.unsplash.com/photo-1450133064473-71024230f91b?q=80&w=1200&auto=format&fit=crop',

@@ -2,7 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import type { Metadata } from 'next';
-import { constructMetadata } from '@/lib/seo/metadata';
+import { getPageMetadata } from '@/lib/seo/metadata';
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { Button } from '@/components/ui/Button';
@@ -14,12 +14,8 @@ import {
   CheckCircle2,
 } from 'lucide-react';
 
-export const metadata: Metadata = constructMetadata({
-  title: 'EXIM Consultancy & Global Logistics Services | SkyLink Global Services',
-  description:
-    'Comprehensive directory of SkyLink services: DGFT licensing, export incentives (RoDTEP, EPCG), customs compliance, ocean/air shipping, cold chain, tax advisory, and trade risk management.',
-  path: '/services',
-});
+export const metadata: Metadata = getPageMetadata('services');
+
 
 const serviceImages: Record<string, string> = {
   'logistics-shipping': '/images/services/logistics-shipping.jpg',

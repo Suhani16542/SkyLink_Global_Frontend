@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import type { Metadata } from 'next';
-import { constructMetadata } from '@/lib/seo/metadata';
+import { getPageMetadata } from '@/lib/seo/metadata';
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
@@ -23,12 +23,8 @@ import {
   Filter,
 } from 'lucide-react';
 
-export const metadata: Metadata = constructMetadata({
-  title: 'Statutory Articles & EXIM Policy Briefings | SkyLink Global Services',
-  description:
-    'Access technical articles, regulatory whitepapers, DGFT trade notice assessments, customs tariff analyses, and statutory EXIM advisories.',
-  path: '/news/articles',
-});
+export const metadata: Metadata = getPageMetadata('newsArticles');
+
 
 interface ArticleItem {
   id: string;

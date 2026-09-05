@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { constructMetadata } from '@/lib/seo/metadata';
+import { getPageMetadata } from '@/lib/seo/metadata';
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { Card } from '@/components/ui/Card';
@@ -21,12 +21,8 @@ import {
   Sparkles,
 } from 'lucide-react';
 
-export const metadata: Metadata = constructMetadata({
-  title: 'Traditional vs SkyLink | Operational Value & Efficiency Comparison Matrix',
-  description:
-    'Compare traditional freight forwarding vs. SkyLink integrated trade governance across rate transparency, customs dwell time, statutory compliance, cold-chain telemetry, and cash flow.',
-  path: '/why-choose-us/traditional-vs-skylink',
-});
+export const metadata: Metadata = getPageMetadata('whyTraditionalVsSkyLink');
+
 
 interface ComparisonRow {
   dimension: string;

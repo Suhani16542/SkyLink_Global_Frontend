@@ -1,6 +1,6 @@
 import React from 'react';
 import type { Metadata } from 'next';
-import { constructMetadata } from '@/lib/seo/metadata';
+import { getPageMetadata } from '@/lib/seo/metadata';
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { Card } from '@/components/ui/Card';
@@ -16,12 +16,8 @@ import {
   Scale,
 } from 'lucide-react';
 
-export const metadata: Metadata = constructMetadata({
-  title: 'About Us | SkyLink Global Services — B2B Trade & Logistics Leadership',
-  description:
-    'Discover SkyLink Global Services: our vision, mission, DGFT and customs regulatory expertise, and our global logistics coordination network.',
-  path: '/about',
-});
+export const metadata: Metadata = getPageMetadata('about');
+
 
 export default function AboutPage() {
   return (

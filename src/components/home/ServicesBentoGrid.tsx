@@ -181,20 +181,21 @@ export function ServicesBentoGrid({ services }: ServicesBentoGridProps) {
           <ScrollReveal effect="fade-down" delay={0}>
             <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sky-100/80 border border-sky-200 text-xs font-bold text-[#0284C7] uppercase tracking-wider shadow-xs">
               <Sparkles className="w-3.5 h-3.5 text-[#0284C7]" />
-              <span>Comprehensive EXIM Portfolio</span>
+              <span>Comprehensive Logistics &amp; EXIM Portfolio</span>
             </span>
           </ScrollReveal>
           <ScrollReveal effect="fade-up" delay={80}>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0A2540] tracking-tight">
-              End-to-End International Trade Capabilities
+              End-to-End Logistics Services &amp; Freight Forwarding Solutions
             </h2>
           </ScrollReveal>
           <ScrollReveal effect="fade-up" delay={160}>
             <p className="text-sm sm:text-base text-neutral-600 leading-relaxed max-w-2xl mx-auto">
-              From statutory DGFT authorizations to refrigerated ocean freight allocations and customs brokerage, we orchestrate every dimension of cross-border commerce.
+              From statutory customs clearance and bonded warehousing to international cargo freight forwarding, our logistics company orchestrates every dimension of cross-border commerce.
             </p>
           </ScrollReveal>
         </div>
+
 
         {/* Interactive Category Filter Pills */}
         <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-10 sm:mb-14">

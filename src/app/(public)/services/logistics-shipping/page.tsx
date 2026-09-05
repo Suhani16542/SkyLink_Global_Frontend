@@ -1,6 +1,6 @@
 import React from 'react';
 import type { Metadata } from 'next';
-import { constructMetadata } from '@/lib/seo/metadata';
+import { getPageMetadata } from '@/lib/seo/metadata';
 import { ServiceDetailView } from '@/components/services/ServiceDetailView';
 import { ServiceSchema } from '@/components/seo/ServiceSchema';
 import {
@@ -11,13 +11,8 @@ import {
   ShieldAlert,
 } from 'lucide-react';
 
-export const metadata: Metadata = constructMetadata({
-  title:
-    'Logistics & Shipping: Freight Negotiation, Route Optimization, Consolidations, Incoterms Advisory & Marine Insurance | SkyLink Global Services',
-  description:
-    'Strong logistics and shipping management ensures exporters achieve cost efficiency, timely delivery, and risk protection in global trade. Freight negotiation, route optimization, consolidations, Incoterms advisory, and marine insurance.',
-  path: '/services/logistics-shipping',
-});
+export const metadata: Metadata = getPageMetadata('servicesLogisticsShipping');
+
 
 const serviceData = {
   badge: 'Global Freight & Multimodal Logistics',

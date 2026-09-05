@@ -1,6 +1,6 @@
 import React from 'react';
 import type { Metadata } from 'next';
-import { constructMetadata } from '@/lib/seo/metadata';
+import { getPageMetadata } from '@/lib/seo/metadata';
 import { ServiceDetailView } from '@/components/services/ServiceDetailView';
 import { ServiceSchema } from '@/components/seo/ServiceSchema';
 import {
@@ -11,13 +11,8 @@ import {
   Compass,
 } from 'lucide-react';
 
-export const metadata: Metadata = constructMetadata({
-  title:
-    'Risk Management in Exports: Insurance, Contingency Planning & Claims Support | SkyLink Global Services',
-  description:
-    'Effective risk management is essential for exporters to safeguard against financial losses, shipment delays, and unforeseen disruptions. Insurance coverage, contingency planning, and claims support.',
-  path: '/services/risk-management',
-});
+export const metadata: Metadata = getPageMetadata('servicesRiskManagement');
+
 
 const serviceData = {
   badge: 'Trade Defense & Risk Advisory',

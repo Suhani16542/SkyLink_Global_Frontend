@@ -144,7 +144,7 @@ export function StrategicPartnerSection() {
                   Multimodal Freight Velocity
                 </h3>
                 <p className="text-xs text-neutral-200 leading-relaxed">
-                  Contracted volume allocations across Maersk, MSC, and CMA CGM maritime lanes with integrated CFS inland hub connectivity and zero space roll-overs.
+                  Contracted volume allocations across premier ocean shipping lines and scheduled air cargo routes with integrated CFS inland hub connectivity and zero space roll-overs.
                 </p>
 
                 {/* Floating Corridor Pill */}

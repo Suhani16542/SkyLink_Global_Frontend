@@ -2,7 +2,7 @@ import React from 'react';
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { constructMetadata } from '@/lib/seo/metadata';
+import { getPageMetadata } from '@/lib/seo/metadata';
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { Card } from '@/components/ui/Card';
@@ -21,12 +21,8 @@ import {
   Globe2,
 } from 'lucide-react';
 
-export const metadata: Metadata = constructMetadata({
-  title: 'AEO Green Protocols & Fast-Track Customs | SkyLink Global Services',
-  description:
-    'Authorized Economic Operator (AEO T1/T2/T3/LO) paperless green-channel protocols, Direct Port Delivery (DPD), expedited green customs clearance, and reduced terminal dwell times.',
-  path: '/sustainability/aeo-green',
-});
+export const metadata: Metadata = getPageMetadata('sustainabilityAeoGreen');
+
 
 export default function AeoGreenPage() {
   const aeoTiers = [

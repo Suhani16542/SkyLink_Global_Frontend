@@ -1,4 +1,7 @@
-import RiskManagementPage, { metadata } from '../risk-management/page';
+import type { Metadata } from 'next';
+import { getPageMetadata } from '@/lib/seo/metadata';
+import RiskManagementPage from '../risk-management/page';
 
-export { metadata };
+export const metadata: Metadata = getPageMetadata('servicesTradeRiskManagement');
+
 export default RiskManagementPage;

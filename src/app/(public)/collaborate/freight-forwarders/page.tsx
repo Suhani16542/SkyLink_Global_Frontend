@@ -2,7 +2,7 @@ import React from 'react';
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { constructMetadata } from '@/lib/seo/metadata';
+import { getPageMetadata } from '@/lib/seo/metadata';
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { Card } from '@/components/ui/Card';
@@ -23,12 +23,8 @@ import {
   FileCheck2,
 } from 'lucide-react';
 
-export const metadata: Metadata = constructMetadata({
-  title: 'Freight Forwarders Collaboration & Strategic Alliances | SkyLink Global Services',
-  description:
-    'Collaborate with SkyLink: strategic agency partnerships, co-loading alliances, neutral EXIM statutory facilitation, customs clearance handling, and port drayage in India.',
-  path: '/collaborate/freight-forwarders',
-});
+export const metadata: Metadata = getPageMetadata('collaborateFreightForwarders');
+
 
 export default function FreightForwardersCollaborationPage() {
   const allianceBenefits = [

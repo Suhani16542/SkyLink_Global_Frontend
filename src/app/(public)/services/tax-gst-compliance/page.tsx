@@ -1,16 +1,12 @@
 import React from 'react';
 import type { Metadata } from 'next';
-import { constructMetadata } from '@/lib/seo/metadata';
+import { getPageMetadata } from '@/lib/seo/metadata';
 import { ServiceDetailView } from '@/components/services/ServiceDetailView';
 import { ServiceSchema } from '@/components/seo/ServiceSchema';
 import { Receipt, FileSpreadsheet, RefreshCw, Calculator, FileCheck, Scale } from 'lucide-react';
 
-export const metadata: Metadata = constructMetadata({
-  title: 'Tax Advisory: GST Refunds, LUT Filing & ITC Reconciliation | SkyLink Global Services',
-  description:
-    'Tax advisory is a critical service for exporters, ensuring compliance with GST regulations while optimizing cash flow. Securing GST refunds, LUT filings, and ITC reconciliations.',
-  path: '/services/tax-gst-compliance',
-});
+export const metadata: Metadata = getPageMetadata('servicesTaxGstCompliance');
+
 
 const serviceData = {
   badge: 'Tax & GST Compliance Practice',

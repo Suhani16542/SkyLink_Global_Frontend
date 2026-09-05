@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
+
 import {
   Globe2,
   Ship,
@@ -417,36 +418,191 @@ const googleMapCustomStyles = [
   },
 ];
 
+// Custom type definitions for Google Maps window
+type GoogleMapsWindow = typeof window & {
+  google?: {
+    maps: {
+      Map: new (element: HTMLElement, options: Record<string, unknown>) => {
+        panTo: (latLng: { lat: number; lng: number }) => void;
+        setZoom: (zoom: number) => void;
+      };
+      Marker: new (options: Record<string, unknown>) => {
+        setMap: (map: unknown) => void;
+        addListener: (event: string, handler: () => void) => void;
+      };
+      Polyline: new (options: Record<string, unknown>) => {
+        setMap: (map: unknown) => void;
+      };
+      InfoWindow: new () => {
+        setContent: (html: string) => void;
+        open: (map: unknown, marker: unknown) => void;
+      };
+      MapTypeId: { ROADMAP: string };
+      MapTypeControlStyle: { HORIZONTAL_BAR: number };
+      ControlPosition: { TOP_RIGHT: number; RIGHT_BOTTOM: number; RIGHT_TOP: number };
+      SymbolPath: { CIRCLE: number };
+      Animation: { DROP: number };
+    };
+  };
+};
+
 export function GlobalRouteMap() {
   const [activeCorridorId, setActiveCorridorId] = useState<string>('europe');
-  const [selectedHub, setSelectedHub] = useState<TradeHubLocation | null>(null);
-  const [isMapLoaded, setIsMapLoaded] = useState<boolean>(false);
-  const [useFallbackEmbed, setUseFallbackEmbed] = useState<boolean>(false);
+  const [useFallbackEmbed, setUseFallbackEmbed] = useState<boolean>(() => !process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY);
 
   const mapContainerRef = useRef<HTMLDivElement | null>(null);
-  const mapInstanceRef = useRef<any>(null);
-  const markersRef = useRef<any[]>([]);
-  const polylinesRef = useRef<any[]>([]);
-  const infoWindowRef = useRef<any>(null);
+  const mapInstanceRef = useRef<{ panTo: (pos: { lat: number; lng: number }) => void; setZoom: (zoom: number) => void } | null>(null);
+  const markersRef = useRef<Array<{ setMap: (map: unknown) => void }>>([]);
+  const polylinesRef = useRef<Array<{ setMap: (map: unknown) => void }>>([]);
+  const infoWindowRef = useRef<{ setContent: (html: string) => void; open: (map: unknown, marker: unknown) => void } | null>(null);
 
   const currentCorridor =
     tradeCorridors.find((c) => c.id === activeCorridorId) || tradeCorridors[0];
 
   const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || '';
 
+  // Render Markers on Real Google Map
+  const renderMapMarkers = useCallback((map: unknown, googleMaps: NonNullable<GoogleMapsWindow['google']>['maps']) => {
+    // Clear previous markers
+    markersRef.current.forEach((m) => m.setMap(null));
+    markersRef.current = [];
+
+    tradeHubLocations.forEach((hub) => {
+      const isOrigin = hub.isOrigin;
+
+      // Custom Google Maps Pin Icon
+      const markerIcon = {
+        path: googleMaps.SymbolPath.CIRCLE,
+        fillColor: isOrigin ? '#EF4444' : hub.pinColor || '#0284C7',
+        fillOpacity: 1,
+        strokeWeight: 2,
+        strokeColor: '#FFFFFF',
+        scale: isOrigin ? 8 : 6,
+      };
+
+      const marker = new googleMaps.Marker({
+        position: { lat: hub.lat, lng: hub.lng },
+        map: map,
+        title: `${hub.flag} ${hub.shortLabel} - ${hub.name}`,
+        icon: markerIcon,
+        animation: isOrigin ? googleMaps.Animation.DROP : undefined,
+      });
+
+      marker.addListener('click', () => {
+        if (infoWindowRef.current) {
+          const contentString = `
+            <div style="font-family: inherit; padding: 6px; max-width: 240px; color: #0F172A;">
+              <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 4px;">
+                <span style="font-size: 16px;">${hub.flag}</span>
+                <strong style="font-size: 13px; color: #0A2540;">${hub.shortLabel}</strong>
+              </div>
+              <div style="font-size: 11px; color: #0284C7; font-weight: 600; margin-bottom: 4px;">${hub.role}</div>
+              <div style="font-size: 11px; color: #475569; line-height: 1.4; margin-bottom: 8px;">
+                <strong>Ports:</strong> ${hub.ports}
+              </div>
+              <a href="${hub.googleMapsUrl}" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 700; color: #0284C7; text-decoration: none;">
+                Open in Google Maps &rarr;
+              </a>
+            </div>
+          `;
+          infoWindowRef.current.setContent(contentString);
+          infoWindowRef.current.open(map, marker);
+        }
+      });
+
+      markersRef.current.push(marker);
+    });
+  }, []);
+
+  // Render Polylines for Trade Routes
+  const renderCorridorPolylines = useCallback((map: unknown, googleMaps: NonNullable<GoogleMapsWindow['google']>['maps'], currentActiveId: string) => {
+    // Clear previous polylines
+    polylinesRef.current.forEach((p) => p.setMap(null));
+    polylinesRef.current = [];
+
+    Object.entries(corridorGeodesicPaths).forEach(([corridorId, pathPoints]) => {
+      const isSelected = corridorId === currentActiveId;
+
+      const polyline = new googleMaps.Polyline({
+        path: pathPoints,
+        geodesic: true,
+        strokeColor:
+          corridorId === 'europe'
+            ? '#0284C7'
+            : corridorId === 'middle-east'
+            ? '#059669'
+            : corridorId === 'americas'
+            ? '#4F46E5'
+            : '#D97706',
+        strokeOpacity: isSelected ? 0.95 : 0.35,
+        strokeWeight: isSelected ? 4 : 2,
+        map: map,
+      });
+
+      polylinesRef.current.push(polyline);
+    });
+  }, []);
+
+  // Function to initialize Google Map instance
+  const initGoogleMap = useCallback(() => {
+    const win = typeof window !== 'undefined' ? (window as GoogleMapsWindow) : undefined;
+    if (!mapContainerRef.current || !win?.google?.maps) return;
+
+    try {
+      const googleMaps = win.google.maps;
+
+      const mapOptions = {
+        center: currentCorridor.center,
+        zoom: currentCorridor.zoom,
+        minZoom: 2,
+        maxZoom: 14,
+        mapTypeId: googleMaps.MapTypeId.ROADMAP,
+        styles: googleMapCustomStyles,
+        mapTypeControl: true,
+        mapTypeControlOptions: {
+          style: googleMaps.MapTypeControlStyle.HORIZONTAL_BAR,
+          position: googleMaps.ControlPosition.TOP_RIGHT,
+        },
+        zoomControl: true,
+        zoomControlOptions: {
+          position: googleMaps.ControlPosition.RIGHT_BOTTOM,
+        },
+        scaleControl: true,
+        streetViewControl: false,
+        fullscreenControl: true,
+        fullscreenControlOptions: {
+          position: googleMaps.ControlPosition.RIGHT_TOP,
+        },
+        gestureHandling: 'cooperative',
+      };
+
+      const map = new googleMaps.Map(mapContainerRef.current, mapOptions);
+      mapInstanceRef.current = map;
+      infoWindowRef.current = new googleMaps.InfoWindow();
+
+      // Draw all Real Hub Markers
+      renderMapMarkers(map, googleMaps);
+
+      // Draw all Real Corridor Polylines
+      renderCorridorPolylines(map, googleMaps, activeCorridorId);
+    } catch (err) {
+      console.warn('Google Maps JS API init error, activating fallback:', err);
+      setUseFallbackEmbed(true);
+    }
+  }, [currentCorridor, activeCorridorId, renderMapMarkers, renderCorridorPolylines]);
+
   // 1. Initialize Real Google Maps Platform via JS API
   useEffect(() => {
     let isCancelled = false;
+    const win = typeof window !== 'undefined' ? (window as GoogleMapsWindow) : undefined;
 
     // Check if google maps script is already loaded
-    if (typeof window !== 'undefined' && (window as any).google && (window as any).google.maps) {
+    if (win?.google?.maps) {
       initGoogleMap();
       return;
     }
 
     if (!apiKey) {
-      // If no API key is provided, enable real interactive Google Maps embed fallback
-      setUseFallbackEmbed(true);
       return;
     }
 
@@ -481,151 +637,20 @@ export function GlobalRouteMap() {
     return () => {
       isCancelled = true;
     };
-  }, [apiKey]);
-
-  // Function to initialize Google Map instance
-  const initGoogleMap = () => {
-    if (!mapContainerRef.current || !(window as any).google?.maps) return;
-
-    try {
-      const google = (window as any).google;
-
-      const mapOptions = {
-        center: currentCorridor.center,
-        zoom: currentCorridor.zoom,
-        minZoom: 2,
-        maxZoom: 14,
-        mapTypeId: google.maps.MapTypeId.ROADMAP,
-        styles: googleMapCustomStyles,
-        mapTypeControl: true,
-        mapTypeControlOptions: {
-          style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
-          position: google.maps.ControlPosition.TOP_RIGHT,
-        },
-        zoomControl: true,
-        zoomControlOptions: {
-          position: google.maps.ControlPosition.RIGHT_BOTTOM,
-        },
-        scaleControl: true,
-        streetViewControl: false,
-        fullscreenControl: true,
-        fullscreenControlOptions: {
-          position: google.maps.ControlPosition.RIGHT_TOP,
-        },
-        gestureHandling: 'cooperative',
-      };
-
-      const map = new google.maps.Map(mapContainerRef.current, mapOptions);
-      mapInstanceRef.current = map;
-      infoWindowRef.current = new google.maps.InfoWindow();
-
-      // Draw all Real Hub Markers
-      renderMapMarkers(map, google);
-
-      // Draw all Real Corridor Polylines
-      renderCorridorPolylines(map, google, activeCorridorId);
-
-      setIsMapLoaded(true);
-    } catch (err) {
-      console.warn('Google Maps JS API init error, activating fallback:', err);
-      setUseFallbackEmbed(true);
-    }
-  };
-
-  // Render Markers on Real Google Map
-  const renderMapMarkers = (map: any, google: any) => {
-    // Clear previous markers
-    markersRef.current.forEach((m) => m.setMap(null));
-    markersRef.current = [];
-
-    tradeHubLocations.forEach((hub) => {
-      const isOrigin = hub.isOrigin;
-
-      // Custom Google Maps Pin Icon
-      const markerIcon = {
-        path: google.maps.SymbolPath.CIRCLE,
-        fillColor: isOrigin ? '#EF4444' : hub.pinColor || '#0284C7',
-        fillOpacity: 1,
-        strokeWeight: 2,
-        strokeColor: '#FFFFFF',
-        scale: isOrigin ? 8 : 6,
-      };
-
-      const marker = new google.maps.Marker({
-        position: { lat: hub.lat, lng: hub.lng },
-        map: map,
-        title: `${hub.flag} ${hub.shortLabel} - ${hub.name}`,
-        icon: markerIcon,
-        animation: isOrigin ? google.maps.Animation.DROP : undefined,
-      });
-
-      marker.addListener('click', () => {
-        setSelectedHub(hub);
-        if (infoWindowRef.current) {
-          const contentString = `
-            <div style="font-family: inherit; padding: 6px; max-width: 240px; color: #0F172A;">
-              <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 4px;">
-                <span style="font-size: 16px;">${hub.flag}</span>
-                <strong style="font-size: 13px; color: #0A2540;">${hub.shortLabel}</strong>
-              </div>
-              <div style="font-size: 11px; color: #0284C7; font-weight: 600; margin-bottom: 4px;">${hub.role}</div>
-              <div style="font-size: 11px; color: #475569; line-height: 1.4; margin-bottom: 8px;">
-                <strong>Ports:</strong> ${hub.ports}
-              </div>
-              <a href="${hub.googleMapsUrl}" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 700; color: #0284C7; text-decoration: none;">
-                Open in Google Maps &rarr;
-              </a>
-            </div>
-          `;
-          infoWindowRef.current.setContent(contentString);
-          infoWindowRef.current.open(map, marker);
-        }
-      });
-
-      markersRef.current.push(marker);
-    });
-  };
-
-  // Render Polylines for Trade Routes
-  const renderCorridorPolylines = (map: any, google: any, currentActiveId: string) => {
-    // Clear previous polylines
-    polylinesRef.current.forEach((p) => p.setMap(null));
-    polylinesRef.current = [];
-
-    Object.entries(corridorGeodesicPaths).forEach(([corridorId, pathPoints]) => {
-      const isSelected = corridorId === currentActiveId;
-
-      const polyline = new google.maps.Polyline({
-        path: pathPoints,
-        geodesic: true,
-        strokeColor:
-          corridorId === 'europe'
-            ? '#0284C7'
-            : corridorId === 'middle-east'
-            ? '#059669'
-            : corridorId === 'americas'
-            ? '#4F46E5'
-            : '#D97706',
-        strokeOpacity: isSelected ? 0.95 : 0.35,
-        strokeWeight: isSelected ? 4 : 2,
-        map: map,
-      });
-
-      polylinesRef.current.push(polyline);
-    });
-  };
+  }, [apiKey, initGoogleMap]);
 
   // Handle Corridor Change
   const handleCorridorSelect = (corridorId: string) => {
     setActiveCorridorId(corridorId);
     const selected = tradeCorridors.find((c) => c.id === corridorId);
-    if (selected && mapInstanceRef.current && (window as any).google?.maps) {
-      const google = (window as any).google;
+    const win = typeof window !== 'undefined' ? (window as GoogleMapsWindow) : undefined;
+    if (selected && mapInstanceRef.current && win?.google?.maps) {
       mapInstanceRef.current.panTo(selected.center);
       mapInstanceRef.current.setZoom(selected.zoom);
-      renderCorridorPolylines(mapInstanceRef.current, google, corridorId);
+      renderCorridorPolylines(mapInstanceRef.current, win.google.maps, corridorId);
     }
   };
+
 
   // Fallback Google Maps iframe URL based on active corridor
   const fallbackEmbedUrl =

@@ -2,7 +2,7 @@ import React from 'react';
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { constructMetadata } from '@/lib/seo/metadata';
+import { getPageMetadata } from '@/lib/seo/metadata';
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { Card } from '@/components/ui/Card';
@@ -26,12 +26,8 @@ import {
   Headphones,
 } from 'lucide-react';
 
-export const metadata: Metadata = constructMetadata({
-  title: 'The SkyLink Advantage | Single-Window EXIM & Global Logistics Governance',
-  description:
-    'Discover the SkyLink Advantage: single-window cross-border trade governance, direct carrier access, zero-delay customs clearance, and GDP-compliant cold chain precision.',
-  path: '/why-choose-us/skylink-advantage',
-});
+export const metadata: Metadata = getPageMetadata('whySkyLinkAdvantage');
+
 
 export default function SkylinkAdvantagePage() {
   const coreAdvantages = [
@@ -50,7 +46,7 @@ export default function SkylinkAdvantagePage() {
       icon: TrendingDown,
       badge: 'RATE TRANSPARENCY',
       title: 'Direct Carrier Contracts',
-      desc: 'Contracted volume agreements with premier shipping lines (Maersk, MSC, CMA CGM) and scheduled air cargo operators guarantee fixed all-in pricing with zero hidden destination fees.',
+      desc: 'Contracted volume agreements with premier global shipping lines and scheduled air cargo operators guarantee fixed all-in pricing with zero hidden destination fees.',
       highlights: [
         'Pre-negotiated volume tier freight tariffs',
         'Zero unauthorized origin/destination broker markups',

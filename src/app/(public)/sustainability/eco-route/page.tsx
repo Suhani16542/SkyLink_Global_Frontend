@@ -2,7 +2,7 @@ import React from 'react';
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { constructMetadata } from '@/lib/seo/metadata';
+import { getPageMetadata } from '@/lib/seo/metadata';
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { Card } from '@/components/ui/Card';
@@ -24,12 +24,8 @@ import {
   Compass,
 } from 'lucide-react';
 
-export const metadata: Metadata = constructMetadata({
-  title: 'Eco-Route Multimodal Green Logistics | SkyLink Global Services',
-  description:
-    'Optimize supply chain carbon efficiency through multimodal coastal shipping, electrified rail freight corridors, Scope 3 emissions advisory, and eco-route logistics.',
-  path: '/sustainability/eco-route',
-});
+export const metadata: Metadata = getPageMetadata('sustainabilityEcoRoute');
+
 
 export default function EcoRoutePage() {
   const multimodalSolutions = [

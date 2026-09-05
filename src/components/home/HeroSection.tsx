@@ -24,8 +24,8 @@ const HERO_SLIDES: HeroSlide[] = [
     id: 'slide-shipping',
     themeName: 'Ocean Freight',
     badge: 'Global Shipping & Cargo',
-    heading: 'Connecting Global Trade.',
-    subtext: 'Reliable freight solutions across borders.',
+    heading: 'Global Logistics Company & Freight Forwarding.',
+    subtext: 'End-to-end logistics services, cargo transportation, and international supply chain management.',
     primaryCta: { text: 'Explore Services', href: '/services' },
     secondaryCta: { text: 'Request Consultation', href: '/request-consultation' },
     videoLocal: '/videos/video1-shipping.mp4',
@@ -37,8 +37,8 @@ const HERO_SLIDES: HeroSlide[] = [
     id: 'slide-employee-factory',
     themeName: 'Enterprise Operations',
     badge: 'Operations & Trade Compliance',
-    heading: 'Logistics Built Around Your Business.',
-    subtext: 'Reliable operations that keep your supply chain moving.',
+    heading: 'Logistics Services Built Around Your Business.',
+    subtext: 'Your trusted logistics provider for supply chain management and international logistics.',
     primaryCta: { text: 'Our Solutions', href: '/services' },
     secondaryCta: { text: 'Consult Specialist', href: '/contact' },
     videoLocal: '/videos/video2-employee-factory.mp4',
@@ -50,9 +50,9 @@ const HERO_SLIDES: HeroSlide[] = [
     id: 'slide-warehouse',
     themeName: 'Warehousing',
     badge: 'Hub Storage & Distribution',
-    heading: 'Smarter Logistics. Seamless Operations.',
-    subtext: 'Efficient warehousing and supply chain solutions.',
-    primaryCta: { text: 'Discover More', href: '/about' },
+    heading: 'Strategic Warehousing & 3PL Logistics.',
+    subtext: 'Bonded storage facilities, inventory control, and reliable cargo transportation.',
+    primaryCta: { text: 'Discover More', href: '/services/warehousing-solutions' },
     secondaryCta: { text: 'Get In Touch', href: '/contact' },
     videoLocal: '/videos/video3-warehouse.mp4',
     videoCdn: 'https://assets.mixkit.co/videos/23011/23011-720.mp4',
@@ -63,8 +63,8 @@ const HERO_SLIDES: HeroSlide[] = [
     id: 'slide-port-containers',
     themeName: 'Import & Export',
     badge: 'Port Terminals & Customs',
-    heading: 'Powering Global Trade.',
-    subtext: 'Seamless import and export solutions across markets.',
+    heading: 'Premier Shipping Company & Cargo Transportation.',
+    subtext: 'Expert cargo freight forwarders powering cross-border trade execution.',
     primaryCta: { text: 'Learn More', href: '/services' },
     secondaryCta: { text: 'Trade Advisory', href: '/request-consultation' },
     videoLocal: '/videos/video5-port-containers.mp4',
@@ -73,6 +73,7 @@ const HERO_SLIDES: HeroSlide[] = [
       'https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?q=80&w=1920&auto=format&fit=crop',
   },
 ];
+
 
 const SLIDE_DURATION = 6500; // 6.5s per video
 const PLAYBACK_RATE = 1.15; // 1.15x energetic playback speed

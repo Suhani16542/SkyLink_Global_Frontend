@@ -24,9 +24,10 @@ export function WhySkyLinkBento() {
       icon: TrendingDown,
       badge: 'RATE TRANSPARENCY',
       title: 'Direct Shipping Line Tariffs',
-      desc: 'Contracted volume agreements with premier ocean and air carriers (Maersk, MSC, CMA CGM) ensuring fixed all-in pricing with no hidden destination fees.',
+      desc: 'Contracted volume agreements with premier global shipping lines and air cargo carriers ensuring fixed all-in pricing with no hidden destination fees.',
       isHighlighted: false,
     },
+
     {
       icon: Scale,
       badge: 'STATUTORY CORE',
