@@ -56,7 +56,11 @@ export default async function BlogPage() {
             <div className="rounded-3xl border border-neutral-200 bg-white overflow-hidden shadow-md hover-lift transition-all grid grid-cols-1 lg:grid-cols-12 gap-8 items-center p-6 sm:p-8">
               <div className="lg:col-span-6 relative aspect-[16/10] rounded-2xl overflow-hidden shadow-sm">
                 <Image
-                  src={blogImages[featuredPost.slug] || blogImages['navigating-global-trade-compliance-2026']}
+                  src={
+                    featuredPost.featuredImage ||
+                    blogImages[featuredPost.slug] ||
+                    'https://images.unsplash.com/photo-1450133064473-71024230f91b?q=80&w=1200&auto=format&fit=crop'
+                  }
                   alt={featuredPost.title}
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
@@ -119,7 +123,11 @@ export default async function BlogPage() {
                 >
                   <div className="relative aspect-[16/10] w-full overflow-hidden">
                     <Image
-                      src={blogImages[post.slug] || blogImages['optimizing-cold-chain-pharmaceutical-shipments']}
+                      src={
+                        post.featuredImage ||
+                        blogImages[post.slug] ||
+                        'https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=1200&auto=format&fit=crop'
+                      }
                       alt={post.title}
                       fill
                       sizes="(max-width: 768px) 100vw, 50vw"

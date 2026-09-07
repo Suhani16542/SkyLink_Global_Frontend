@@ -17,6 +17,8 @@ interface BlogPostPageProps {
   }>;
 }
 
+export const dynamicParams = true;
+
 export async function generateStaticParams() {
   const posts = await getAllBlogPosts();
   return posts.map((post) => ({
@@ -118,15 +120,36 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </div>
         )}
 
+        {/* Featured Image if present */}
+        {post.featuredImage && (
+          <div className="mb-10 rounded-2xl overflow-hidden border border-neutral-200 shadow-sm relative aspect-[16/9]">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={post.featuredImage}
+              alt={post.title}
+              className="w-full h-full object-cover"
+            />
+          </div>
+        )}
+
         {/* Article Text Content */}
         <article className="prose prose-neutral max-w-none text-neutral-800 leading-relaxed text-base space-y-6">
-          <div className="rounded-xl border-l-4 border-[#0284C7] bg-sky-50/60 p-5 text-sm sm:text-base text-neutral-800 italic leading-relaxed">
-            {post.excerpt}
-          </div>
+          {post.excerpt && (
+            <div className="rounded-xl border-l-4 border-[#0284C7] bg-sky-50/60 p-5 text-sm sm:text-base text-neutral-800 italic leading-relaxed">
+              {post.excerpt}
+            </div>
+          )}
 
-          <div className="pt-4 whitespace-pre-line text-neutral-800 leading-relaxed space-y-4">
-            {post.content}
-          </div>
+          {post.content && post.content.includes('<') ? (
+            <div
+              className="pt-4 text-neutral-800 leading-relaxed space-y-4 article-rich-content"
+              dangerouslySetInnerHTML={{ __html: post.content }}
+            />
+          ) : (
+            <div className="pt-4 whitespace-pre-line text-neutral-800 leading-relaxed space-y-4">
+              {post.content}
+            </div>
+          )}
         </article>
 
         {/* Tags */}

@@ -2,6 +2,7 @@ import React from 'react';
 import type { Metadata } from 'next';
 import { constructMetadata } from '@/lib/seo/metadata';
 import { AdminLayoutShell } from '@/components/admin/AdminLayoutShell';
+import { AuthProvider } from '@/context/AuthContext';
 
 export const metadata: Metadata = constructMetadata({
   title: 'Operations Portal | SkyLink Global Services',
@@ -15,5 +16,9 @@ export default function AdminLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <AdminLayoutShell>{children}</AdminLayoutShell>;
+  return (
+    <AuthProvider>
+      <AdminLayoutShell>{children}</AdminLayoutShell>
+    </AuthProvider>
+  );
 }

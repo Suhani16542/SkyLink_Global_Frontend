@@ -1,28 +1,58 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { SkyLinkLogo } from '@/components/ui/SkyLinkLogo';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
-import { Lock, Mail, Eye, EyeOff, ShieldCheck, ArrowRight } from 'lucide-react';
+import { useAuth } from '@/context/AuthContext';
+import { Lock, Mail, Eye, EyeOff, ShieldCheck, ArrowRight, AlertCircle } from 'lucide-react';
 
 export default function AdminLoginPage() {
   const router = useRouter();
-  const [email, setEmail] = useState('admin@skylinkglobal.com');
-  const [password, setPassword] = useState('••••••••••••');
+  const { login, isAuthenticated, isLoading: isAuthLoading } = useAuth();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  const handleLogin = (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsLoading(true);
-    // UI-only simulation
-    setTimeout(() => {
+  // If already authenticated, redirect to dashboard
+  useEffect(() => {
+    if (!isAuthLoading && isAuthenticated) {
       router.push('/admin/dashboard');
-    }, 600);
+    }
+  }, [isAuthenticated, isAuthLoading, router]);
+
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setErrorMessage(null);
+
+    if (!email.trim() || !password) {
+      setErrorMessage('Please enter both email and password.');
+      return;
+    }
+
+    setIsLoading(true);
+
+    try {
+      const result = await login({
+        email: email.trim(),
+        password,
+      });
+
+      if (result.success) {
+        router.push('/admin/dashboard');
+      } else {
+        setErrorMessage(result.error || 'Authentication failed. Please verify credentials.');
+      }
+    } catch (err: any) {
+      setErrorMessage(err?.message || 'Unable to connect to login server. Please try again.');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -52,12 +82,20 @@ export default function AdminLoginPage() {
               </p>
             </div>
 
+            {errorMessage && (
+              <div className="p-3.5 rounded-xl bg-red-50 border border-red-200 flex items-start gap-2.5 text-xs text-red-700">
+                <AlertCircle className="w-4 h-4 text-red-600 shrink-0 mt-0.5" />
+                <span className="leading-relaxed font-medium">{errorMessage}</span>
+              </div>
+            )}
+
             <Input
               label="Staff Email Address"
               type="email"
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              placeholder="e.g. admin@skylinkglobal.com"
               leftIcon={<Mail className="w-4 h-4" />}
             />
 
@@ -69,7 +107,7 @@ export default function AdminLoginPage() {
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="text-xs text-neutral-500 hover:text-neutral-800 flex items-center gap-1"
+                  className="text-xs text-neutral-500 hover:text-neutral-800 flex items-center gap-1 cursor-pointer"
                 >
                   {showPassword ? (
                     <>
@@ -91,6 +129,7 @@ export default function AdminLoginPage() {
                 <input
                   type={showPassword ? 'text' : 'password'}
                   required
+                  placeholder="Enter your security credentials"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   className="w-full rounded-lg border border-neutral-300 bg-white pl-10 pr-3.5 py-2 text-sm text-neutral-900 focus:outline-none focus:ring-2 focus:ring-[#0284C7]/20 focus:border-[#0284C7]"

@@ -4,7 +4,6 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
-import { AskGptChatbot } from './AskGptChatbot';
 
 interface HeroSlide {
   id: string;
@@ -23,7 +22,7 @@ const HERO_SLIDES: HeroSlide[] = [
   {
     id: 'slide-shipping',
     themeName: 'Ocean Freight',
-    badge: 'Global Shipping & Cargo',
+    badge: 'Global Shipping & Cargo', 
     heading: 'Global Logistics Company & Freight Forwarding.',
     subtext: 'End-to-end logistics services, cargo transportation, and international supply chain management.',
     primaryCta: { text: 'Explore Services', href: '/services' },
@@ -233,8 +232,6 @@ export function HeroSection() {
         </div>
       </div>
 
-      {/* Floating AI Chatbot UI (Right Side of Hero Section) */}
-      <AskGptChatbot />
 
       {/* ========================================================================= */}
       {/* 4. CLEAN MINIMAL BOTTOM DOCK & PAGINATION */}

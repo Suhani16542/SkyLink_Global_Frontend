@@ -1,4 +1,1 @@
-/**
- * Placeholder export for custom client-side React hooks
- */
-export {};
+export { useAuth, AuthProvider } from '@/context/AuthContext';

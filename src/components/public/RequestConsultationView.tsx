@@ -6,13 +6,19 @@ import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
 import { Select } from '@/components/ui/Select';
+import { submitConsultationForm, ConsultationFormPayload } from '@/lib/api/forms';
 import {
   CheckCircle2,
   ArrowRight,
+  AlertCircle,
+  X,
 } from 'lucide-react';
 
 export function RequestConsultationView() {
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
   const [formData, setFormData] = useState({
     fullName: '',
     companyName: '',
@@ -30,9 +36,45 @@ export function RequestConsultationView() {
     message: '',
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setErrorMessage(null);
+    setIsSubmitting(true);
+
+    const payload: ConsultationFormPayload = {
+      formType: 'consultation',
+      fullName: formData.fullName.trim(),
+      companyName: formData.companyName.trim(),
+      officialWorkEmail: formData.email.trim(),
+      contactPhoneWhatsApp: formData.phone.trim(),
+      countryHeadOfficeLocation: formData.country.trim(),
+      businessType: formData.businessType,
+      tradeDirection: formData.tradeDirection,
+      productCommodityDescription: formData.productCommodity.trim(),
+      originPortCity: formData.origin.trim(),
+      destinationPortCity: formData.destination.trim(),
+      cargoCategory: formData.cargoType,
+      preferredShipmentMode: formData.shipmentMode,
+      expectedShipmentDateTimeline: formData.expectedShipment,
+      detailedTradeRequirements: formData.message.trim(),
+    };
+
+    try {
+      const res = await submitConsultationForm(payload);
+      if (res.success || res.data?.status === 'success') {
+        setSubmitted(true);
+      } else {
+        setErrorMessage(
+          res.error || (res.data as any)?.message || 'Failed to submit consultation request. Please try again.'
+        );
+      }
+    } catch (err: any) {
+      setErrorMessage(
+        err?.message || 'Unable to connect to the server. Please check your network and try again.'
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -87,6 +129,25 @@ export function RequestConsultationView() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-8">
+                {errorMessage && (
+                  <div className="p-4 rounded-xl bg-red-50 border border-red-200 flex items-start justify-between gap-3 text-sm text-red-700 shadow-xs">
+                    <div className="flex items-start gap-2.5">
+                      <AlertCircle className="w-5 h-5 text-red-600 shrink-0 mt-0.5" />
+                      <div>
+                        <div className="font-bold">Submission Failed</div>
+                        <div className="mt-0.5 text-xs text-red-600 font-medium">{errorMessage}</div>
+                      </div>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => setErrorMessage(null)}
+                      className="text-red-400 hover:text-red-700 cursor-pointer"
+                    >
+                      <X className="w-4 h-4" />
+                    </button>
+                  </div>
+                )}
+
                 {/* Step 1: Enterprise Profile */}
                 <div>
                   <div className="flex items-center gap-2 pb-3 border-b border-neutral-100">
@@ -255,6 +316,8 @@ export function RequestConsultationView() {
                     type="submit"
                     variant="secondary"
                     size="lg"
+                    isLoading={isSubmitting}
+                    disabled={isSubmitting}
                     className="w-full justify-center"
                     rightIcon={<ArrowRight className="w-4 h-4" />}
                   >

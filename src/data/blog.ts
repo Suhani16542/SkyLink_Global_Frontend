@@ -154,10 +154,66 @@ Transforming logistics from a cost center into a strategic competitive advantage
   },
 ];
 
+export function mapBackendBlogToEnriched(b: any): EnrichedBlogPost {
+  const authorName =
+    typeof b.author === 'object' && b.author?.name
+      ? b.author.name
+      : typeof b.author === 'string'
+      ? b.author
+      : b.authorName || 'Skylink Team';
+
+  const authorRole =
+    typeof b.author === 'object' && b.author?.role
+      ? b.author.role
+      : 'EXIM & Logistics Specialist';
+
+  const rawExcerpt = b.shortDescription || b.excerpt || '';
+  const cleanExcerpt =
+    rawExcerpt ||
+    (b.content ? b.content.replace(/<[^>]+>/g, ' ').trim().slice(0, 160) + '...' : '');
+
+  return {
+    id: String(b._id || b.id || b.slug),
+    title: b.title || 'Untitled Skylink Article',
+    slug: b.slug,
+    excerpt: cleanExcerpt,
+    content: b.content || '',
+    featuredImage: b.featuredImage || undefined,
+    author: {
+      name: authorName,
+      role: authorRole,
+      avatar: typeof b.author === 'object' ? b.author?.avatar : undefined,
+    },
+    publishedAt: b.publishedAt || b.createdAt || new Date().toISOString(),
+    category: b.category || 'EXIM Consultancy',
+    tags: Array.isArray(b.tags) ? b.tags : typeof b.tags === 'string' ? b.tags.split(',').map((t: string) => t.trim()).filter(Boolean) : [],
+    readingTime: b.estimatedReadTime || b.readingTime || '5 min read',
+    seoTitle: b.title ? `${b.title} | SkyLink Insights` : undefined,
+    seoDescription: cleanExcerpt,
+  };
+}
+
 export async function getAllBlogPosts(): Promise<EnrichedBlogPost[]> {
+  try {
+    const { getPublicBlogs } = await import('@/lib/api/blogs');
+    const res = await getPublicBlogs();
+    if (res.success && res.data) {
+      const list = Array.isArray(res.data) ? res.data : (res.data as any).blogs;
+      if (Array.isArray(list) && list.length > 0) {
+        return list.map(mapBackendBlogToEnriched);
+      }
+    }
+  } catch {}
   return blogPostsData;
 }
 
 export async function getBlogPostBySlug(slug: string): Promise<EnrichedBlogPost | undefined> {
+  try {
+    const { getPublicBlogBySlug } = await import('@/lib/api/blogs');
+    const res = await getPublicBlogBySlug(slug);
+    if (res.success && res.data) {
+      return mapBackendBlogToEnriched(res.data);
+    }
+  } catch {}
   return blogPostsData.find((post) => post.slug === slug);
 }

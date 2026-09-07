@@ -1,9 +1,10 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { SkyLinkLogo } from '@/components/ui/SkyLinkLogo';
+import { useAuth } from '@/context/AuthContext';
 import {
   LayoutDashboard,
   Inbox,
@@ -21,10 +22,14 @@ import {
   Globe,
   ExternalLink,
   ShieldCheck,
+  PlusCircle,
+  Loader2,
 } from 'lucide-react';
 
 const adminNavItems = [
   { title: 'Dashboard', href: '/admin/dashboard', icon: LayoutDashboard },
+  { title: 'Create Blog', href: '/admin/blogs/create', icon: PlusCircle },
+  { title: 'Blogs', href: '/admin/blogs', icon: FileText },
   { title: 'Leads Pipeline', href: '/admin/leads', icon: Inbox, badge: '7' },
   { title: 'Customers', href: '/admin/customers', icon: Users },
   { title: 'Quotations', href: '/admin/quotations', icon: FileText, badge: '4' },
@@ -40,12 +45,71 @@ export function AdminLayoutShell({
   children: React.ReactNode;
 }>) {
   const pathname = usePathname();
+  const router = useRouter();
+  const { user, isAuthenticated, isLoading, logout } = useAuth();
   const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  // Redirect unauthenticated user to login
+  useEffect(() => {
+    if (!isLoading && !isAuthenticated && pathname !== '/admin/login') {
+      router.push('/admin/login');
+    }
+  }, [isLoading, isAuthenticated, pathname, router]);
 
   // If on login page, don't show the dashboard shell
   if (pathname === '/admin/login') {
     return <>{children}</>;
   }
+
+  // Loading state while checking JWT
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-[#07192D] flex flex-col items-center justify-center text-white">
+        <div className="flex flex-col items-center gap-4">
+          <SkyLinkLogo variant="light" size="md" showTagline={false} />
+          <div className="flex items-center gap-2 text-sky-400 text-xs font-semibold">
+            <Loader2 className="w-4 h-4 animate-spin" />
+            <span>Verifying session security...</span>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (!isAuthenticated) {
+    return null;
+  }
+
+  const isItemActive = (itemHref: string) => {
+    if (itemHref === '/admin/dashboard') {
+      return pathname === '/admin/dashboard';
+    }
+    if (itemHref === '/admin/blogs/create') {
+      return (
+        pathname === '/admin/blogs/create' ||
+        pathname === '/admin/create-blog' ||
+        pathname === '/admin/blog/create'
+      );
+    }
+    if (itemHref === '/admin/blogs') {
+      return (
+        (pathname === '/admin/blogs' || pathname.startsWith('/admin/blogs/')) &&
+        pathname !== '/admin/blogs/create' &&
+        pathname !== '/admin/create-blog' &&
+        pathname !== '/admin/blog/create'
+      );
+    }
+    return pathname === itemHref || pathname.startsWith(itemHref);
+  };
+
+  const userName = user?.name || 'Admin Manager';
+  const userInitials = userName
+    .split(' ')
+    .filter(Boolean)
+    .map((n) => n[0])
+    .join('')
+    .slice(0, 2)
+    .toUpperCase() || 'AM';
 
   return (
     <div className="min-h-screen bg-neutral-100 flex flex-col md:flex-row text-neutral-900 font-sans">
@@ -83,14 +147,11 @@ export function AdminLayoutShell({
           {/* Navigation Links */}
           <nav className="p-4 space-y-1.5" aria-label="Admin Portal Navigation">
             <div className="px-3 py-2 text-[10px] font-bold uppercase tracking-wider text-sky-400">
-              Operations &amp; Compliance
+              Operations &amp; CMS Desk
             </div>
             {adminNavItems.map((item) => {
               const IconComp = item.icon;
-              const isActive =
-                item.href === '/admin/dashboard'
-                  ? pathname === '/admin/dashboard'
-                  : pathname.startsWith(item.href);
+              const isActive = isItemActive(item.href);
 
               return (
                 <Link
@@ -141,23 +202,26 @@ export function AdminLayoutShell({
           <div className="flex items-center justify-between px-3 py-2">
             <div className="flex items-center gap-2.5">
               <div className="w-8 h-8 rounded-full bg-sky-500/20 text-sky-300 border border-sky-400/40 flex items-center justify-center text-xs font-bold">
-                AD
+                {userInitials}
               </div>
               <div className="text-left">
-                <div className="text-xs font-bold text-white">Admin Desk</div>
+                <div className="text-xs font-bold text-white truncate max-w-[110px]" title={userName}>
+                  {userName}
+                </div>
                 <div className="text-[10px] text-emerald-400 flex items-center gap-1">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                  Terminal Online
+                  Online
                 </div>
               </div>
             </div>
-            <Link
-              href="/admin/login"
+            <button
+              type="button"
+              onClick={logout}
               title="Sign Out"
-              className="p-1.5 rounded-lg text-neutral-400 hover:text-red-400 hover:bg-white/5 transition-colors"
+              className="p-1.5 rounded-lg text-neutral-400 hover:text-red-400 hover:bg-white/5 transition-colors cursor-pointer"
             >
               <LogOut className="w-4 h-4" />
-            </Link>
+            </button>
           </div>
         </div>
       </aside>
