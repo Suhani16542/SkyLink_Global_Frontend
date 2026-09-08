@@ -96,6 +96,7 @@ export async function getPublicBlogs(params?: {
       method: 'GET',
       params,
       skipAuth: true,
+      cache: 'no-store',
     }
   );
 }
@@ -107,6 +108,7 @@ export async function getPublicBlogBySlug(slug: string): Promise<ApiResponse<Blo
   return apiClient<BlogItem>(API_ENDPOINTS.blogs.bySlug(slug), {
     method: 'GET',
     skipAuth: true,
+    cache: 'no-store',
   });
 }
 

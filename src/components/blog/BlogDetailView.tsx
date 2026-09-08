@@ -25,6 +25,7 @@ import {
   ChevronUp,
   ExternalLink,
   MessageCircle,
+  Image as ImageIcon,
 } from 'lucide-react';
 
 interface TocItem {
@@ -465,6 +466,44 @@ export function BlogDetailView({ post, relatedPosts }: BlogDetailViewProps) {
                 className="pt-2 text-neutral-800 leading-relaxed article-rich-content blog-preview-content prose max-w-none"
                 dangerouslySetInnerHTML={{ __html: processedHtml }}
               />
+
+              {/* Multiple Image Gallery Section (if blog contains additional imagery) */}
+              {post.images && post.images.length > 1 && (
+                <div className="pt-6 border-t border-neutral-200 space-y-3">
+                  <div className="flex items-center gap-2 text-xs font-bold text-[#0A2540] uppercase tracking-wider">
+                    <ImageIcon className="w-4 h-4 text-[#0284C7]" />
+                    <span>Article Media &amp; Field Gallery ({post.images.length} Images)</span>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {post.images.map((imgItem, idx) => {
+                      const url = typeof imgItem === 'string' ? imgItem : imgItem.url;
+                      const alt =
+                        typeof imgItem === 'object' && imgItem.alt
+                          ? imgItem.alt
+                          : `${post.title} Image ${idx + 1}`;
+                      if (!url) return null;
+                      return (
+                        <div
+                          key={idx}
+                          className="rounded-2xl overflow-hidden border border-neutral-200 shadow-2xs relative aspect-[16/10] bg-neutral-100 group"
+                        >
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img
+                            src={url}
+                            alt={alt}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          />
+                          {alt && (
+                            <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-neutral-950/80 via-neutral-900/40 to-transparent p-3 text-[11px] text-white font-medium line-clamp-1">
+                              {alt}
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
 
               {/* ============================================================ */}
               {/* META KEYWORDS SECTION */}

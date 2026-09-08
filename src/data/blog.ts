@@ -210,7 +210,15 @@ export function mapBackendBlogToEnriched(b: any): EnrichedBlogPost {
   const cleanSlug = typeof rawSlug === 'string' && rawSlug.trim().length > 0 ? rawSlug.trim() : String(b._id || b.id || 'article');
 
   // Extract clean string image URL
-  const rawImage = b.featuredImage || (b as any).image || (b as any).coverImage;
+  const rawImage =
+    b.featuredImage ||
+    (b as any).image ||
+    (b as any).coverImage ||
+    (Array.isArray(b.images) && b.images.length > 0
+      ? typeof b.images[0] === 'string'
+        ? b.images[0]
+        : b.images[0]?.url || b.images[0]?.secure_url
+      : undefined);
   const cleanFeaturedImage =
     typeof rawImage === 'string' && rawImage.trim().length > 0
       ? rawImage.trim()

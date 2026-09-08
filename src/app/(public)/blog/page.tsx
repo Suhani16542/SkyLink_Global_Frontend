@@ -9,7 +9,8 @@ import { formatDate } from '@/lib/utils/formatters';
 import { Calendar, Clock, User, ArrowRight } from 'lucide-react';
 
 export const metadata: Metadata = getPageMetadata('blog');
-
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 const blogImages: Record<string, string> = {
   'navigating-global-trade-compliance-2026': 'https://images.unsplash.com/photo-1450133064473-71024230f91b?q=80&w=1200&auto=format&fit=crop',
@@ -19,8 +20,6 @@ const blogImages: Record<string, string> = {
 
 export default async function BlogPage() {
   const posts = await getAllBlogPosts();
-  const featuredPost = posts[0];
-  const regularPosts = posts.slice(1);
 
   return (
     <div className="bg-white">
@@ -120,9 +119,9 @@ export default async function BlogPage() {
 
                       <Link
                         href={`/blog/${post.slug}`}
-                        className="inline-flex items-center gap-1 text-xs font-bold text-[#0284C7] group-hover:text-[#0369A1] transition-colors"
+                        className="inline-flex items-center gap-1 text-xs font-bold text-white bg-[#0284C7] hover:bg-[#0369A1] px-3 py-1.5 rounded-lg shadow-2xs transition-all group-hover:shadow-xs"
                       >
-                        <span>Read Post</span>
+                        <span>View Post</span>
                         <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
                       </Link>
                     </div>
