@@ -99,136 +99,93 @@ export default async function NewsBlogsPage() {
         </div>
       </section>
 
-      {/* 2. MAIN BLOG DIRECTORY */}
-      <section className="py-16 sm:py-24 bg-neutral-50">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-12">
-          {/* Featured Article Card */}
-          {featuredPost && (
-            <div className="rounded-3xl border border-neutral-200 bg-white overflow-hidden shadow-md hover-lift transition-all grid grid-cols-1 lg:grid-cols-12 gap-8 items-center p-6 sm:p-8">
-              <div className="lg:col-span-6 relative aspect-[16/10] rounded-2xl overflow-hidden shadow-sm">
-                <Image
-                  src={
-                    featuredPost.featuredImage ||
-                    blogImages[featuredPost.slug] ||
-                    'https://images.unsplash.com/photo-1450133064473-71024230f91b?q=80&w=1200&auto=format&fit=crop'
-                  }
-                  alt={featuredPost.title}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover object-center"
-                />
-              </div>
-
-              <div className="lg:col-span-6 space-y-4">
-                <div className="flex flex-wrap items-center gap-3 text-xs text-neutral-500">
-                  <span className="rounded-full bg-sky-50 px-3 py-1 text-xs font-bold text-[#0284C7] border border-sky-200 uppercase">
-                    {featuredPost.category}
-                  </span>
-                  <span>•</span>
-                  <span className="flex items-center gap-1">
-                    <Clock className="w-3.5 h-3.5 text-neutral-400" />
-                    {featuredPost.readingTime}
-                  </span>
-                  <span>•</span>
-                  <span className="flex items-center gap-1">
-                    <Calendar className="w-3.5 h-3.5 text-neutral-400" />
-                    {formatDate(featuredPost.publishedAt)}
-                  </span>
-                </div>
-
-                <h2 className="text-2xl sm:text-3xl font-extrabold text-neutral-900 leading-tight">
-                  <Link href={`/blog/${featuredPost.slug}`} className="hover:text-[#0284C7] transition-colors">
-                    {featuredPost.title}
-                  </Link>
-                </h2>
-
-                <p className="text-sm sm:text-base text-neutral-600 leading-relaxed">
-                  {featuredPost.excerpt}
-                </p>
-
-                <div className="pt-4 border-t border-neutral-100 flex items-center justify-between">
-                  <div className="flex items-center gap-2 text-xs text-neutral-700 font-semibold">
-                    <User className="w-4 h-4 text-[#0284C7]" />
-                    <span>{featuredPost.author.name}</span>
-                  </div>
-
-                  <Link
-                    href={`/blog/${featuredPost.slug}`}
-                    className="inline-flex items-center gap-1.5 text-sm font-bold text-[#0284C7] hover:text-[#0369A1] transition-colors"
-                  >
-                    Read Full Post
-                    <ArrowRight className="w-4 h-4" />
-                  </Link>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* Regular Posts Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
-            {regularPosts.map((post) => (
-              <Card
-                key={post.id}
-                variant="bordered"
-                className="rounded-3xl bg-white border-neutral-200 overflow-hidden shadow-xs hover-lift flex flex-col justify-between p-0"
-              >
-                <div className="relative aspect-[16/9] w-full bg-neutral-100 overflow-hidden">
-                  <Image
-                    src={
-                      post.featuredImage ||
-                      blogImages[post.slug] ||
-                      'https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=1200&auto=format&fit=crop'
-                    }
-                    alt={post.title}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    className="object-cover object-center group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute top-4 left-4">
-                    <span className="rounded-full bg-[#07192D]/80 backdrop-blur-md px-3 py-1 text-[11px] font-bold text-sky-300 border border-white/20 uppercase">
-                      {post.category}
-                    </span>
-                  </div>
-                </div>
-
-                <div className="p-6 sm:p-8 space-y-4 flex-1 flex flex-col justify-between">
-                  <div className="space-y-3">
-                    <div className="flex items-center gap-3 text-xs text-neutral-500">
-                      <span className="flex items-center gap-1">
-                        <Clock className="w-3.5 h-3.5" />
-                        {post.readingTime}
-                      </span>
-                      <span>•</span>
-                      <span className="flex items-center gap-1">
-                        <Calendar className="w-3.5 h-3.5" />
-                        {formatDate(post.publishedAt)}
+      {/* 2. MAIN BLOG DIRECTORY GRID */}
+      <section className="py-14 sm:py-20 bg-[#F8FAFC]">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-8">
+          {posts.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 sm:gap-8">
+              {posts.map((post) => (
+                <article
+                  key={post.id}
+                  className="group rounded-3xl bg-white border border-neutral-200 shadow-xs hover:shadow-lg hover:border-sky-300 transition-all duration-300 flex flex-col justify-between overflow-hidden hover-lift"
+                >
+                  {/* Card Image Banner */}
+                  <div className="relative aspect-[16/10] w-full bg-neutral-100 overflow-hidden">
+                    <Image
+                      src={
+                        post.featuredImage ||
+                        blogImages[post.slug] ||
+                        'https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=1200&auto=format&fit=crop'
+                      }
+                      alt={post.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      className="object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute top-3.5 left-3.5">
+                      <span className="rounded-full bg-[#07192D]/85 backdrop-blur-md px-3 py-1 text-[10.5px] font-bold text-sky-300 border border-white/20 uppercase tracking-wide shadow-sm">
+                        {post.category}
                       </span>
                     </div>
+                  </div>
 
-                    <h3 className="text-xl font-bold text-neutral-900 leading-snug">
-                      <Link href={`/blog/${post.slug}`} className="hover:text-[#0284C7] transition-colors">
-                        {post.title}
+                  {/* Card Content Area */}
+                  <div className="p-5 sm:p-6 space-y-4 flex-1 flex flex-col justify-between">
+                    <div className="space-y-2.5">
+                      {/* Metadata row */}
+                      <div className="flex items-center gap-2.5 text-[11.5px] text-neutral-500 font-medium">
+                        <span className="flex items-center gap-1">
+                          <Calendar className="w-3.5 h-3.5 text-neutral-400" />
+                          <span>{formatDate(post.publishedAt)}</span>
+                        </span>
+                        <span>•</span>
+                        <span className="flex items-center gap-1">
+                          <Clock className="w-3.5 h-3.5 text-neutral-400" />
+                          <span>{post.readingTime || '5 min read'}</span>
+                        </span>
+                      </div>
+
+                      {/* Title */}
+                      <h2 className="text-base sm:text-lg font-bold text-[#0A2540] group-hover:text-[#0284C7] transition-colors line-clamp-2 leading-snug">
+                        <Link href={`/blog/${post.slug}`}>
+                          {post.title}
+                        </Link>
+                      </h2>
+
+                      {/* Excerpt */}
+                      <p className="text-xs sm:text-[13px] text-neutral-600 line-clamp-3 leading-relaxed">
+                        {post.excerpt}
+                      </p>
+                    </div>
+
+                    {/* Card Footer */}
+                    <div className="pt-3.5 border-t border-neutral-100 flex items-center justify-between text-xs mt-3">
+                      <div className="flex items-center gap-2 text-neutral-700 font-semibold">
+                        <div className="w-6 h-6 rounded-full bg-sky-50 text-[#0284C7] border border-sky-200 flex items-center justify-center text-[10px] font-bold">
+                          {post.author.name
+                            ? post.author.name.split(' ').map((n) => n[0]).slice(0, 2).join('')
+                            : 'SL'}
+                        </div>
+                        <span className="text-[11.5px] text-neutral-600 line-clamp-1">{post.author.name}</span>
+                      </div>
+
+                      <Link
+                        href={`/blog/${post.slug}`}
+                        className="inline-flex items-center gap-1 text-xs font-bold text-[#0284C7] group-hover:text-[#0369A1] transition-colors"
+                      >
+                        <span>Read Post</span>
+                        <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
                       </Link>
-                    </h3>
-
-                    <p className="text-sm text-neutral-600 line-clamp-3 leading-relaxed">
-                      {post.excerpt}
-                    </p>
+                    </div>
                   </div>
-
-                  <div className="pt-4 border-t border-neutral-100 flex items-center justify-between mt-4">
-                    <span className="text-xs font-semibold text-neutral-700">{post.author.name}</span>
-                    <Link
-                      href={`/blog/${post.slug}`}
-                      className="inline-flex items-center gap-1 text-xs font-bold text-[#0284C7] hover:text-[#0369A1]"
-                    >
-                      Read Post &rarr;
-                    </Link>
-                  </div>
-                </div>
-              </Card>
-            ))}
-          </div>
+                </article>
+              ))}
+            </div>
+          ) : (
+            <div className="bg-white rounded-2xl border border-neutral-200 p-12 text-center text-neutral-500">
+              <p className="text-sm">No blog posts available at the moment.</p>
+            </div>
+          )}
         </div>
       </section>
 
