@@ -87,7 +87,7 @@ export function CreateBlogView({ blogId }: CreateBlogViewProps) {
   const [shortDescription, setShortDescription] = useState('');
   const [keywords, setKeywords] = useState('');
   const [content, setContent] = useState(
-    '<h3>Introduction</h3>\n<p>Start writing your article content here...</p>'
+    `<h2>Introduction</h2>\n<p>International trade depends on more than simply moving goods from one country to another; it requires seamless coordination, regulatory compliance, and dependable supply chain networks.</p>\n\n<h2>The Importance of Global Logistics in International Trade</h2>\n<p>Global logistics involves the planning, execution, and control of the movement of goods, services, and information across international borders. A streamlined logistics ecosystem ensures cost efficiency, reduced transit times, and enhanced customer satisfaction.</p>\n\n<h3>1. Faster and More Efficient Transportation</h3>\n<p>Choosing the right transportation mode—whether maritime ocean freight, priority air cargo, or multimodal rail-road corridors—is critical to meeting delivery timelines and optimizing freight spend.</p>\n\n<h3>2. Regulatory & Customs Compliance</h3>\n<p>Navigating customs tariffs, Free Trade Agreements, and electronic documentation eliminates costly port demurrage and inspection delays.</p>\n\n<ul>\n  <li>Accurate HS Code classification for duty optimization</li>\n  <li>Authorized Economic Operator (AEO) expedited clearance</li>\n  <li>Real-time shipment telemetry and route tracking</li>\n</ul>`
   );
 
   // Sidebar Form State
@@ -195,6 +195,9 @@ export function CreateBlogView({ blogId }: CreateBlogViewProps) {
       if (editorRef.current.innerHTML !== content) {
         editorRef.current.innerHTML = content;
       }
+      try {
+        document.execCommand('defaultParagraphSeparator', false, 'p');
+      } catch {}
     }
   }, [activeTab, content]);
 
@@ -217,29 +220,78 @@ export function CreateBlogView({ blogId }: CreateBlogViewProps) {
     setSlug(val);
   };
 
+  // Inspect DOM under cursor to highlight active formatting toolbar controls
+  const updateActiveToolbarState = () => {
+    if (typeof window === 'undefined' || !editorRef.current) return;
+    const selection = window.getSelection();
+    if (!selection || !selection.rangeCount) return;
+
+    let node: Node | null = selection.anchorNode;
+    if (!node || !editorRef.current.contains(node)) return;
+
+    let currentEl: HTMLElement | null =
+      node.nodeType === Node.ELEMENT_NODE ? (node as HTMLElement) : node.parentElement;
+    let foundHeading = 'Paragraph';
+
+    while (currentEl && currentEl !== editorRef.current) {
+      const tag = currentEl.tagName.toUpperCase();
+      if (tag === 'H1') { foundHeading = 'H1'; break; }
+      if (tag === 'H2') { foundHeading = 'H2'; break; }
+      if (tag === 'H3') { foundHeading = 'H3'; break; }
+      if (tag === 'H4') { foundHeading = 'H4'; break; }
+      if (tag === 'H5') { foundHeading = 'H5'; break; }
+      if (tag === 'H6') { foundHeading = 'H6'; break; }
+      if (tag === 'P') { foundHeading = 'Paragraph'; break; }
+      currentEl = currentEl.parentElement;
+    }
+    setSelectedHeading(foundHeading);
+
+    const formats: string[] = [];
+    try {
+      if (document.queryCommandState('bold')) formats.push('bold');
+      if (document.queryCommandState('italic')) formats.push('italic');
+      if (document.queryCommandState('underline')) formats.push('underline');
+      if (document.queryCommandState('insertOrderedList')) formats.push('insertOrderedList');
+      if (document.queryCommandState('insertUnorderedList')) formats.push('insertUnorderedList');
+    } catch {}
+    setActiveFormats(formats);
+  };
+
   const toggleFormat = (command: string, value: string | undefined = undefined) => {
+    if (editorRef.current) {
+      editorRef.current.focus();
+    }
     document.execCommand(command, false, value);
     if (editorRef.current) {
       setContent(editorRef.current.innerHTML);
     }
-    setActiveFormats((prev) =>
-      prev.includes(command) ? prev.filter((f) => f !== command) : [...prev, command]
-    );
+    updateActiveToolbarState();
   };
 
   const applyHeading = (h: string) => {
     setSelectedHeading(h);
-    const tag = h === 'Paragraph' ? '<p>' : `<${h.toLowerCase()}>`;
-    document.execCommand('formatBlock', false, tag);
+    if (!editorRef.current) return;
+    editorRef.current.focus();
+
+    const tag = h === 'Paragraph' ? 'p' : h.toLowerCase();
+    try {
+      document.execCommand('formatBlock', false, `<${tag}>`);
+    } catch {
+      document.execCommand('formatBlock', false, tag);
+    }
+
     if (editorRef.current) {
       setContent(editorRef.current.innerHTML);
     }
   };
 
   const handleInsertLink = () => {
-    const url = prompt('Enter website or destination URL (e.g. https://...):');
-    if (url) {
-      document.execCommand('createLink', false, url);
+    if (editorRef.current) {
+      editorRef.current.focus();
+    }
+    const url = prompt('Enter destination website URL (e.g. https://example.com):');
+    if (url && url.trim()) {
+      document.execCommand('createLink', false, url.trim());
       if (editorRef.current) {
         setContent(editorRef.current.innerHTML);
       }
@@ -247,9 +299,12 @@ export function CreateBlogView({ blogId }: CreateBlogViewProps) {
   };
 
   const handleInsertImagePrompt = () => {
-    const url = prompt('Enter direct image URL:');
-    if (url) {
-      document.execCommand('insertImage', false, url);
+    if (editorRef.current) {
+      editorRef.current.focus();
+    }
+    const url = prompt('Enter direct image URL (e.g. https://...):');
+    if (url && url.trim()) {
+      document.execCommand('insertImage', false, url.trim());
       if (editorRef.current) {
         setContent(editorRef.current.innerHTML);
       }
@@ -257,9 +312,16 @@ export function CreateBlogView({ blogId }: CreateBlogViewProps) {
   };
 
   const handleInsertVideoPrompt = () => {
+    if (editorRef.current) {
+      editorRef.current.focus();
+    }
     const embedCode = prompt('Enter iframe embed code or video link:');
     if (embedCode && editorRef.current) {
-      document.execCommand('insertHTML', false, `\n<div class="video-embed-container my-4">${embedCode}</div>\n`);
+      document.execCommand(
+        'insertHTML',
+        false,
+        `\n<div class="video-embed-container my-4">${embedCode}</div>\n<p></p>`
+      );
       setContent(editorRef.current.innerHTML);
     }
   };
@@ -847,14 +909,20 @@ export function CreateBlogView({ blogId }: CreateBlogViewProps) {
             {/* Editor Canvas Area */}
             <div className="min-h-[360px] flex-1 relative bg-white">
               {activeTab === 'visual' && (
-                <div className="p-6">
+                <div className="p-6 sm:p-8">
                   <div
                     ref={editorRef}
                     contentEditable
                     suppressContentEditableWarning
-                    onInput={(e) => setContent(e.currentTarget.innerHTML)}
+                    onInput={(e) => {
+                      setContent(e.currentTarget.innerHTML);
+                      updateActiveToolbarState();
+                    }}
                     onBlur={(e) => setContent(e.currentTarget.innerHTML)}
-                    className="min-h-[300px] outline-none text-neutral-800 text-sm leading-relaxed prose max-w-none focus:ring-0"
+                    onKeyUp={updateActiveToolbarState}
+                    onMouseUp={updateActiveToolbarState}
+                    onSelect={updateActiveToolbarState}
+                    className="min-h-[340px] outline-none text-neutral-800 text-base leading-relaxed blog-editor-content prose max-w-none focus:ring-0"
                   />
                 </div>
               )}
@@ -893,7 +961,7 @@ export function CreateBlogView({ blogId }: CreateBlogViewProps) {
                     </p>
                   )}
                   <div
-                    className="prose prose-neutral max-w-none text-sm text-neutral-800"
+                    className="blog-preview-content prose max-w-none text-base text-neutral-800"
                     dangerouslySetInnerHTML={{ __html: content }}
                   />
                 </div>

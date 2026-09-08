@@ -26,9 +26,14 @@ export interface LoginResponseData {
  * Authenticate admin user with email and password
  */
 export async function loginAdmin(credentials: LoginCredentials): Promise<ApiResponse<LoginResponseData>> {
+  const sanitizedCredentials: LoginCredentials = {
+    email: (credentials.email || '').trim(),
+    password: (credentials.password || '').trim(),
+  };
+
   const response = await apiClient<LoginResponseData>(API_ENDPOINTS.auth.login, {
     method: 'POST',
-    body: credentials,
+    body: sanitizedCredentials,
     skipAuth: true,
   });
 

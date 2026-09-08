@@ -186,7 +186,6 @@ export async function deleteBlog(id: string): Promise<ApiResponse<{ message?: st
 export async function uploadBlogImage(file: File): Promise<ApiResponse<ImageUploadResponse>> {
   const formData = new FormData();
   formData.append('image', file);
-  formData.append('file', file);
 
   return apiClient<ImageUploadResponse>(API_ENDPOINTS.adminBlogs.uploadImage, {
     method: 'POST',

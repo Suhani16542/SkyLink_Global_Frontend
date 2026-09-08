@@ -142,7 +142,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
           {post.content && post.content.includes('<') ? (
             <div
-              className="pt-4 text-neutral-800 leading-relaxed space-y-4 article-rich-content"
+              className="pt-4 text-neutral-800 leading-relaxed article-rich-content blog-preview-content prose max-w-none"
               dangerouslySetInnerHTML={{ __html: post.content }}
             />
           ) : (

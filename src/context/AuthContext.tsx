@@ -60,9 +60,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     try {
       const res = await getAdminProfile();
       if (res.success && res.data) {
-        setUser(res.data);
+        const adminData = (res.data as any).admin || res.data;
+        setUser(adminData);
         try {
-          localStorage.setItem(AUTH_USER_KEY, JSON.stringify(res.data));
+          localStorage.setItem(AUTH_USER_KEY, JSON.stringify(adminData));
         } catch {}
       } else if (res.status === 401) {
         removeStoredAuth();
@@ -95,12 +96,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const login = async (credentials: LoginCredentials) => {
     setIsLoading(true);
     try {
-      const res = await loginAdmin(credentials);
+      const cleanCredentials: LoginCredentials = {
+        email: (credentials.email || '').trim(),
+        password: (credentials.password || '').trim(),
+      };
+      const res = await loginAdmin(cleanCredentials);
       if (res.success && res.data) {
         const receivedToken = res.data.token || res.data.jwt || (res.data as any).accessToken;
-        const receivedUser = res.data.user || res.data.admin || {
+        const receivedUser = (res.data as any).admin || res.data.user || {
           name: 'Admin Manager',
-          email: credentials.email,
+          email: cleanCredentials.email,
           role: 'Administrator',
         };
 

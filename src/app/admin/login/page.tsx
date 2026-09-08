@@ -30,7 +30,10 @@ export default function AdminLoginPage() {
     e.preventDefault();
     setErrorMessage(null);
 
-    if (!email.trim() || !password) {
+    const cleanEmail = email.trim();
+    const cleanPassword = password.trim();
+
+    if (!cleanEmail || !cleanPassword) {
       setErrorMessage('Please enter both email and password.');
       return;
     }
@@ -39,8 +42,8 @@ export default function AdminLoginPage() {
 
     try {
       const result = await login({
-        email: email.trim(),
-        password,
+        email: cleanEmail,
+        password: cleanPassword,
       });
 
       if (result.success) {
