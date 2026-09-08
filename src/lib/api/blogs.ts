@@ -26,6 +26,7 @@ export interface BlogItem {
   keywords?: string | string[];
   featuredImage?: string;
   imageAltText?: string;
+  images?: Array<{ url: string; alt?: string; _id?: string } | string>;
   publishedAt?: string;
   createdAt?: string;
   updatedAt?: string;
@@ -64,13 +65,19 @@ export interface BlogPayload {
   tags?: string[];
   featuredImage?: string;
   imageAltText?: string;
+  images?: Array<{ url: string; alt?: string }>;
   publishedAt?: string;
 }
 
 export interface ImageUploadResponse {
+  images?: string[];
   url?: string;
   imageUrl?: string;
   secure_url?: string;
+  data?: {
+    images?: string[];
+    [key: string]: any;
+  };
   [key: string]: any;
 }
 
@@ -181,14 +188,25 @@ export async function deleteBlog(id: string): Promise<ApiResponse<{ message?: st
 }
 
 /**
- * Upload featured image for blog
+ * Upload multiple images for blog (up to 10 images)
  */
-export async function uploadBlogImage(file: File): Promise<ApiResponse<ImageUploadResponse>> {
+export async function uploadBlogImages(files: File[] | FileList): Promise<ApiResponse<ImageUploadResponse>> {
   const formData = new FormData();
-  formData.append('image', file);
+  const fileArray = Array.from(files);
+
+  fileArray.forEach((file) => {
+    formData.append('images', file);
+  });
 
   return apiClient<ImageUploadResponse>(API_ENDPOINTS.adminBlogs.uploadImage, {
     method: 'POST',
     body: formData,
   });
+}
+
+/**
+ * Upload single featured image for blog
+ */
+export async function uploadBlogImage(file: File): Promise<ApiResponse<ImageUploadResponse>> {
+  return uploadBlogImages([file]);
 }

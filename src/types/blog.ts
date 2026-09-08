@@ -17,6 +17,7 @@ export interface BlogPost {
   tags: string[];
   keywords?: string[];
   readingTime?: string;
+  images?: Array<{ url: string; alt?: string; _id?: string } | string>;
   seoTitle?: string;
   seoDescription?: string;
   tableOfContents?: Array<{ id: string; title: string; level?: number }>;

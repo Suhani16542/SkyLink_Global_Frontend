@@ -263,6 +263,7 @@ export function mapBackendBlogToEnriched(b: any): EnrichedBlogPost {
       : [],
     keywords: cleanKeywords,
     readingTime: b.estimatedReadTime || b.readingTime || '5 min read',
+    images: b.images,
     seoTitle: b.title ? `${b.title} | SkyLink Insights` : undefined,
     seoDescription: cleanExcerpt,
   };

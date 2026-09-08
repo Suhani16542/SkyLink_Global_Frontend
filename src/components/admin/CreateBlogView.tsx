@@ -8,6 +8,7 @@ import {
   createBlog,
   updateBlog,
   uploadBlogImage,
+  uploadBlogImages,
   BlogPayload,
 } from '@/lib/api/blogs';
 import {
@@ -38,7 +39,20 @@ import {
   CheckCircle2,
   AlertCircle,
   Loader2,
+  Star,
+  Trash2,
+  Plus,
+  Check,
 } from 'lucide-react';
+
+export interface BlogImageItem {
+  id: string;
+  url: string;
+  alt: string;
+  isFeatured: boolean;
+  name?: string;
+  size?: number;
+}
 
 const CATEGORIES = [
   'EXIM Consultancy',
@@ -86,9 +100,7 @@ export function CreateBlogView({ blogId }: CreateBlogViewProps) {
   const [isSlugManuallyEdited, setIsSlugManuallyEdited] = useState(false);
   const [shortDescription, setShortDescription] = useState('');
   const [keywords, setKeywords] = useState('');
-  const [content, setContent] = useState(
-    `<h2>Introduction</h2>\n<p>International trade depends on more than simply moving goods from one country to another; it requires seamless coordination, regulatory compliance, and dependable supply chain networks.</p>\n\n<h2>The Importance of Global Logistics in International Trade</h2>\n<p>Global logistics involves the planning, execution, and control of the movement of goods, services, and information across international borders. A streamlined logistics ecosystem ensures cost efficiency, reduced transit times, and enhanced customer satisfaction.</p>\n\n<h3>1. Faster and More Efficient Transportation</h3>\n<p>Choosing the right transportation mode—whether maritime ocean freight, priority air cargo, or multimodal rail-road corridors—is critical to meeting delivery timelines and optimizing freight spend.</p>\n\n<h3>2. Regulatory & Customs Compliance</h3>\n<p>Navigating customs tariffs, Free Trade Agreements, and electronic documentation eliminates costly port demurrage and inspection delays.</p>\n\n<ul>\n  <li>Accurate HS Code classification for duty optimization</li>\n  <li>Authorized Economic Operator (AEO) expedited clearance</li>\n  <li>Real-time shipment telemetry and route tracking</li>\n</ul>`
-  );
+  const [content, setContent] = useState('');
 
   // Sidebar Form State
   const [publicationStatus, setPublicationStatus] = useState<'Draft' | 'Published'>('Draft');
@@ -100,12 +112,14 @@ export function CreateBlogView({ blogId }: CreateBlogViewProps) {
   const [tagsInput, setTagsInput] = useState('');
   const [featuredImageUrl, setFeaturedImageUrl] = useState<string>('');
   const [imageAltText, setImageAltText] = useState('');
+  const [uploadedImages, setUploadedImages] = useState<BlogImageItem[]>([]);
 
   // Editor State
   const [activeTab, setActiveTab] = useState<'visual' | 'html' | 'preview'>('visual');
   const [selectedHeading, setSelectedHeading] = useState('Paragraph');
   const [activeFormats, setActiveFormats] = useState<string[]>([]);
   const [coverImagePreview, setCoverImagePreview] = useState<string | null>(null);
+  const [editorKey, setEditorKey] = useState<number>(0);
 
   // Async submission / loading states
   const [isFetchingBlog, setIsFetchingBlog] = useState(isEditMode);
@@ -121,13 +135,50 @@ export function CreateBlogView({ blogId }: CreateBlogViewProps) {
     }, 4000);
   };
 
-  // Load existing blog data if in edit mode
+  // Completely reset every form field and editor DOM to a fresh blank state
+  const resetFormToFresh = () => {
+    setTitle('');
+    setSlug('');
+    setIsSlugManuallyEdited(false);
+    setShortDescription('');
+    setKeywords('');
+    setContent('');
+    setPublicationStatus('Draft');
+    setCategory('EXIM Consultancy');
+    setTechnology('Logistics Technology');
+    setIsFeatured(false);
+    setAuthorName('Skylink Team');
+    setReadTime('5 Min Read');
+    setTagsInput('');
+    setFeaturedImageUrl('');
+    setImageAltText('');
+    setUploadedImages([]);
+    setCoverImagePreview(null);
+    setSelectedHeading('Paragraph');
+    setActiveFormats([]);
+    setErrorMessage(null);
+    setIsUploadingImage(false);
+    setIsSubmitting(false);
+    setActiveTab('visual');
+    setEditorKey((prev) => prev + 1);
+
+    if (editorRef.current) {
+      editorRef.current.innerHTML = '';
+    }
+  };
+
+  // Load existing blog data if in edit mode, or reset to fresh blank state if in create mode
   useEffect(() => {
-    if (!blogId) return;
+    if (!blogId) {
+      resetFormToFresh();
+      setIsFetchingBlog(false);
+      return;
+    }
 
     let isMounted = true;
     const fetchBlogData = async () => {
       setIsFetchingBlog(true);
+      setErrorMessage(null);
       try {
         const res = await getAdminBlogById(blogId);
         if (res.success && res.data && isMounted) {
@@ -176,13 +227,52 @@ export function CreateBlogView({ blogId }: CreateBlogViewProps) {
               : typeof rawFeatImg === 'object' && rawFeatImg && rawFeatImg.secure_url
               ? String(rawFeatImg.secure_url)
               : '';
-          if (cleanFeatImg) {
-            setFeaturedImageUrl(cleanFeatImg);
-            setCoverImagePreview(cleanFeatImg);
+
+          // Parse existing images array or fallback to single featured image
+          let loadedImages: BlogImageItem[] = [];
+
+          if (Array.isArray(b.images) && b.images.length > 0) {
+            loadedImages = b.images
+              .map((img: any, idx: number) => {
+                const imgUrl = typeof img === 'string' ? img : img?.url || img?.secure_url || '';
+                const imgAlt = typeof img === 'object' && img?.alt ? img.alt : '';
+                const isThisFeat = cleanFeatImg ? imgUrl === cleanFeatImg : idx === 0;
+                return {
+                  id: `existing-img-${idx}-${Date.now()}`,
+                  url: imgUrl,
+                  alt: imgAlt,
+                  isFeatured: isThisFeat,
+                };
+              })
+              .filter((item) => item.url && item.url.trim().length > 0);
+
+            if (loadedImages.length > 0 && !loadedImages.some((i) => i.isFeatured)) {
+              loadedImages[0].isFeatured = true;
+            }
+          } else if (cleanFeatImg) {
+            loadedImages = [
+              {
+                id: `existing-feat-${Date.now()}`,
+                url: cleanFeatImg,
+                alt: b.imageAltText || '',
+                isFeatured: true,
+              },
+            ];
+          }
+
+          setUploadedImages(loadedImages);
+
+          const primaryFeat =
+            loadedImages.find((i) => i.isFeatured)?.url || cleanFeatImg || '';
+          if (primaryFeat) {
+            setFeaturedImageUrl(primaryFeat);
+            setCoverImagePreview(primaryFeat);
           }
           if (b.imageAltText) {
             setImageAltText(b.imageAltText);
           }
+
+          setEditorKey((prev) => prev + 1);
         } else if (isMounted) {
           setErrorMessage(res.error || 'Failed to load blog post details.');
         }
@@ -214,7 +304,7 @@ export function CreateBlogView({ blogId }: CreateBlogViewProps) {
         document.execCommand('defaultParagraphSeparator', false, 'p');
       } catch {}
     }
-  }, [activeTab, content]);
+  }, [activeTab, content, editorKey]);
 
   // Auto-generate slug from title if not manually edited
   const handleTitleChange = (val: string) => {
@@ -346,53 +436,172 @@ export function CreateBlogView({ blogId }: CreateBlogViewProps) {
   const wordCount = plainText ? plainText.split(/\s+/).filter(Boolean).length : 0;
   const charCount = plainText.length;
 
-  // Handle image upload to backend POST /api/blogs/upload-image
-  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
+  // Handle multiple image upload to backend POST /api/blogs/upload-image
+  const handleMultipleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    if (!files || files.length === 0) return;
 
-    // Validate size (max 5MB)
-    if (file.size > 5 * 1024 * 1024) {
-      setErrorMessage('Image size exceeds 5MB limit. Please choose a smaller image.');
+    const fileList = Array.from(files);
+
+    // Reset input value so user can select the same file again if desired
+    e.target.value = '';
+
+    // 1. Check total count
+    const currentCount = uploadedImages.length;
+    if (currentCount + fileList.length > 10) {
+      setErrorMessage(
+        `Maximum 10 images allowed. You have ${currentCount} and selected ${fileList.length} more (total ${currentCount + fileList.length}).`
+      );
       return;
+    }
+
+    // 2. Validate format and size for each file
+    const allowedMimeTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
+    const allowedExtensions = ['.jpg', '.jpeg', '.png', '.webp'];
+
+    for (const file of fileList) {
+      const ext = file.name.slice(file.name.lastIndexOf('.')).toLowerCase();
+      const isTypeValid =
+        allowedMimeTypes.includes(file.type.toLowerCase()) || allowedExtensions.includes(ext);
+
+      if (!isTypeValid) {
+        setErrorMessage(
+          `Only JPG, JPEG, PNG and WEBP images are allowed. "${file.name}" is not supported.`
+        );
+        return;
+      }
+
+      if (file.size > 10 * 1024 * 1024) {
+        const sizeMb = (file.size / (1024 * 1024)).toFixed(1);
+        setErrorMessage(
+          `Each image must be 10MB or smaller. "${file.name}" is ${sizeMb}MB.`
+        );
+        return;
+      }
     }
 
     setIsUploadingImage(true);
     setErrorMessage(null);
 
-    // Show local preview immediately for instant feedback
-    const reader = new FileReader();
-    reader.onload = (loadEvt) => {
-      if (loadEvt.target?.result) {
-        setCoverImagePreview(loadEvt.target.result as string);
-      }
-    };
-    reader.readAsDataURL(file);
-
     try {
-      const res = await uploadBlogImage(file);
-      if (res.success && res.data) {
-        const uploadedUrl =
-          res.data.url ||
-          res.data.imageUrl ||
-          res.data.secure_url ||
-          (typeof res.data === 'string' ? res.data : '');
+      const res = await uploadBlogImages(fileList);
 
-        if (uploadedUrl) {
-          setFeaturedImageUrl(uploadedUrl);
-          setCoverImagePreview(uploadedUrl);
-          showToast('Featured image uploaded successfully!');
+      if (res.success && res.data) {
+        // Extract array of URLs from response
+        const rawUrls: string[] = [];
+
+        if (Array.isArray(res.data.images)) {
+          rawUrls.push(...res.data.images);
+        } else if (res.data.data && Array.isArray(res.data.data.images)) {
+          rawUrls.push(...res.data.data.images);
+        } else if ((res as any).images && Array.isArray((res as any).images)) {
+          rawUrls.push(...(res as any).images);
+        } else if (res.data.imageUrl || res.data.url || res.data.secure_url) {
+          rawUrls.push(res.data.imageUrl || res.data.url || res.data.secure_url || '');
+        } else if (typeof res.data === 'string') {
+          rawUrls.push(res.data);
+        }
+
+        const validUrls = rawUrls.filter(
+          (u) => typeof u === 'string' && u.trim().length > 0
+        );
+
+        if (validUrls.length > 0) {
+          const hasExistingFeatured = uploadedImages.some((img) => img.isFeatured);
+
+          const newItems: BlogImageItem[] = validUrls.map((url, idx) => {
+            const correspondingFile = fileList[idx];
+            const isFeatured = !hasExistingFeatured && idx === 0 && currentCount === 0;
+            return {
+              id: `img-${Date.now()}-${idx}-${Math.random().toString(36).substring(2, 7)}`,
+              url,
+              alt: imageAltText || '',
+              name: correspondingFile?.name,
+              size: correspondingFile?.size,
+              isFeatured,
+            };
+          });
+
+          const updated = [...uploadedImages, ...newItems];
+
+          // Ensure at least one image is featured
+          if (updated.length > 0 && !updated.some((img) => img.isFeatured)) {
+            updated[0].isFeatured = true;
+          }
+
+          setUploadedImages(updated);
+
+          const activeFeat =
+            updated.find((img) => img.isFeatured)?.url || updated[0]?.url || '';
+          setFeaturedImageUrl(activeFeat);
+          setCoverImagePreview(activeFeat);
+
+          showToast(
+            `${validUrls.length} image${validUrls.length > 1 ? 's' : ''} uploaded successfully!`
+          );
         } else {
-          showToast('Image uploaded successfully');
+          setErrorMessage('Server did not return uploaded image URLs. Please try again.');
         }
       } else {
-        setErrorMessage(res.error || 'Failed to upload image. Please try again.');
+        setErrorMessage(res.error || 'Failed to upload images. Please check backend logs.');
       }
     } catch (err: any) {
       setErrorMessage(err.message || 'Image upload failed due to a network error.');
     } finally {
       setIsUploadingImage(false);
     }
+  };
+
+  const handleSetFeaturedImage = (id: string) => {
+    setUploadedImages((prev) => {
+      const updated = prev.map((img) => ({
+        ...img,
+        isFeatured: img.id === id,
+      }));
+      const newFeat = updated.find((img) => img.isFeatured);
+      if (newFeat) {
+        setFeaturedImageUrl(newFeat.url);
+        setCoverImagePreview(newFeat.url);
+        if (newFeat.alt) {
+          setImageAltText(newFeat.alt);
+        }
+      }
+      return updated;
+    });
+    showToast('Primary featured image updated');
+  };
+
+  const handleRemoveImage = (id: string) => {
+    setUploadedImages((prev) => {
+      const target = prev.find((img) => img.id === id);
+      const filtered = prev.filter((img) => img.id !== id);
+
+      if (target?.isFeatured && filtered.length > 0) {
+        filtered[0].isFeatured = true;
+        setFeaturedImageUrl(filtered[0].url);
+        setCoverImagePreview(filtered[0].url);
+      } else if (filtered.length === 0) {
+        setFeaturedImageUrl('');
+        setCoverImagePreview(null);
+      }
+
+      return filtered;
+    });
+    showToast('Image removed');
+  };
+
+  const handleImageAltChange = (id: string, altVal: string) => {
+    setUploadedImages((prev) =>
+      prev.map((img) => {
+        if (img.id === id) {
+          if (img.isFeatured) {
+            setImageAltText(altVal);
+          }
+          return { ...img, alt: altVal };
+        }
+        return img;
+      })
+    );
   };
 
   // Save / Publish Blog
@@ -428,6 +637,23 @@ export function CreateBlogView({ blogId }: CreateBlogViewProps) {
       .map((t) => t.trim())
       .filter(Boolean);
 
+    const imagesPayload = uploadedImages.map((img) => ({
+      url: img.url,
+      alt: img.alt || (img.isFeatured ? imageAltText || title.trim() : ''),
+    }));
+
+    const activeFeaturedUrl =
+      uploadedImages.find((img) => img.isFeatured)?.url ||
+      uploadedImages[0]?.url ||
+      featuredImageUrl ||
+      coverImagePreview ||
+      undefined;
+
+    const activeFeaturedAlt =
+      uploadedImages.find((img) => img.isFeatured)?.alt ||
+      imageAltText ||
+      title.trim();
+
     const payload: BlogPayload = {
       title: title.trim(),
       slug: effectiveSlug,
@@ -447,8 +673,9 @@ export function CreateBlogView({ blogId }: CreateBlogViewProps) {
       estimatedReadTime: readTime,
       readingTime: readTime,
       tags: tagsArray,
-      featuredImage: featuredImageUrl || coverImagePreview || undefined,
-      imageAltText: imageAltText || title.trim(),
+      featuredImage: activeFeaturedUrl,
+      imageAltText: activeFeaturedAlt,
+      images: imagesPayload.length > 0 ? imagesPayload : undefined,
       publishedAt: effectiveStatus === 'Published' ? new Date().toISOString() : undefined,
     };
 
@@ -469,6 +696,7 @@ export function CreateBlogView({ blogId }: CreateBlogViewProps) {
         const res = await createBlog(payload);
         if (res.success) {
           showToast(`Blog successfully created as ${effectiveStatus}!`);
+          resetFormToFresh();
           setTimeout(() => {
             router.push('/admin/blogs');
           }, 1000);
@@ -581,9 +809,9 @@ export function CreateBlogView({ blogId }: CreateBlogViewProps) {
 
           <button
             type="button"
-            disabled={isSubmitting}
+            disabled={isSubmitting || isUploadingImage}
             onClick={() => handleSubmitBlog('Draft')}
-            className="inline-flex items-center gap-2 px-3.5 py-2 text-xs font-semibold rounded-lg bg-white border border-neutral-300 text-neutral-700 hover:bg-neutral-50 hover:border-neutral-400 shadow-2xs transition-all active:scale-[0.98] cursor-pointer disabled:opacity-60"
+            className="inline-flex items-center gap-2 px-3.5 py-2 text-xs font-semibold rounded-lg bg-white border border-neutral-300 text-neutral-700 hover:bg-neutral-50 hover:border-neutral-400 shadow-2xs transition-all active:scale-[0.98] cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
           >
             {isSubmitting ? (
               <Loader2 className="w-3.5 h-3.5 text-neutral-500 animate-spin" />
@@ -595,9 +823,9 @@ export function CreateBlogView({ blogId }: CreateBlogViewProps) {
 
           <button
             type="button"
-            disabled={isSubmitting}
+            disabled={isSubmitting || isUploadingImage}
             onClick={() => handleSubmitBlog('Published')}
-            className="inline-flex items-center gap-2 px-4 py-2 text-xs font-bold rounded-lg bg-[#0284C7] text-white hover:bg-[#0369A1] shadow-xs hover:shadow-md hover:shadow-sky-500/20 transition-all active:scale-[0.98] cursor-pointer disabled:opacity-60"
+            className="inline-flex items-center gap-2 px-4 py-2 text-xs font-bold rounded-lg bg-[#0284C7] text-white hover:bg-[#0369A1] shadow-xs hover:shadow-md hover:shadow-sky-500/20 transition-all active:scale-[0.98] cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
           >
             {isSubmitting ? (
               <Loader2 className="w-3.5 h-3.5 text-white animate-spin" />
@@ -926,6 +1154,7 @@ export function CreateBlogView({ blogId }: CreateBlogViewProps) {
               {activeTab === 'visual' && (
                 <div className="p-6 sm:p-8">
                   <div
+                    key={`visual-editor-${blogId || 'new'}-${editorKey}`}
                     ref={editorRef}
                     contentEditable
                     suppressContentEditableWarning
@@ -1208,97 +1437,198 @@ export function CreateBlogView({ blogId }: CreateBlogViewProps) {
             </div>
           </div>
 
-          {/* CARD 3: COVER / FEATURED IMAGE */}
+          {/* CARD 3: FEATURED & GALLERY IMAGES (MULTIPLE UPLOAD UP TO 10) */}
           <div className="bg-white rounded-2xl border border-neutral-200 shadow-xs p-5 sm:p-6 space-y-4">
             <div className="flex items-center justify-between border-b border-neutral-100 pb-3">
               <div className="flex items-center gap-2">
                 <ImageIcon className="w-4 h-4 text-[#0284C7]" />
                 <h2 className="text-sm font-bold text-[#0A2540] uppercase tracking-wider">
-                  Cover / Featured Image
+                  Featured &amp; Gallery Images
                 </h2>
               </div>
-              {coverImagePreview && (
-                <button
-                  type="button"
-                  onClick={() => {
-                    setCoverImagePreview(null);
-                    setFeaturedImageUrl('');
-                  }}
-                  className="text-[11px] text-red-500 hover:text-red-700 font-semibold cursor-pointer"
+              <div className="flex items-center gap-2">
+                <span
+                  className={`text-[11px] font-bold px-2.5 py-0.5 rounded-full ${
+                    uploadedImages.length >= 10
+                      ? 'bg-amber-100 text-amber-800 border border-amber-300'
+                      : 'bg-neutral-100 text-neutral-600 border border-neutral-200'
+                  }`}
                 >
-                  Remove
-                </button>
-              )}
-            </div>
-
-            {/* Upload Area / Image Preview */}
-            {coverImagePreview ? (
-              <div className="relative rounded-xl overflow-hidden border border-neutral-200 group">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={coverImagePreview}
-                  alt={imageAltText || 'Featured Article Cover Preview'}
-                  className="w-full h-44 object-cover"
-                />
-                <div className="absolute inset-0 bg-neutral-900/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2 text-white text-xs font-semibold">
-                  <span>Image Uploaded</span>
-                </div>
-              </div>
-            ) : (
-              <label className="border-2 border-dashed border-neutral-200 hover:border-[#0284C7] bg-neutral-50/70 hover:bg-sky-50/30 rounded-xl p-6 text-center cursor-pointer transition-all flex flex-col items-center justify-center gap-2.5 group">
-                <input
-                  type="file"
-                  accept="image/jpeg,image/png,image/webp,image/gif"
-                  onChange={handleImageUpload}
-                  disabled={isUploadingImage}
-                  className="sr-only"
-                />
-                <div className="w-10 h-10 rounded-full bg-white shadow-xs border border-neutral-200 text-[#0284C7] group-hover:scale-110 group-hover:border-sky-300 transition-all flex items-center justify-center">
-                  {isUploadingImage ? (
-                    <Loader2 className="w-5 h-5 animate-spin" />
-                  ) : (
-                    <UploadCloud className="w-5 h-5" />
-                  )}
-                </div>
-                <div>
-                  <div className="text-xs font-bold text-neutral-800 group-hover:text-[#0284C7] transition-colors">
-                    {isUploadingImage ? 'Uploading to Server...' : 'Upload Featured Image'}
-                  </div>
-                  <p className="text-[11px] text-neutral-400 mt-0.5">
-                    JPG, PNG or WEBP • Max 5MB
-                  </p>
-                </div>
-                <span className="text-[11px] font-semibold text-[#0284C7] bg-white border border-neutral-200 group-hover:border-sky-200 px-3 py-1 rounded-lg shadow-2xs mt-1">
-                  Browse Files
+                  {uploadedImages.length} / 10 Images
                 </span>
-              </label>
-            )}
-
-            {/* Image Alt Text */}
-            <div className="space-y-1">
-              <label
-                htmlFor={`${compId}-image-alt`}
-                className="block text-[11px] font-bold text-neutral-600 uppercase tracking-wider"
-              >
-                Image Alt Text
-              </label>
-              <input
-                id={`${compId}-image-alt`}
-                type="text"
-                value={imageAltText}
-                onChange={(e) => setImageAltText(e.target.value)}
-                placeholder="Descriptive text for accessibility & SEO"
-                className="w-full px-3 py-1.5 text-xs text-neutral-800 placeholder:text-neutral-400 bg-neutral-50/60 hover:bg-white border border-neutral-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0284C7]/20 focus:border-[#0284C7] transition-all"
-              />
+                {uploadedImages.length > 0 && (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setUploadedImages([]);
+                      setCoverImagePreview(null);
+                      setFeaturedImageUrl('');
+                    }}
+                    className="text-[11px] text-red-500 hover:text-red-700 font-semibold cursor-pointer"
+                  >
+                    Clear All
+                  </button>
+                )}
+              </div>
             </div>
 
-            {/* Subtle placeholder helper */}
-            <div className="bg-neutral-50 rounded-xl p-3 border border-neutral-100 flex items-start gap-2 text-[11px] text-neutral-500">
-              <Info className="w-3.5 h-3.5 text-neutral-400 shrink-0 mt-0.5" />
-              <span>
-                Recommended banner aspect ratio 16:9 (1200x675px) for optimal social and feed
-                rendering.
-              </span>
+            {/* Multiple Image Upload Input */}
+            <div className="space-y-3">
+              {uploadedImages.length < 10 && (
+                <label
+                  className={`border-2 border-dashed rounded-xl p-5 text-center cursor-pointer transition-all flex flex-col items-center justify-center gap-2 group ${
+                    isUploadingImage
+                      ? 'opacity-60 pointer-events-none bg-neutral-50 border-neutral-200'
+                      : 'border-neutral-200 hover:border-[#0284C7] bg-neutral-50/70 hover:bg-sky-50/30'
+                  }`}
+                >
+                  <input
+                    type="file"
+                    multiple
+                    accept="image/jpeg,image/jpg,image/png,image/webp"
+                    onChange={handleMultipleImageUpload}
+                    disabled={isUploadingImage || isSubmitting || uploadedImages.length >= 10}
+                    className="sr-only"
+                  />
+                  <div className="w-10 h-10 rounded-full bg-white shadow-xs border border-neutral-200 text-[#0284C7] group-hover:scale-110 group-hover:border-sky-300 transition-all flex items-center justify-center">
+                    {isUploadingImage ? (
+                      <Loader2 className="w-5 h-5 animate-spin text-[#0284C7]" />
+                    ) : (
+                      <UploadCloud className="w-5 h-5" />
+                    )}
+                  </div>
+                  <div>
+                    <div className="text-xs font-bold text-neutral-800 group-hover:text-[#0284C7] transition-colors">
+                      {isUploadingImage
+                        ? 'Uploading Images to Server...'
+                        : uploadedImages.length > 0
+                        ? '+ Add More Images (Up to 10 total)'
+                        : 'Upload Featured & Gallery Images'}
+                    </div>
+                    <p className="text-[11px] text-neutral-400 mt-0.5">
+                      JPG, JPEG, PNG, WEBP • Max 10MB per image • Select multiple
+                    </p>
+                  </div>
+                  <span className="text-[11px] font-semibold text-[#0284C7] bg-white border border-neutral-200 group-hover:border-sky-200 px-3 py-1 rounded-lg shadow-2xs mt-0.5">
+                    Browse Images (Multiple)
+                  </span>
+                </label>
+              )}
+
+              {/* Gallery Grid */}
+              {uploadedImages.length > 0 && (
+                <div className="space-y-3 pt-1">
+                  <div className="text-[11px] font-bold text-neutral-600 uppercase tracking-wider flex items-center justify-between">
+                    <span>Uploaded Gallery ({uploadedImages.length})</span>
+                    <span className="text-[10.5px] text-neutral-400 font-normal lowercase">
+                      click star to switch featured
+                    </span>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {uploadedImages.map((img, index) => (
+                      <div
+                        key={img.id}
+                        className={`relative rounded-xl border p-2.5 transition-all space-y-2 bg-white ${
+                          img.isFeatured
+                            ? 'border-[#0284C7] ring-2 ring-[#0284C7]/20 shadow-xs'
+                            : 'border-neutral-200 hover:border-neutral-300'
+                        }`}
+                      >
+                        {/* Image Thumbnail & Actions Bar */}
+                        <div className="relative aspect-[16/10] w-full rounded-lg overflow-hidden bg-neutral-100 border border-neutral-200/70 group">
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img
+                            src={img.url}
+                            alt={img.alt || `Blog Image ${index + 1}`}
+                            className="w-full h-full object-cover object-center"
+                          />
+
+                          {/* Featured Badge or Set Featured Overlay */}
+                          <div className="absolute top-2 left-2 flex items-center gap-1 z-10">
+                            {img.isFeatured ? (
+                              <span className="inline-flex items-center gap-1 bg-[#0284C7] text-white text-[10px] font-bold px-2 py-0.5 rounded-md shadow-sm">
+                                <Star className="w-3 h-3 fill-white text-white" />
+                                <span>★ Featured</span>
+                              </span>
+                            ) : (
+                              <button
+                                type="button"
+                                onClick={() => handleSetFeaturedImage(img.id)}
+                                title="Set as Primary Featured Image"
+                                className="inline-flex items-center gap-1 bg-neutral-900/85 hover:bg-[#0284C7] text-white text-[10px] font-bold px-2 py-0.5 rounded-md shadow-sm opacity-90 hover:opacity-100 transition-colors cursor-pointer"
+                              >
+                                <Star className="w-3 h-3" />
+                                <span>Set Featured</span>
+                              </button>
+                            )}
+                          </div>
+
+                          {/* Delete / Remove Button */}
+                          <button
+                            type="button"
+                            onClick={() => handleRemoveImage(img.id)}
+                            title="Remove this image"
+                            className="absolute top-2 right-2 p-1.5 rounded-md bg-neutral-900/85 hover:bg-red-600 text-white shadow-sm transition-colors cursor-pointer z-10"
+                          >
+                            <Trash2 className="w-3 h-3" />
+                          </button>
+                        </div>
+
+                        {/* Alt Text Input per image */}
+                        <div className="space-y-1">
+                          <div className="flex items-center justify-between text-[10px] text-neutral-500 font-semibold">
+                            <span>Image #{index + 1} Alt Text</span>
+                            {img.isFeatured && (
+                              <span className="text-[#0284C7] font-bold">SEO Primary</span>
+                            )}
+                          </div>
+                          <input
+                            type="text"
+                            value={img.alt}
+                            onChange={(e) => handleImageAltChange(img.id, e.target.value)}
+                            placeholder="Descriptive alt text for SEO..."
+                            className="w-full px-2.5 py-1 text-[11px] text-neutral-800 placeholder:text-neutral-400 bg-neutral-50 hover:bg-white border border-neutral-200 rounded-md focus:outline-none focus:ring-1 focus:ring-[#0284C7] focus:border-[#0284C7] transition-all"
+                          />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Primary Featured Image Alt Text */}
+              <div className="space-y-1 pt-2 border-t border-neutral-100">
+                <label
+                  htmlFor={`${compId}-image-alt`}
+                  className="block text-[11px] font-bold text-neutral-600 uppercase tracking-wider"
+                >
+                  Primary Featured Image Alt Text
+                </label>
+                <input
+                  id={`${compId}-image-alt`}
+                  type="text"
+                  value={imageAltText}
+                  onChange={(e) => {
+                    const val = e.target.value;
+                    setImageAltText(val);
+                    setUploadedImages((prev) =>
+                      prev.map((img) => (img.isFeatured ? { ...img, alt: val } : img))
+                    );
+                  }}
+                  placeholder="Descriptive text for accessibility & SEO"
+                  className="w-full px-3 py-1.5 text-xs text-neutral-800 placeholder:text-neutral-400 bg-neutral-50/60 hover:bg-white border border-neutral-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0284C7]/20 focus:border-[#0284C7] transition-all"
+                />
+              </div>
+
+              {/* Info helper */}
+              <div className="bg-neutral-50 rounded-xl p-3 border border-neutral-100 flex items-start gap-2 text-[11px] text-neutral-500">
+                <Info className="w-3.5 h-3.5 text-neutral-400 shrink-0 mt-0.5" />
+                <span>
+                  Select up to 10 images. The designated <strong>★ Featured Image</strong> is used
+                  for social share previews, cards, and top banner.
+                </span>
+              </div>
             </div>
           </div>
         </div>
