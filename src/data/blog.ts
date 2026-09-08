@@ -52,6 +52,15 @@ export const blogPostsData: EnrichedBlogPost[] = [
     publishedAt: '2026-01-20T10:00:00.000Z',
     category: 'Trade Compliance',
     tags: ['EXIM', 'Customs', 'Regulations', 'Compliance', 'AEO', 'ICEGATE'],
+    keywords: [
+      'Global Trade Compliance',
+      'Customs Brokerage',
+      'HS Code Classification',
+      'AEO Certification',
+      'ICEGATE Clearance',
+      'RoDTEP Incentive Scheme',
+      'Rules of Origin',
+    ],
     seoTitle: 'Global Trade Compliance Guide 2026 | SkyLink Insights',
     seoDescription:
       'Learn key regulatory updates in international trade compliance, customs brokerage, HS code classification, and export incentive optimization.',
@@ -105,6 +114,15 @@ export const blogPostsData: EnrichedBlogPost[] = [
     publishedAt: '2026-02-14T09:30:00.000Z',
     category: 'Cold Chain Logistics',
     tags: ['Cold Chain', 'Pharma', 'Logistics', 'GDP Compliance', 'IoT', 'Air Cargo'],
+    keywords: [
+      'Pharmaceutical Logistics',
+      'Cold Chain Solutions',
+      'Temperature Controlled Cargo',
+      'IoT Sensor Telemetry',
+      'GDP Compliance',
+      'Active Reefer Containers',
+      'Vaccine Transportation',
+    ],
     seoTitle: 'Pharmaceutical Cold Chain Logistics Guide | SkyLink Insights',
     seoDescription:
       'Discover operational strategies for ensuring temperature integrity in international pharmaceutical and perishable freight forwarding.',
@@ -144,6 +162,14 @@ export const blogPostsData: EnrichedBlogPost[] = [
     publishedAt: '2026-02-22T11:00:00.000Z',
     category: 'Freight Logistics',
     tags: ['Ocean Freight', 'Air Freight', 'Cost Optimization', 'Supply Chain', 'Shipping'],
+    keywords: [
+      'Freight Cost Reduction',
+      'Ocean Freight Rates',
+      'Carrier Contracting',
+      'B2B Logistics Optimization',
+      'Container Routing',
+      'DTHC Optimization',
+    ],
     seoTitle: 'Reducing Export Logistics Costs | Freight Strategy Guide',
     seoDescription:
       'Strategies for exporters to lower international freight forwarding expenses through volume aggregation and direct shipping line negotiation.',
@@ -151,6 +177,8 @@ export const blogPostsData: EnrichedBlogPost[] = [
 ];
 
 export function mapBackendBlogToEnriched(b: any): EnrichedBlogPost {
+  if (!b) return blogPostsData[0];
+
   const authorName =
     typeof b.author === 'object' && b.author?.name
       ? b.author.name
@@ -166,23 +194,74 @@ export function mapBackendBlogToEnriched(b: any): EnrichedBlogPost {
   const rawExcerpt = b.shortDescription || b.excerpt || '';
   const cleanExcerpt =
     rawExcerpt ||
-    (b.content ? b.content.replace(/<[^>]+>/g, ' ').trim().slice(0, 160) + '...' : '');
+    (typeof b.content === 'string'
+      ? b.content.replace(/<[^>]+>/g, ' ').trim().slice(0, 160) + '...'
+      : '');
+
+  // Extract clean string slug
+  const rawSlug =
+    typeof b.slug === 'string'
+      ? b.slug
+      : typeof b.slug === 'object' && b.slug?.current
+      ? b.slug.current
+      : typeof b.slug === 'object' && b.slug?._id
+      ? b.slug._id
+      : b.slug || b._id || b.id || '';
+  const cleanSlug = typeof rawSlug === 'string' && rawSlug.trim().length > 0 ? rawSlug.trim() : String(b._id || b.id || 'article');
+
+  // Extract clean string image URL
+  const rawImage = b.featuredImage || (b as any).image || (b as any).coverImage;
+  const cleanFeaturedImage =
+    typeof rawImage === 'string' && rawImage.trim().length > 0
+      ? rawImage.trim()
+      : typeof rawImage === 'object' && rawImage?.url
+      ? String(rawImage.url)
+      : typeof rawImage === 'object' && rawImage?.secure_url
+      ? String(rawImage.secure_url)
+      : undefined;
+
+  const cleanKeywords = Array.isArray(b.keywords)
+    ? b.keywords
+        .map((k: any) =>
+          typeof k === 'string'
+            ? k.trim()
+            : typeof k === 'object' && k?.name
+            ? k.name
+            : String(k)
+        )
+        .filter(Boolean)
+    : typeof b.keywords === 'string'
+    ? b.keywords.split(',').map((k: string) => k.trim()).filter(Boolean)
+    : [];
 
   return {
-    id: String(b._id || b.id || b.slug),
+    id: String(b._id || b.id || cleanSlug),
     title: b.title || 'Untitled Skylink Article',
-    slug: b.slug,
+    slug: cleanSlug,
     excerpt: cleanExcerpt,
-    content: b.content || '',
-    featuredImage: b.featuredImage || undefined,
+    content: typeof b.content === 'string' ? b.content : '',
+    featuredImage: cleanFeaturedImage,
     author: {
       name: authorName,
       role: authorRole,
-      avatar: typeof b.author === 'object' ? b.author?.avatar : undefined,
+      avatar: typeof b.author === 'object' && typeof b.author?.avatar === 'string' ? b.author.avatar : undefined,
     },
     publishedAt: b.publishedAt || b.createdAt || new Date().toISOString(),
     category: b.category || 'EXIM Consultancy',
-    tags: Array.isArray(b.tags) ? b.tags : typeof b.tags === 'string' ? b.tags.split(',').map((t: string) => t.trim()).filter(Boolean) : [],
+    tags: Array.isArray(b.tags)
+      ? b.tags
+          .map((t: any) =>
+            typeof t === 'string'
+              ? t.trim()
+              : typeof t === 'object' && t?.name
+              ? t.name
+              : String(t)
+          )
+          .filter(Boolean)
+      : typeof b.tags === 'string'
+      ? b.tags.split(',').map((t: string) => t.trim()).filter(Boolean)
+      : [],
+    keywords: cleanKeywords,
     readingTime: b.estimatedReadTime || b.readingTime || '5 min read',
     seoTitle: b.title ? `${b.title} | SkyLink Insights` : undefined,
     seoDescription: cleanExcerpt,
@@ -204,12 +283,15 @@ export async function getAllBlogPosts(): Promise<EnrichedBlogPost[]> {
 }
 
 export async function getBlogPostBySlug(slug: string): Promise<EnrichedBlogPost | undefined> {
+  const cleanSlug = typeof slug === 'string' ? slug.trim() : String(slug || '');
+  if (!cleanSlug || cleanSlug === '[object Object]') return undefined;
+
   try {
     const { getPublicBlogBySlug } = await import('@/lib/api/blogs');
-    const res = await getPublicBlogBySlug(slug);
+    const res = await getPublicBlogBySlug(cleanSlug);
     if (res.success && res.data) {
       return mapBackendBlogToEnriched(res.data);
     }
   } catch {}
-  return blogPostsData.find((post) => post.slug === slug);
+  return blogPostsData.find((post) => post.slug === cleanSlug);
 }

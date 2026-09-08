@@ -15,6 +15,9 @@ export interface BlogPost {
   publishedAt: string;
   category: string;
   tags: string[];
+  keywords?: string[];
+  readingTime?: string;
   seoTitle?: string;
   seoDescription?: string;
+  tableOfContents?: Array<{ id: string; title: string; level?: number }>;
 }

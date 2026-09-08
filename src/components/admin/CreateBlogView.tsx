@@ -133,7 +133,13 @@ export function CreateBlogView({ blogId }: CreateBlogViewProps) {
         if (res.success && res.data && isMounted) {
           const b = res.data;
           setTitle(b.title || '');
-          setSlug(b.slug || '');
+          const rawSlug =
+            typeof b.slug === 'string'
+              ? b.slug
+              : typeof b.slug === 'object' && b.slug && (b.slug as any).current
+              ? String((b.slug as any).current)
+              : String(b.slug || '');
+          setSlug(rawSlug);
           setIsSlugManuallyEdited(true);
           setShortDescription(b.shortDescription || b.excerpt || '');
           setKeywords(Array.isArray(b.keywords) ? b.keywords.join(', ') : (b.keywords || ''));
@@ -161,9 +167,18 @@ export function CreateBlogView({ blogId }: CreateBlogViewProps) {
           if (b.tags) {
             setTagsInput(Array.isArray(b.tags) ? b.tags.join(', ') : b.tags);
           }
-          if (b.featuredImage) {
-            setFeaturedImageUrl(b.featuredImage);
-            setCoverImagePreview(b.featuredImage);
+          const rawFeatImg = b.featuredImage || (b as any).image || (b as any).coverImage;
+          const cleanFeatImg =
+            typeof rawFeatImg === 'string'
+              ? rawFeatImg
+              : typeof rawFeatImg === 'object' && rawFeatImg && rawFeatImg.url
+              ? String(rawFeatImg.url)
+              : typeof rawFeatImg === 'object' && rawFeatImg && rawFeatImg.secure_url
+              ? String(rawFeatImg.secure_url)
+              : '';
+          if (cleanFeatImg) {
+            setFeaturedImageUrl(cleanFeatImg);
+            setCoverImagePreview(cleanFeatImg);
           }
           if (b.imageAltText) {
             setImageAltText(b.imageAltText);

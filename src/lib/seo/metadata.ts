@@ -65,6 +65,21 @@ export function constructMetadata(params: SEOMetadataParams = {}): Metadata {
   }
   const resolvedKeywords = Array.from(keywordSet);
 
+  // Safely resolve image URL as string regardless of input format
+  const rawImage = image || siteConfig.ogImage;
+  const imageString =
+    typeof rawImage === 'string' && rawImage.trim().length > 0
+      ? rawImage.trim()
+      : typeof rawImage === 'object' && rawImage && 'url' in rawImage && typeof (rawImage as any).url === 'string'
+      ? (rawImage as any).url.trim()
+      : typeof rawImage === 'object' && rawImage && 'secure_url' in rawImage && typeof (rawImage as any).secure_url === 'string'
+      ? (rawImage as any).secure_url.trim()
+      : siteConfig.ogImage;
+
+  const resolvedImageUrl = imageString.startsWith('http')
+    ? imageString
+    : `${env.siteUrl}${imageString.startsWith('/') ? '' : '/'}${imageString}`;
+
   const metadata: Metadata = {
     title: title
       ? {
@@ -87,7 +102,7 @@ export function constructMetadata(params: SEOMetadataParams = {}): Metadata {
       siteName: siteConfig.name,
       images: [
         {
-          url: image.startsWith('http') ? image : `${env.siteUrl}${image.startsWith('/') ? '' : '/'}${image}`,
+          url: resolvedImageUrl,
           width: 1200,
           height: 630,
           alt: resolvedOgTitle,
@@ -102,7 +117,7 @@ export function constructMetadata(params: SEOMetadataParams = {}): Metadata {
       card: twitterCard,
       title: resolvedTwitterTitle,
       description: resolvedTwitterDescription,
-      images: [image.startsWith('http') ? image : `${env.siteUrl}${image.startsWith('/') ? '' : '/'}${image}`],
+      images: [resolvedImageUrl],
     },
     robots: noIndex ? SEO_DEFAULTS.robotsAdmin : SEO_DEFAULTS.robotsDefault,
     metadataBase: new URL(env.siteUrl),
@@ -170,14 +185,28 @@ export function constructServiceMetadata(service: Service): Metadata {
  * Metadata builder for dynamic Blog posts
  */
 export function constructBlogMetadata(post: BlogPost): Metadata {
+  const cleanSlug =
+    typeof post.slug === 'string'
+      ? post.slug
+      : typeof post.slug === 'object' && (post.slug as any)?.current
+      ? (post.slug as any).current
+      : String(post.slug || '');
+
+  const authorName =
+    typeof post.author === 'object' && post.author?.name
+      ? post.author.name
+      : typeof post.author === 'string'
+      ? post.author
+      : 'Skylink Team';
+
   return constructMetadata({
     title: post.seoTitle || post.title,
     description: post.seoDescription || post.excerpt,
-    path: `/blog/${post.slug}`,
+    path: `/blog/${cleanSlug}`,
     image: post.featuredImage || siteConfig.ogImage,
     type: 'article',
     publishedTime: post.publishedAt,
-    authors: [post.author.name],
+    authors: [authorName],
   });
 }
 

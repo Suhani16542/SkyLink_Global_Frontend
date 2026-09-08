@@ -403,24 +403,39 @@ export default function AdminBlogsDirectoryPage() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-neutral-100 text-xs">
-                {filteredBlogs.map((blog) => {
-                  const blogId = blog._id || blog.id || '';
+                {filteredBlogs.map((blog, idx) => {
+                  const blogId =
+                    typeof blog._id === 'string' && blog._id.length > 0
+                      ? blog._id
+                      : typeof blog.id === 'string' && blog.id.length > 0
+                      ? blog.id
+                      : typeof blog._id === 'object' && blog._id && '$oid' in (blog._id as any)
+                      ? String((blog._id as any).$oid)
+                      : String(blog._id || blog.id || blog.slug || `blog-${idx}`);
+
+                  const blogSlug =
+                    typeof blog.slug === 'string' && blog.slug.length > 0
+                      ? blog.slug
+                      : typeof blog.slug === 'object' && blog.slug && (blog.slug as any).current
+                      ? String((blog.slug as any).current)
+                      : String(blog.slug || blogId);
+
                   const isPublished = (blog.status || '').toLowerCase() === 'published';
                   const isItemFeatured = !!(blog.featured ?? blog.isFeatured);
                   const isActionLoading = actionLoadingId === blogId;
 
                   return (
-                    <tr key={blogId} className="hover:bg-neutral-50/70 transition-colors">
+                    <tr key={blogId || idx} className="hover:bg-neutral-50/70 transition-colors">
                       {/* Title & Excerpt */}
                       <td className="py-4 px-4 max-w-sm">
                         <div className="font-bold text-neutral-900 text-sm leading-snug line-clamp-1">
                           {blog.title}
                         </div>
                         <div className="text-[11px] text-neutral-500 line-clamp-1 mt-0.5">
-                          {blog.shortDescription || blog.excerpt || `/blog/${blog.slug}`}
+                          {blog.shortDescription || blog.excerpt || `/blog/${blogSlug}`}
                         </div>
                         <div className="text-[10px] font-mono text-sky-600 mt-1">
-                          /blog/{blog.slug}
+                          /blog/{blogSlug}
                         </div>
                       </td>
 
@@ -464,11 +479,11 @@ export default function AdminBlogsDirectoryPage() {
                           type="button"
                           disabled={isActionLoading}
                           onClick={() => handleToggleFeatured(blog)}
-                          title="Toggle featured article"
+                          title="Click to toggle featured"
                           className={`p-1.5 rounded-lg border transition-all cursor-pointer ${
                             isItemFeatured
-                              ? 'bg-amber-50 text-amber-600 border-amber-300'
-                              : 'text-neutral-400 border-transparent hover:bg-neutral-100'
+                              ? 'bg-amber-50 text-amber-600 border-amber-300 hover:bg-amber-100'
+                              : 'border-transparent text-neutral-400 hover:text-neutral-600 hover:bg-neutral-100'
                           }`}
                         >
                           <Star
@@ -489,7 +504,7 @@ export default function AdminBlogsDirectoryPage() {
                         <div className="flex items-center justify-end gap-1">
                           {/* Public View */}
                           <Link
-                            href={`/blog/${blog.slug}`}
+                            href={`/blog/${blogSlug}`}
                             target="_blank"
                             title="View on Public Site"
                             className="p-1.5 rounded-lg text-neutral-500 hover:text-[#0284C7] hover:bg-neutral-100 transition-colors"
