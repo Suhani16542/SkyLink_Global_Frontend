@@ -282,9 +282,23 @@ export function Footer() {
 
         {/* Bottom Legal bar */}
         <div className="mt-8 border-t border-white/10 pt-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] sm:text-xs text-neutral-400">
-          <p className="transition-colors duration-300 hover:text-neutral-200 cursor-default">
-            © {currentYear} SkyLink Global Services. All rights reserved.
-          </p>
+          <div className="flex flex-wrap items-center gap-2 text-center sm:text-left">
+            <p className="transition-colors duration-300 hover:text-neutral-200 cursor-default">
+              © {currentYear} SkyLink Global Services. All rights reserved.
+            </p>
+            <span className="text-white/20 hidden sm:inline">|</span>
+            <p className="text-neutral-400">
+              Designed by{' '}
+              <a
+                href="https://www.mitsafe.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sky-400 hover:text-sky-300 font-medium transition-colors hover:underline"
+              >
+                Modern Technology
+              </a>
+            </p>
+          </div>
           <div className="flex flex-wrap items-center gap-5">
             <span className="transition-all duration-300 hover:text-sky-300 hover:scale-105 cursor-default">
               Connecting Markets. Delivering Opportunities.
