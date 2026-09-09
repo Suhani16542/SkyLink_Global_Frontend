@@ -68,63 +68,73 @@ interface NavSection {
 const otherIndustriesList = [
   {
     title: 'Automotive & Auto Components',
-    href: '/request-consultation?industry=Automotive%20%26%20Auto%20Components',
+    href: '/industries/automotive',
     icon: Car,
   },
   {
     title: 'Engineering & Manufacturing',
-    href: '/request-consultation?industry=Engineering%20%26%20Manufacturing',
+    href: '/industries/engineering-manufacturing',
     icon: Factory,
   },
   {
     title: 'Electronics & Electrical',
-    href: '/request-consultation?industry=Electronics%20%26%20Electrical',
+    href: '/industries/electronics-electrical',
     icon: Cpu,
   },
   {
     title: 'Textiles & Apparel',
-    href: '/request-consultation?industry=Textiles%20%26%20Apparel',
+    href: '/industries/textiles-apparel',
     icon: Shirt,
   },
   {
     title: 'Food & Beverages',
-    href: '/request-consultation?industry=Food%20%26%20Beverages',
+    href: '/industries/food-beverages',
     icon: UtensilsCrossed,
   },
   {
     title: 'Agriculture & Agro Products',
-    href: '/request-consultation?industry=Agriculture%20%26%20Agro%20Products',
+    href: '/industries/agriculture-agro',
     icon: Sprout,
   },
   {
+    title: 'Chemicals & Petrochemicals',
+    href: '/industries/chemicals-petrochemicals',
+    icon: Layers,
+  },
+  {
     title: 'Retail & Consumer Goods',
-    href: '/request-consultation?industry=Retail%20%26%20Consumer%20Goods',
+    href: '/industries/retail-consumer-goods',
     icon: ShoppingBag,
   },
   {
     title: 'Construction & Infrastructure',
-    href: '/request-consultation?industry=Construction%20%26%20Infrastructure',
+    href: '/industries/construction-infrastructure',
     icon: HardHat,
   },
   {
     title: 'Renewable Energy',
-    href: '/request-consultation?industry=Renewable%20Energy',
+    href: '/industries/renewable-energy',
     icon: Sun,
   },
   {
     title: 'Mining & Metals',
-    href: '/request-consultation?industry=Mining%20%26%20Metals',
+    href: '/industries/mining-metals',
     icon: Pickaxe,
   },
   {
     title: 'Industrial Equipment',
-    href: '/request-consultation?industry=Industrial%20Equipment',
+    href: '/industries/industrial-equipment',
     icon: Wrench,
   },
   {
     title: 'E-commerce',
-    href: '/request-consultation?industry=E-commerce',
+    href: '/industries/ecommerce',
     icon: ShoppingCart,
+  },
+  {
+    title: 'Other Bespoke Verticals',
+    href: '/industries/other',
+    icon: Sparkles,
   },
 ];
 

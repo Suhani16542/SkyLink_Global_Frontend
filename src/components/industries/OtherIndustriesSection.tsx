@@ -151,6 +151,7 @@ export function OtherIndustriesSection() {
               {filteredIndustries.map((item: OtherIndustry) => {
                 const IconComp = iconMap[item.iconName] || Sparkles;
                 const consultationUrl = `/request-consultation?industry=${encodeURIComponent(item.name)}`;
+                const industryUrl = item.href || `/industries/${item.id}`;
 
                 return (
                   <div
@@ -159,34 +160,44 @@ export function OtherIndustriesSection() {
                   >
                     <div className="space-y-3">
                       <div className="flex items-center justify-between gap-2">
-                        <div className="w-10 h-10 rounded-xl bg-sky-50 text-sky-700 group-hover:bg-[#0284C7] group-hover:text-white transition-colors flex items-center justify-center shadow-xs">
+                        <Link
+                          href={industryUrl}
+                          className="w-10 h-10 rounded-xl bg-sky-50 text-sky-700 group-hover:bg-[#0284C7] group-hover:text-white transition-colors flex items-center justify-center shadow-xs"
+                          title={`Explore ${item.name}`}
+                        >
                           <IconComp className="w-5 h-5" />
-                        </div>
+                        </Link>
                         <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-sky-700 bg-sky-50 px-2.5 py-1 rounded-full border border-sky-200/60">
                           {item.tag}
                         </span>
                       </div>
 
                       <div>
-                        <h3 className="text-base font-bold text-neutral-900 group-hover:text-[#0284C7] transition-colors leading-snug">
-                          {item.name}
-                        </h3>
+                        <Link href={industryUrl} className="block group-hover:text-[#0284C7] transition-colors">
+                          <h3 className="text-base font-bold text-neutral-900 group-hover:text-[#0284C7] transition-colors leading-snug">
+                            {item.name}
+                          </h3>
+                        </Link>
                         <p className="text-xs text-neutral-600 mt-1.5 leading-relaxed">
                           {item.description}
                         </p>
                       </div>
                     </div>
 
-                    <div className="pt-4 mt-4 border-t border-neutral-100 flex items-center justify-between">
-                      <span className="text-[11px] font-medium text-neutral-400">
-                        {item.category}
-                      </span>
+                    <div className="pt-4 mt-4 border-t border-neutral-100 flex items-center justify-between gap-2">
                       <Link
-                        href={consultationUrl}
+                        href={industryUrl}
                         className="inline-flex items-center gap-1 text-xs font-bold text-[#0284C7] hover:text-[#0369A1] transition-colors"
                       >
+                        <span>View Specs</span>
+                        <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                      </Link>
+                      <Link
+                        href={consultationUrl}
+                        className="inline-flex items-center gap-1 text-[11px] font-medium text-neutral-500 hover:text-neutral-900 transition-colors"
+                      >
                         <span>Consult Desk</span>
-                        <ArrowUpRight className="w-3.5 h-3.5" />
+                        <ArrowUpRight className="w-3 h-3" />
                       </Link>
                     </div>
                   </div>

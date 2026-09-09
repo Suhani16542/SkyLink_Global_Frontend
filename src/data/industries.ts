@@ -14,6 +14,7 @@ export interface OtherIndustry {
   description: string;
   tag: string;
   iconName: string;
+  href?: string;
 }
 
 /**
@@ -44,49 +45,48 @@ export const industriesData: EnrichedIndustry[] = [
       'Expedited Port Green-Channel Release',
       'Global GDP & US FDA Protocol Adherence',
     ],
-    seoTitle: 'Pharmaceutical EXIM & Cold Chain Logistics | SkyLink Global Services',
+    seoTitle: 'Pharma & Healthcare Cold-Chain Logistics | SkyLink Global Services',
     seoDescription:
-      'GDP compliant pharmaceutical freight forwarding, active cold chain monitoring, and regulatory trade clearance solutions.',
+      'GDP compliant temperature-controlled air & ocean freight for life sciences, pharmaceuticals, and active drug formulations.',
   },
   {
     id: 'seafood',
-    title: 'Seafood & Marine Exports',
+    title: 'Marine & Processed Seafood',
     slug: 'seafoods',
     href: '/industries/seafoods',
     description:
-      'Ultra-low temperature deep freeze logistics (-25°C to -40°C), MPEDA compliance, health certification liaison, and direct reefer container ocean freight for seafood exporters.',
+      'Ultra-low sub-zero (-25°C to -40°C) reefer container solutions, EIA and MPEDA health certification liaison, and express port loading for frozen shrimp, fish, and cephalopods.',
     challenges: [
-      'Rapid cargo spoilage if unbroken deep-freeze chain is disrupted',
-      'Stringent antibiotic residue testing and rejection risks by EU & US FDA import authorities',
-      'Port container plug-in delays and escalating reefer electricity surcharges',
-      'Fluctuating ocean freight container availability during harvest peaks',
+      'Protein degradation, black spot (melanosis), and bacterial bloom from cold-chain temperature spikes',
+      'Mandatory pre-export testing (antibiotic residues, microbiology) by Export Inspection Council (EIC)',
+      'High port detention risks leading to compromised shelf life and heavy container plug-in electricity demurrage',
+      'Stringent destination import regulations (US FDA HACCP, EU residue monitoring, Japanese quarantine)',
     ],
     skylinkSolutions: [
-      'Pre-tripped and validated Super-Freezer and standard Reefer container allocation',
-      'MPEDA (Marine Products Export Development Authority) and EIA health certificate facilitation',
-      'Priority berthing and guaranteed shore-power reefer plug-in coordination at loading ports',
-      'Direct shipping line contracts ensuring vessel space availability during peak harvesting runs',
+      'Super-freezer (-40°C) and controlled atmosphere reefer container positioning at coastal hubs',
+      'Direct liaison with MPEDA / EIA accredited testing laboratories for fast-track health certificate sign-off',
+      'Priority vessel berthing and direct-to-reefer plug-in guarantees across all major container terminals',
+      'Continuous remote reefer telematics reporting pulp and supply air temperature logs every 15 minutes',
     ],
     keyHighlights: [
-      '-25°C to -40°C Deep Freeze Transit',
-      'Priority Port Reefer Plug-In Monitoring',
-      'EIA & Health Certificate Facilitation',
+      'Super-Freezer (-40°C) Tech',
+      'EIA & MPEDA Statutory Liaison',
+      'Pre-Tripped Verified Reefers',
     ],
-    seoTitle: 'Seafood & Marine Products Export Logistics | SkyLink Global Services',
+    seoTitle: 'Seafood Cold Chain & Reefer Container Logistics | SkyLink Global Services',
     seoDescription:
-      'Reefer container freight, deep freeze temperature control, and statutory export compliance for seafood and aquaculture producers.',
+      'Sub-zero cold chain logistics, super-freezer reefer shipping, and MPEDA regulatory clearance for frozen marine seafood exporters.',
   },
   {
-    id: 'specialty-chemicals-agro-perishables',
-    title: 'Specialty Chemicals, Agro Fertilizers & Perishables',
+    id: 'perishables',
+    title: 'Specialty Chemicals, Agro & Perishables',
     slug: 'specialty-chemicals-agro-fertilizers-perishables',
     href: '/industries/specialty-chemicals-agro-fertilizers-perishables',
     description:
-      'Atmosphere-controlled reefer shipping, dangerous goods (Hazmat/IMO) compliance, express air cargo charters, and APEDA statutory clearances for temperature-sensitive perishables and specialty chemicals.',
+      'Controlled atmosphere reefer shipping, Hazmat chemical forwarding, and APEDA trade compliance for agricultural and chemical exporters.',
     challenges: [
-      'Extremely short commercial shelf life demanding swift transit execution for fresh commodities',
-      'Complex IMDG / Hazmat classification and port safety documentation for specialty chemicals',
-      'Phytosanitary inspection hurdles and seasonal air cargo capacity shortages during harvest',
+      'Hazardous material (IMO/IMDG) compliance and complex DG declaration workflows',
+      'Phytosanitary certificate (PSC) clearance bottlenecks and quarantine inspection holds',
       'Stringent humidity and atmospheric balance requirements preventing cargo deterioration',
     ],
     skylinkSolutions: [
@@ -118,6 +118,7 @@ export const otherIndustriesData: OtherIndustry[] = [
       'Just-in-Time (JIT) line-side feeding, Tier 1/2 OEM component logistics, and zero-delay customs clearance for assemblies, engines, and spare parts.',
     tag: 'JIT Line Feeding',
     iconName: 'Car',
+    href: '/industries/automotive',
   },
   {
     id: 'engineering-manufacturing',
@@ -127,6 +128,7 @@ export const otherIndustriesData: OtherIndustry[] = [
       'Over-Dimensional Cargo (ODC) handling, EPCG machinery import clearances, and turnkey project logistics for heavy equipment and plant machinery.',
     tag: 'EPCG & Project Cargo',
     iconName: 'Factory',
+    href: '/industries/engineering-manufacturing',
   },
   {
     id: 'electronics-electrical',
@@ -136,6 +138,7 @@ export const otherIndustriesData: OtherIndustry[] = [
       'High-security air freight corridors, anti-static climate-controlled handling, and expedited BIS, WPC, and EPR statutory trade compliance.',
     tag: 'BIS & Secure Transit',
     iconName: 'Cpu',
+    href: '/industries/electronics-electrical',
   },
   {
     id: 'textiles-apparel',
@@ -145,6 +148,7 @@ export const otherIndustriesData: OtherIndustry[] = [
       'Garment-on-Hanger (GOH) container solutions, time-critical fashion seasonal air charters, and duty drawback / RoSCTL incentive maximization.',
     tag: 'GOH & RoSCTL Benefits',
     iconName: 'Shirt',
+    href: '/industries/textiles-apparel',
   },
   {
     id: 'food-beverages',
@@ -154,6 +158,7 @@ export const otherIndustriesData: OtherIndustry[] = [
       'FSSAI statutory import/export clearance, multi-temperature containerization, and rapid shelf-life preservation for packaged and bulk foods.',
     tag: 'FSSAI Port Clearance',
     iconName: 'UtensilsCrossed',
+    href: '/industries/food-beverages',
   },
   {
     id: 'agriculture-agro',
@@ -163,6 +168,7 @@ export const otherIndustriesData: OtherIndustry[] = [
       'Bulk agricultural commodity forwarding, APEDA compliance, plant quarantine inspection liaison, and certified fumigation coordination.',
     tag: 'APEDA & Bulk Grain',
     iconName: 'Sprout',
+    href: '/industries/agriculture-agro',
   },
   {
     id: 'chemicals-petrochemicals',
@@ -172,6 +178,7 @@ export const otherIndustriesData: OtherIndustry[] = [
       'Hazmat (IMO/IMDG) certified multi-modal forwarding, dedicated ISO tank container fleets, and toxic substance customs documentation verification.',
     tag: 'Hazmat & ISO Tanks',
     iconName: 'FlaskConical',
+    href: '/industries/chemicals-petrochemicals',
   },
   {
     id: 'retail-consumer-goods',
@@ -181,6 +188,7 @@ export const otherIndustriesData: OtherIndustry[] = [
       'Multi-vendor LCL/FCL ocean freight consolidation, barcode labeling, cross-docking, and end-to-end retail distribution to fulfillment hubs.',
     tag: 'LCL/FCL Consolidation',
     iconName: 'ShoppingBag',
+    href: '/industries/retail-consumer-goods',
   },
   {
     id: 'construction-infrastructure',
@@ -190,6 +198,7 @@ export const otherIndustriesData: OtherIndustry[] = [
       'Breakbulk vessel chartering, heavy-haul flat rack transportation, and direct site delivery for construction steel, cement, and earthmovers.',
     tag: 'Breakbulk & Heavy-Haul',
     iconName: 'HardHat',
+    href: '/industries/construction-infrastructure',
   },
   {
     id: 'renewable-energy',
@@ -199,6 +208,7 @@ export const otherIndustriesData: OtherIndustry[] = [
       'Photovoltaic solar module ocean freight, oversized wind turbine blade route surveys, and green customs fast-tracking protocols.',
     tag: 'Solar & Wind Logistics',
     iconName: 'Sun',
+    href: '/industries/renewable-energy',
   },
   {
     id: 'mining-metals',
@@ -208,6 +218,7 @@ export const otherIndustriesData: OtherIndustry[] = [
       'Charter vessel bulk mineral freight, steel coil specialized stowage, and heavy port handling equipment management for ore and metals.',
     tag: 'Bulk Ore & Steel Coils',
     iconName: 'Pickaxe',
+    href: '/industries/mining-metals',
   },
   {
     id: 'ecommerce',
@@ -217,6 +228,7 @@ export const otherIndustriesData: OtherIndustry[] = [
       'Cross-border B2C/B2B parcel express, bonded warehouse storage, CSB-V courier clearance, and automated reverse logistics workflows.',
     tag: 'CSB-V Express Clearance',
     iconName: 'ShoppingCart',
+    href: '/industries/ecommerce',
   },
   {
     id: 'industrial-equipment',
@@ -226,6 +238,7 @@ export const otherIndustriesData: OtherIndustry[] = [
       'Machine tool forwarding, spare parts AOG/urgent courier logistics, and MOOWR customs bonded duty deferral advisory.',
     tag: 'MOOWR Duty Deferral',
     iconName: 'Wrench',
+    href: '/industries/industrial-equipment',
   },
   {
     id: 'other',
@@ -235,6 +248,7 @@ export const otherIndustriesData: OtherIndustry[] = [
       'Bespoke multi-modal freight forwarding, customized HS code classification, and dedicated trade liaison for unique or niche industries.',
     tag: 'Bespoke Trade Solutions',
     iconName: 'Sparkles',
+    href: '/industries/other',
   },
 ];
 
@@ -249,3 +263,9 @@ export async function getOtherIndustries(): Promise<OtherIndustry[]> {
 export async function getIndustryBySlug(slug: string): Promise<EnrichedIndustry | undefined> {
   return industriesData.find((industry) => industry.slug === slug || industry.id === slug);
 }
+
+export async function getOtherIndustryById(id: string): Promise<OtherIndustry | undefined> {
+  return otherIndustriesData.find((item) => item.id === id);
+}
+
+export { otherIndustriesDetailData, type OtherIndustryDetail } from '@/data/otherIndustriesDetail';

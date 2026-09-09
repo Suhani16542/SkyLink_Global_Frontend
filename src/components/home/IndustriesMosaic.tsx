@@ -473,6 +473,7 @@ export function IndustriesMosaic({ industries }: IndustriesMosaicProps) {
                   {filteredOtherIndustries.map((item: OtherIndustry) => {
                     const IconComponent = iconMap[item.iconName] || Sparkles;
                     const consultationUrl = `/request-consultation?industry=${encodeURIComponent(item.name)}`;
+                    const industryUrl = item.href || `/industries/${item.id}`;
 
                     return (
                       <div
@@ -482,9 +483,13 @@ export function IndustriesMosaic({ industries }: IndustriesMosaicProps) {
                         <div className="space-y-2.5">
                           {/* Top: Icon + Capability Tag */}
                           <div className="flex items-center justify-between gap-2">
-                            <div className="w-8 h-8 rounded-lg bg-sky-500/20 text-sky-400 group-hover/item:bg-sky-500 group-hover/item:text-white transition-colors flex items-center justify-center shrink-0">
+                            <Link
+                              href={industryUrl}
+                              className="w-8 h-8 rounded-lg bg-sky-500/20 text-sky-400 group-hover/item:bg-sky-500 group-hover/item:text-white transition-colors flex items-center justify-center shrink-0"
+                              title={`Explore ${item.name}`}
+                            >
                               <IconComponent className="w-4 h-4" />
-                            </div>
+                            </Link>
                             <span className="text-[10px] font-mono font-semibold uppercase text-cyan-300 bg-cyan-950/60 px-2 py-0.5 rounded-md border border-cyan-800/40">
                               {item.tag}
                             </span>
@@ -492,26 +497,32 @@ export function IndustriesMosaic({ industries }: IndustriesMosaicProps) {
 
                           {/* Title & Description */}
                           <div>
-                            <h4 className="text-sm font-bold text-white group-hover/item:text-sky-300 transition-colors leading-snug">
-                              {item.name}
-                            </h4>
+                            <Link href={industryUrl} className="block group/title">
+                              <h4 className="text-sm font-bold text-white group-hover/item:text-sky-300 transition-colors leading-snug">
+                                {item.name}
+                              </h4>
+                            </Link>
                             <p className="text-[11px] text-neutral-400 mt-1 line-clamp-2 leading-relaxed">
                               {item.description}
                             </p>
                           </div>
                         </div>
 
-                        {/* Direct Action Link */}
-                        <div className="pt-3 mt-3 border-t border-white/10 flex items-center justify-between">
-                          <span className="text-[10px] text-neutral-500 font-medium">
-                            {item.category}
-                          </span>
+                        {/* Action Links */}
+                        <div className="pt-3 mt-3 border-t border-white/10 flex items-center justify-between gap-2">
+                          <Link
+                            href={industryUrl}
+                            className="inline-flex items-center gap-1 text-xs font-semibold text-sky-400 hover:text-sky-300 transition-colors"
+                          >
+                            <span>View Hub</span>
+                            <ArrowRight className="w-3 h-3 group-hover/item:translate-x-0.5 transition-transform" />
+                          </Link>
                           <Link
                             href={consultationUrl}
-                            className="inline-flex items-center gap-1 text-xs font-bold text-sky-400 hover:text-sky-300 transition-colors group/link"
+                            className="inline-flex items-center gap-1 text-[11px] text-neutral-400 hover:text-white transition-colors group/link"
                           >
                             <span>Enquire</span>
-                            <ArrowUpRight className="w-3.5 h-3.5 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />
+                            <ArrowUpRight className="w-3 h-3 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />
                           </Link>
                         </div>
                       </div>

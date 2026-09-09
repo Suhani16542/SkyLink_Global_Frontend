@@ -2,7 +2,7 @@ import type { MetadataRoute } from 'next';
 import { env } from '@/config/env';
 import { getAllServices } from '@/data/services';
 import { getAllBlogPosts } from '@/data/blog';
-import { getAllIndustries } from '@/data/industries';
+import { getAllIndustries, getOtherIndustries } from '@/data/industries';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = env.siteUrl;
@@ -94,6 +94,30 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.8,
     },
     {
+      url: `${baseUrl}/sustainability/carbon-offset`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/sustainability/green-supply-chain`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/quote`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/track`,
+      lastModified: new Date(),
+      changeFrequency: 'always',
+      priority: 0.9,
+    },
+    {
       url: `${baseUrl}/collaborate/freight-forwarders`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
@@ -109,7 +133,55 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: `${baseUrl}/contact`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/terms-of-service`,
+      lastModified: new Date(),
+      changeFrequency: 'yearly',
+      priority: 0.3,
+    },
+    {
+      url: `${baseUrl}/privacy-policy`,
+      lastModified: new Date(),
+      changeFrequency: 'yearly',
+      priority: 0.3,
+    },
+    {
+      url: `${baseUrl}/cookie-policy`,
+      lastModified: new Date(),
+      changeFrequency: 'yearly',
+      priority: 0.3,
+    },
+    {
+      url: `${baseUrl}/security`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.4,
+    },
+    {
+      url: `${baseUrl}/compliance`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.5,
+    },
+    {
+      url: `${baseUrl}/careers`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.6,
+    },
+    {
+      url: `${baseUrl}/faq`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
       priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/glossary`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.6,
     },
     {
       url: `${baseUrl}/request-consultation`,
@@ -140,10 +212,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.85,
   }));
 
-  // Dynamic industry routes
+  // Dynamic industry routes (Top 3 highlighted)
   const industries = await getAllIndustries();
   const industryRoutes: MetadataRoute.Sitemap = industries.map((industry) => ({
     url: `${baseUrl}/industries/${industry.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly',
+    priority: 0.75,
+  }));
+
+  // Dynamic other industry routes (14 comprehensive sectors)
+  const otherIndustries = await getOtherIndustries();
+  const otherIndustryRoutes: MetadataRoute.Sitemap = otherIndustries.map((item) => ({
+    url: `${baseUrl}/industries/${item.id}`,
     lastModified: new Date(),
     changeFrequency: 'monthly',
     priority: 0.75,
@@ -158,7 +239,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }));
 
-  const combined = [...staticRoutes, ...serviceRoutes, ...industryRoutes, ...blogRoutes];
+  const combined = [
+    ...staticRoutes,
+    ...serviceRoutes,
+    ...industryRoutes,
+    ...otherIndustryRoutes,
+    ...blogRoutes,
+  ];
 
   // Deduplicate by URL to ensure pristine sitemap structure
   const uniqueMap = new Map<string, MetadataRoute.Sitemap[number]>();
