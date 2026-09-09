@@ -6,6 +6,7 @@ import { Breadcrumbs } from '@/components/ui/Breadcrumbs';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { Button } from '@/components/ui/Button';
 import { ScrollReveal } from '@/components/animation/ScrollReveal';
+import { FreightForwarderOfferForm } from '@/components/forms/FreightForwarderOfferForm';
 import {
   Handshake,
   Globe2,
@@ -316,7 +317,21 @@ export default function FreightForwardersCollaborationPage() {
         </div>
       </section>
 
-      {/* 5. FINAL CONTACT CTA */}
+      {/* 5. COLLABORATION ENQUIRY & TRADE LANE PROPOSAL FORM */}
+      <section id="collaboration-form" className="py-16 sm:py-24 bg-white border-t border-neutral-200">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          <SectionHeading
+            badge="Direct Proposal Submission"
+            title="Submit Your Freight Rate &amp; Trade Lane Proposal"
+            subtitle="Share your trade corridor capabilities, equipment availability, and competitive rates for active enterprise shipment consideration."
+          />
+          <div className="mt-10 max-w-4xl mx-auto">
+            <FreightForwarderOfferForm />
+          </div>
+        </div>
+      </section>
+
+      {/* 6. FINAL CONTACT CTA */}
       <section className="py-16 sm:py-20 bg-[#07192D] text-white text-center">
         <div className="mx-auto max-w-3xl px-4 space-y-4">
           <h2 className="text-2xl sm:text-4xl font-extrabold text-white">

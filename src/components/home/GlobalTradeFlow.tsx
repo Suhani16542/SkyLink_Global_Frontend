@@ -74,10 +74,11 @@ export function GlobalTradeFlow() {
             const rect = elem.getBoundingClientRect();
             const windowHeight = window.innerHeight || document.documentElement.clientHeight;
 
-            // Only begin advancing the stepper once the section is clearly in view and centered
-            // This ensures the user sees the animation start from Step 1 right in front of them
-            const startOffset = windowHeight * 0.40;
-            const endOffset = -(rect.height * 0.40);
+            // Smooth, gradual 1-to-1 scroll tracking:
+            // Starts as the section enters comfortable center view
+            // and moves gradually in both directions (advancing on scroll down, rewinding on scroll up)
+            const startOffset = windowHeight * 0.52;
+            const endOffset = -(rect.height * 0.45);
             const totalDistance = Math.max(1, startOffset - endOffset);
 
             const currentPosition = startOffset - rect.top;
@@ -86,14 +87,20 @@ export function GlobalTradeFlow() {
             const percentage = Math.round(progress * 100);
             setLinePercentage(percentage);
 
-            // Progressive milestone activation starting from Step 1
+            // Progressive milestone activation perfectly synchronized across the scroll:
+            // 01 is active at 0%
+            // 02 activates around ~20%
+            // 03 activates around ~44%
+            // 04 activates around ~66%
+            // 05 activates around ~88%
+            // Rewinds smoothly when scrolling up
             if (progress >= 0.88) {
               setActiveStep(5);
-            } else if (progress >= 0.65) {
+            } else if (progress >= 0.66) {
               setActiveStep(4);
-            } else if (progress >= 0.42) {
+            } else if (progress >= 0.44) {
               setActiveStep(3);
-            } else if (progress >= 0.18) {
+            } else if (progress >= 0.20) {
               setActiveStep(2);
             } else {
               setActiveStep(1);
@@ -155,7 +162,7 @@ export function GlobalTradeFlow() {
           <div className="absolute top-[35px] left-[10%] right-[10%] h-1 bg-white/10 rounded-full z-0 pointer-events-none">
             {/* 2. ONE Single Continuously Growing Progress Line (0% to 100%) */}
             <div
-              className="h-full bg-gradient-to-r from-sky-400 via-sky-500 to-emerald-400 rounded-full transition-all duration-300 ease-out opacity-100"
+              className="h-full bg-gradient-to-r from-sky-400 via-sky-500 to-emerald-400 rounded-full transition-all duration-150 ease-out opacity-100"
               style={{
                 width: `${linePercentage}%`,
               }}
@@ -178,7 +185,7 @@ export function GlobalTradeFlow() {
                       ? 'translateY(0px) scale(1)'
                       : 'translateY(12px) scale(0.94)',
                     visibility: isVisible ? 'visible' : 'hidden',
-                    transition: 'opacity 300ms ease-out, transform 300ms ease-out',
+                    transition: 'opacity 200ms ease-out, transform 200ms ease-out',
                   }}
                 >
                   {/* Glowing Node Circle Beacon */}
@@ -222,7 +229,7 @@ export function GlobalTradeFlow() {
           <div className="absolute top-6 bottom-6 left-10 sm:left-12 w-0.5 bg-white/10 z-0 pointer-events-none">
             {/* Growing Vertical Line */}
             <div
-              className="w-full bg-gradient-to-b from-sky-400 to-emerald-400 transition-all duration-300 ease-out opacity-100"
+              className="w-full bg-gradient-to-b from-sky-400 to-emerald-400 transition-all duration-150 ease-out opacity-100"
               style={{
                 height: `${linePercentage}%`,
               }}
@@ -243,7 +250,7 @@ export function GlobalTradeFlow() {
                     ? 'translateX(0px) scale(1)'
                     : 'translateX(-12px) scale(0.94)',
                   visibility: isVisible ? 'visible' : 'hidden',
-                  transition: 'opacity 300ms ease-out, transform 300ms ease-out',
+                  transition: 'opacity 200ms ease-out, transform 200ms ease-out',
                 }}
               >
                 {/* Node Circle */}

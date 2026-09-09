@@ -1,9 +1,5 @@
-import type { Metadata } from 'next';
-import { getPageMetadata } from '@/lib/seo/metadata';
-import { CollaborationEnquiryView } from '@/components/public/CollaborationEnquiryView';
-
-export const metadata: Metadata = getPageMetadata('collaborateEnquiry');
+import { redirect } from 'next/navigation';
 
 export default function CollaborateEnquiryPage() {
-  return <CollaborationEnquiryView />;
+  redirect('/collaborate/freight-forwarders#collaboration-form');
 }

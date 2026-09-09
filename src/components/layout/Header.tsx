@@ -352,12 +352,6 @@ export function Header() {
           icon: Handshake,
           description: 'Partner network, strategic co-loading & agency alliance',
         },
-        {
-          title: 'Collaboration Enquiry',
-          href: '/collaborate/enquiry',
-          icon: Users,
-          description: 'Submit an institutional trade or logistics partnership request',
-        },
       ],
     },
   ];
