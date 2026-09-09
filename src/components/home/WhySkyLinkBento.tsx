@@ -47,16 +47,19 @@ export function WhySkyLinkBento() {
   return (
     <section id="why-skylink" className="py-14 sm:py-20 bg-white border-t border-neutral-200 relative overflow-hidden scroll-mt-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Header matching screenshot */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
-          <div className="max-w-2xl space-y-3">
+        {/* Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 sm:mb-16">
+          <div className="max-w-2xl space-y-3.5">
             <ScrollReveal effect="fade-up" delay={0}>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#0A2540] tracking-tight leading-[1.18] text-balance">
-                Why Global Logistics Partner like SkyLink?
+              <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-sky-50 text-[#0284C7] border border-sky-200 mb-1 shadow-xs">
+                The SkyLink Advantage
+              </span>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0A2540] tracking-tight leading-tight text-balance">
+                Why Choose SkyLink as Your Trade Partner?
               </h2>
             </ScrollReveal>
             <ScrollReveal effect="fade-up" delay={60}>
-              <p className="text-sm sm:text-base text-neutral-600 leading-relaxed font-normal text-pretty max-w-xl">
+              <p className="text-sm sm:text-base lg:text-lg text-neutral-600 leading-relaxed font-normal text-pretty max-w-xl">
                 We bridge statutory foreign trade advisory and direct carrier execution to protect your export margins, ensure zero customs holds, and deliver predictable international transit.
               </p>
             </ScrollReveal>
@@ -65,7 +68,7 @@ export function WhySkyLinkBento() {
           <ScrollReveal effect="fade-left" delay={120} className="shrink-0">
             <Link
               href="/request-consultation"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#0A2540] hover:bg-[#07192D] text-white text-xs sm:text-sm font-bold shadow-md hover:shadow-lg transition-all duration-200 hover:-translate-y-0.5 active:scale-95 group"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#0A2540] hover:bg-[#0284C7] text-white text-xs sm:text-sm font-bold shadow-md hover:shadow-lg transition-all duration-200 hover:-translate-y-0.5 active:scale-95 group"
             >
               <span>Explore Trade Benefits</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

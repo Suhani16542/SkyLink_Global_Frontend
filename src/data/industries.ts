@@ -4,13 +4,27 @@ export interface EnrichedIndustry extends Industry {
   challenges: string[];
   skylinkSolutions: string[];
   keyHighlights: string[];
+  href?: string;
 }
 
+export interface OtherIndustry {
+  id: string;
+  name: string;
+  category: string;
+  description: string;
+  tag: string;
+  iconName: string;
+}
+
+/**
+ * Skylink's 3 Key USP Highlighted Industries
+ */
 export const industriesData: EnrichedIndustry[] = [
   {
     id: 'pharmaceuticals',
     title: 'Pharmaceuticals & Healthcare',
-    slug: 'pharmaceuticals',
+    slug: 'pharma',
+    href: '/industries/pharma',
     description:
       'GDP and FDA-compliant temperature-controlled cold-chain logistics, zero-delay customs clearance, and specialized statutory approvals for APIs, biologicals, vaccines, and formulations.',
     challenges: [
@@ -37,7 +51,8 @@ export const industriesData: EnrichedIndustry[] = [
   {
     id: 'seafood',
     title: 'Seafood & Marine Exports',
-    slug: 'seafood',
+    slug: 'seafoods',
+    href: '/industries/seafoods',
     description:
       'Ultra-low temperature deep freeze logistics (-25°C to -40°C), MPEDA compliance, health certification liaison, and direct reefer container ocean freight for seafood exporters.',
     challenges: [
@@ -62,85 +77,164 @@ export const industriesData: EnrichedIndustry[] = [
       'Reefer container freight, deep freeze temperature control, and statutory export compliance for seafood and aquaculture producers.',
   },
   {
-    id: 'perishables',
-    title: 'Perishables & Fresh Produce',
-    slug: 'perishables',
+    id: 'specialty-chemicals-agro-perishables',
+    title: 'Specialty Chemicals, Agro Fertilizers & Perishables',
+    slug: 'specialty-chemicals-agro-fertilizers-perishables',
+    href: '/industries/specialty-chemicals-agro-fertilizers-perishables',
     description:
-      'Atmosphere-controlled ocean reefer transport, express air cargo charters, and APEDA compliance for fruits, vegetables, flowers, and processed agricultural commodities.',
+      'Atmosphere-controlled reefer shipping, dangerous goods (Hazmat/IMO) compliance, express air cargo charters, and APEDA statutory clearances for temperature-sensitive perishables and specialty chemicals.',
     challenges: [
-      'Extremely short commercial shelf life demanding swift transit execution',
-      'Phytosanitary inspection hurdles and sudden import quarantine barriers overseas',
-      'Seasonal rate volatility and severe air cargo capacity shortages during harvest seasons',
-      'Inadequate pre-cooling leading to post-harvest decay during maritime transit',
+      'Extremely short commercial shelf life demanding swift transit execution for fresh commodities',
+      'Complex IMDG / Hazmat classification and port safety documentation for specialty chemicals',
+      'Phytosanitary inspection hurdles and seasonal air cargo capacity shortages during harvest',
+      'Stringent humidity and atmospheric balance requirements preventing cargo deterioration',
     ],
     skylinkSolutions: [
       'Controlled Atmosphere (CA) reefer container logistics regulating O2 and CO2 levels',
-      'Direct plant quarantine liaison for fast Phytosanitary Certificate (PSC) issuance',
-      'Block space agreements on premier air freight carriers for urgent seasonal perishables',
-      'Cold storage consolidation and farm-gate to airport refrigerated drayage',
+      'Certified Dangerous Goods (DGR) handling with ISO tank and specialized chemical container allocations',
+      'Direct APEDA / plant quarantine liaison for fast Phytosanitary Certificate (PSC) issuance',
+      'Dedicated green-channel customs clearance with 24/7 real-time IoT condition telemetry',
     ],
     keyHighlights: [
-      'Controlled Atmosphere (CA) Containerization',
-      'Air Cargo Block Space Guarantees',
-      'Phytosanitary & Quarantine Clearance Liaison',
+      'Controlled Atmosphere (CA) Containers',
+      'Certified Hazmat & ISO Tank Transport',
+      'APEDA & Phytosanitary Liaison',
     ],
-    seoTitle: 'Perishables & Agricultural Export Logistics | SkyLink Global Services',
+    seoTitle: 'Specialty Chemicals, Agro Fertilizers & Perishables Logistics | SkyLink Global Services',
     seoDescription:
-      'Controlled atmosphere reefer shipping, express air cargo, and APEDA trade compliance for agricultural and fresh produce exporters.',
+      'Controlled atmosphere reefer shipping, Hazmat chemical forwarding, and APEDA trade compliance for agricultural and chemical exporters.',
+  },
+];
+
+/**
+ * 14 Other Industries Catered by SkyLink
+ */
+export const otherIndustriesData: OtherIndustry[] = [
+  {
+    id: 'automotive',
+    name: 'Automotive & Auto Components',
+    category: 'Manufacturing & Mobility',
+    description:
+      'Just-in-Time (JIT) line-side feeding, Tier 1/2 OEM component logistics, and zero-delay customs clearance for assemblies, engines, and spare parts.',
+    tag: 'JIT Line Feeding',
+    iconName: 'Car',
   },
   {
-    id: 'manufacturing',
-    title: 'Heavy Manufacturing & Automotive',
-    slug: 'manufacturing',
+    id: 'engineering-manufacturing',
+    name: 'Engineering & Manufacturing',
+    category: 'Heavy Industry',
     description:
-      'Just-in-time (JIT) multimodal supply chain management, EPCG machinery import clearances, and project cargo forwarding for heavy machinery and automotive OEMs.',
-    challenges: [
-      'Severe production shutdowns if imported raw materials or spare parts are delayed at ports',
-      'Complicated customs valuation and SVB proceedings for related-party component imports',
-      'Over-Dimensional Cargo (ODC) handling requiring specialized trailers and route surveys',
-      'Managing massive export obligations (EO) under EPCG and Advance Authorisation licenses',
-    ],
-    skylinkSolutions: [
-      'Zero-delay customs clearance under pre-arrival Bill of Entry filing and AEO protocols',
-      'Specialized Project Cargo forwarding with flat rack, open top, and heavy-haul trailers',
-      'Comprehensive EPCG / Advance Authorisation lifecycle management and EODC redemption',
-      'Customs bonded warehousing (MOOWR) for deferred duty on capital machinery and inputs',
-    ],
-    keyHighlights: [
-      'Over-Dimensional Project Cargo Handling',
-      'MOOWR Scheme Duty Deferment Advisory',
-      'Just-In-Time (JIT) Port Logistics Flow',
-    ],
-    seoTitle: 'Automotive & Heavy Manufacturing EXIM Logistics | SkyLink Global Services',
-    seoDescription:
-      'Project cargo handling, EPCG machinery customs clearances, and JIT automotive supply chain logistics solutions.',
+      'Over-Dimensional Cargo (ODC) handling, EPCG machinery import clearances, and turnkey project logistics for heavy equipment and plant machinery.',
+    tag: 'EPCG & Project Cargo',
+    iconName: 'Factory',
   },
   {
-    id: 'general-cargo',
-    title: 'General Cargo & Consumer Goods',
-    slug: 'general-cargo',
+    id: 'electronics-electrical',
+    name: 'Electronics & Electrical',
+    category: 'High-Tech',
     description:
-      'Cost-optimized FCL/LCL ocean freight, RoDTEP incentive maximization, e-commerce cross-border logistics, and customs clearance for consumer retail and industrial goods.',
-    challenges: [
-      'High logistics overheads eroding slim profit margins in competitive global consumer markets',
-      'Inaccurate HS classification leading to customs valuation disputes and penalties',
-      'LCL cargo consolidation delays and unexpected origin handling destination fees',
-      'Unclaimed export incentives due to complex statutory filing requirements',
-    ],
-    skylinkSolutions: [
-      'Aggregated volume freight rates providing significant savings on standard ocean container lanes',
-      'Accurate GRI-based HS code mapping guaranteeing zero customs detention',
-      'Scheduled, dependable LCL consolidation routes with transparent all-in pricing',
-      'Automated RoDTEP, RoSCTL, and Duty Drawback filing and e-BRC realization tracking',
-    ],
-    keyHighlights: [
-      'Direct FCL/LCL Volume Freight Savings',
-      'End-to-End RoDTEP Incentive Maximization',
-      'Zero Hidden Destination Fee Guarantees',
-    ],
-    seoTitle: 'General Cargo & Consumer Goods Freight Forwarding | SkyLink Global Services',
-    seoDescription:
-      'Reliable FCL/LCL freight forwarding, customs clearance, and export incentive optimization for consumer goods and general merchandise.',
+      'High-security air freight corridors, anti-static climate-controlled handling, and expedited BIS, WPC, and EPR statutory trade compliance.',
+    tag: 'BIS & Secure Transit',
+    iconName: 'Cpu',
+  },
+  {
+    id: 'textiles-apparel',
+    name: 'Textiles & Apparel',
+    category: 'Consumer & Fashion',
+    description:
+      'Garment-on-Hanger (GOH) container solutions, time-critical fashion seasonal air charters, and duty drawback / RoSCTL incentive maximization.',
+    tag: 'GOH & RoSCTL Benefits',
+    iconName: 'Shirt',
+  },
+  {
+    id: 'food-beverages',
+    name: 'Food & Beverages',
+    category: 'FMCG & Consumables',
+    description:
+      'FSSAI statutory import/export clearance, multi-temperature containerization, and rapid shelf-life preservation for packaged and bulk foods.',
+    tag: 'FSSAI Port Clearance',
+    iconName: 'UtensilsCrossed',
+  },
+  {
+    id: 'agriculture-agro',
+    name: 'Agriculture & Agro Products',
+    category: 'Commodities',
+    description:
+      'Bulk agricultural commodity forwarding, APEDA compliance, plant quarantine inspection liaison, and certified fumigation coordination.',
+    tag: 'APEDA & Bulk Grain',
+    iconName: 'Sprout',
+  },
+  {
+    id: 'chemicals-petrochemicals',
+    name: 'Chemicals & Petrochemicals',
+    category: 'Process Industry',
+    description:
+      'Hazmat (IMO/IMDG) certified multi-modal forwarding, dedicated ISO tank container fleets, and toxic substance customs documentation verification.',
+    tag: 'Hazmat & ISO Tanks',
+    iconName: 'FlaskConical',
+  },
+  {
+    id: 'retail-consumer-goods',
+    name: 'Retail & Consumer Goods',
+    category: 'Consumer Goods',
+    description:
+      'Multi-vendor LCL/FCL ocean freight consolidation, barcode labeling, cross-docking, and end-to-end retail distribution to fulfillment hubs.',
+    tag: 'LCL/FCL Consolidation',
+    iconName: 'ShoppingBag',
+  },
+  {
+    id: 'construction-infrastructure',
+    name: 'Construction & Infrastructure',
+    category: 'Infrastructure',
+    description:
+      'Breakbulk vessel chartering, heavy-haul flat rack transportation, and direct site delivery for construction steel, cement, and earthmovers.',
+    tag: 'Breakbulk & Heavy-Haul',
+    iconName: 'HardHat',
+  },
+  {
+    id: 'renewable-energy',
+    name: 'Renewable Energy',
+    category: 'Clean Tech',
+    description:
+      'Photovoltaic solar module ocean freight, oversized wind turbine blade route surveys, and green customs fast-tracking protocols.',
+    tag: 'Solar & Wind Logistics',
+    iconName: 'Sun',
+  },
+  {
+    id: 'mining-metals',
+    name: 'Mining & Metals',
+    category: 'Raw Materials',
+    description:
+      'Charter vessel bulk mineral freight, steel coil specialized stowage, and heavy port handling equipment management for ore and metals.',
+    tag: 'Bulk Ore & Steel Coils',
+    iconName: 'Pickaxe',
+  },
+  {
+    id: 'ecommerce',
+    name: 'E-commerce',
+    category: 'Cross-Border Digital',
+    description:
+      'Cross-border B2C/B2B parcel express, bonded warehouse storage, CSB-V courier clearance, and automated reverse logistics workflows.',
+    tag: 'CSB-V Express Clearance',
+    iconName: 'ShoppingCart',
+  },
+  {
+    id: 'industrial-equipment',
+    name: 'Industrial Equipment',
+    category: 'Machinery',
+    description:
+      'Machine tool forwarding, spare parts AOG/urgent courier logistics, and MOOWR customs bonded duty deferral advisory.',
+    tag: 'MOOWR Duty Deferral',
+    iconName: 'Wrench',
+  },
+  {
+    id: 'other',
+    name: 'Other Industries',
+    category: 'Specialized Verticals',
+    description:
+      'Bespoke multi-modal freight forwarding, customized HS code classification, and dedicated trade liaison for unique or niche industries.',
+    tag: 'Bespoke Trade Solutions',
+    iconName: 'Sparkles',
   },
 ];
 
@@ -148,6 +242,10 @@ export async function getAllIndustries(): Promise<EnrichedIndustry[]> {
   return industriesData;
 }
 
+export async function getOtherIndustries(): Promise<OtherIndustry[]> {
+  return otherIndustriesData;
+}
+
 export async function getIndustryBySlug(slug: string): Promise<EnrichedIndustry | undefined> {
-  return industriesData.find((industry) => industry.slug === slug);
+  return industriesData.find((industry) => industry.slug === slug || industry.id === slug);
 }

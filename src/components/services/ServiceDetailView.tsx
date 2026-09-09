@@ -395,9 +395,9 @@ export function ServiceDetailView({
                   </Button>
                   <Button
                     href="/contact"
-                    variant="outline"
+                    variant="outline-light"
                     size="md"
-                    className="w-full justify-center text-white border-white/20 hover:bg-white/10 font-semibold text-xs sm:text-sm py-2.5"
+                    className="w-full justify-center font-semibold text-xs sm:text-sm py-2.5"
                   >
                     Contact Trade Desk
                   </Button>

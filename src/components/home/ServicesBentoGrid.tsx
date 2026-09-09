@@ -177,20 +177,20 @@ export function ServicesBentoGrid({ services }: ServicesBentoGridProps) {
     <section className="py-20 sm:py-28 bg-neutral-50 border-t border-neutral-200 relative">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Section Heading */}
-        <div className="text-center max-w-3xl mx-auto space-y-3 mb-10 sm:mb-12">
+        <div className="text-center max-w-3xl mx-auto space-y-3.5 mb-12 sm:mb-16">
           <ScrollReveal effect="fade-down" delay={0}>
-            <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sky-100/80 border border-sky-200 text-xs font-bold text-[#0284C7] uppercase tracking-wider shadow-xs">
+            <span className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-sky-100/80 border border-sky-200 text-xs font-bold text-[#0284C7] uppercase tracking-wider shadow-xs">
               <Sparkles className="w-3.5 h-3.5 text-[#0284C7]" />
               <span>Comprehensive Logistics &amp; EXIM Portfolio</span>
             </span>
           </ScrollReveal>
           <ScrollReveal effect="fade-up" delay={80}>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0A2540] tracking-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0A2540] tracking-tight leading-tight text-balance">
               End-to-End Logistics Services &amp; Freight Forwarding Solutions
             </h2>
           </ScrollReveal>
           <ScrollReveal effect="fade-up" delay={160}>
-            <p className="text-sm sm:text-base text-neutral-600 leading-relaxed max-w-2xl mx-auto">
+            <p className="text-sm sm:text-base lg:text-lg text-neutral-600 leading-relaxed max-w-2xl mx-auto font-normal text-pretty">
               From statutory customs clearance and bonded warehousing to international cargo freight forwarding, our logistics company orchestrates every dimension of cross-border commerce.
             </p>
           </ScrollReveal>

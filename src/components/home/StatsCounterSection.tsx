@@ -103,22 +103,22 @@ export function StatsCounterSection() {
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#0284c70a_1px,transparent_1px),linear-gradient(to_bottom,#0284c70a_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none opacity-75" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[350px] bg-sky-400/5 rounded-full blur-[140px] pointer-events-none" />
 
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10 mb-10">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10 mb-12 sm:mb-16">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-3">
-          <ScrollReveal effect="fade-down" delay={0}>
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-sky-200/80 text-xs font-bold text-[#0284C7] uppercase tracking-wider shadow-xs backdrop-blur-xs">
+        <div className="text-center max-w-3xl mx-auto flex flex-col items-center justify-center space-y-3.5">
+          <ScrollReveal effect="fade-down" delay={0} className="w-full flex justify-center text-center">
+            <span className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white border border-sky-200/80 text-xs font-bold text-[#0284C7] uppercase tracking-wider shadow-xs backdrop-blur-xs">
               <Clock className="w-3.5 h-3.5 text-[#0284C7]" />
               <span>Proven Operational Track Record</span>
             </span>
           </ScrollReveal>
-          <ScrollReveal effect="fade-up" delay={80}>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0A2540] tracking-tight">
+          <ScrollReveal effect="fade-up" delay={80} className="w-full text-center">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0A2540] tracking-tight leading-tight text-balance text-center mx-auto">
               Precision Execution in Cross-Border Trade
             </h2>
           </ScrollReveal>
-          <ScrollReveal effect="fade-up" delay={140}>
-            <p className="text-base sm:text-lg text-neutral-600 max-w-2xl mx-auto leading-relaxed font-normal">
+          <ScrollReveal effect="fade-up" delay={140} className="w-full flex justify-center text-center">
+            <p className="text-sm sm:text-base lg:text-lg text-neutral-600 max-w-2xl mx-auto text-center leading-relaxed font-normal">
               Measurable cost optimization, zero-delay customs clearance, and global freight velocity delivered for leading enterprises.
             </p>
           </ScrollReveal>

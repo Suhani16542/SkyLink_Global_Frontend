@@ -46,7 +46,6 @@ export function Footer() {
     { title: 'Logistics & Shipping', href: '/services/logistics-shipping' },
     { title: 'Warehousing Solutions', href: '/services/warehousing-solutions' },
     { title: 'Cold Chain Solutions', href: '/services/cold-chain-solutions' },
-    { title: 'Freight Cost Optimization', href: '/services/export-incentives' },
     { title: 'Tax & GST Compliance', href: '/services/tax-gst-compliance' },
     { title: 'Documentation & Liaison', href: '/services/documentation-liaison' },
     { title: 'Risk Management', href: '/services/risk-management' },

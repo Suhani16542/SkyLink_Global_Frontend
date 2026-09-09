@@ -187,19 +187,19 @@ export function HowItWorksTimeline() {
     <section className="py-20 sm:py-28 bg-white border-t border-neutral-200 relative overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-3 mb-14 sm:mb-16">
+        <div className="text-center max-w-3xl mx-auto space-y-3.5 mb-12 sm:mb-16">
           <ScrollReveal effect="fade-down" delay={0}>
-            <div className="inline-flex items-center gap-2 rounded-full bg-sky-50 border border-sky-200 px-3.5 py-1.5 text-xs font-bold text-[#0284C7]">
+            <div className="inline-flex items-center gap-2 rounded-full bg-sky-50 border border-sky-200 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-[#0284C7] shadow-xs">
               <span>Structured 6-Stage Execution</span>
             </div>
           </ScrollReveal>
           <ScrollReveal effect="fade-up" delay={80}>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0A2540] tracking-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0A2540] tracking-tight leading-tight text-balance">
               How SkyLink Executes Global Trade
             </h2>
           </ScrollReveal>
           <ScrollReveal effect="fade-up" delay={160}>
-            <p className="text-sm sm:text-base text-neutral-600 leading-relaxed">
+            <p className="text-sm sm:text-base lg:text-lg text-neutral-600 leading-relaxed font-normal max-w-2xl mx-auto text-pretty">
               From preliminary tariff advisory to final container release and export incentive closure, our structured workflow eliminates friction at every cross-border milestone.
             </p>
           </ScrollReveal>

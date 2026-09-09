@@ -14,7 +14,6 @@ import { GlobalTradeFlow } from '@/components/home/GlobalTradeFlow';
 import { StrategicPartnerSection } from '@/components/home/StrategicPartnerSection';
 import { WhySkyLinkBento } from '@/components/home/WhySkyLinkBento';
 import { ServicesBentoGrid } from '@/components/home/ServicesBentoGrid';
-import { IncotermsMatrix } from '@/components/home/IncotermsMatrix';
 import { GlobalRouteMap } from '@/components/home/GlobalRouteMap';
 import { HowItWorksTimeline } from '@/components/home/HowItWorksTimeline';
 import { LogisticsRiskJourney } from '@/components/home/LogisticsRiskJourney';
@@ -76,12 +75,7 @@ export default async function HomePage() {
         <IndustriesMosaic industries={industries} />
 
         {/* ========================================================================= */}
-        {/* 7. IMPORTANCE OF INCOTERMS: Incoterms® Risk & Responsibility Matrix */}
-        {/* ========================================================================= */}
-        <IncotermsMatrix />
-
-        {/* ========================================================================= */}
-        {/* 8. STRATEGIC TRADE PARTNER: Editorial Authority & Institutional Pillars */}
+        {/* 7. STRATEGIC TRADE PARTNER: Editorial Authority & Institutional Pillars */}
         {/* ========================================================================= */}
         <StrategicPartnerSection />
 
@@ -226,23 +220,23 @@ export default async function HomePage() {
             <div className="absolute inset-0 bg-gradient-to-r from-[#07192D] via-[#0A2540]/90 to-[#07192D]" />
           </div>
 
-          <div className="relative z-10 mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center space-y-6">
-            <ScrollReveal effect="fade-down" delay={50}>
+          <div className="relative z-10 mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center text-center space-y-6">
+            <ScrollReveal effect="fade-down" delay={50} className="w-full flex justify-center text-center">
               <span className="inline-block rounded-full bg-sky-400/20 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-sky-300 border border-sky-400/30 backdrop-blur-md shadow-sm">
                 Let&apos;s Accelerate Your Trade Operations
               </span>
             </ScrollReveal>
-            <ScrollReveal effect="fade-up" delay={150}>
-              <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-tight">
+            <ScrollReveal effect="fade-up" delay={150} className="w-full text-center">
+              <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-tight text-balance text-center mx-auto">
                 Ready to optimize your supply chain management and logistics?
               </h2>
             </ScrollReveal>
-            <ScrollReveal effect="fade-up" delay={250}>
-              <p className="text-base sm:text-xl text-neutral-300 max-w-2xl mx-auto leading-relaxed">
+            <ScrollReveal effect="fade-up" delay={250} className="w-full flex justify-center text-center">
+              <p className="text-base sm:text-xl text-neutral-300 max-w-2xl mx-auto text-center leading-relaxed font-normal">
                 Connect with our logistics company specialists today for a comprehensive evaluation of your trade corridors, customs tariffs, freight forwarding rates, and warehousing requirements.
               </p>
             </ScrollReveal>
-            <ScrollReveal effect="scale-up" delay={350}>
+            <ScrollReveal effect="scale-up" delay={350} className="w-full flex justify-center text-center">
               <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
                 <Button
                   href="/request-consultation"

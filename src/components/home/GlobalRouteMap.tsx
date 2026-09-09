@@ -669,20 +669,20 @@ export function GlobalRouteMap() {
 
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Heading */}
-        <div className="text-center max-w-3xl mx-auto space-y-2.5 mb-8 sm:mb-10">
-          <ScrollReveal effect="fade-down" delay={0}>
-            <div className="inline-flex items-center gap-2 rounded-full bg-sky-500/15 border border-sky-400/30 px-3.5 py-1 text-xs font-semibold text-sky-300 backdrop-blur-md shadow-sm">
+        <div className="text-center max-w-3xl mx-auto flex flex-col items-center justify-center space-y-3.5 mb-10 sm:mb-12">
+          <ScrollReveal effect="fade-down" delay={0} className="w-full flex justify-center text-center">
+            <div className="inline-flex items-center gap-2 rounded-full bg-sky-500/15 border border-sky-400/30 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-sky-300 backdrop-blur-md shadow-sm">
               <Globe2 className="w-3.5 h-3.5 text-sky-400" />
               <span>Real Google Maps Platform Integration</span>
             </div>
           </ScrollReveal>
-          <ScrollReveal effect="fade-up" delay={60}>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight">
+          <ScrollReveal effect="fade-up" delay={60} className="w-full text-center">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight text-balance text-center mx-auto">
               Global Connectivity Across Active Trade Lanes
             </h2>
           </ScrollReveal>
-          <ScrollReveal effect="fade-up" delay={120}>
-            <p className="text-xs sm:text-sm text-neutral-300 leading-relaxed max-w-2xl mx-auto">
+          <ScrollReveal effect="fade-up" delay={120} className="w-full flex justify-center text-center">
+            <p className="text-sm sm:text-base lg:text-lg text-neutral-300 leading-relaxed font-normal max-w-2xl mx-auto text-center">
               Direct premier maritime carrier allocations and scheduled air freight paths linking Indian manufacturing clusters with 15+ global gateway ports. Explore the live Google Map below.
             </p>
           </ScrollReveal>

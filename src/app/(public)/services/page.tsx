@@ -45,21 +45,21 @@ export default async function ServicesPage() {
               { name: 'Home', item: '/' },
               { name: 'Services', item: '/services' },
             ]}
-            className="text-neutral-400"
+            className="text-neutral-400 mb-6"
           />
           <div className="max-w-3xl space-y-4">
             <ScrollReveal effect="fade-down" delay={0}>
-              <span className="text-xs font-bold uppercase tracking-wider text-sky-400 bg-sky-400/10 px-3 py-1 rounded-full border border-sky-400/30">
+              <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-sky-400 bg-sky-400/10 px-3.5 py-1 rounded-full border border-sky-400/30">
                 End-to-End Capabilities
               </span>
             </ScrollReveal>
             <ScrollReveal effect="fade-up" delay={80}>
-              <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-white leading-tight">
+              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-tight text-balance">
                 EXIM Consultancy &amp; Global Logistics Services
               </h1>
             </ScrollReveal>
             <ScrollReveal effect="fade-up" delay={160}>
-              <p className="text-base sm:text-lg text-neutral-300 leading-relaxed">
+              <p className="text-base sm:text-lg lg:text-xl text-neutral-300 leading-relaxed font-normal text-pretty">
                 Comprehensive foreign trade facilitation, statutory licensing, carrier negotiations, customs brokerage, and specialized temperature-controlled supply chain solutions.
               </p>
             </ScrollReveal>

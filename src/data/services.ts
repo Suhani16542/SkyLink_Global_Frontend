@@ -6,124 +6,39 @@ export const servicesData: Service[] = [
     title: 'Logistics & Shipping',
     slug: 'logistics-shipping',
     shortDescription:
-      'Strong logistics and shipping management ensures exporters achieve cost efficiency, timely delivery, and risk protection in global trade.',
+      'Strong logistics and shipping management ensures exporters achieve freight cost optimization, timely delivery, and risk protection in global trade.',
     description:
-      'By integrating freight negotiation, route optimization, consolidations, Incoterms advisory, and marine insurance, exporters can streamline supply chains, reduce costs, and safeguard against risks—enhancing competitiveness in international markets.',
+      'By integrating freight negotiation, cost optimization, route analytics, consolidations, Incoterms advisory, statutory export incentives, and marine insurance, exporters can streamline supply chains, reduce costs by 15%–25%, and safeguard against cross-border risks—enhancing competitiveness in international markets.',
     features: [
-      'Freight Negotiation: Securing competitive rates with carriers and forwarders, balancing cost with delivery timelines across sea, air, and multimodal transport.',
-      'Route Optimization: Identifying the most efficient shipping routes to minimize transit time and costs, using analytics and avoiding congestion points.',
-      'Consolidations: Combining smaller shipments into full container loads (FCL) for cost savings and maximizing space utilization.',
-      'Incoterms Advisory: Guidance on international commercial terms (FOB, CIF, DDP, EXW) to ensure clarity on responsibilities and prevent disputes.',
-      'Marine Insurance: Coverage against loss, damage, or delay during transit with specialized policies and claims support.',
+      'Freight Negotiation & Cost Optimization: Securing competitive volume-contracted rates with premier ocean and air carriers, tariff benchmarking, and bunker fuel surcharge optimization.',
+      'Route Optimization & Analytics: Identifying the most efficient multimodal shipping corridors to minimize transit time and bypass congested transshipment hubs.',
+      'Consolidations & Space Allocation: Combining smaller shipments into full container loads (FCL) for cost savings and guaranteed vessel space allocations.',
+      'Export Incentives & Statutory Recovery: Reclaiming cash remissions across RoDTEP, RoSCTL, Duty Drawback, and Advance Authorisation schemes.',
+      'Incoterms & Contract Advisory: Guidance on international commercial terms (FOB, CIF, DDP, EXW) to ensure clarity on responsibilities and prevent disputes.',
+      'Marine Cargo Insurance: Comprehensive coverage against transit loss, damage, or port delays with dedicated claims settlement support.',
     ],
     benefits: [
-      'Competitive freight rates via direct carrier negotiation and volume benchmarking',
-      'Minimised transit times and congestion bypass through route optimization',
-      'Complete risk indemnification through specialized marine cargo insurance',
+      'Competitive freight rates and 15%–25% cost reduction via direct carrier contracts and tariff benchmarking',
+      'Minimised transit times and congestion bypass through multimodal route optimization',
+      'Systematic recovery of government export incentives (RoDTEP, RoSCTL, Duty Drawback)',
+      'Complete risk indemnification through specialized marine cargo insurance and Incoterms alignment',
     ],
     faqs: [
       {
-        question: 'How does freight negotiation reduce overall export costs?',
+        question: 'How does freight negotiation and cost optimization reduce overall export costs?',
         answer:
-          'By benchmarking rates across premier carriers, securing long-term service contracts, and balancing multi-modal transport options, exporters significantly cut overhead costs.',
+          'By benchmarking rates across premier carriers, securing long-term contracted space, and balancing multi-modal transport options, exporters significantly cut logistics overheads.',
+      },
+      {
+        question: 'What export incentive schemes are integrated with shipping operations?',
+        answer:
+          'We assist with RoDTEP, RoSCTL, Advance Authorisation, and Duty Drawback electronic filings to maximize statutory cash recovery on every shipment.',
       },
     ],
     seoTitle:
-      'Logistics & Shipping: Freight Negotiation, Route Optimization, Consolidations, Incoterms & Insurance',
+      'Logistics & Shipping: Freight Negotiation, Cost Optimization, Route Analytics & Insurance',
     seoDescription:
-      'Strong logistics and shipping management ensures exporters achieve cost efficiency, timely delivery, and risk protection in global trade.',
-  },
-  {
-    id: 'warehousing-solutions',
-    title: 'Warehousing Solutions',
-    slug: 'warehousing-solutions',
-    shortDescription:
-      'As an export consultant, warehousing is not just about storage—it is a strategic function that supports compliance, efficiency, and cost optimization in global trade.',
-    description:
-      'Warehousing solutions form a critical link in the export supply chain. By leveraging bonded facilities, advanced inventory systems, and value-added services, exporters can reduce costs, ensure compliance, and maintain reliability in international markets.',
-    features: [
-      'Bonded & Non-Bonded Warehouses: Duty-free storage until goods are cleared for export, easing cash-flow pressure, and secure domestic storage.',
-      'Inventory & Compliance Management: Implementation of Warehouse Management Systems (WMS) and RFID/barcode tracking for real-time visibility.',
-      'Value-Added Services: Packaging, labeling, palletization tailored to buyer standards, quality checks, and consolidation/de-consolidation.',
-      'Distribution & Logistics Integration: Coordination with freight forwarders, route planning, and last-mile delivery support.',
-    ],
-    benefits: [
-      'Deferred duty payment in bonded facilities easing working capital pressure',
-      'Real-time inventory visibility and audit readiness via advanced WMS tracking',
-      'Customized packaging, labeling, and quality compliance for international markets',
-    ],
-    faqs: [
-      {
-        question: 'What is the main advantage of a bonded warehouse for exporters?',
-        answer:
-          'Bonded warehouses allow duty-free storage until goods are cleared for export, significantly easing working capital and cash-flow pressure.',
-      },
-    ],
-    seoTitle: 'Warehousing Solutions for Exporters | SkyLink Global Services',
-    seoDescription:
-      'Strategic warehousing solutions for exporters: bonded & non-bonded storage, WMS inventory management, value-added packaging, and logistics integration.',
-  },
-  {
-    id: 'cold-chain-solutions',
-    title: 'Cold Chain Solutions',
-    slug: 'cold-chain-solutions',
-    shortDescription:
-      'Protects product quality and temperature integrity throughout the supply chain (-25°C to +25°C).',
-    description:
-      'Prevents cargo spoilage and preserves pharmaceutical potency through validated reefer equipment, continuous 24/7 IoT temperature telemetry, and GDP/FDA life science compliance.',
-    features: [
-      'Reefer Containers (-25°C Deep Freeze to +25°C Controlled Room Temperature, Ultra-Low -80°C)',
-      'Active & Passive Thermal Packaging Validation & Pre-Cooling Protocols',
-      'Real-Time IoT Temperature, Humidity, Shock & Geofencing GPS Telemetry Monitoring',
-      'GDP (Good Distribution Practice), US FDA, and European Union Life Science Compliance',
-      'Pre-Arrival Customs Green-Channel Expedited Clearance for Perishables and Pharma',
-    ],
-    benefits: [
-      'Zero thermal excursions and guaranteed product potency upon arrival',
-      'Full regulatory compliance with international pharmacopeia standards',
-      'Comprehensive time-temperature audit logs provided with every shipment',
-    ],
-    faqs: [
-      {
-        question: 'How do you monitor temperature during ocean transit?',
-        answer:
-          'We deploy cellular/satellite IoT data loggers that transmit real-time temperature, humidity, and location directly to our 24/7 monitoring desk.',
-      },
-    ],
-    seoTitle: 'Cold Chain Logistics | Pharmaceutical & Perishable Freight Solutions',
-    seoDescription:
-      'End-to-end GDP-compliant temperature-controlled logistics, reefer container management, and IoT tracking for pharma, seafood, and perishables.',
-  },
-  {
-    id: 'export-incentives',
-    title: 'Freight Cost Optimization',
-    slug: 'export-incentives',
-    shortDescription:
-      'Recovers maximum cash remissions and duty exemptions across RoDTEP, RoSCTL, Advance Authorisation, and EPCG schemes.',
-    description:
-      'Reclaims legitimate statutory subsidies and eliminates upfront import duties on manufacturing machinery and raw materials, boosting gross export profitability by 4% to 8%.',
-    features: [
-      'Remission of Duties and Taxes on Exported Products (RoDTEP) Electronic Filings',
-      'Rebate of State and Central Taxes and Levies (RoSCTL) for Textiles, Garments & Made-ups',
-      'Advance Authorisation Scheme for Duty-Free Input Raw Material Procurement',
-      'Export Promotion Capital Goods (EPCG) Scheme for Zero-Duty Capital Machinery Imports',
-      'Duty Drawback (All Industry Rates & Section 74/75 Brand Rate Fixation)',
-    ],
-    benefits: [
-      'Up to 4-8% direct improvement in gross export margins through systematic claims',
-      'Zero basic customs duty and IGST on imported inputs and manufacturing machinery',
-      'Timely redemption and clubbing of EPCG and Advance Authorisation obligations (EODC)',
-    ],
-    faqs: [
-      {
-        question: 'What is the difference between RoDTEP and Duty Drawback?',
-        answer:
-          'Duty Drawback refunds basic customs duties paid on imported inputs, whereas RoDTEP reimburses embedded non-creditable central, state, and local levies.',
-      },
-    ],
-    seoTitle: 'Export Incentives & Schemes | RoDTEP, EPCG & Advance Authorisation',
-    seoDescription:
-      'Expert advisory for government export incentive schemes, duty drawbacks, Advance Authorisation, and EPCG license redemptions.',
+      'End-to-end logistics, ocean/air shipping, and freight cost optimization ensuring exporters achieve cost efficiency, timely delivery, and risk protection.',
   },
   {
     id: 'tax-gst-compliance',
@@ -232,6 +147,8 @@ export async function getServiceBySlug(slug: string): Promise<Service | undefine
       ? 'warehousing-solutions'
       : slug === 'trade-risk-management' || slug === 'customs-compliance'
       ? 'risk-management'
+      : slug === 'export-incentives' || slug === 'freight-cost-optimization'
+      ? 'logistics-shipping'
       : slug;
 
   return servicesData.find(

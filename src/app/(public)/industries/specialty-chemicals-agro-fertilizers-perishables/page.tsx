@@ -108,7 +108,7 @@ export default function SpecialtyChemicalsAgroPage() {
               <ScrollReveal effect="fade-up" delay={260}>
                 <div className="flex flex-wrap items-center gap-4 pt-2">
                   <Button href="/request-consultation" variant="secondary" size="md">
-                    Schedule Sector Consultation
+                    Request Consultation
                     <ArrowRight className="w-4 h-4 ml-1.5" />
                   </Button>
                   <Button href="/contact" variant="outline-light" size="md">
@@ -233,7 +233,7 @@ export default function SpecialtyChemicalsAgroPage() {
           </p>
           <div className="pt-3 flex flex-wrap justify-center gap-4">
             <Button href="/request-consultation" variant="secondary" size="md">
-              Request Specialized Trade Proposal
+              Request Consultation
               <ArrowRight className="w-4 h-4 ml-1.5" />
             </Button>
             <Button href="/contact" variant="outline-light" size="md">

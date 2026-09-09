@@ -218,20 +218,20 @@ export function LogisticsRiskJourney() {
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-3 mb-14">
+        <div className="text-center max-w-3xl mx-auto space-y-3.5 mb-12 sm:mb-16">
           <ScrollReveal effect="fade-down" delay={0}>
-            <div className="inline-flex items-center gap-2 rounded-full bg-amber-500/10 border border-amber-400/30 px-3.5 py-1.5 text-xs font-semibold text-amber-300">
+            <div className="inline-flex items-center gap-2 rounded-full bg-amber-500/10 border border-amber-400/30 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-amber-300">
               <AlertTriangle className="w-4 h-4 text-amber-400" />
               <span>Cross-Border Risk Mitigation</span>
             </div>
           </ScrollReveal>
           <ScrollReveal effect="fade-up" delay={80}>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight text-balance">
               Every Shipment Carries Real Risk
             </h2>
           </ScrollReveal>
           <ScrollReveal effect="fade-up" delay={160}>
-            <p className="text-sm sm:text-base text-neutral-300 leading-relaxed">
+            <p className="text-sm sm:text-base lg:text-lg text-neutral-300 leading-relaxed font-normal max-w-2xl mx-auto text-pretty">
               Without specialized EXIM oversight, cross-border operations face severe operational, regulatory, and financial bottlenecks. Explore how SkyLink shields your supply chain at every milestone.
             </p>
           </ScrollReveal>

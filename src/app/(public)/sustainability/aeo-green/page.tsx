@@ -112,8 +112,8 @@ export default function AeoGreenPage() {
                 <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-white/15 bg-neutral-900 group">
                   <div className="relative aspect-[4/3]">
                     <Image
-                      src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=1200&auto=format&fit=crop"
-                      alt="Paperless customs and international AEO green trade clearance"
+                      src="/images/sustainability/aeo-green.jpg"
+                      alt="AEO Green Channel fast-track paperless customs clearance at smart port terminal"
                       fill
                       sizes="(max-width: 1024px) 100vw, 40vw"
                       className="object-cover object-center group-hover:scale-105 transition-transform duration-700"

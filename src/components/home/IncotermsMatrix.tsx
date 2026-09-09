@@ -41,20 +41,20 @@ export function IncotermsMatrix() {
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-3 mb-10">
+        <div className="text-center max-w-3xl mx-auto space-y-3.5 mb-12 sm:mb-16">
           <ScrollReveal effect="fade-down" delay={0}>
-            <div className="inline-flex items-center gap-2 rounded-full bg-sky-500/10 border border-sky-400/30 px-3.5 py-1.5 text-xs font-semibold text-sky-300">
+            <div className="inline-flex items-center gap-2 rounded-full bg-sky-500/10 border border-sky-400/30 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-sky-300">
               <Layers className="w-4 h-4 text-sky-400" />
               <span>International Trade Advisory</span>
             </div>
           </ScrollReveal>
           <ScrollReveal effect="fade-up" delay={80}>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight text-balance">
               Incoterms® Risk &amp; Responsibility Matrix
             </h2>
           </ScrollReveal>
           <ScrollReveal effect="fade-up" delay={160}>
-            <p className="text-sm sm:text-base text-neutral-300 leading-relaxed">
+            <p className="text-sm sm:text-base lg:text-lg text-neutral-300 leading-relaxed font-normal max-w-2xl mx-auto text-pretty">
               Choosing the right International Commercial Term defines risk allocation, freight liability, and statutory customs obligations between buyer and seller. Explore our interactive operational guide below.
             </p>
           </ScrollReveal>

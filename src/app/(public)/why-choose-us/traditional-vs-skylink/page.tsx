@@ -163,7 +163,7 @@ export default function TraditionalVsSkylinkPage() {
                 items={[
                   { name: 'Home', item: '/' },
                   { name: 'Why Choose Us', item: '/why-choose-us/skylink-advantage' },
-                  { name: 'Traditional vs SkyLink', item: '/why-choose-us/traditional-vs-skylink' },
+                  { name: 'Operational Benchmark', item: '/why-choose-us/traditional-vs-skylink' },
                 ]}
                 className="text-neutral-400 mb-6 justify-center"
               />
@@ -174,19 +174,19 @@ export default function TraditionalVsSkylinkPage() {
             <ScrollReveal effect="fade-up" delay={80}>
               <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-sky-400 bg-sky-400/10 px-3.5 py-1.5 rounded-full border border-sky-400/30">
                 <Scale className="w-3.5 h-3.5" />
-                Operational Benchmark
+                Operational Performance Benchmark
               </span>
             </ScrollReveal>
 
             <ScrollReveal effect="fade-up" delay={140}>
-              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-[1.12] text-balance">
-                Traditional Freight Forwarding vs. SkyLink Trade Governance
+              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-tight text-balance">
+                Transforming Global Logistics: Conventional vs. Modern Trade Governance
               </h1>
             </ScrollReveal>
 
             <ScrollReveal effect="fade-up" delay={200}>
               <p className="text-sm sm:text-base lg:text-lg text-neutral-300 leading-relaxed max-w-2xl mx-auto text-pretty font-normal">
-                See the side-by-side comparison of how SkyLink eliminates broker layers, prevents costly customs holds, accelerates duty recovery, and secures 100% cold-chain integrity.
+                Evaluate how moving from conventional multi-tier forwarding to SkyLink&apos;s unified single-window model eliminates intermediary overhead, prevents customs dwell, and secures unbroken supply chain control.
               </p>
             </ScrollReveal>
           </div>

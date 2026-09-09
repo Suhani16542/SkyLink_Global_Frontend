@@ -35,23 +35,23 @@ export function ContactView() {
   return (
     <div className="bg-white">
       {/* Header Banner */}
-      <section className="bg-[#0A2540] text-white py-14 sm:py-20 relative overflow-hidden">
+      <section className="bg-[#0A2540] text-white py-16 sm:py-24 relative overflow-hidden">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
           <Breadcrumbs
             items={[
               { name: 'Home', item: '/' },
               { name: 'Contact Us', item: '/contact' },
             ]}
-            className="text-neutral-400"
+            className="text-neutral-400 mb-6"
           />
           <div className="max-w-3xl space-y-4">
-            <span className="text-xs font-bold uppercase tracking-wider text-sky-400">
+            <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-sky-400 bg-sky-400/10 px-3.5 py-1 rounded-full border border-sky-400/30">
               Direct Communication
             </span>
-            <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-white">
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-tight text-balance">
               Contact SkyLink Global Services
             </h1>
-            <p className="text-base sm:text-lg text-neutral-300 leading-relaxed">
+            <p className="text-base sm:text-lg lg:text-xl text-neutral-300 leading-relaxed font-normal text-pretty">
               Connect directly with our international trade desk, customs compliance officers, and multimodal freight specialists.
             </p>
           </div>

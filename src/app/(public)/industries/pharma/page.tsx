@@ -93,7 +93,7 @@ export default function PharmaIndustryPage() {
               <ScrollReveal effect="fade-up" delay={260}>
                 <div className="flex flex-wrap items-center gap-4 pt-2">
                   <Button href="/request-consultation" variant="secondary" size="md">
-                    Schedule Pharma Logistics Audit
+                    Request Consultation
                     <ArrowRight className="w-4 h-4 ml-1.5" />
                   </Button>
                   <Button href="/contact" variant="outline-light" size="md">
@@ -217,11 +217,11 @@ export default function PharmaIndustryPage() {
             Secure Your Pharmaceutical Supply Chain Today
           </h2>
           <p className="text-sm sm:text-base text-neutral-300">
-            Consult with our life-sciences trade team for validated packaging, ADC clearance, and direct air/ocean cold-chain bookings.
+            Request a consultation with our life-sciences trade team for pharma EXIM planning, cold-chain logistics, ADC customs compliance, and global supply-chain requirements.
           </p>
           <div className="pt-3 flex flex-wrap justify-center gap-4">
             <Button href="/request-consultation" variant="secondary" size="md">
-              Request Life-Sciences Consultation
+              Request Consultation
               <ArrowRight className="w-4 h-4 ml-1.5" />
             </Button>
             <Button href="/services/cold-chain-solutions" variant="outline-light" size="md">

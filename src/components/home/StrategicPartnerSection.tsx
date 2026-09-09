@@ -32,22 +32,22 @@ export function StrategicPartnerSection() {
         {/* ========================================================================= */}
         {/* SECTION HEADER: High-Impact Corporate Heading */}
         {/* ========================================================================= */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-16 sm:mb-20">
-          <ScrollReveal effect="fade-down" delay={0}>
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-sky-500/10 border border-sky-400/30 text-xs font-bold text-sky-300 uppercase tracking-wider shadow-sm">
+        <div className="text-center max-w-3xl mx-auto flex flex-col items-center justify-center space-y-3.5 mb-12 sm:mb-16">
+          <ScrollReveal effect="fade-down" delay={0} className="w-full flex justify-center text-center">
+            <span className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-sky-500/10 border border-sky-400/30 text-xs font-bold text-sky-300 uppercase tracking-wider shadow-sm">
               <TrendingUp className="w-3.5 h-3.5 text-sky-400" />
               <span>Strategic Trade &amp; EXIM Partner</span>
             </span>
           </ScrollReveal>
           
-          <ScrollReveal effect="fade-up" delay={80}>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.12]">
+          <ScrollReveal effect="fade-up" delay={80} className="w-full text-center">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight text-balance text-center mx-auto">
               Your Trusted Partner in Global Commerce
             </h2>
           </ScrollReveal>
 
-          <ScrollReveal effect="fade-up" delay={140}>
-            <p className="text-sm sm:text-base text-neutral-300 leading-relaxed max-w-2xl mx-auto">
+          <ScrollReveal effect="fade-up" delay={140} className="w-full flex justify-center text-center">
+            <p className="text-sm sm:text-base lg:text-lg text-neutral-300 leading-relaxed font-normal max-w-2xl mx-auto text-center">
               Bridging statutory foreign trade policy mandates with wholesale commercial logistics, enabling enterprises to move cross-border cargo with guaranteed compliance and predictable freight velocity.
             </p>
           </ScrollReveal>
