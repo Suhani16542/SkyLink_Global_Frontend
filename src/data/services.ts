@@ -6,11 +6,11 @@ export const servicesData: Service[] = [
     title: 'Logistics & Shipping',
     slug: 'logistics-shipping',
     shortDescription:
-      'Strong logistics and shipping management ensures exporters achieve freight cost optimization, timely delivery, and risk protection in global trade.',
+      'Comprehensive logistics and freight forwarding solutions integrating specialized Freight Optimization (Rate Contracts, Multiple Carrier Choices, Freight Cost Optimization), multimodal transit, and supply chain governance.',
     description:
-      'By integrating freight negotiation, cost optimization, route analytics, consolidations, Incoterms advisory, statutory export incentives, and marine insurance, exporters can streamline supply chains, reduce costs by 15%–25%, and safeguard against cross-border risks—enhancing competitiveness in international markets.',
+      'By integrating dedicated Freight Optimization (negotiated Rate Contracts, Multiple Carrier Choices across premier ocean and air lines, and systematic Freight Cost Optimization), route analytics, customs staging, consolidations, and cargo protection, SkyLink empowers exporters to reduce logistics expenditure by 15%–25% while securing guaranteed carrier space.',
     features: [
-      'Freight Negotiation & Cost Optimization: Securing competitive volume-contracted rates with premier ocean and air carriers, tariff benchmarking, and bunker fuel surcharge optimization.',
+      'Freight Optimization (Sub-Service): Long-term Rate Contracts, Multiple Carrier Choices across ocean & air lines, and aggressive Freight Cost Optimization benchmarking.',
       'Route Optimization & Analytics: Identifying the most efficient multimodal shipping corridors to minimize transit time and bypass congested transshipment hubs.',
       'Consolidations & Space Allocation: Combining smaller shipments into full container loads (FCL) for cost savings and guaranteed vessel space allocations.',
       'Export Incentives & Statutory Recovery: Reclaiming cash remissions across RoDTEP, RoSCTL, Duty Drawback, and Advance Authorisation schemes.',
@@ -18,7 +18,7 @@ export const servicesData: Service[] = [
       'Marine Cargo Insurance: Comprehensive coverage against transit loss, damage, or port delays with dedicated claims settlement support.',
     ],
     benefits: [
-      'Competitive freight rates and 15%–25% cost reduction via direct carrier contracts and tariff benchmarking',
+      'Dedicated Freight Optimization: Secured Rate Contracts, Multiple Carrier Choices, and 15%–25% Freight Cost Optimization',
       'Minimised transit times and congestion bypass through multimodal route optimization',
       'Systematic recovery of government export incentives (RoDTEP, RoSCTL, Duty Drawback)',
       'Complete risk indemnification through specialized marine cargo insurance and Incoterms alignment',

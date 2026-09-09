@@ -113,15 +113,27 @@ export default function EcoRoutePage() {
             <div className="lg:col-span-5">
               <ScrollReveal effect="fade-left" delay={200}>
                 <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-white/15 bg-neutral-900 group">
-                  <div className="relative aspect-[4/3]">
-                    <Image
-                      src="/images/sustainability/eco-route.jpg"
-                      alt="Green multimodal rail and sustainable freight transportation"
-                      fill
-                      sizes="(max-width: 1024px) 100vw, 40vw"
-                      className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#07192D]/80 via-transparent to-transparent" />
+                  <div className="relative aspect-[4/3] w-full overflow-hidden bg-neutral-950">
+                    <video
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      poster="/images/sustainability/eco-route.jpg"
+                      className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
+                    >
+                      <source src="/videos/transportation.mp4" type="video/mp4" />
+                      <source src="/videos/global-freight.mp4" type="video/mp4" />
+                      <source src="/videos/import-export-port.mp4" type="video/mp4" />
+                      Your browser does not support the video tag.
+                    </video>
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#07192D]/85 via-transparent to-transparent pointer-events-none" />
+                    
+                    {/* Live Stream Status Indicator */}
+                    <div className="absolute top-3 right-3 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#07192D]/80 backdrop-blur-md border border-white/20 text-[10px] font-mono text-emerald-400">
+                      <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                      <span>MULTIMODAL FLOW</span>
+                    </div>
                   </div>
                   <div className="p-5 bg-[#07192D]/90 border-t border-white/10">
                     <div className="flex items-center justify-between text-xs text-neutral-300">

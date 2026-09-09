@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
 import {
   MapPin,
   Anchor,
@@ -8,14 +8,19 @@ import {
   FileCheck2,
   Globe2,
   Sparkles,
+  ArrowRight,
+  ChevronRight,
+  CheckCircle2,
 } from 'lucide-react';
 
 interface TradeStage {
   step: string;
   label: string;
   sublabel: string;
+  details: string;
   icon: React.ElementType;
   color: string;
+  badge: string;
 }
 
 const tradeStages: TradeStage[] = [
@@ -23,119 +28,105 @@ const tradeStages: TradeStage[] = [
     step: '01',
     label: 'INDIA ORIGIN',
     sublabel: 'Manufacturing & Export Hubs',
+    details: 'Factory staging, export packaging & inland transport',
     icon: MapPin,
     color: '#38BDF8', // Sky
+    badge: 'Origin',
   },
   {
     step: '02',
     label: 'PORT GATEWAY',
     sublabel: 'Customs Staging & 3PL Logistics',
+    details: 'Bonded ICD warehousing & port container drayage',
     icon: Anchor,
     color: '#0284C7', // SkyLink Blue
+    badge: 'Gateway',
   },
   {
     step: '03',
     label: 'CUSTOMS CLEARANCE',
     sublabel: 'Green-Channel EDI Release',
+    details: 'ICEGATE pre-filing, duty assessment & compliance',
     icon: FileCheck2,
     color: '#10B981', // Emerald Green
+    badge: 'Statutory',
   },
   {
     step: '04',
     label: 'GLOBAL SHIPPING',
-    sublabel: 'Ocean Freight & Cargo Transportation',
+    sublabel: 'Ocean & Air Freight Corridors',
+    details: 'Tier-1 vessel space, tracking & cargo security',
     icon: Ship,
     color: '#0EA5E9', // Cyan Blue
+    badge: 'Transit',
   },
   {
     step: '05',
     label: 'GLOBAL DESTINATION',
-    sublabel: 'Final Consignee in 25+ Markets',
+    sublabel: 'Consignee Delivery in 25+ Markets',
+    details: 'Final port clearance, DPD & door-step fulfillment',
     icon: Globe2,
     color: '#6366F1', // Indigo Accent
+    badge: 'Delivery',
   },
 ];
 
-
 export function GlobalTradeFlow() {
   const sectionRef = useRef<HTMLDivElement | null>(null);
+  const progressBarRef = useRef<HTMLDivElement | null>(null);
   const [activeStep, setActiveStep] = useState(1);
-  const [linePercentage, setLinePercentage] = useState(0); // 0% to 100% continuous line
+  const [isInView, setIsInView] = useState(false);
 
-  // Scroll-driven animation tracking (smooth response to scroll down and scroll up)
+  // Performance-optimized IntersectionObserver (no scroll thrashing)
   useEffect(() => {
-    let ticking = false;
+    const elem = sectionRef.current;
+    if (!elem) return;
 
-    const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          const elem = sectionRef.current;
-          if (elem) {
-            const rect = elem.getBoundingClientRect();
-            const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true);
+        }
+      },
+      { threshold: 0.15 }
+    );
 
-            // Smooth, gradual 1-to-1 scroll tracking:
-            // Starts as the section enters comfortable center view
-            // and moves gradually in both directions (advancing on scroll down, rewinding on scroll up)
-            const startOffset = windowHeight * 0.52;
-            const endOffset = -(rect.height * 0.45);
-            const totalDistance = Math.max(1, startOffset - endOffset);
+    observer.observe(elem);
+    return () => observer.disconnect();
+  }, []);
 
-            const currentPosition = startOffset - rect.top;
-            const progress = Math.max(0, Math.min(1, currentPosition / totalDistance));
+  // Smooth step progression timer when in view (or interactive on hover/click)
+  useEffect(() => {
+    if (!isInView) return;
 
-            const percentage = Math.round(progress * 100);
-            setLinePercentage(percentage);
+    const interval = setInterval(() => {
+      setActiveStep((prev) => (prev >= 5 ? 1 : prev + 1));
+    }, 2800);
 
-            // Progressive milestone activation perfectly synchronized across the scroll:
-            // 01 is active at 0%
-            // 02 activates around ~20%
-            // 03 activates around ~44%
-            // 04 activates around ~66%
-            // 05 activates around ~88%
-            // Rewinds smoothly when scrolling up
-            if (progress >= 0.88) {
-              setActiveStep(5);
-            } else if (progress >= 0.66) {
-              setActiveStep(4);
-            } else if (progress >= 0.44) {
-              setActiveStep(3);
-            } else if (progress >= 0.20) {
-              setActiveStep(2);
-            } else {
-              setActiveStep(1);
-            }
-          }
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
+    return () => clearInterval(interval);
+  }, [isInView]);
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    window.addEventListener('resize', handleScroll, { passive: true });
-    handleScroll();
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', handleScroll);
-    };
+  const handleStepClick = useCallback((stepIndex: number) => {
+    setActiveStep(stepIndex);
   }, []);
 
   return (
     <section
       ref={sectionRef}
-      className="py-12 sm:py-16 lg:py-18 bg-[#07192D] text-white relative overflow-hidden border-b border-white/10 select-none"
+      className="py-14 sm:py-20 lg:py-24 bg-[#07192D] text-white relative overflow-hidden border-b border-white/10 select-none contain-paint"
     >
-      {/* Subtle World Map Ambient Contours & Graticule Background */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff06_1px,transparent_1px),linear-gradient(to_bottom,#ffffff06_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none opacity-50" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[350px] bg-sky-500/5 rounded-full blur-[140px] pointer-events-none" />
+      {/* Optimized Ambient Background (Hardware-accelerated, lightweight) */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none opacity-40" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[250px] bg-sky-500/10 rounded-full blur-[100px] pointer-events-none transform-gpu" />
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Section Heading & Subtitle */}
-        <div className="text-center max-w-3xl mx-auto flex flex-col items-center justify-center space-y-3.5 mb-12 sm:mb-16">
+        
+        {/* ========================================================================= */}
+        {/* SECTION HEADER */}
+        {/* ========================================================================= */}
+        <div className="text-center max-w-3xl mx-auto flex flex-col items-center justify-center space-y-3 mb-12 sm:mb-16">
           <div className="w-full flex justify-center text-center">
-            <span className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-sky-500/10 border border-sky-400/30 text-xs font-bold text-sky-300 uppercase tracking-wider">
+            <span className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-sky-500/15 border border-sky-400/30 text-xs font-bold text-sky-300 uppercase tracking-wider shadow-xs">
               <Sparkles className="w-3.5 h-3.5 text-sky-400" />
               <span>How SkyLink Connects Global Trade</span>
             </span>
@@ -148,143 +139,228 @@ export function GlobalTradeFlow() {
           </div>
 
           <div className="w-full flex justify-center text-center">
-            <p className="text-sm sm:text-base lg:text-lg text-neutral-300 leading-relaxed max-w-2xl mx-auto text-center font-normal">
-              From origin to destination, our logistics company helps businesses navigate cargo transportation, freight forwarding, and international supply chain management.
+            <p className="text-sm sm:text-base text-neutral-300 leading-relaxed max-w-2xl mx-auto text-center font-normal">
+              From origin manufacturing hubs to final overseas destinations, our single-window logistics framework orchestrates every stage with precision and compliance.
             </p>
           </div>
         </div>
 
         {/* ========================================================================= */}
-        {/* DESKTOP VIEW: ONE COMPLETE CONTINUOUS LINE CONNECTING 01 TO 05 */}
+        {/* DESKTOP FLOWCHART VIEW (High-Performance CSS Transition, Zero Scroll Lag) */}
         {/* ========================================================================= */}
-        <div className="hidden lg:block relative py-4">
-          {/* 1. Base Continuous Background Track (Center of Step 1 to Center of Step 5) */}
-          <div className="absolute top-[35px] left-[10%] right-[10%] h-1 bg-white/10 rounded-full z-0 pointer-events-none">
-            {/* 2. ONE Single Continuously Growing Progress Line (0% to 100%) */}
+        <div className="hidden lg:block relative py-6">
+          
+          {/* Continuous Track Line Behind Nodes */}
+          <div className="absolute top-[52px] left-[8%] right-[8%] h-1 bg-white/10 rounded-full z-0 pointer-events-none overflow-hidden">
+            {/* Smooth hardware-accelerated animated progress line */}
             <div
-              className="h-full bg-gradient-to-r from-sky-400 via-sky-500 to-emerald-400 rounded-full transition-all duration-150 ease-out opacity-100"
+              ref={progressBarRef}
+              className="h-full bg-gradient-to-r from-sky-400 via-[#0284C7] to-emerald-400 rounded-full transition-all duration-500 ease-out transform-gpu"
               style={{
-                width: `${linePercentage}%`,
+                width: `${((activeStep - 1) / 4) * 100}%`,
               }}
             />
           </div>
 
-          {/* 5 Milestone Nodes in a 5-Column Grid */}
+          {/* 5 Milestone Nodes in a 5-Column Flow Grid */}
           <div className="grid grid-cols-5 gap-4 relative z-10">
             {tradeStages.map((stage, idx) => {
               const IconComp = stage.icon;
-              const isVisible = activeStep >= idx + 1;
+              const stepNum = idx + 1;
+              const isActive = activeStep === stepNum;
+              const isPassed = activeStep >= stepNum;
 
               return (
                 <div
                   key={stage.step}
-                  className="flex flex-col items-center text-center"
-                  style={{
-                    opacity: isVisible ? 1 : 0,
-                    transform: isVisible
-                      ? 'translateY(0px) scale(1)'
-                      : 'translateY(12px) scale(0.94)',
-                    visibility: isVisible ? 'visible' : 'hidden',
-                    transition: 'opacity 200ms ease-out, transform 200ms ease-out',
-                  }}
+                  onClick={() => handleStepClick(stepNum)}
+                  className="flex flex-col items-center text-center cursor-pointer group transition-transform duration-200"
                 >
                   {/* Glowing Node Circle Beacon */}
-                  <div className="relative mb-4 group">
+                  <div className="relative mb-4">
+                    {/* Active Pulsing Ring */}
+                    {isActive && (
+                      <span
+                        className="absolute inset-0 rounded-2xl animate-ping opacity-30 pointer-events-none"
+                        style={{ backgroundColor: stage.color }}
+                      />
+                    )}
+
                     <div
-                      className="w-13 h-13 rounded-2xl bg-[#0A2540] border-2 flex items-center justify-center text-white shadow-xl transition-all duration-300 group-hover:scale-110"
+                      className={`w-14 h-14 rounded-2xl flex items-center justify-center text-white transition-all duration-300 shadow-md ${
+                        isActive
+                          ? 'bg-gradient-to-br from-[#0A2540] to-[#0284C7] scale-110 ring-2 ring-sky-400'
+                          : isPassed
+                          ? 'bg-[#0A2540] border-2 border-sky-400/80 hover:scale-105'
+                          : 'bg-[#07192D] border border-white/20 opacity-70 hover:opacity-100 hover:scale-105'
+                      }`}
                       style={{
-                        borderColor: stage.color,
-                        boxShadow: isVisible ? `0 0 18px ${stage.color}40` : 'none',
+                        borderColor: isPassed ? stage.color : undefined,
+                        boxShadow: isActive ? `0 0 20px ${stage.color}50` : undefined,
                       }}
                     >
-                      <IconComp className="w-5 h-5" style={{ color: stage.color }} />
+                      <IconComp
+                        className={`w-6 h-6 transition-colors duration-200 ${
+                          isActive ? 'text-white' : 'text-sky-300 group-hover:text-white'
+                        }`}
+                        style={{ color: isActive ? '#ffffff' : stage.color }}
+                      />
                     </div>
 
                     {/* Step Number Badge */}
-                    <span className="absolute -top-2 -right-2 bg-[#07192D] border border-white/20 text-[10px] font-mono font-bold text-sky-300 px-1.5 py-0.5 rounded-full shadow-xs">
+                    <span
+                      className={`absolute -top-2 -right-2 text-[10px] font-mono font-bold px-1.5 py-0.5 rounded-full border shadow-2xs transition-colors duration-200 ${
+                        isActive
+                          ? 'bg-sky-500 text-white border-sky-300'
+                          : 'bg-[#07192D] text-sky-300 border-white/20'
+                      }`}
+                    >
                       {stage.step}
                     </span>
                   </div>
 
+                  {/* Node Badge Tag */}
+                  <span
+                    className={`text-[9px] font-mono font-bold uppercase tracking-wider px-2 py-0.5 rounded mb-1.5 transition-colors duration-200 ${
+                      isActive
+                        ? 'bg-sky-400/20 text-sky-200 border border-sky-400/40'
+                        : 'bg-white/5 text-neutral-400 border border-white/10'
+                    }`}
+                  >
+                    {stage.badge}
+                  </span>
+
                   {/* Node Title */}
-                  <h3 className="text-sm font-black text-white tracking-wide uppercase">
+                  <h3
+                    className={`text-sm font-bold tracking-wide uppercase transition-colors duration-200 ${
+                      isActive ? 'text-sky-300' : 'text-white group-hover:text-sky-200'
+                    }`}
+                  >
                     {stage.label}
                   </h3>
 
                   {/* Node Subtitle */}
-                  <p className="text-xs text-neutral-400 mt-1 max-w-[160px] leading-relaxed">
+                  <p className="text-xs text-neutral-300 mt-1 max-w-[170px] leading-relaxed">
                     {stage.sublabel}
                   </p>
                 </div>
               );
             })}
           </div>
+
+          {/* Active Stage Highlight Details Card */}
+          <div className="mt-8 mx-auto max-w-xl p-4 rounded-2xl bg-[#0A2540]/90 border border-sky-500/30 backdrop-blur-md shadow-xl flex items-center justify-between gap-4 text-left transition-all duration-300">
+            <div className="flex items-center gap-3">
+              <div
+                className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0"
+                style={{ backgroundColor: `${tradeStages[activeStep - 1].color}20` }}
+              >
+                {React.createElement(tradeStages[activeStep - 1].icon, {
+                  className: 'w-5 h-5',
+                  style: { color: tradeStages[activeStep - 1].color },
+                })}
+              </div>
+              <div>
+                <div className="flex items-center gap-2">
+                  <span className="text-[10px] font-mono font-bold text-sky-300 uppercase">
+                    STAGE {tradeStages[activeStep - 1].step} OF 05
+                  </span>
+                  <span className="text-white/30">•</span>
+                  <span className="text-xs font-bold text-white">
+                    {tradeStages[activeStep - 1].label}
+                  </span>
+                </div>
+                <p className="text-xs text-neutral-300 mt-0.5">
+                  {tradeStages[activeStep - 1].details}
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-1.5 shrink-0">
+              {tradeStages.map((_, dotIdx) => (
+                <button
+                  key={dotIdx}
+                  type="button"
+                  onClick={() => handleStepClick(dotIdx + 1)}
+                  aria-label={`Jump to stage ${dotIdx + 1}`}
+                  className={`w-2 h-2 rounded-full transition-all duration-200 cursor-pointer ${
+                    activeStep === dotIdx + 1
+                      ? 'w-6 bg-sky-400'
+                      : 'bg-white/20 hover:bg-white/40'
+                  }`}
+                />
+              ))}
+            </div>
+          </div>
         </div>
 
         {/* ========================================================================= */}
-        {/* MOBILE & TABLET VIEW: ONE CONTINUOUS VERTICAL LINE FLOW */}
+        {/* MOBILE & TABLET VIEW: Optimized Vertical Flow Stepper */}
         {/* ========================================================================= */}
-        <div className="lg:hidden relative pl-4 sm:pl-6 space-y-6 my-2">
-          {/* Continuous Vertical Base Track */}
-          <div className="absolute top-6 bottom-6 left-10 sm:left-12 w-0.5 bg-white/10 z-0 pointer-events-none">
-            {/* Growing Vertical Line */}
-            <div
-              className="w-full bg-gradient-to-b from-sky-400 to-emerald-400 transition-all duration-150 ease-out opacity-100"
-              style={{
-                height: `${linePercentage}%`,
-              }}
-            />
-          </div>
-
+        <div className="lg:hidden relative space-y-4 my-4">
           {tradeStages.map((stage, idx) => {
             const IconComp = stage.icon;
-            const isVisible = activeStep >= idx + 1;
+            const stepNum = idx + 1;
+            const isActive = activeStep === stepNum;
+            const isPassed = activeStep >= stepNum;
 
             return (
               <div
                 key={stage.step}
-                className="flex items-start gap-4 relative z-10"
-                style={{
-                  opacity: isVisible ? 1 : 0,
-                  transform: isVisible
-                    ? 'translateX(0px) scale(1)'
-                    : 'translateX(-12px) scale(0.94)',
-                  visibility: isVisible ? 'visible' : 'hidden',
-                  transition: 'opacity 200ms ease-out, transform 200ms ease-out',
-                }}
+                onClick={() => handleStepClick(stepNum)}
+                className={`flex items-start gap-4 p-4 rounded-2xl border transition-all duration-200 cursor-pointer ${
+                  isActive
+                    ? 'bg-[#0A2540] border-sky-400/80 shadow-lg shadow-sky-500/10'
+                    : isPassed
+                    ? 'bg-[#07192D]/90 border-white/15'
+                    : 'bg-[#07192D]/50 border-white/10 opacity-70'
+                }`}
               >
                 {/* Node Circle */}
                 <div
-                  className="w-11 h-11 rounded-xl bg-[#0A2540] border-2 flex items-center justify-center shrink-0 shadow-lg"
+                  className={`w-11 h-11 rounded-xl flex items-center justify-center shrink-0 border transition-all ${
+                    isActive
+                      ? 'bg-sky-500/20 text-sky-300 border-sky-400'
+                      : 'bg-[#0A2540] text-neutral-400 border-white/10'
+                  }`}
                   style={{
-                    borderColor: stage.color,
-                    boxShadow: isVisible ? `0 0 15px ${stage.color}40` : 'none',
+                    borderColor: isPassed ? stage.color : undefined,
                   }}
                 >
-                  <IconComp className="w-5 h-5" style={{ color: stage.color }} />
+                  <IconComp className="w-5 h-5" style={{ color: isPassed ? stage.color : undefined }} />
                 </div>
 
                 {/* Text Block */}
-                <div className="pt-0.5">
-                  <div className="flex items-center gap-2">
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center justify-between gap-2">
                     <span className="text-[10px] font-mono font-bold text-sky-400">
-                      STEP {stage.step}
+                      STEP {stage.step} • {stage.badge}
                     </span>
+                    {isPassed && (
+                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                    )}
                   </div>
-                  <h3 className="text-sm font-bold text-white uppercase tracking-wide">
+                  <h3 className="text-sm font-bold text-white uppercase tracking-wide mt-0.5">
                     {stage.label}
                   </h3>
-                  <p className="text-xs text-neutral-400 mt-0.5 leading-relaxed">
+                  <p className="text-xs text-neutral-300 mt-0.5 leading-relaxed">
                     {stage.sublabel}
                   </p>
+                  {isActive && (
+                    <p className="text-[11px] text-sky-200/90 mt-1.5 pt-1.5 border-t border-white/10">
+                      {stage.details}
+                    </p>
+                  )}
                 </div>
               </div>
             );
           })}
         </div>
 
-        {/* Plain Typography Bottom Micro-Content Line (Compact Spacing) */}
-        <div className="mt-8 sm:mt-10 text-center">
+        {/* ========================================================================= */}
+        {/* BOTTOM METADATA PILLARS STRIP */}
+        {/* ========================================================================= */}
+        <div className="mt-10 sm:mt-12 text-center">
           <div className="pt-4 border-t border-white/10 flex flex-wrap items-center justify-center gap-2 sm:gap-4 text-xs font-semibold text-neutral-400">
             <span className="text-sky-300">EXIM Consultancy</span>
             <span className="text-white/20">•</span>
@@ -295,6 +371,7 @@ export function GlobalTradeFlow() {
             <span className="text-sky-300">Supply Chain Orchestration</span>
           </div>
         </div>
+
       </div>
     </section>
   );

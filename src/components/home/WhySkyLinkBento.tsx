@@ -22,9 +22,9 @@ export function WhySkyLinkBento() {
     },
     {
       icon: TrendingDown,
-      badge: 'RATE TRANSPARENCY',
-      title: 'Direct Shipping Line Tariffs',
-      desc: 'Contracted volume agreements with premier global shipping lines and air cargo carriers ensuring fixed all-in pricing with no hidden destination fees.',
+      badge: 'COST OPTIMIZATION',
+      title: 'Freight Cost Optimization',
+      desc: 'Optimize and reduce freight costs through intelligent logistics planning, multi-carrier choices, route benchmarking, and competitive freight solutions.',
       isHighlighted: false,
     },
 
@@ -86,37 +86,33 @@ export function WhySkyLinkBento() {
                 effect="fade-up"
                 delay={idx * 60}
                 duration={500}
-                className={`rounded-2xl p-6 sm:p-7 bg-white border transition-all duration-300 flex flex-col justify-between group relative overflow-hidden ${
-                  item.isHighlighted
+                className={`rounded-2xl p-6 sm:p-7 bg-white border transition-all duration-300 flex flex-col justify-between group relative overflow-hidden ${item.isHighlighted
                     ? 'border-neutral-200/90 shadow-sm ring-1 ring-emerald-400/40'
                     : 'border-neutral-200/90 shadow-xs hover:border-sky-300 hover:shadow-md'
-                }`}
+                  }`}
               >
                 {/* Top Accent Line for first card / hover */}
                 <div
-                  className={`absolute top-0 left-0 right-0 h-1 rounded-t-2xl transition-opacity duration-300 ${
-                    item.isHighlighted
+                  className={`absolute top-0 left-0 right-0 h-1 rounded-t-2xl transition-opacity duration-300 ${item.isHighlighted
                       ? 'bg-gradient-to-r from-[#0284C7] to-emerald-400 opacity-100'
                       : 'bg-gradient-to-r from-[#0284C7] to-emerald-400 opacity-0 group-hover:opacity-100'
-                  }`}
+                    }`}
                 />
 
                 <div>
                   {/* Top Row: Icon + Mono Badge */}
                   <div className="flex items-center justify-between">
                     <div
-                      className={`w-11 h-11 rounded-xl flex items-center justify-center transition-all duration-300 ${
-                        item.isHighlighted
+                      className={`w-11 h-11 rounded-xl flex items-center justify-center transition-all duration-300 ${item.isHighlighted
                           ? 'bg-[#0A2540] text-white shadow-xs'
                           : 'bg-sky-50/80 border border-sky-100/80 text-[#0284C7] group-hover:bg-[#0A2540] group-hover:text-white'
-                      }`}
+                        }`}
                     >
                       <IconComp
-                        className={`w-5 h-5 ${
-                          item.isHighlighted
+                        className={`w-5 h-5 ${item.isHighlighted
                             ? 'text-white'
                             : 'text-[#0284C7] group-hover:text-white transition-colors'
-                        }`}
+                          }`}
                       />
                     </div>
                     <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-neutral-500 bg-neutral-100/80 px-2.5 py-1 rounded-md border border-neutral-200/70">
@@ -127,11 +123,10 @@ export function WhySkyLinkBento() {
                   {/* Title & Description */}
                   <div className="mt-5">
                     <h3
-                      className={`text-base sm:text-lg font-bold leading-snug text-balance ${
-                        item.isHighlighted
+                      className={`text-base sm:text-lg font-bold leading-snug text-balance ${item.isHighlighted
                           ? 'text-[#0284C7]'
                           : 'text-[#0A2540] group-hover:text-[#0284C7] transition-colors'
-                      }`}
+                        }`}
                     >
                       {item.title}
                     </h3>

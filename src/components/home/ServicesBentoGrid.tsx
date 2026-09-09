@@ -286,6 +286,34 @@ export function ServicesBentoGrid({ services }: ServicesBentoGridProps) {
                   {spotlightService?.shortDescription}
                 </p>
 
+                {/* Inner Sub-Service: Freight Optimization for Logistics & Shipping */}
+                {spotlightService?.slug === 'logistics-shipping' && (
+                  <div className="p-3.5 rounded-2xl bg-white/10 border border-white/15 backdrop-blur-md space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-sky-300">
+                        Inner Sub-Service: Freight Optimization
+                      </span>
+                      <span className="text-[9px] font-mono font-bold px-2 py-0.5 rounded-md bg-sky-500/20 text-sky-200 border border-sky-400/30">
+                        Strategic Practice
+                      </span>
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-1.5 pt-0.5">
+                      <div className="flex items-center gap-1.5 text-[11px] text-white/90 bg-black/25 px-2.5 py-1.5 rounded-lg border border-white/10">
+                        <CheckCircle2 className="w-3 h-3 text-emerald-400 shrink-0" />
+                        <span className="font-semibold">Rate Contract</span>
+                      </div>
+                      <div className="flex items-center gap-1.5 text-[11px] text-white/90 bg-black/25 px-2.5 py-1.5 rounded-lg border border-white/10">
+                        <CheckCircle2 className="w-3 h-3 text-emerald-400 shrink-0" />
+                        <span className="font-semibold">Multiple Carrier Choices</span>
+                      </div>
+                      <div className="flex items-center gap-1.5 text-[11px] text-white/90 bg-black/25 px-2.5 py-1.5 rounded-lg border border-white/10">
+                        <CheckCircle2 className="w-3 h-3 text-emerald-400 shrink-0" />
+                        <span className="font-semibold">Freight Cost Optimization</span>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
                 {/* Key Bullet Features */}
                 <div className="space-y-2 pt-1 border-t border-white/10">
                   <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-sky-400 block">
@@ -385,6 +413,37 @@ export function ServicesBentoGrid({ services }: ServicesBentoGridProps) {
                       </Link>
                     </div>
                   </div>
+
+                  {/* Inner Sub-Service Block for Logistics & Shipping */}
+                  {srv.slug === 'logistics-shipping' && (
+                    <div className="mt-4 p-3.5 rounded-xl bg-gradient-to-r from-sky-50/90 via-sky-50/40 to-white border border-sky-200/90 shadow-2xs">
+                      <div className="flex items-center justify-between gap-2 mb-2.5">
+                        <div className="flex items-center gap-1.5">
+                          <span className="w-2 h-2 rounded-full bg-[#0284C7]" />
+                          <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#0284C7]">
+                            Sub-Service: Freight Optimization
+                          </span>
+                        </div>
+                        <span className="text-[10px] font-mono font-bold text-sky-700 bg-sky-100/90 px-2 py-0.5 rounded-md border border-sky-200/60">
+                          3 Core Pillars
+                        </span>
+                      </div>
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                        <div className="flex items-center gap-1.5 text-xs text-neutral-800 font-semibold bg-white px-2.5 py-1.5 rounded-lg border border-sky-100 shadow-2xs">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                          <span>Rate Contract</span>
+                        </div>
+                        <div className="flex items-center gap-1.5 text-xs text-neutral-800 font-semibold bg-white px-2.5 py-1.5 rounded-lg border border-sky-100 shadow-2xs">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                          <span>Multiple Carrier Choices</span>
+                        </div>
+                        <div className="flex items-center gap-1.5 text-xs text-neutral-800 font-semibold bg-white px-2.5 py-1.5 rounded-lg border border-sky-100 shadow-2xs">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                          <span>Freight Cost Optimization</span>
+                        </div>
+                      </div>
+                    </div>
+                  )}
 
                   {/* Feature Badges Strip */}
                   <div className="mt-4 pt-3.5 border-t border-neutral-100 flex flex-wrap items-center justify-between gap-2 text-xs">

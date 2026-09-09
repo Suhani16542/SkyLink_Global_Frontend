@@ -304,12 +304,6 @@ export function Header() {
           description: 'Ultra-low deep freeze (-25°C to -40°C) & MPEDA compliance',
         },
         {
-          title: 'Specialty Chemicals, Agro Fertilizers & Perishables',
-          href: '/industries/specialty-chemicals-agro-fertilizers-perishables',
-          icon: Wheat,
-          description: 'APEDA compliance & rapid green-channel transit',
-        },
-        {
           title: 'Other Industries',
           href: '/industries#other-industries',
           icon: Building2,
