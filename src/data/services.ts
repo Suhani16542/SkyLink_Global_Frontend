@@ -103,6 +103,76 @@ export const servicesData: Service[] = [
       'End-to-end export documentation and regulatory liaison: custom invoices, shipping bills, Certificate of Origin, ICEGATE filings, and AD code registration.',
   },
   {
+    id: 'cold-chain-solutions',
+    title: 'Cold Chain Solutions',
+    slug: 'cold-chain-solutions',
+    shortDescription:
+      'Unbroken temperature-controlled logistics (-25°C to +25°C) with real-time satellite IoT telemetry, GDP compliance, and expedited green-channel clearance for sensitive pharmaceutical and perishable cargo.',
+    description:
+      'SkyLink delivers specialized cold chain logistics engineered for pharmaceutical exporters, seafood processors, and perishable agricultural shippers. Combining active reefer container fleets, automated multi-temperature cold storage, uninterrupted plug-in monitoring at port terminals, and priority customs health clearance (ADC / EIA), we guarantee total chain-of-custody thermal integrity.',
+    features: [
+      'Multi-Zone Temperature Control: Precision cooling profiles from ultra-low deep freeze (-25°C to -40°C) to controlled ambient (+15°C to +25°C).',
+      'Active IoT Satellite Telemetry: 24/7 continuous temperature, humidity, GPS location, and shock monitoring with automated threshold alerts.',
+      'GDP & WHO Compliance: Good Distribution Practice validated equipment, calibrated temperature data loggers, and audit-ready chain-of-custody certificates.',
+      'Port Ramp & Shore-Power Assurance: Guaranteed immediate terminal reefer plug-in, dedicated power monitoring, and rapid customs inspection liaison.',
+      'Specialized Pharma & Perishable Protocol: Priority green-channel clearances with Assistant Drug Controller (ADC), FSSAI, and Plant Quarantine authorities.',
+      'Contingency Thermal Packaging: Phase Change Material (PCM) active/passive insulation solutions safeguarding cargo during intermodal transfers.',
+    ],
+    benefits: [
+      'Zero thermal breach guarantee with continuous IoT real-time monitoring',
+      'Expedited port transit and prioritized ADC/FSSAI statutory clearance',
+      'Complete regulatory audit compliance with automated temperature logs',
+      'Guaranteed reefer space on premier ocean shipping lines and scheduled air cargo',
+    ],
+    faqs: [
+      {
+        question: 'What temperature ranges are supported under SkyLink Cold Chain Solutions?',
+        answer:
+          'We support multi-zone temperature regimes ranging from ultra-deep frozen (-40°C to -20°C) for seafood/biologics, frozen (-18°C to -10°C), chilled (+2°C to +8°C) for vaccines/pharma, to controlled room temperature (+15°C to +25°C).',
+      },
+      {
+        question: 'How do you prevent temperature spikes during port staging?',
+        answer:
+          'Our port operations team coordinates immediate shore-power plug-in upon vessel/truck arrival, continuous voltage monitoring, and pre-arrival document clearance to minimize port dwell times.',
+      },
+    ],
+    seoTitle:
+      'Cold Chain Solutions: GDP Reefer Logistics, IoT Telemetry & Pharma Storage | SkyLink Global',
+    seoDescription:
+      'End-to-end temperature-controlled cold chain logistics for pharmaceuticals, perishables, and seafood with 24/7 IoT monitoring and priority port release.',
+  },
+  {
+    id: 'warehousing-solutions',
+    title: 'Warehousing Solutions',
+    slug: 'warehousing-solutions',
+    shortDescription:
+      'Strategic customs bonded and non-bonded warehousing, WMS inventory management, and value-added kitting services optimizing cash flow and export staging.',
+    description:
+      'Our warehousing solutions provide strategic export staging through bonded facilities that allow duty-free inventory holding, reducing working capital pressure. Fully integrated with automated Warehouse Management Systems (WMS), barcode/RFID tracking, and nationwide freight distribution networks.',
+    features: [
+      'Customs Bonded Warehousing: Duty-deferment storage enabling cash-flow optimization until export dispatch.',
+      'Real-Time WMS & Inventory Visibility: Cloud-connected inventory tracking with barcode and RFID scanning.',
+      'Value-Added Staging & Packaging: Export-grade palletization, labeling, kitting, and pre-shipment quality inspection.',
+      'Port & Freight Forwarder Integration: Seamless drayage from warehouse to gateway ports with scheduled dispatch.',
+    ],
+    benefits: [
+      'Duty-free storage in bonded facilities easing working capital pressure',
+      'Full inventory transparency with live digital stock visibility',
+      'Customized export packaging compliant with international destination standards',
+    ],
+    faqs: [
+      {
+        question: 'How do bonded warehouses help exporters save costs?',
+        answer:
+          'Bonded warehouses allow exporters to store imported raw materials and finished goods without upfront payment of customs duty until the goods are exported or cleared for home consumption.',
+      },
+    ],
+    seoTitle:
+      'Warehousing Solutions for Exporters: Bonded Storage & WMS | SkyLink Global',
+    seoDescription:
+      'Strategic customs bonded and non-bonded warehousing, WMS inventory management, and value-added kitting services for international trade.',
+  },
+  {
     id: 'risk-management',
     title: 'Risk Management',
     slug: 'risk-management',
