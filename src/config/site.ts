@@ -9,7 +9,7 @@ export const siteConfig = {
   url: env.siteUrl,
   ogImage: `${env.siteUrl}/images/og-image.jpg`,
   contact: {
-    email: 'skylinkglobal05@gmail.com',
+    email: 'connect@skylinkglobal.in',
     phone: '+91-9512114113',
     whatsapp: '+919512114113',
     supportHours: 'Mon - Sat: 9:00 AM - 7:00 PM IST',

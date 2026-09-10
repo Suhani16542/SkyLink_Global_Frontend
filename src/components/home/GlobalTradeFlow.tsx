@@ -75,45 +75,66 @@ export function GlobalTradeFlow() {
   const sectionRef = useRef<HTMLDivElement | null>(null);
   const progressBarRef = useRef<HTMLDivElement | null>(null);
   const [activeStep, setActiveStep] = useState(1);
-  const [isInView, setIsInView] = useState(false);
+  const [linePercent, setLinePercent] = useState(0);
 
-  // Performance-optimized IntersectionObserver (no scroll thrashing)
+  // Smooth scroll-driven line and step progression with natural page scrolling
   useEffect(() => {
-    const elem = sectionRef.current;
-    if (!elem) return;
+    let ticking = false;
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsInView(true);
-        }
-      },
-      { threshold: 0.15 }
-    );
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          if (sectionRef.current) {
+            const rect = sectionRef.current.getBoundingClientRect();
+            const windowHeight = window.innerHeight || document.documentElement.clientHeight;
 
-    observer.observe(elem);
-    return () => observer.disconnect();
+            // Extended, comfortable scroll track:
+            // Starts as section enters viewport and fills gradually over the full scrolling zone
+            const startOffset = windowHeight * 0.95;
+            const endOffset = -rect.height * 0.4;
+            const distance = Math.max(1, startOffset - endOffset);
+
+            const rawProgress = (startOffset - rect.top) / distance;
+            const progress = Math.max(0, Math.min(1, rawProgress));
+
+            setLinePercent(progress * 100);
+
+            // Step activation milestones spaced evenly across the extended track
+            if (progress < 0.15) {
+              setActiveStep(1);
+            } else if (progress < 0.38) {
+              setActiveStep(2);
+            } else if (progress < 0.62) {
+              setActiveStep(3);
+            } else if (progress < 0.85) {
+              setActiveStep(4);
+            } else {
+              setActiveStep(5);
+            }
+          }
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
-
-  // Smooth step progression timer when in view (or interactive on hover/click)
-  useEffect(() => {
-    if (!isInView) return;
-
-    const interval = setInterval(() => {
-      setActiveStep((prev) => (prev >= 5 ? 1 : prev + 1));
-    }, 2800);
-
-    return () => clearInterval(interval);
-  }, [isInView]);
 
   const handleStepClick = useCallback((stepIndex: number) => {
     setActiveStep(stepIndex);
+    setLinePercent(((stepIndex - 1) / 4) * 100);
   }, []);
 
   return (
     <section
       ref={sectionRef}
-      className="py-14 sm:py-20 lg:py-24 bg-[#07192D] text-white relative overflow-hidden border-b border-white/10 select-none contain-paint"
+      className="py-10 sm:py-12 lg:py-14 bg-[#07192D] text-white relative overflow-hidden border-b border-white/10 select-none contain-paint"
     >
       {/* Optimized Ambient Background (Hardware-accelerated, lightweight) */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none opacity-40" />
@@ -124,22 +145,22 @@ export function GlobalTradeFlow() {
         {/* ========================================================================= */}
         {/* SECTION HEADER */}
         {/* ========================================================================= */}
-        <div className="text-center max-w-3xl mx-auto flex flex-col items-center justify-center space-y-3 mb-12 sm:mb-16">
+        <div className="text-center max-w-3xl mx-auto flex flex-col items-center justify-center space-y-2 mb-7 sm:mb-9">
           <div className="w-full flex justify-center text-center">
-            <span className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-sky-500/15 border border-sky-400/30 text-xs font-bold text-sky-300 uppercase tracking-wider shadow-xs">
-              <Sparkles className="w-3.5 h-3.5 text-sky-400" />
+            <span className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-sky-500/15 border border-sky-400/30 text-[11px] font-bold text-sky-300 uppercase tracking-wider shadow-xs">
+              <Sparkles className="w-3 h-3 text-sky-400" />
               <span>How SkyLink Connects Global Trade</span>
             </span>
           </div>
 
           <div className="w-full text-center">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight text-balance text-center mx-auto">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight leading-tight text-balance text-center mx-auto">
               Connecting Businesses to Global Markets
             </h2>
           </div>
 
           <div className="w-full flex justify-center text-center">
-            <p className="text-sm sm:text-base text-neutral-300 leading-relaxed max-w-2xl mx-auto text-center font-normal">
+            <p className="text-xs sm:text-sm text-neutral-300 leading-relaxed max-w-2xl mx-auto text-center font-normal">
               From origin manufacturing hubs to final overseas destinations, our single-window logistics framework orchestrates every stage with precision and compliance.
             </p>
           </div>
@@ -148,16 +169,16 @@ export function GlobalTradeFlow() {
         {/* ========================================================================= */}
         {/* DESKTOP FLOWCHART VIEW (High-Performance CSS Transition, Zero Scroll Lag) */}
         {/* ========================================================================= */}
-        <div className="hidden lg:block relative py-6">
+        <div className="hidden lg:block relative py-2">
           
           {/* Continuous Track Line Behind Nodes */}
           <div className="absolute top-[52px] left-[8%] right-[8%] h-1 bg-white/10 rounded-full z-0 pointer-events-none overflow-hidden">
             {/* Smooth hardware-accelerated animated progress line */}
             <div
               ref={progressBarRef}
-              className="h-full bg-gradient-to-r from-sky-400 via-[#0284C7] to-emerald-400 rounded-full transition-all duration-500 ease-out transform-gpu"
+              className="h-full bg-gradient-to-r from-sky-400 via-[#0284C7] to-emerald-400 rounded-full transition-all duration-150 ease-out transform-gpu"
               style={{
-                width: `${((activeStep - 1) / 4) * 100}%`,
+                width: `${linePercent}%`,
               }}
             />
           </div>
@@ -177,7 +198,7 @@ export function GlobalTradeFlow() {
                   className="flex flex-col items-center text-center cursor-pointer group transition-transform duration-200"
                 >
                   {/* Glowing Node Circle Beacon */}
-                  <div className="relative mb-4">
+                  <div className="relative mb-3">
                     {/* Active Pulsing Ring */}
                     {isActive && (
                       <span
@@ -187,7 +208,7 @@ export function GlobalTradeFlow() {
                     )}
 
                     <div
-                      className={`w-14 h-14 rounded-2xl flex items-center justify-center text-white transition-all duration-300 shadow-md ${
+                      className={`w-13 h-13 sm:w-14 sm:h-14 rounded-2xl flex items-center justify-center text-white transition-all duration-300 shadow-md ${
                         isActive
                           ? 'bg-gradient-to-br from-[#0A2540] to-[#0284C7] scale-110 ring-2 ring-sky-400'
                           : isPassed
@@ -200,7 +221,7 @@ export function GlobalTradeFlow() {
                       }}
                     >
                       <IconComp
-                        className={`w-6 h-6 transition-colors duration-200 ${
+                        className={`w-5.5 h-5.5 transition-colors duration-200 ${
                           isActive ? 'text-white' : 'text-sky-300 group-hover:text-white'
                         }`}
                         style={{ color: isActive ? '#ffffff' : stage.color }}
@@ -221,7 +242,7 @@ export function GlobalTradeFlow() {
 
                   {/* Node Badge Tag */}
                   <span
-                    className={`text-[9px] font-mono font-bold uppercase tracking-wider px-2 py-0.5 rounded mb-1.5 transition-colors duration-200 ${
+                    className={`text-[9px] font-mono font-bold uppercase tracking-wider px-2 py-0.5 rounded mb-1 transition-colors duration-200 ${
                       isActive
                         ? 'bg-sky-400/20 text-sky-200 border border-sky-400/40'
                         : 'bg-white/5 text-neutral-400 border border-white/10'
@@ -232,7 +253,7 @@ export function GlobalTradeFlow() {
 
                   {/* Node Title */}
                   <h3
-                    className={`text-sm font-bold tracking-wide uppercase transition-colors duration-200 ${
+                    className={`text-[13px] font-bold tracking-wide uppercase transition-colors duration-200 ${
                       isActive ? 'text-sky-300' : 'text-white group-hover:text-sky-200'
                     }`}
                   >
@@ -240,7 +261,7 @@ export function GlobalTradeFlow() {
                   </h3>
 
                   {/* Node Subtitle */}
-                  <p className="text-xs text-neutral-300 mt-1 max-w-[170px] leading-relaxed">
+                  <p className="text-[11px] text-neutral-300 mt-0.5 max-w-[170px] leading-relaxed">
                     {stage.sublabel}
                   </p>
                 </div>
@@ -249,14 +270,14 @@ export function GlobalTradeFlow() {
           </div>
 
           {/* Active Stage Highlight Details Card */}
-          <div className="mt-8 mx-auto max-w-xl p-4 rounded-2xl bg-[#0A2540]/90 border border-sky-500/30 backdrop-blur-md shadow-xl flex items-center justify-between gap-4 text-left transition-all duration-300">
+          <div className="mt-5 mx-auto max-w-xl py-3 px-4 rounded-2xl bg-[#0A2540]/90 border border-sky-500/30 backdrop-blur-md shadow-xl flex items-center justify-between gap-4 text-left transition-all duration-300">
             <div className="flex items-center gap-3">
               <div
-                className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0"
+                className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0"
                 style={{ backgroundColor: `${tradeStages[activeStep - 1].color}20` }}
               >
                 {React.createElement(tradeStages[activeStep - 1].icon, {
-                  className: 'w-5 h-5',
+                  className: 'w-4.5 h-4.5',
                   style: { color: tradeStages[activeStep - 1].color },
                 })}
               </div>
@@ -297,7 +318,7 @@ export function GlobalTradeFlow() {
         {/* ========================================================================= */}
         {/* MOBILE & TABLET VIEW: Optimized Vertical Flow Stepper */}
         {/* ========================================================================= */}
-        <div className="lg:hidden relative space-y-4 my-4">
+        <div className="lg:hidden relative space-y-2.5 my-2.5">
           {tradeStages.map((stage, idx) => {
             const IconComp = stage.icon;
             const stepNum = idx + 1;
@@ -308,7 +329,7 @@ export function GlobalTradeFlow() {
               <div
                 key={stage.step}
                 onClick={() => handleStepClick(stepNum)}
-                className={`flex items-start gap-4 p-4 rounded-2xl border transition-all duration-200 cursor-pointer ${
+                className={`flex items-start gap-3.5 p-3 sm:p-3.5 rounded-2xl border transition-all duration-200 cursor-pointer ${
                   isActive
                     ? 'bg-[#0A2540] border-sky-400/80 shadow-lg shadow-sky-500/10'
                     : isPassed
@@ -318,7 +339,7 @@ export function GlobalTradeFlow() {
               >
                 {/* Node Circle */}
                 <div
-                  className={`w-11 h-11 rounded-xl flex items-center justify-center shrink-0 border transition-all ${
+                  className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 border transition-all ${
                     isActive
                       ? 'bg-sky-500/20 text-sky-300 border-sky-400'
                       : 'bg-[#0A2540] text-neutral-400 border-white/10'
@@ -327,7 +348,7 @@ export function GlobalTradeFlow() {
                     borderColor: isPassed ? stage.color : undefined,
                   }}
                 >
-                  <IconComp className="w-5 h-5" style={{ color: isPassed ? stage.color : undefined }} />
+                  <IconComp className="w-4.5 h-4.5" style={{ color: isPassed ? stage.color : undefined }} />
                 </div>
 
                 {/* Text Block */}
@@ -347,7 +368,7 @@ export function GlobalTradeFlow() {
                     {stage.sublabel}
                   </p>
                   {isActive && (
-                    <p className="text-[11px] text-sky-200/90 mt-1.5 pt-1.5 border-t border-white/10">
+                    <p className="text-[11px] text-sky-200/90 mt-1 pt-1 border-t border-white/10">
                       {stage.details}
                     </p>
                   )}
@@ -360,8 +381,8 @@ export function GlobalTradeFlow() {
         {/* ========================================================================= */}
         {/* BOTTOM METADATA PILLARS STRIP */}
         {/* ========================================================================= */}
-        <div className="mt-10 sm:mt-12 text-center">
-          <div className="pt-4 border-t border-white/10 flex flex-wrap items-center justify-center gap-2 sm:gap-4 text-xs font-semibold text-neutral-400">
+        <div className="mt-6 sm:mt-7 text-center">
+          <div className="pt-3 border-t border-white/10 flex flex-wrap items-center justify-center gap-2 sm:gap-4 text-xs font-semibold text-neutral-400">
             <span className="text-sky-300">EXIM Consultancy</span>
             <span className="text-white/20">•</span>
             <span className="text-sky-300">Global Logistics</span>
