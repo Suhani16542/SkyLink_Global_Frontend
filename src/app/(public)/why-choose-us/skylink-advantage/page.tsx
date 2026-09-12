@@ -35,7 +35,7 @@ export default function SkylinkAdvantagePage() {
       icon: ShieldCheck,
       badge: 'SINGLE-WINDOW CONTROL',
       title: 'Unified Trade Governance',
-      desc: 'One single SLA covers DGFT advisory, customs brokerage, export documentation, and multimodal freight—eliminating third-party finger-pointing and coordination delays.',
+      desc: 'As an integrated freight forwarding company, our single SLA covers DGFT advisory, customs brokerage, export documentation, and multimodal freight—eliminating third-party finger-pointing and coordination delays.',
       highlights: [
         'Single accountable point of contact',
         'Direct coordination between customs & ocean carriers',
@@ -46,7 +46,7 @@ export default function SkylinkAdvantagePage() {
       icon: TrendingDown,
       badge: 'RATE TRANSPARENCY',
       title: 'Direct Carrier Contracts',
-      desc: 'Contracted volume agreements with premier global shipping lines and scheduled air cargo operators guarantee fixed all-in pricing with zero hidden destination fees.',
+      desc: 'Direct contracted volume agreements with premier shipping lines and air freighters ensure transparent freight forwarding service with fixed all-in pricing and zero hidden destination fees.',
       highlights: [
         'Pre-negotiated volume tier freight tariffs',
         'Zero unauthorized origin/destination broker markups',
@@ -116,13 +116,13 @@ export default function SkylinkAdvantagePage() {
 
               <ScrollReveal effect="fade-up" delay={140}>
                 <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-[1.12] text-balance">
-                  Single-Window Trade Governance &amp; Direct Carrier Power
+                  Single-Window Global Logistics &amp; Direct Carrier Advantage
                 </h1>
               </ScrollReveal>
 
               <ScrollReveal effect="fade-up" delay={200}>
                 <p className="text-sm sm:text-base lg:text-lg text-neutral-300 leading-relaxed max-w-2xl text-pretty font-normal">
-                  Traditional forwarding fragments your supply chain across disconnected brokers and middlemen. SkyLink unifies regulatory counsel, statutory customs filing, and tier-1 ocean/air capacity into a seamless, high-velocity operation.
+                  Traditional shipping fragments your supply chain across disconnected brokers and middlemen. As a premier global logistics company, SkyLink unifies regulatory counsel, international freight forwarding, and tier-1 ocean/air capacity into a seamless, high-velocity operation.
                 </p>
               </ScrollReveal>
 
@@ -167,7 +167,7 @@ export default function SkylinkAdvantagePage() {
           <SectionHeading
             badge="Operational Superiority"
             title="Why Leading Exporters Choose SkyLink"
-            subtitle="Engineered to solve the fundamental vulnerabilities in cross-border trade."
+            subtitle="Engineered to deliver dependable global logistics services and solve fundamental vulnerabilities in overseas logistics."
           />
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
@@ -214,7 +214,7 @@ export default function SkylinkAdvantagePage() {
           <SectionHeading
             badge="Execution Framework"
             title="The Three-Dimensional SkyLink Model"
-            subtitle="How we bridge statutory trade compliance, logistics execution, and fiscal security."
+            subtitle="How our international logistics company bridges statutory trade compliance, global logistics solutions, and fiscal security."
           />
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-12">
@@ -238,9 +238,9 @@ export default function SkylinkAdvantagePage() {
                 <div className="w-12 h-12 rounded-2xl bg-[#0284C7] text-white flex items-center justify-center">
                   <Ship className="w-6 h-6 text-white" />
                 </div>
-                <h3 className="text-xl font-bold text-neutral-900">2. Multimodal Capacity</h3>
+                <h3 className="text-xl font-bold text-neutral-900">2. Multimodal Global Transportation</h3>
                 <p className="text-sm text-neutral-600 leading-relaxed">
-                  Direct space allocation on premier ocean carriers and air freight networks with transparent all-in pricing and priority port berthing.
+                  Direct space allocation on premier ocean carriers and air freight networks providing reliable global transportation with transparent all-in pricing and priority port berthing.
                 </p>
               </div>
               <div className="mt-6 pt-4 border-t border-neutral-100 text-xs font-semibold text-[#0284C7]">
@@ -270,10 +270,10 @@ export default function SkylinkAdvantagePage() {
       <section className="py-16 sm:py-20 bg-[#07192D] text-white text-center">
         <div className="mx-auto max-w-3xl px-4 space-y-4">
           <h2 className="text-2xl sm:text-4xl font-extrabold text-white">
-            Experience the SkyLink Advantage First-Hand
+            Experience Advanced Global Logistics Solutions First-Hand
           </h2>
           <p className="text-sm sm:text-base text-neutral-300">
-            Let our compliance and freight analysts audit your recent shipments and identify immediate cost &amp; compliance gains.
+            Let our international freight forwarding specialists audit your overseas logistics operations and identify immediate cost and compliance gains.
           </p>
           <div className="pt-3 flex flex-wrap justify-center gap-4">
             <Button href="/request-consultation" variant="secondary" size="md">

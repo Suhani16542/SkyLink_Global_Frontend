@@ -54,7 +54,7 @@ export default function TraditionalVsSkylinkPage() {
       skylink: {
         title: 'Direct Premier Carrier Contracting',
         points: [
-          'Direct volume agreements with top ocean lines & air cargo carriers',
+          'Direct volume agreements with top ocean lines & air carriers, integrated with freight customs clearance',
           '100% transparent all-in pricing with fixed origin & destination charges',
           'Contracted space protection with priority vessel berthing allocations',
         ],
@@ -75,11 +75,11 @@ export default function TraditionalVsSkylinkPage() {
       skylink: {
         title: 'Pre-Arrival Green-Channel Verification',
         points: [
-          'Pre-filing of Bill of Entry & Shipping Bills 48–72h prior to arrival',
-          'Automated AI-assisted HS code & CAROTAR compliance checks',
-          'Direct Port Delivery (DPD) and fast-track AEO green-channel release',
+          'Pre-filing for swift import customs clearance and Shipping Bills 48–72h prior to arrival',
+          'Technology-driven customs house agent services with automated HS code & CAROTAR compliance checks',
+          'Direct Port Delivery (DPD), fast-track AEO green-channel release, and end-to-end customs clearance services',
         ],
-        result: '99.4% first-pass green clearance (<24h)',
+        result: '99.4% first-pass green customs clearance (<24h)',
       },
     },
     {
@@ -96,8 +96,8 @@ export default function TraditionalVsSkylinkPage() {
       skylink: {
         title: 'End-to-End Statutory Monetization',
         points: [
-          'Complete lifecycle management of RoDTEP, Drawback, and GST refunds',
-          'Proactive e-BRC reconciliation and portal error resolution',
+          'Complete lifecycle management of RoDTEP, Drawback, and GST refunds through strategic import export consulting',
+          'Proactive e-BRC reconciliation, export compliance services, and portal error resolution',
           'Strategic Duty Deferment via Section 65 MOOWR bonded warehousing',
         ],
         result: '100% duty recovery & enhanced liquidity',
@@ -129,7 +129,7 @@ export default function TraditionalVsSkylinkPage() {
       traditional: {
         title: 'Siloed Point-to-Point Handoffs',
         points: [
-          'Exporters must juggle separate forwarders, CHAs, truckers, and insurance agents',
+          'Exporters must juggle separate customs and clearing agents, freight forwarders, truckers, and insurance brokers',
           'Disputed blame between parties whenever disruptions or delays occur',
           'No central audit trail or standardized operational reporting',
         ],
@@ -138,7 +138,7 @@ export default function TraditionalVsSkylinkPage() {
       skylink: {
         title: 'Unified Single-Window Governance',
         points: [
-          'Single dedicated account director for legal compliance, freight & port ops',
+          'Single dedicated account director delivering unified import export consulting services, freight, and port operations',
           'End-to-end contractual accountability from factory dispatch to buyer delivery',
           'Transparent digital milestone tracking & executive dashboards',
         ],
@@ -186,7 +186,7 @@ export default function TraditionalVsSkylinkPage() {
 
             <ScrollReveal effect="fade-up" delay={200}>
               <p className="text-sm sm:text-base lg:text-lg text-neutral-300 leading-relaxed max-w-2xl mx-auto text-pretty font-normal">
-                Evaluate how moving from conventional multi-tier forwarding to SkyLink&apos;s unified single-window model eliminates intermediary overhead, prevents customs dwell, and secures unbroken supply chain control.
+                Evaluate how moving from conventional multi-tier forwarding to SkyLink&apos;s unified customs clearance and freight forwarding model eliminates intermediary overhead, prevents customs dwell, and secures unbroken supply chain control.
               </p>
             </ScrollReveal>
           </div>

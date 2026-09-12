@@ -77,12 +77,36 @@ export const pageSeoRegistry: Record<string, PageSeoEntry> = {
 
   about: {
     path: '/about',
-    title: 'About Us | SkyLink Global Services — B2B Trade & Logistics Leadership',
+    title: 'About SkyLink Global | Global Logistics Company & Supply Chain Partner',
     description:
-      'Discover SkyLink Global Services: our vision, mission, DGFT and customs regulatory expertise, and our global logistics coordination network.',
-    primaryKeyword: '',
-    secondaryKeywords: [],
-    keywords: [],
+      'SkyLink Global is a premier global logistics company providing international shipping, overseas logistics, freight forwarding, and global supply chain management.',
+    primaryKeyword: 'global logistics company',
+    secondaryKeywords: [
+      'international logistics company',
+      'global logistics',
+      'global logistics solutions',
+      'global logistics services',
+      'international shipping company',
+      'international freight forwarding company',
+      'global supply chain management',
+      'global transportation',
+      'overseas logistics',
+    ],
+    keywords: [
+      'global logistics company',
+      'international logistics company',
+      'global logistics',
+      'global logistics solutions',
+      'global logistics services',
+      'international shipping company',
+      'international freight forwarding company',
+      'global supply chain management',
+      'global transportation',
+      'overseas logistics',
+    ],
+    ogTitle: 'About SkyLink Global | Global Logistics Company & Supply Chain Partner',
+    ogDescription:
+      'SkyLink Global is a premier global logistics company providing international shipping, overseas logistics, freight forwarding, and global supply chain management.',
   },
 
   aboutOverview: {
@@ -97,22 +121,70 @@ export const pageSeoRegistry: Record<string, PageSeoEntry> = {
 
   whySkyLinkAdvantage: {
     path: '/why-choose-us/skylink-advantage',
-    title: 'The SkyLink Advantage | Integrated EXIM & Logistics Excellence',
+    title: 'The SkyLink Advantage | Leading Global Logistics Company & Freight Forwarder',
     description:
-      'Explore why leading enterprises choose SkyLink Global for strategic customs planning, duty optimization, transparent freight operations, and rapid transit.',
-    primaryKeyword: '',
-    secondaryKeywords: [],
-    keywords: [],
+      'Discover why enterprises choose SkyLink Global: a premier international logistics company delivering global logistics solutions and freight forwarding services.',
+    primaryKeyword: 'global logistics solutions',
+    secondaryKeywords: [
+      'global logistics company',
+      'international freight forwarding',
+      'freight forwarding company',
+      'global logistics',
+      'freight forwarding service',
+      'global transportation',
+      'overseas logistics',
+      'international logistics company',
+      'global logistics services',
+    ],
+    keywords: [
+      'global logistics solutions',
+      'global logistics company',
+      'international freight forwarding',
+      'freight forwarding company',
+      'global logistics',
+      'freight forwarding service',
+      'global transportation',
+      'overseas logistics',
+      'international logistics company',
+      'global logistics services',
+    ],
+    ogTitle: 'The SkyLink Advantage | Leading Global Logistics Company & Freight Forwarder',
+    ogDescription:
+      'Discover why enterprises choose SkyLink Global: a premier international logistics company delivering global logistics solutions and freight forwarding services.',
   },
 
   whyTraditionalVsSkyLink: {
     path: '/why-choose-us/traditional-vs-skylink',
-    title: 'Traditional Logistics vs SkyLink Global Services | Comparative Analysis',
+    title: 'Traditional Logistics vs SkyLink | Customs Clearance & Freight Forwarding Benchmark',
     description:
-      'Compare traditional freight forwarding with SkyLink Global integrated EXIM model: lower dwell times, reduced demurrage risk, and strategic compliance.',
-    primaryKeyword: '',
-    secondaryKeywords: [],
-    keywords: [],
+      'Compare traditional forwarding with SkyLink Global: expert customs clearance services, import export consulting, fast-track customs house agent services, and compliance.',
+    primaryKeyword: 'customs clearance',
+    secondaryKeywords: [
+      'import export consulting',
+      'customs clearance services',
+      'import export consulting services',
+      'customs and clearing agents',
+      'customs house agent services',
+      'import customs clearance',
+      'freight customs clearance',
+      'export compliance services',
+      'customs clearance and freight forwarding',
+    ],
+    keywords: [
+      'customs clearance',
+      'import export consulting',
+      'customs clearance services',
+      'import export consulting services',
+      'customs and clearing agents',
+      'customs house agent services',
+      'import customs clearance',
+      'freight customs clearance',
+      'export compliance services',
+      'customs clearance and freight forwarding',
+    ],
+    ogTitle: 'Traditional Logistics vs SkyLink | Customs Clearance & Freight Forwarding Benchmark',
+    ogDescription:
+      'Compare traditional forwarding with SkyLink Global: expert customs clearance services, import export consulting, fast-track customs house agent services, and compliance.',
   },
 
   services: {
@@ -267,12 +339,36 @@ export const pageSeoRegistry: Record<string, PageSeoEntry> = {
 
   collaborateFreightForwarders: {
     path: '/collaborate/freight-forwarders',
-    title: 'Partner with Us | Freight Forwarders & Carrier Collaboration',
+    title: 'Freight Forwarder Collaboration | International Freight Forwarding Services',
     description:
-      'Join the SkyLink Global partner network: co-load opportunities, regulatory agency support in India, and nationwide logistics infrastructure.',
-    primaryKeyword: '',
-    secondaryKeywords: [],
-    keywords: [],
+      'Partner with SkyLink Global: connect your freight forwarding company with steady enterprise cargo logistics, trade lane allocations, and competitive rates.',
+    primaryKeyword: 'freight forwarding services',
+    secondaryKeywords: [
+      'freight forwarding company',
+      'international freight forwarding',
+      'cargo logistics',
+      'cargo forwarding services',
+      'freight and forwarding companies',
+      'international freight forwarding companies',
+      'international freight forwarding services',
+      'logistics and freight forwarding',
+      'shipping and freight forwarding',
+    ],
+    keywords: [
+      'freight forwarding services',
+      'freight forwarding company',
+      'international freight forwarding',
+      'cargo logistics',
+      'cargo forwarding services',
+      'freight and forwarding companies',
+      'international freight forwarding companies',
+      'international freight forwarding services',
+      'logistics and freight forwarding',
+      'shipping and freight forwarding',
+    ],
+    ogTitle: 'Freight Forwarder Collaboration | International Freight Forwarding Services',
+    ogDescription:
+      'Partner with SkyLink Global: connect your freight forwarding company with steady enterprise cargo logistics, trade lane allocations, and competitive rates.',
   },
 
   collaborateEnquiry: {

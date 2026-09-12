@@ -87,6 +87,7 @@ export function AboutView() {
       desc: 'Expert guidance on statutory schemes (RoDTEP, RoSCTL, Advance Authorisation, EPCG), foreign trade policies, and customs duty exemptions.',
       icon: Compass,
       tags: ['Policy Advisory', 'Duty Drawback', 'Incentive Recovery'],
+      href: '/services/documentation-liaison',
     },
     {
       title: 'Import & Export Documentation',
@@ -94,6 +95,7 @@ export function AboutView() {
       desc: 'End-to-end documentation governance: commercial invoices, packing lists, bill of lading, certificates of origin, and statutory licenses.',
       icon: FileText,
       tags: ['COO Verification', 'Shipping Bills', 'Bank L/C Compliance'],
+      href: '/services/documentation-liaison',
     },
     {
       title: 'Trade Compliance',
@@ -101,6 +103,7 @@ export function AboutView() {
       desc: 'Pre-shipment verification, HS code classification validation, and automated compliance cross-checks against global trade regulations.',
       icon: Scale,
       tags: ['Statutory Audits', 'HS Code Advisory', 'Anti-Dumping Scrutiny'],
+      href: '/services/tax-gst-compliance',
     },
     {
       title: 'Freight & Logistics Coordination',
@@ -108,6 +111,7 @@ export function AboutView() {
       desc: 'Volume-tier direct carrier space procurement across major ocean container lines and global air cargo airlines for FCL, LCL, and charters.',
       icon: Ship,
       tags: ['Ocean FCL / LCL', 'Air Cargo Charters', 'Rate Optimization'],
+      href: '/services/logistics-shipping',
     },
     {
       title: 'Customs & Regulatory Support',
@@ -115,6 +119,7 @@ export function AboutView() {
       desc: 'Fast-track ICEGATE submission, port liaison, ADC port clearances for pharmaceuticals, APEDA/MPEDA certifications, and Customs broker coordination.',
       icon: ShieldCheck,
       tags: ['ADC & FSSAI Ports', 'ICEGATE Speed filing', 'AEO Green Channel'],
+      href: '/services/documentation-liaison',
     },
     {
       title: 'Supply Chain Solutions',
@@ -122,6 +127,7 @@ export function AboutView() {
       desc: 'Bonded warehousing, temperature-controlled cold chain logistics (-40°C to +25°C), GDP pharma handling, and last-mile distribution network.',
       icon: Layers,
       tags: ['Bonded Storage', 'GDP Cold Chain', 'Real-Time Telemetry'],
+      href: '/services/cold-chain-solutions',
     },
   ];
 
@@ -234,13 +240,13 @@ export function AboutView() {
 
               <ScrollReveal effect="fade-up" delay={120}>
                 <h1 className="text-3xl sm:text-4xl lg:text-[42px] 2xl:text-[44px] font-black tracking-tight text-white leading-[1.14]">
-                  Institutional Leadership in Cross-Border Trade &amp; Logistics
+                  About SkyLink Global &mdash; A Premier Global Logistics Company &amp; EXIM Partner
                 </h1>
               </ScrollReveal>
 
               <ScrollReveal effect="fade-up" delay={180}>
                 <p className="text-sm sm:text-base text-neutral-300 leading-relaxed max-w-2xl font-normal">
-                  SkyLink Global Services serves as an institutional partner to manufacturers, global exporters, and enterprises. We unify statutory EXIM compliance, direct carrier shipping, and cold-chain logistics into a single dependable window.
+                  SkyLink Global Services is a trusted global logistics company and international shipping partner for manufacturers, exporters, and commercial enterprises. We unify statutory trade compliance, direct ocean and air freight forwarding, global transportation, and overseas logistics into a single dependable window.
                 </p>
               </ScrollReveal>
 
@@ -271,7 +277,7 @@ export function AboutView() {
                   <div className="relative aspect-[4/3]">
                     <Image
                       src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=1200&auto=format&fit=crop"
-                      alt="SkyLink Global Services corporate logistics hub operations"
+                      alt="SkyLink Global Services global logistics company headquarters and freight operations hub"
                       fill
                       sizes="(max-width: 1024px) 100vw, 40vw"
                       className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
@@ -313,7 +319,7 @@ export function AboutView() {
                 Guiding Directives
               </span>
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#0A2540] tracking-tight">
-                Vision &amp; Mission
+                Our Vision &amp; Mission for Global Logistics Excellence
               </h2>
               <p className="text-sm sm:text-base text-neutral-600 font-normal">
                 Guiding principles driving dependable, compliant, and cost-effective international trade execution.
@@ -415,7 +421,7 @@ export function AboutView() {
                   Foundational Principles
                 </span>
                 <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#0A2540] tracking-tight">
-                  What Drives Us
+                  Operating Pillars: What Drives Our Global Logistics Services
                 </h2>
                 <p className="text-sm sm:text-base text-neutral-600">
                   The five non-negotiable standards behind every shipment, consultation, and cross-border interaction.
@@ -515,7 +521,7 @@ export function AboutView() {
                   Specialized Capabilities
                 </span>
                 <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#0A2540] tracking-tight">
-                  Our Expertise Across Global Trade
+                  Comprehensive Global Logistics Solutions &amp; EXIM Advisory
                 </h2>
                 <p className="text-sm sm:text-base text-neutral-600 leading-relaxed">
                   Comprehensive EXIM advisory and multimodal logistics execution built to eliminate cross-border bottlenecks.
@@ -541,9 +547,10 @@ export function AboutView() {
               const IconComp = item.icon;
               const displayIndex = (idx % expertiseItems.length) + 1;
               return (
-                <div
+                <Link
                   key={idx}
-                  className="w-[320px] sm:w-[360px] shrink-0 rounded-2xl bg-white border border-neutral-200/90 p-6 sm:p-7 shadow-sm hover:shadow-2xl hover:border-sky-400 hover-lift sheen-card transition-all duration-300 flex flex-col justify-between group"
+                  href={item.href || '/services'}
+                  className="w-[320px] sm:w-[360px] shrink-0 rounded-2xl bg-white border border-neutral-200/90 p-6 sm:p-7 shadow-sm hover:shadow-2xl hover:border-sky-400 hover-lift sheen-card transition-all duration-300 flex flex-col justify-between group block text-left"
                 >
                   <div className="space-y-3.5">
                     <div className="flex items-center justify-between">
@@ -579,7 +586,7 @@ export function AboutView() {
                       </span>
                     ))}
                   </div>
-                </div>
+                </Link>
               );
             })}
           </div>
@@ -601,7 +608,7 @@ export function AboutView() {
                 Operational Lifecycle
               </span>
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight">
-                From Trade Planning to Final Delivery
+                End-to-End Logistics Lifecycle: From Trade Planning to Delivery
               </h2>
               <p className="text-xs sm:text-sm text-neutral-300 leading-relaxed font-normal max-w-xl mx-auto">
                 A structured 5-stage trade execution framework ensuring statutory accuracy and uninterrupted cargo movement.
@@ -666,10 +673,10 @@ export function AboutView() {
                 The Skylink Advantage
               </span>
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#0A2540] tracking-tight leading-tight">
-                One Partner. Multiple Trade &amp; Logistics Needs.
+                The SkyLink Advantage: Integrated Global Transportation &amp; Supply Chain Management
               </h2>
               <p className="text-sm sm:text-base text-neutral-600 leading-relaxed font-normal">
-                Instead of coordinating across separate customs brokers, freight forwarders, documentation clerks, and statutory lawyers, SkyLink provides unified accountability across your entire EXIM lifecycle.
+                Instead of coordinating across separate customs brokers, shipping agents, and freight forwarders, SkyLink provides integrated global logistics solutions and end-to-end global supply chain management under unified SLA governance.
               </p>
 
               <div className="p-4 sm:p-5 rounded-2xl bg-neutral-50 border border-neutral-200 space-y-2.5 hover-lift transition-all">
@@ -741,7 +748,7 @@ export function AboutView() {
 
           <ScrollReveal effect="fade-up" delay={80}>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-tight">
-              Ready to Simplify Your Global Trade Journey?
+              Partner with a Trusted Global Logistics Company for Overseas Shipping
             </h2>
           </ScrollReveal>
 

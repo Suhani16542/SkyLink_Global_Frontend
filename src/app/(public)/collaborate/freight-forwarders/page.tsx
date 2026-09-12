@@ -39,12 +39,12 @@ export default function FreightForwardersCollaborationPage() {
     {
       title: 'Opportunity for Competitive Freight Desks',
       icon: TrendingUp,
-      desc: 'Because of our extensive enterprise network, freight forwarders, NVOCCs, and logistics agents gain direct access to ongoing containerized (FCL/LCL), air cargo, and multimodal demand.',
+      desc: 'Because of our extensive enterprise network, freight forwarders, NVOCCs, and logistics agents gain direct access to ongoing containerized (FCL/LCL), air cargo, and multimodal cargo logistics demand.',
     },
     {
       title: 'Shipment Handling Through Your Desk',
       icon: Handshake,
-      desc: 'When your agency provides a competitive, viable, and suitable commercial rate or superior transit solution on specific corridors, SkyLink actively considers routing and executing the shipment through your desk.',
+      desc: 'When your agency provides a competitive, viable, and suitable commercial rate or superior cargo forwarding services on specific corridors, SkyLink actively considers routing and executing the shipment through your desk.',
     },
     {
       title: 'Merit-Based, Transparent & NDA Protected',
@@ -57,7 +57,7 @@ export default function FreightForwardersCollaborationPage() {
     {
       step: '01',
       title: 'Rate & Route Proposal',
-      desc: 'Forwarders share active trade lane rates, carrier space contracts, and equipment capabilities with our Alliances desk.',
+      desc: 'Forwarders share active trade lane rates, carrier space contracts, and specialized logistics and freight forwarding capabilities with our Alliances desk.',
     },
     {
       step: '02',
@@ -145,7 +145,7 @@ export default function FreightForwardersCollaborationPage() {
 
             <ScrollReveal effect="fade-up" delay={200} className="w-full flex justify-center text-center">
               <p className="text-base sm:text-lg text-neutral-200 leading-relaxed font-normal text-pretty max-w-3xl mx-auto text-center">
-                Skylink has a strong network of manufacturers and businesses across diverse industries. When freight forwarders and logistics agents provide competitive and suitable commercial offers, Skylink actively routes and executes the relevant shipments through that freight partner.
+                Skylink has a strong network of manufacturers and businesses requiring comprehensive shipping and freight forwarding across diverse industries. When freight forwarders and logistics agents provide competitive and suitable commercial offers, Skylink actively routes and executes the relevant shipments through that freight partner.
               </p>
             </ScrollReveal>
           </div>
@@ -170,11 +170,11 @@ export default function FreightForwardersCollaborationPage() {
                 </h2>
 
                 <p className="text-sm sm:text-base text-neutral-600 leading-relaxed">
-                  SkyLink operates as the central EXIM logistics manager for an expanding network of industrial manufacturers, exporters, and trading enterprises across major manufacturing belts. Because of this robust network, freight forwarders and logistics agents have a direct opportunity to collaborate with SkyLink and present competitive freight proposals.
+                  SkyLink operates as the central EXIM logistics manager for an expanding network of industrial manufacturers, exporters, and trading enterprises across major manufacturing belts. Because of this robust network, freight and forwarding companies and logistics agents have a direct opportunity to collaborate with SkyLink and present competitive freight proposals.
                 </p>
 
                 <p className="text-sm sm:text-base text-neutral-600 leading-relaxed">
-                  When a freight forwarder or NVOCC provides a better and suitable commercial freight offer or specialized routing solution on active corridors, SkyLink coordinates and handles the relevant shipments through that freight partner desk on transparent, agreed terms.
+                  When a freight forwarder or NVOCC provides a better and suitable commercial freight offer or specialized international freight forwarding solution on active corridors, SkyLink coordinates and handles the relevant shipments through that freight partner desk on transparent, agreed terms.
                 </p>
               </div>
 
@@ -245,7 +245,7 @@ export default function FreightForwardersCollaborationPage() {
                   Objective &amp; Merit-Based Commercial Evaluation
                 </h4>
                 <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
-                  Every shared tariff and lane proposal is reviewed objectively against active manufacturer cargo schedules. If commercially aligned and backed by proven transit reliability, our freight coordinator initiates direct operational onboarding.
+                  Every shared tariff and lane proposal is reviewed objectively against active manufacturer cargo schedules. If commercially aligned and backed by proven transit reliability, our freight forwarding company alliance desk initiates direct operational onboarding.
                 </p>
               </div>
             </div>
@@ -260,7 +260,7 @@ export default function FreightForwardersCollaborationPage() {
           <SectionHeading
             badge="Offer Guidelines"
             title="What Makes a Commercial Offer Stand Out?"
-            subtitle="We evaluate incoming forwarder proposals against active enterprise corridors based on clear commercial benchmarks."
+            subtitle="We evaluate incoming proposals from international freight forwarding companies against active enterprise corridors based on clear commercial benchmarks."
           />
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -295,7 +295,7 @@ export default function FreightForwardersCollaborationPage() {
           <SectionHeading
             badge="Structured Process"
             title="How We Collaborate Step-by-Step"
-            subtitle="A transparent, hassle-free framework for freight forwarders and logistics agencies to partner with SkyLink."
+            subtitle="A transparent, hassle-free framework for providers of freight forwarding services and logistics agencies to partner with SkyLink."
           />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -323,7 +323,7 @@ export default function FreightForwardersCollaborationPage() {
           <SectionHeading
             badge="Direct Proposal Submission"
             title="Submit Your Freight Rate &amp; Trade Lane Proposal"
-            subtitle="Share your trade corridor capabilities, equipment availability, and competitive rates for active enterprise shipment consideration."
+            subtitle="Share your trade corridor capabilities, international freight forwarding services, and competitive rates for active enterprise shipment consideration."
           />
           <div className="mt-10 max-w-4xl mx-auto">
             <FreightForwarderOfferForm />
