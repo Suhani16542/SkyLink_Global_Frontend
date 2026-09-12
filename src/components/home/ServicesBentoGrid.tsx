@@ -191,7 +191,7 @@ export function ServicesBentoGrid({ services }: ServicesBentoGridProps) {
           </ScrollReveal>
           <ScrollReveal effect="fade-up" delay={160}>
             <p className="text-sm sm:text-base lg:text-lg text-neutral-600 leading-relaxed max-w-2xl mx-auto font-normal text-pretty">
-              From statutory customs clearance and bonded warehousing to international cargo freight forwarding, our logistics company orchestrates every dimension of cross-border commerce.
+              Explore our comprehensive global logistics solutions and international shipping services, including air freight services, ocean freight services, customs clearance services, and multimodal transportation solutions across major worldwide trade corridors.
             </p>
           </ScrollReveal>
         </div>
@@ -252,7 +252,7 @@ export function ServicesBentoGrid({ services }: ServicesBentoGridProps) {
                 <div className="relative aspect-[16/10] w-full rounded-2xl overflow-hidden bg-neutral-900 border border-white/10 shadow-lg">
                   <Image
                     src={serviceImages[spotlightService?.slug] || serviceImages['logistics-shipping']}
-                    alt={spotlightService?.title || 'SkyLink Global Service'}
+                    alt={`SkyLink Global ${spotlightService?.title || 'logistics'} logistics and transportation solutions`}
                     fill
                     sizes="(max-width: 1024px) 100vw, 40vw"
                     className="object-cover object-center transition-all duration-700 hover:scale-105"

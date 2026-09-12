@@ -52,11 +52,11 @@ export function Footer() {
   ];
 
   const industryLinks = [
-    { title: 'Pharmaceuticals & Life Sciences', href: '/industries' },
-    { title: 'Seafood & Marine Exports', href: '/industries' },
-    { title: 'Perishables & Agriculture', href: '/industries' },
-    { title: 'Heavy Manufacturing & Automotive', href: '/industries' },
-    { title: 'General Cargo & Consumer Retail', href: '/industries' },
+    { title: 'Pharmaceuticals & Life Sciences', href: '/industries/pharma' },
+    { title: 'Seafood & Marine Exports', href: '/industries/seafoods' },
+    { title: 'Perishables & Agriculture', href: '/industries/specialty-chemicals-agro-fertilizers-perishables' },
+    { title: 'Heavy Manufacturing & Automotive', href: '/industries/automotive' },
+    { title: 'General Cargo & Consumer Retail', href: '/industries/retail-consumer-goods' },
   ];
 
   return (

@@ -33,6 +33,8 @@ import {
   Zap,
 } from 'lucide-react';
 
+import { constructMetadata } from '@/lib/seo/metadata';
+
 interface Props {
   params: Promise<{ slug: string }>;
 }
@@ -69,33 +71,22 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const detail = otherIndustriesDetailData[slug];
 
   if (!detail) {
-    return {
+    return constructMetadata({
       title: 'Industry Not Found | SkyLink Global Services',
       description: 'The requested industry logistics specification could not be found.',
-    };
+      noIndex: true,
+      path: `/industries/${slug}`,
+    });
   }
 
-  return {
+  return constructMetadata({
     title: detail.seoTitle,
     description: detail.seoDescription,
-    alternates: {
-      canonical: `https://skylink.com/industries/${slug}`,
-    },
-    openGraph: {
-      title: detail.seoTitle,
-      description: detail.seoDescription,
-      url: `https://skylink.com/industries/${slug}`,
-      type: 'website',
-      images: [
-        {
-          url: detail.heroImage,
-          width: 1200,
-          height: 630,
-          alt: detail.heroImageAlt,
-        },
-      ],
-    },
-  };
+    path: `/industries/${slug}`,
+    image: detail.heroImage,
+    ogTitle: detail.seoTitle,
+    ogDescription: detail.seoDescription,
+  });
 }
 
 export default async function OtherIndustryDetailPage({ params }: Props) {
