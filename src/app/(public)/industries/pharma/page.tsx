@@ -9,6 +9,9 @@ import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { ScrollReveal } from '@/components/animation/ScrollReveal';
 import { StaggerContainer } from '@/components/animation/StaggerContainer';
+import { JsonLd } from '@/components/seo/JsonLd';
+import { generateIndustrySchema } from '@/lib/seo/schema';
+import { industriesData } from '@/data/industries';
 import {
   HeartPulse,
   ThermometerSnowflake,
@@ -25,8 +28,10 @@ import {
 
 export const metadata: Metadata = getPageMetadata('industriesPharma');
 
-
 export default function PharmaIndustryPage() {
+  const pharmaIndustry = industriesData[0];
+  const industrySchema = generateIndustrySchema(pharmaIndustry);
+
   const temperatureRanges = [
     { range: '2°C to 8°C', label: 'Refrigerated Cold Chain', desc: 'Vaccines, biological APIs, injectables, and diagnostic reagents requiring strict uninterrupted chill control.' },
     { range: '15°C to 25°C', label: 'Controlled Room Temp (CRT)', desc: 'Tablets, capsules, syrups, and formulations sensitive to tropical heat waves and humidity fluctuations.' },
@@ -50,6 +55,8 @@ export default function PharmaIndustryPage() {
 
   return (
     <div className="bg-white">
+      <JsonLd data={industrySchema} />
+
       {/* 1. HERO SECTION */}
       <section className="relative bg-gradient-to-b from-[#07192D] via-[#0A2540] to-[#07192D] text-white py-16 sm:py-24 border-b border-white/10 overflow-hidden">
         <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
@@ -86,7 +93,7 @@ export default function PharmaIndustryPage() {
 
               <ScrollReveal effect="fade-up" delay={200}>
                 <p className="text-sm sm:text-base lg:text-lg text-neutral-300 leading-relaxed max-w-2xl text-pretty font-normal">
-                  End-to-end temperature preservation, real-time IoT telemetry, and zero-delay ADC customs clearance engineered to protect critical life-science shipments across global corridors.
+                  End-to-end pharmaceutical logistics, unbroken cold chain management, real-time IoT telemetry, and zero-delay ADC customs clearance engineered to protect critical pharmaceutical cold chain logistics across global corridors.
                 </p>
               </ScrollReveal>
 
@@ -109,7 +116,7 @@ export default function PharmaIndustryPage() {
                   <div className="relative aspect-[4/3]">
                     <Image
                       src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=1200&auto=format&fit=crop"
-                      alt="Pharmaceutical laboratory cold chain logistics packaging"
+                      alt="Pharmaceutical logistics and cold chain packaging with temperature control | SkyLink Global"
                       fill
                       sizes="(max-width: 1024px) 100vw, 40vw"
                       className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
@@ -138,7 +145,7 @@ export default function PharmaIndustryPage() {
           <SectionHeading
             badge="Thermal Control"
             title="Validated Temperature Ranges"
-            subtitle="Precision environmental control tailored to pharmaceutical product specifications."
+            subtitle="Precision environmental control and pharmaceutical logistics services tailored to pharmaceutical product specifications."
           />
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
@@ -172,7 +179,7 @@ export default function PharmaIndustryPage() {
           <SectionHeading
             badge="Pharma Risk Governance"
             title="Overcoming Life-Science Export Hurdles"
-            subtitle="How SkyLink eliminates compliance risks and thermal excursions for pharmaceutical exporters."
+            subtitle="How SkyLink eliminates compliance risks and thermal excursions with specialized pharma supply chain management."
           />
 
           <div className="space-y-6 mt-12">
@@ -217,7 +224,7 @@ export default function PharmaIndustryPage() {
             Secure Your Pharmaceutical Supply Chain Today
           </h2>
           <p className="text-sm sm:text-base text-neutral-300">
-            Request a consultation with our life-sciences trade team for pharma EXIM planning, cold-chain logistics, ADC customs compliance, and global supply-chain requirements.
+            Request a consultation with our life-sciences trade team for pharmaceutical logistics, pharma cold chain management, ADC customs compliance, and global pharmaceutical transportation services.
           </p>
           <div className="pt-3 flex flex-wrap justify-center gap-4">
             <Button href="/request-consultation" variant="secondary" size="md">

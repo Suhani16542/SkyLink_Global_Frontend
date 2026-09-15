@@ -33,7 +33,9 @@ import {
   Zap,
 } from 'lucide-react';
 
-import { constructMetadata } from '@/lib/seo/metadata';
+import { getPageMetadata } from '@/lib/seo/metadata';
+import { JsonLd } from '@/components/seo/JsonLd';
+import { generateIndustrySchema } from '@/lib/seo/schema';
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -71,7 +73,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const detail = otherIndustriesDetailData[slug];
 
   if (!detail) {
-    return constructMetadata({
+    return getPageMetadata(`/industries/${slug}`, {
       title: 'Industry Not Found | SkyLink Global Services',
       description: 'The requested industry logistics specification could not be found.',
       noIndex: true,
@@ -79,7 +81,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     });
   }
 
-  return constructMetadata({
+  return getPageMetadata(`/industries/${slug}`, {
     title: detail.seoTitle,
     description: detail.seoDescription,
     path: `/industries/${slug}`,
@@ -99,9 +101,16 @@ export default async function OtherIndustryDetailPage({ params }: Props) {
 
   const HeaderIcon = iconRegistry[detail.capabilities[0]?.iconName] || Sparkles;
   const deskButtonLabel = `Connect With ${detail.title.split('&')[0].trim()} Desk`;
+  const industrySchema = generateIndustrySchema({
+    id: slug,
+    title: detail.title,
+    slug,
+    description: detail.seoDescription,
+  });
 
   return (
     <div className="bg-white">
+      <JsonLd data={industrySchema} />
       {/* 1. HERO SECTION */}
       <section className="relative bg-gradient-to-b from-[#07192D] via-[#0A2540] to-[#07192D] text-white py-16 sm:py-24 border-b border-white/10 overflow-hidden">
         <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">

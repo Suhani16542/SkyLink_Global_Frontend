@@ -273,11 +273,11 @@ export const otherIndustriesDetailData: Record<string, OtherIndustryDetail> = {
     badge: 'High-Tech & Semi-Conductor',
     heroTitle: 'Secure, Climate-Controlled High-Tech Electronics Logistics',
     heroDescription:
-      'Anti-static ESD-controlled packaging, high-security bonded air corridors, and rapid BIS / WPC / EPR statutory clearance for semiconductors, consumer tech, and telecom hardware.',
+      'Anti-static ESD-controlled packaging, high-security bonded air corridors, semiconductor logistics, and rapid BIS / WPC / EPR statutory clearance for high tech logistics and electronics supply chain solutions.',
     telemetryProtocol: 'ESD & Cleanroom Level 2 Protocol Active',
     heroImage:
       'https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1200&auto=format&fit=crop',
-    heroImageAlt: 'Electronic printed circuit board motherboards and microchips in high-tech cleanroom',
+    heroImageAlt: 'High tech logistics and electronics supply chain cleanroom microchip packaging | SkyLink Global',
     metrics: [
       { label: 'Security Track Record', value: '100% Zero-Loss', subtext: 'Armed escort & geofenced telematics' },
       { label: 'BIS Statutory Clearance', value: 'Fast-Tracked', subtext: 'Direct Bureau of Indian Standards liaison' },
@@ -286,7 +286,7 @@ export const otherIndustriesDetailData: Record<string, OtherIndustryDetail> = {
     capabilitiesBadge: 'High-Tech Integrity',
     capabilitiesTitle: 'High-Value Electronics Handling Standards',
     capabilitiesSubtitle:
-      'Engineered security, electrostatic shielding, and regulatory licensing for high-value sensitive hardware.',
+      'Engineered security, electrostatic shielding, and electronics logistics services for high-value sensitive hardware.',
     capabilities: [
       {
         title: 'Anti-Static & Humidity Shielding',
@@ -316,7 +316,7 @@ export const otherIndustriesDetailData: Record<string, OtherIndustryDetail> = {
     challengesBadge: 'Electronics Risk Governance',
     challengesTitle: 'Preventing Technological Supply Chain Disruptions',
     challengesSubtitle:
-      'How SkyLink protects delicate electronic shipments against transit micro-fractures, moisture, and regulatory impoundment.',
+      'How SkyLink delivers electronics supply chain management to protect delicate shipments against transit micro-fractures, moisture, and regulatory impoundment.',
     challengesAndSolutions: [
       {
         challenge:
@@ -368,10 +368,10 @@ export const otherIndustriesDetailData: Record<string, OtherIndustryDetail> = {
     ],
     ctaTitle: 'Safeguard Your High-Tech Cargo Movements',
     ctaDescription:
-      'Consult our high-tech logistics specialists for anti-static packaging solutions, TAPA-certified transit security, and fast-track BIS compliance.',
-    seoTitle: 'Electronics & High-Tech Logistics | SkyLink Global Services',
+      'Consult our high tech logistics specialists for electronics supply chain solutions, anti-static packaging, TAPA-certified transit security, and fast-track BIS compliance.',
+    seoTitle: 'High Tech Logistics & Electronics Supply Chain Solutions | SkyLink',
     seoDescription:
-      'High-security air freight, anti-static ESD packaging, BIS and WPC trade compliance, and cold-chain electronics logistics.',
+      'SkyLink Global provides high tech logistics, electronics supply chain solutions and semiconductor logistics for secure, climate-controlled global shipments.',
   },
 
   'textiles-apparel': {
@@ -485,22 +485,22 @@ export const otherIndustriesDetailData: Record<string, OtherIndustryDetail> = {
     id: 'food-beverages',
     title: 'Food & Beverages',
     badge: 'FMCG & Consumables EXIM',
-    heroTitle: 'FSSAI-Compliant Food & Beverage Cold-Chain Logistics',
+    heroTitle: 'FSSAI-Compliant Food Logistics & Cold-Chain Transportation',
     heroDescription:
-      'Multi-temperature reefer distribution, rapid FSSAI lab sampling liaison, and freshness preservation protocols for packaged foods, confectionery, dairy products, and beverages.',
+      'Multi-temperature refrigerated food transportation, rapid FSSAI lab sampling liaison, and freshness preservation protocols for packaged foods, confectionery, dairy products, beverages, and food supply chain management and logistics.',
     telemetryProtocol: 'FSSAI & HACCP Cold Protocol Active',
     heroImage:
       'https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=1200&auto=format&fit=crop',
-    heroImageAlt: 'Gourmet packaged food products and climate controlled distribution warehouse',
+    heroImageAlt: 'Food logistics and refrigerated food transportation in climate controlled warehouse | SkyLink Global',
     metrics: [
       { label: 'FSSAI Release Speed', value: '48 Hours', subtext: 'Prioritized NABL laboratory testing' },
       { label: 'Temperature Range', value: '-25°C to +18°C', subtext: 'Multi-zone reefer container fleet' },
       { label: 'Shelf-Life Safeguard', value: 'Zero Spoilage', subtext: 'Pre-tripped reefers and continuous monitoring' },
     ],
     capabilitiesBadge: 'Freshness Assurance',
-    capabilitiesTitle: 'Food Grade Supply Chain Capabilities',
+    capabilitiesTitle: 'Food Cold Chain Logistics & Storage Capabilities',
     capabilitiesSubtitle:
-      'HACCP-aligned logistics preserving flavor profile, nutritional integrity, and regulatory compliance.',
+      'HACCP-aligned food logistics services preserving flavor profile, nutritional integrity, and regulatory compliance.',
     capabilities: [
       {
         title: 'Multi-Temperature Reefer Freight',
@@ -528,9 +528,9 @@ export const otherIndustriesDetailData: Record<string, OtherIndustryDetail> = {
       },
     ],
     challengesBadge: 'Food Safety Risk Governance',
-    challengesTitle: 'Preventing Spoilage & Regulatory Seizures',
+    challengesTitle: 'Preventing Spoilage in Food Cold Chain Logistics',
     challengesSubtitle:
-      'How SkyLink solves customs sampling delays, temperature spikes, and strict labeling rejections.',
+      'How SkyLink food freight forwarders solve customs sampling delays, temperature spikes, and strict labeling rejections.',
     challengesAndSolutions: [
       {
         challenge:
@@ -552,8 +552,8 @@ export const otherIndustriesDetailData: Record<string, OtherIndustryDetail> = {
       },
     ],
     complianceBadge: 'Food & Beverage Specifications',
-    complianceTitle: 'Handled Consumables & Regulatory Standards',
-    complianceSubtitle: 'Strict adherence to international food safety and food grade packaging standards.',
+    complianceTitle: 'Handled Consumables & Refrigerated Food Transportation Standards',
+    complianceSubtitle: 'Strict food and beverage logistics adherence to international food safety and food grade packaging standards.',
     commodities: [
       {
         commodity: 'Confectionery, Chocolates & Cocoa Butter',
@@ -580,12 +580,12 @@ export const otherIndustriesDetailData: Record<string, OtherIndustryDetail> = {
         skylinkStandard: 'Reinforced pallet wrapping, corner edge protectors, NABL expedited testing',
       },
     ],
-    ctaTitle: 'Protect Your Food & Beverage Shelf-Life',
+    ctaTitle: 'Protect Your Food & Beverage Supply Chain Today',
     ctaDescription:
-      'Connect with our food logistics desk for temperature-controlled reefer bookings, FSSAI clearance, and bonded cold storage solutions.',
-    seoTitle: 'Food & Beverage Logistics | SkyLink Global Services',
+      'Connect with our food logistics companies desk for refrigerated food transportation, FSSAI clearance, and frozen food logistics solutions.',
+    seoTitle: 'Food Logistics & Cold Chain Transportation Services | SkyLink Global',
     seoDescription:
-      'FSSAI customs clearance, temperature-controlled food reefer shipping, chocolate and wine logistics, and cold chain distribution.',
+      'SkyLink Global delivers reliable food logistics, food cold chain logistics, and refrigerated transportation services for global food and beverage exporters.',
   },
 
   'agriculture-agro': {
@@ -699,26 +699,26 @@ export const otherIndustriesDetailData: Record<string, OtherIndustryDetail> = {
     id: 'chemicals-petrochemicals',
     title: 'Chemicals & Petrochemicals',
     badge: 'Hazmat & Process Chemicals EXIM',
-    heroTitle: 'Certified Dangerous Goods (DGR) & ISO Tank Logistics',
+    heroTitle: 'Certified Chemical Logistics & Dangerous Goods Transportation',
     heroDescription:
-      'IMO-compliant hazmat forwarding, dedicated food-grade and chemical-grade ISO tank container fleets, and toxic substance customs clearances for chemical producers worldwide.',
+      'IMO-compliant hazmat logistics, dedicated ISO tank logistics fleets for bulk liquid chemical transportation, and dangerous goods shipping for chemical producers worldwide.',
     telemetryProtocol: 'IMDG Class 1-9 & ISO Tank Fleet Active',
     heroImage:
       'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?q=80&w=1200&auto=format&fit=crop',
-    heroImageAlt: 'Chemical petrochemical refinery pipeline and industrial storage tanks',
+    heroImageAlt: 'Chemical logistics and dangerous goods ISO tank container transportation | SkyLink Global',
     metrics: [
       { label: 'DGR Certified Team', value: 'IATA & IMO', subtext: 'Fully certified Dangerous Goods handlers' },
       { label: 'ISO Tank Fleet', value: 'Dedicated', subtext: 'T11/T14 baffle and heated tank containers' },
       { label: 'Safety Compliance', value: 'Zero Incident', subtext: 'Rigorous emergency response protocols' },
     ],
     capabilitiesBadge: 'Hazmat Precision',
-    capabilitiesTitle: 'Specialized Chemical Handling Standards',
+    capabilitiesTitle: 'Chemical Logistics Services & Containment Standards',
     capabilitiesSubtitle:
-      'Rigorous adherence to international maritime dangerous goods codes and chemical containment safety.',
+      'Rigorous adherence to hazardous goods logistics codes, IMDG compliance, and bulk liquid chemical transportation safety.',
     capabilities: [
       {
         title: 'Dedicated ISO Tank Operations',
-        badge: 'Bulk Liquid Logistics',
+        badge: 'ISO Tank Logistics',
         description:
           'Modern fleet of T11, T14, and steam-heated ISO tank containers for high-purity liquid chemicals, acids, solvents, and specialty resins.',
         highlights: ['Steam heating & electrical trace heating', 'Periodic 2.5 & 5 year hydro-testing', 'Depot cleaning validation certificates'],
@@ -726,7 +726,7 @@ export const otherIndustriesDetailData: Record<string, OtherIndustryDetail> = {
       },
       {
         title: 'Hazmat IMO Classes 2, 3, 4, 5, 6, 8 & 9',
-        badge: 'Certified DGR Forwarding',
+        badge: 'Dangerous Goods Shipping',
         description:
           'Expert packaging, UN-spec labeling, segregation checking, and carrier dangerous goods approvals for flammable, toxic, and corrosive cargoes.',
         highlights: ['Dangerous Goods Declaration (DGD) issuance', 'IMDG segregation table audit', 'Port emergency response filing'],
@@ -734,7 +734,7 @@ export const otherIndustriesDetailData: Record<string, OtherIndustryDetail> = {
       },
       {
         title: 'Regulatory & Toxic Substance Liaison',
-        badge: 'Zero-Delay Compliance',
+        badge: 'Hazardous Goods Logistics',
         description:
           'Customs clearance under Petroleum and Explosives Safety Organization (PESO), Chemical Weapons Convention (CWC), and REACH guidelines.',
         highlights: ['PESO license documentation', 'Material Safety Data Sheet (MSDS) validation', 'Bonded chemical warehouse storage'],
@@ -742,9 +742,9 @@ export const otherIndustriesDetailData: Record<string, OtherIndustryDetail> = {
       },
     ],
     challengesBadge: 'Chemical Risk Governance',
-    challengesTitle: 'Preventing Hazmat Leaks & Regulatory Impoundment',
+    challengesTitle: 'Preventing Hazmat Leaks & Ensuring Dangerous Goods Logistics Compliance',
     challengesSubtitle:
-      'How SkyLink guarantees environmental containment, proper stowage compatibility, and smooth port acceptance.',
+      'How SkyLink chemical transportation services guarantee environmental containment, stowage compatibility, and smooth port acceptance.',
     challengesAndSolutions: [
       {
         challenge:
@@ -766,8 +766,8 @@ export const otherIndustriesDetailData: Record<string, OtherIndustryDetail> = {
       },
     ],
     complianceBadge: 'Chemical Classifications',
-    complianceTitle: 'Handled Chemical Categories & Standards',
-    complianceSubtitle: 'Strict safety standards applied to hazardous, non-hazardous, and petrochemical products.',
+    complianceTitle: 'Handled Commodities & Chemical Transportation Standards',
+    complianceSubtitle: 'Strict chemical logistics and safety standards applied to hazardous, non-hazardous, and petrochemical products.',
     commodities: [
       {
         commodity: 'Solvents, Thinners & Flammable Liquids',
@@ -794,12 +794,12 @@ export const otherIndustriesDetailData: Record<string, OtherIndustryDetail> = {
         skylinkStandard: 'CIB import permit clearance, sealed tamper-evident GPS transit monitoring',
       },
     ],
-    ctaTitle: 'Safely Ship Your Chemical & Hazmat Cargo',
+    ctaTitle: 'Safely Streamline Your Chemical Supply Chain Logistics',
     ctaDescription:
-      'Consult our certified dangerous goods team for ISO tank allocations, IMDG classification reviews, and expedited port clearances.',
-    seoTitle: 'Chemicals & Petrochemicals Logistics | SkyLink Global Services',
+      'Consult our chemical logistics companies desk for ISO tank logistics, dangerous goods shipping approvals, and expedited port customs clearance.',
+    seoTitle: 'Chemical Logistics & Dangerous Goods Transportation | SkyLink Global',
     seoDescription:
-      'Hazmat freight forwarding, ISO tank container operations, IMDG Dangerous Goods compliance, and chemical customs clearance.',
+      'SkyLink Global delivers certified chemical logistics, dangerous goods transportation, and ISO tank logistics for hazardous and specialty chemical exporters.',
   },
 
   'retail-consumer-goods': {
@@ -913,107 +913,107 @@ export const otherIndustriesDetailData: Record<string, OtherIndustryDetail> = {
     id: 'construction-infrastructure',
     title: 'Construction & Infrastructure',
     badge: 'Civil & Infrastructure EXIM',
-    heroTitle: 'Heavy Civil Infrastructure & Construction Equipment Logistics',
+    heroTitle: 'Construction Equipment Logistics & Heavy Haul Transportation',
     heroDescription:
-      'Breakbulk chartering for structural steel, heavy-haul flat rack transportation for tunnel boring machines, and direct jobsite delivery for EPC mega-projects.',
+      'End-to-end construction equipment logistics, heavy haul transportation, and breakbulk shipping for structural steel, heavy machinery hauling, and oversized equipment transportation for EPC infrastructure projects.',
     telemetryProtocol: 'ODC Civil Route Clearance Protocol Active',
     heroImage:
       'https://images.unsplash.com/photo-1541888946425-d0fbb186156a?q=80&w=1200&auto=format&fit=crop',
-    heroImageAlt: 'Major construction civil infrastructure site with heavy cranes and structural steel',
+    heroImageAlt: 'Construction equipment logistics and heavy haul transportation for civil infrastructure projects | SkyLink Global',
     metrics: [
       { label: 'Single Piece Load', value: 'Up to 350 MT', subtext: 'Hydraulic low-bed multi-axles' },
       { label: 'Jobsite Direct Delivery', value: '100% Direct', subtext: 'Zero intermediate transshipment' },
       { label: 'Project Import Status', value: 'Section 9801', subtext: 'Unified project customs registration' },
     ],
     capabilitiesBadge: 'Infrastructure Scale',
-    capabilitiesTitle: 'Civil Mega-Project Logistics Capabilities',
+    capabilitiesTitle: 'Project Cargo Logistics & Construction Logistics Management',
     capabilitiesSubtitle:
-      'Coordinating ocean charters, port stevedoring, and heavy-haul trucking directly into active construction sites.',
+      'Coordinating breakbulk vessel charters, specialized heavy transport, and heavy haul trucking directly into active project sites.',
     capabilities: [
       {
-        title: 'Breakbulk & Heavy Flat-Rack Fleet',
-        badge: 'Over-Dimensional Specialized',
+        title: 'Breakbulk Logistics & Heavy Flat-Rack Fleet',
+        badge: 'Oversized Equipment Transportation',
         description:
-          'Movement of crawler cranes, excavators, piling rigs, and tunnel boring components on specialized flat racks and breakbulk holds.',
+          'Movement of crawler cranes, excavators, piling rigs, and tunnel boring components via breakbulk carriers and specialized flat racks for heavy equipment shipping.',
         highlights: ['40ft high-payload flat racks', 'Heavy-duty maritime lashing certified', 'On-dock direct discharge to trailer'],
         iconName: 'HardHat',
       },
       {
-        title: 'Project Cargo Customs & Section 9801',
-        badge: 'Concessional Tariffs',
+        title: 'Project Cargo Transportation & Section 9801',
+        badge: 'Project Cargo Logistics',
         description:
-          'Managing Project Import Scheme registration under Chapter 9801 of the Customs Tariff for reduced single-rate duty assessments.',
+          'Managing Project Import Scheme registration under Chapter 9801 for heavy haul freight, concessional tariffs, and unified customs clearance.',
         highlights: ['Ministry project recommendation liaison', 'Single tariff assessment across 100+ items', 'Final plant reconciliation bonds'],
         iconName: 'ShieldCheck',
       },
       {
-        title: 'Last-Mile Jobsite Delivery Coordination',
-        badge: 'Active Construction Sites',
+        title: 'Last-Mile Heavy Haul Logistics Coordination',
+        badge: 'Equipment Transport Services',
         description:
-          'Navigating narrow rural roads, temporary unpaved access ways, and steep gradients to deliver heavy materials directly into crane reach.',
+          'Navigating specialized heavy transport routes and access ways to deliver oversized cargo transportation directly into jobsite crane reach.',
         highlights: ['Mobile crane offloading coordination', 'Steel plate temporary roadway placement', 'Site safety supervisor supervision'],
         iconName: 'Clock',
       },
     ],
     challengesBadge: 'Infrastructure Risk Governance',
-    challengesTitle: 'Overcoming Construction Logistics Obstacles',
+    challengesTitle: 'Overcoming Heavy Equipment Logistics & Transit Obstacles',
     challengesSubtitle:
-      'How SkyLink prevents project delay penalties (LDs), site access gridlocks, and heavy equipment transit damage.',
+      'How SkyLink construction logistics companies prevent project delay penalties, transport gridlocks, and heavy equipment transport damage.',
     challengesAndSolutions: [
       {
         challenge:
-          'Construction contractors facing heavy liquidated damages (LDs) when key equipment like tunnel boring cutters or bridge girders arrive late.',
+          'Construction contractors facing liquidated damages when critical heavy machinery hauling or bridge girders arrive late.',
         solution:
-          'Dedicated project taskforce monitoring critical-path machinery with priority vessel berths and multi-driver non-stop road convoys.',
+          'Dedicated project cargo freight forwarders monitoring critical-path machinery with priority vessel berths and multi-axle heavy haul transport.',
       },
       {
         challenge:
-          'Road transit permits rejected by state highway authorities due to extreme trailer axle loads causing pavement damage concerns.',
+          'Road transit permits rejected by highway authorities due to over dimensional freight and extreme axle loads.',
         solution:
-          'Deployment of hydraulic multi-axle modular trailers distributing weight to under 12 MT per axle line, compliant with MoRTH norms.',
+          'Deployment of hydraulic multi-axle trailers distributing weight for specialized heavy transport, fully compliant with highway regulations.',
       },
       {
         challenge:
-          'Corrosion and physical deformation of pre-engineered structural steel members during ocean transit and un-sheeted port storage.',
+          'Corrosion and damage to structural steel during breakbulk shipping and un-sheeted port storage.',
         solution:
-          'Heavy-duty industrial vapor corrosion inhibitors (VCI), waterproof tarpaulin encasement, and elevated dunnage storage at port yards.',
+          'Industrial VCI protection, waterproof tarpaulin encasement, and elevated dunnage for break bulk cargo.',
       },
     ],
     complianceBadge: 'Construction Materials',
-    complianceTitle: 'Handled Infrastructure Categories & Machinery',
-    complianceSubtitle: 'Heavy transport and customs engineering for earthmoving, structural steel, and civil machinery.',
+    complianceTitle: 'Handled Heavy Equipment & Infrastructure Categories',
+    complianceSubtitle: 'Certified international heavy equipment shipping and heavy haul transportation services for earthmoving and civil machinery.',
     commodities: [
       {
         commodity: 'Earthmoving & Piling Machinery (Excavators, Cranes)',
         hsCodeRange: 'HS 8426 - 8430',
-        keyRequirements: 'Ro-Ro or flat-rack stowage, boom dismantling, road movement permits',
-        skylinkStandard: 'Certified wire rope lashing, escort pilot cars, night road movement permissions',
+        keyRequirements: 'Ro-Ro or flat-rack stowage, boom dismantling, heavy equipment transport permits',
+        skylinkStandard: 'Certified wire rope lashing, escort pilot cars, heavy haul trucking permissions',
       },
       {
         commodity: 'Structural Steel, Rebar & Bridge Girders',
         hsCodeRange: 'HS 7214 / 7308',
-        keyRequirements: 'Breakbulk bundling, anti-rust coating, port heavy shore crane handling',
+        keyRequirements: 'Breakbulk carriers bundling, anti-rust coating, break bulk vessel heavy shore handling',
         skylinkStandard: 'Spreader beam tandem crane lifts, anti-slip dunnage, mill test certificate audit',
       },
       {
         commodity: 'Tunnel Boring Machines (TBMs) & Components',
         hsCodeRange: 'HS 8430 50',
-        keyRequirements: 'Extreme dimensions (diameter > 6m), precision bearing preservation',
-        skylinkStandard: 'Multi-axle hydraulic pullers, specialized low-bed modular trailers, turnkey rigging',
+        keyRequirements: 'Extreme dimensions, oversized cargo transportation, precision bearing preservation',
+        skylinkStandard: 'Multi-axle hydraulic pullers, specialized heavy transport modular trailers, turnkey rigging',
       },
       {
         commodity: 'Pre-Cast Concrete Elements & Pipe Culverts',
         hsCodeRange: 'HS 6810',
-        keyRequirements: 'Vibration-free transit, crack prevention, synchronized site delivery',
-        skylinkStandard: 'Padded timber chocking, air-cushioned transport, direct offload to trench',
+        keyRequirements: 'Vibration-free transit, oversize load shipping, crack prevention',
+        skylinkStandard: 'Padded timber chocking, heavy haul freight protection, direct offload to trench',
       },
     ],
-    ctaTitle: 'Mobilize Your Infrastructure Project',
+    ctaTitle: 'Safely Mobilize Your Construction Equipment Logistics',
     ctaDescription:
-      'Contact our project cargo specialists for hydraulic trailer planning, breakbulk vessel quotes, and Chapter 9801 customs registration.',
-    seoTitle: 'Construction & Infrastructure Logistics | SkyLink Global Services',
+      'Connect with our project cargo freight forwarders for hydraulic trailer planning, breakbulk shipping quotes, and heavy equipment transportation services.',
+    seoTitle: 'Construction Equipment Logistics & Heavy Haul Transportation | SkyLink Global',
     seoDescription:
-      'Project cargo logistics, Over-Dimensional Cargo (ODC) transport, construction machinery shipping, and Section 9801 customs clearance.',
+      'SkyLink Global offers construction equipment logistics, heavy haul transportation, breakbulk shipping, and oversized cargo delivery for infrastructure projects.',
   },
 
   'renewable-energy': {
@@ -1127,75 +1127,75 @@ export const otherIndustriesDetailData: Record<string, OtherIndustryDetail> = {
     id: 'mining-metals',
     title: 'Mining & Metals',
     badge: 'Bulk Minerals & Heavy Metals EXIM',
-    heroTitle: 'Heavy Mineral Ore Freight & Specialized Steel Coil Stowage',
+    heroTitle: 'Bulk Cargo Shipping & Specialized Steel Coil Freight',
     heroDescription:
-      'High-tonnage Supramax/Panamax chartering for raw mineral ores, zero-damage coil-well containerization for automotive-grade steel coils, and heavy port handling equipment management.',
+      'End-to-end bulk cargo shipping and dry bulk cargo transportation for raw mineral ores, break bulk cargo handling, and secure steel coil shipping with specialized coil-well containerization.',
     telemetryProtocol: 'Steel Coil Lashing & Bulk Draft Survey Active',
     heroImage:
       'https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=1200&auto=format&fit=crop',
-    heroImageAlt: 'Industrial steel manufacturing mill and metal coils storage yard',
+    heroImageAlt: 'Bulk cargo shipping and specialized steel coil freight handling | SkyLink Global',
     metrics: [
       { label: 'Bulk Mineral Tonnage', value: '1.2M+ MT', subtext: 'Annual dry bulk freight handled' },
       { label: 'Steel Coil Safety', value: 'Zero-Shift', subtext: 'Certified timber chocking and coil wells' },
       { label: 'Port Turnaround Time', value: '< 24 Hours', subtext: 'Mechanized conveyor and grab offloading' },
     ],
     capabilitiesBadge: 'Heavy Metal Flow',
-    capabilitiesTitle: 'Bulk Minerals & Metals Handling Capabilities',
+    capabilitiesTitle: 'Bulk Cargo Shipping & Metals Handling Capabilities',
     capabilitiesSubtitle:
-      'High-tonnage ocean charters and specialized container stowage engineering built to withstand extreme weight densities.',
+      'High-tonnage dry bulk shipping, break bulk freight, and engineered steel coil shipping solutions designed for mineral and heavy metal exporters.',
     capabilities: [
       {
         title: 'Charter Vessel Bulk Dry Freight',
-        badge: 'Handy / Supramax / Panamax',
+        badge: 'Dry Bulk Cargo',
         description:
-          'Chartering full vessels for iron ore, bauxite, coal, and mineral sands with guaranteed load/discharge laycan management.',
+          'Chartering Handysize, Supramax, and Panamax vessels for dry bulk cargo including iron ore, bauxite, and mineral sands with reliable laycan execution.',
         highlights: ['IMSBC code liquefaction test audit', 'Draft survey weight certification', 'Stevedoring & grab operations'],
         iconName: 'Pickaxe',
       },
       {
-        title: 'Steel Coil Specialized Containerization',
-        badge: 'Coil-Well Engineered',
+        title: 'Steel Coil Shipping & Specialized Containerization',
+        badge: 'Break Bulk Freight',
         description:
-          'Stowing high-density steel coils (up to 28 MT per coil) in reinforced containers fitted with specialized steel saddles and heavy timber chocking.',
+          'Engineered steel coil shipping and break bulk cargo handling for high-density metal coils up to 28 MT per coil with certified timber saddles and chain lashing.',
         highlights: ['Engineered floor weight dispersion', 'Certified steel chain lashing', 'Moisture-absorbent barrier wraps'],
         iconName: 'Layers',
       },
       {
         title: 'Port Handling & Heavy Stockyard Staging',
-        badge: 'Deep-Water Berth Access',
+        badge: 'Break Bulk Cargo Handling',
         description:
-          'Dedicated port stockpile yards with front-end loaders, tipper fleets, and mechanized conveyor belts ensuring rapid ship turnaround.',
+          'Dedicated port stockpile yards, front-end loaders, tipper fleets, and mechanized conveyor belts for break bulk shipping and bulk cargo transportation.',
         highlights: ['Mechanized barge transfer', 'Customs bonded open yard storage', 'Moisture and contamination barriers'],
         iconName: 'HardHat',
       },
     ],
     challengesBadge: 'Mining & Metals Risk Governance',
-    challengesTitle: 'Preventing Structural Failure & Cargo Shifts',
+    challengesTitle: 'Preventing Cargo Shifts & Break Bulk Freight Risks',
     challengesSubtitle:
-      'How SkyLink prevents catastrophic container floor collapse, moisture rust on cold-rolled steel, and mineral liquefaction.',
+      'How SkyLink bulk cargo shipping companies prevent container floor collapse, moisture rust on steel coil shipping, and mineral liquefaction.',
     challengesAndSolutions: [
       {
         challenge:
-          'Single heavy steel coils puncturing container wooden flooring or shifting violently during rough sea pitching, causing ship hull damage.',
+          'Single heavy steel coils puncturing container flooring or shifting during maritime transport without proper steel coil shipping cradles.',
         solution:
-          'Engineered weight-distribution timber skids spreading load over primary cross-members, secured with ratchet-tensioned high-tensile steel chains.',
+          'Engineered weight-distribution timber skids spreading load over primary cross-members, secured with ratchet-tensioned steel chains for break bulk cargo.',
       },
       {
         challenge:
-          'Cargo liquefaction of mineral ores (e.g. nickel ore, bauxite) during maritime voyages, destabilizing the entire vessel.',
+          'Cargo liquefaction of dry bulk cargo (nickel ore, bauxite) during ocean voyages destabilizing vessel stability.',
         solution:
-          'Mandatory pre-loading Transportable Moisture Limit (TML) and Flow Moisture Point (FMP) laboratory testing in accordance with the IMSBC code.',
+          'Mandatory pre-loading Transportable Moisture Limit (TML) and Flow Moisture Point (FMP) laboratory testing for bulk cargo transportation under the IMSBC code.',
       },
       {
         challenge:
-          'White rust and surface oxidation on cold-rolled galvanized steel coils caused by condensation inside humid ocean containers.',
+          'White rust and surface oxidation on galvanized steel coils during long ocean voyages and break bulk cargo handling.',
         solution:
-          'Application of specialized VCI anti-corrosion barrier film, heavy desiccants, and container inner condensation drain liners.',
+          'Application of specialized VCI anti-corrosion barrier film, heavy desiccants, and container inner condensation drain liners for break bulk shipping.',
       },
     ],
     complianceBadge: 'Metals & Minerals',
     complianceTitle: 'Handled Metal & Mineral Commodities',
-    complianceSubtitle: 'Heavy transport standards for prime metals, industrial alloys, and bulk minerals.',
+    complianceSubtitle: 'Certified bulk cargo transportation and break bulk freight standards for prime metals, industrial alloys, and bulk minerals.',
     commodities: [
       {
         commodity: 'Hot-Rolled (HR) & Cold-Rolled (CR) Steel Coils',
@@ -1222,87 +1222,87 @@ export const otherIndustriesDetailData: Record<string, OtherIndustryDetail> = {
         skylinkStandard: 'Desiccant-enriched hermetic bulk bag packaging, certified gas-vented containers',
       },
     ],
-    ctaTitle: 'Optimize Your Mining & Metal Tonnage Freight',
+    ctaTitle: 'Safely Mobilize Your Bulk Cargo Shipping & Steel Freight',
     ctaDescription:
-      'Speak to our heavy bulk and steel freight specialists for vessel charter rates, coil-well container allocations, and IMSBC compliance.',
-    seoTitle: 'Mining & Metals Logistics | SkyLink Global Services',
+      'Connect with our bulk cargo shipping companies desk for dry bulk shipping charter rates, break bulk freight quotes, and steel coil shipping allocations.',
+    seoTitle: 'Bulk Cargo Shipping & Steel Coil Freight Services | SkyLink Global',
     seoDescription:
-      'Bulk mineral dry cargo chartering, steel coil container transport, IMSBC compliance, and mining raw material logistics.',
+      'SkyLink Global provides bulk cargo shipping, dry bulk transportation, break bulk freight, mineral cargo handling, and specialized steel coil shipping solutions.',
   },
 
   ecommerce: {
     id: 'ecommerce',
     title: 'E-commerce & Cross-Border Retail',
     badge: 'Cross-Border Digital Trade EXIM',
-    heroTitle: 'Ultra-Fast Cross-Border B2C/B2B E-commerce Logistics',
+    heroTitle: 'E-commerce Logistics Services & Cross-Border Shipping',
     heroDescription:
-      'Commercial CSB-V automated express courier clearance, global fulfillment hub integration, and end-to-end reverse logistics pipelines for high-growth e-commerce brands.',
+      'End-to-end ecommerce logistics services and international ecommerce shipping featuring CSB-V automated express courier clearance, global ecommerce logistics hubs, and reliable cross border shipping services for brands worldwide.',
     telemetryProtocol: 'CSB-V Automated EDI API Active',
     heroImage:
       'https://images.unsplash.com/photo-1526367790999-0150786686a2?q=80&w=1200&auto=format&fit=crop',
-    heroImageAlt: 'Cross border e-commerce parcel fulfillment center and sorting conveyor belt',
+    heroImageAlt: 'E-commerce logistics services and international parcel shipping fulfillment center | SkyLink Global',
     metrics: [
       { label: 'Global Courier Transit', value: '3 - 5 Days', subtext: 'Express door-to-door air network' },
       { label: 'CSB-V Processing', value: '< 2 Hours', subtext: 'Automated EDI customs parcel clearance' },
       { label: 'Duty Drawback on Returns', value: 'Automated', subtext: 'Simplified reverse logistics workflows' },
     ],
     capabilitiesBadge: 'Digital Speed',
-    capabilitiesTitle: 'Cross-Border E-commerce Capabilities',
+    capabilitiesTitle: 'Global E-commerce Logistics Services & Fulfillment Capabilities',
     capabilitiesSubtitle:
-      'API-integrated customs clearance and high-speed air networks built for global digital retail platforms.',
+      'API-integrated shipping services for ecommerce and cross border shipping services built for high-growth digital brands.',
     capabilities: [
       {
-        title: 'CSB-V Express Customs Automation',
-        badge: 'Export Paperless',
+        title: 'CSB-V Express Customs Automation & Courier Routing',
+        badge: 'International Parcel Shipping',
         description:
-          'Direct API-integration with the Indian Customs EDI system for automated Courier Shipping Bill (CSB-V) generation on retail orders up to ₹10,00,000.',
+          'Direct API-integration with customs EDI systems for automated CSB-V generation and expedited international parcel shipping for retail orders up to ₹10,00,000.',
         highlights: ['Instant GST invoice integration', 'Automated eBRC certificate generation', 'Full eligibility for export incentives'],
         iconName: 'ShoppingCart',
       },
       {
-        title: 'Global Fulfillment & Bonded Hubs',
-        badge: 'FBA & 3PL Integration',
+        title: 'Global Ecommerce Logistics & Bonded Hubs',
+        badge: 'Ecommerce Fulfillment Services',
         description:
-          'Staging inventory in bonded fulfillment centers in the US, Europe, UAE, and Southeast Asia for same-day local last-mile dispatch.',
+          'Staging inventory in bonded ecommerce fulfillment centers in the US, Europe, UAE, and Southeast Asia for same-day ecommerce fulfillment and last-mile dispatch.',
         highlights: ['Amazon FBA prep & labeling', 'Multi-channel inventory synchronization', 'Section 321 US de-minimis duty-free clearance'],
         iconName: 'Layers',
       },
       {
         title: 'Hassle-Free Cross-Border Returns (RTO)',
-        badge: 'Reverse Logistics',
+        badge: 'Shipping Services for Ecommerce',
         description:
-          'Seamless returns processing enabling returned overseas customer orders to re-enter India without paying punitive import duties.',
+          'Seamless reverse logistics and e commerce logistics workflows enabling returned overseas customer orders to re-enter without paying double import duties.',
         highlights: ['Automated identity matching of re-imported goods', 'Condition inspection & re-stocking', 'Zero double-taxation on returns'],
         iconName: 'ShieldCheck',
       },
     ],
     challengesBadge: 'E-commerce Risk Governance',
-    challengesTitle: 'Overcoming Cross-Border E-commerce Hurdles',
+    challengesTitle: 'Overcoming Cross Border Shipping Services Obstacles',
     challengesSubtitle:
-      'How SkyLink eliminates shipping bottlenecks, parcel customs seizures, and high return shipping friction.',
+      'How SkyLink ecommerce logistics company eliminates shipping bottlenecks, parcel customs seizures, and e commerce logistics return friction.',
     challengesAndSolutions: [
       {
         challenge:
-          'Individual consumer parcels held up at international customs due to missing HS codes, value discrepancies, or unclear product descriptions.',
+          'Individual consumer parcels held up at international customs due to missing HS codes or non-compliant shipping services for ecommerce.',
         solution:
-          'AI-powered automated HS code classification and invoice validation at checkout, ensuring 100% first-time customs clearance.',
+          'AI-powered automated HS code classification and invoice validation at checkout, ensuring fast customs clearance for ecommerce fulfillment.',
       },
       {
         challenge:
-          'Exorbitant air courier charges eating entire profit margins on low-to-medium value direct-to-consumer (D2C) shipments.',
+          'Exorbitant air courier charges eating entire profit margins on direct-to-consumer international ecommerce shipping orders.',
         solution:
-          'Direct line-haul consolidation: bulk shipping parcels via commercial airfreight with local postal injection at destination hubs.',
+          'Direct line-haul consolidation: bulk shipping parcels via commercial airfreight with local postal injection for cost-effective international parcel shipping.',
       },
       {
         challenge:
-          'Returned customer goods (RTO) trapped in Indian customs facing high import duties as if they were brand new foreign imports.',
+          'Returned customer goods (RTO) trapped in customs facing punitive import duties as if they were brand-new foreign imports.',
         solution:
           'Automated re-import customs filing linking the original CSB-V export tracking number, securing complete duty exemption on verified returns.',
       },
     ],
     complianceBadge: 'E-commerce Shipments',
     complianceTitle: 'Handled E-commerce Categories & Compliance',
-    complianceSubtitle: 'Regulatory frameworks tailored to direct-to-consumer and marketplace commerce.',
+    complianceSubtitle: 'Global ecommerce logistics frameworks and specialized shipping services for ecommerce across D2C and marketplace channels.',
     commodities: [
       {
         commodity: 'Fashion & Handcrafted Apparel (D2C)',
@@ -1329,12 +1329,12 @@ export const otherIndustriesDetailData: Record<string, OtherIndustryDetail> = {
         skylinkStandard: 'Volumetric consolidation, honeycomb cardboard crating, drop-tested packing',
       },
     ],
-    ctaTitle: 'Scale Your Global E-commerce Sales Today',
+    ctaTitle: 'Partner With a Trusted Ecommerce Logistics Company',
     ctaDescription:
-      'Connect with our cross-border e-commerce team for CSB-V automated customs integration, global line-haul rates, and FBA prep solutions.',
-    seoTitle: 'Cross-Border E-commerce Logistics | SkyLink Global Services',
+      'Connect with our cross-border team for international ecommerce shipping rates, CSB-V automated customs integration, and scalable ecommerce fulfillment services.',
+    seoTitle: 'E-commerce Logistics Services & Cross-Border Shipping | SkyLink Global',
     seoDescription:
-      'CSB-V courier clearance, global Amazon FBA fulfillment, international parcel express, and seamless reverse logistics for e-commerce.',
+      'SkyLink Global provides ecommerce logistics services, international shipping, cross-border parcel delivery, and global order fulfillment solutions for brands.',
   },
 
   'industrial-equipment': {

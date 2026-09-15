@@ -45,9 +45,9 @@ export const industriesData: EnrichedIndustry[] = [
       'Expedited Port Green-Channel Release',
       'Global GDP & US FDA Protocol Adherence',
     ],
-    seoTitle: 'Pharma & Healthcare Cold-Chain Logistics | SkyLink Global Services',
+    seoTitle: 'Pharmaceutical Logistics & Cold Chain Solutions | SkyLink Global',
     seoDescription:
-      'GDP compliant temperature-controlled air & ocean freight for life sciences, pharmaceuticals, and active drug formulations.',
+      'SkyLink Global delivers certified pharmaceutical logistics, cold chain shipping, and temperature-controlled supply chain transportation for pharma exporters.',
   },
   {
     id: 'seafood',
@@ -73,9 +73,9 @@ export const industriesData: EnrichedIndustry[] = [
       'EIA & MPEDA Statutory Liaison',
       'Pre-Tripped Verified Reefers',
     ],
-    seoTitle: 'Seafood Cold Chain & Reefer Container Logistics | SkyLink Global Services',
+    seoTitle: 'Marine Logistics & Seafood Cold Chain Solutions | SkyLink Global',
     seoDescription:
-      'Sub-zero cold chain logistics, super-freezer reefer shipping, and MPEDA regulatory clearance for frozen marine seafood exporters.',
+      'SkyLink Global provides marine logistics, seafood cold chain solutions and temperature-controlled shipping for global seafood exporters and marine cargo.',
   },
   {
     id: 'perishables',

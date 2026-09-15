@@ -8,6 +8,9 @@ import { SectionHeading } from '@/components/ui/SectionHeading';
 import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { ScrollReveal } from '@/components/animation/ScrollReveal';
+import { JsonLd } from '@/components/seo/JsonLd';
+import { generateIndustrySchema } from '@/lib/seo/schema';
+import { industriesData } from '@/data/industries';
 import {
   Fish,
   ThermometerSnowflake,
@@ -23,8 +26,10 @@ import {
 
 export const metadata: Metadata = getPageMetadata('industriesSeafoods');
 
-
 export default function SeafoodsIndustryPage() {
+  const seafoodIndustry = industriesData[1] || industriesData.find((i) => i.slug === 'seafoods') || industriesData[0];
+  const industrySchema = generateIndustrySchema(seafoodIndustry);
+
   const seafoodFeatures = [
     {
       title: '-25°C to -40°C Super-Freezer Control',
@@ -57,6 +62,8 @@ export default function SeafoodsIndustryPage() {
 
   return (
     <div className="bg-white">
+      <JsonLd data={industrySchema} />
+
       {/* 1. HERO SECTION */}
       <section className="relative bg-gradient-to-b from-[#07192D] via-[#0A2540] to-[#07192D] text-white py-16 sm:py-24 border-b border-white/10 overflow-hidden">
         <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
@@ -93,7 +100,7 @@ export default function SeafoodsIndustryPage() {
 
               <ScrollReveal effect="fade-up" delay={200}>
                 <p className="text-sm sm:text-base lg:text-lg text-neutral-300 leading-relaxed max-w-2xl text-pretty font-normal">
-                  Safeguarding premium seafood cargo with unbroken super-freezer cold chains (-25°C to -40°C), EIA health certification liaison, and direct carrier reefer allocations.
+                  Safeguarding premium seafood cargo with specialized marine logistics, unbroken seafood cold chain logistics (-25°C to -40°C), EIA health certification liaison, and direct carrier reefer allocations.
                 </p>
               </ScrollReveal>
 
@@ -116,7 +123,7 @@ export default function SeafoodsIndustryPage() {
                   <div className="relative aspect-[4/3]">
                     <Image
                       src="https://images.unsplash.com/photo-1534482421-64566f976cfa?q=80&w=1200&auto=format&fit=crop"
-                      alt="Seafood export and maritime cold chain reefer container"
+                      alt="Marine logistics and seafood cold chain reefer container shipping | SkyLink Global"
                       fill
                       sizes="(max-width: 1024px) 100vw, 40vw"
                       className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
@@ -145,7 +152,7 @@ export default function SeafoodsIndustryPage() {
           <SectionHeading
             badge="Specialized Capabilities"
             title="Engineered for Marine & Seafood Exporters"
-            subtitle="Eliminating cargo spoilage, antibiotic testing delays, and container demurrage."
+            subtitle="Specialized seafood logistics eliminating cargo spoilage, antibiotic testing delays, and container demurrage."
           />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
@@ -177,7 +184,7 @@ export default function SeafoodsIndustryPage() {
           <SectionHeading
             badge="Commodity Portfolio"
             title="Marine Commodities Handled"
-            subtitle="Tailored thermal regimens and compliance protocols across major seafood categories."
+            subtitle="Tailored marine logistics services, thermal regimens, and compliance protocols across major seafood categories."
           />
 
           <div className="overflow-x-auto mt-10 rounded-2xl border border-neutral-200 bg-white shadow-xs">
@@ -220,7 +227,7 @@ export default function SeafoodsIndustryPage() {
             Eliminate Reefer Space Shortages for Your Next Catch
           </h2>
           <p className="text-sm sm:text-base text-neutral-300">
-            Secure pre-tripped reefer containers and priority shore-power plug-in at loading terminals.
+            Secure temperature controlled seafood shipping, pre-tripped reefer containers, and priority shore-power plug-in at loading terminals.
           </p>
           <div className="pt-3 flex flex-wrap justify-center gap-4">
             <Button href="/request-consultation" variant="secondary" size="md">
