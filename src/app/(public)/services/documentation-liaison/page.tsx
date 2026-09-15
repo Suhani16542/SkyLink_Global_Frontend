@@ -16,83 +16,85 @@ export const metadata: Metadata = getPageMetadata('servicesDocumentationLiaison'
 
 
 const serviceData = {
-  badge: 'Documentation & Regulatory Liaison',
+  badge: 'Export Documentation & Regulatory Liaison',
   title:
-    'Documentation & Liaison: Custom Invoice, Commercial Invoice, Shipping Bills, CoO, ICEGATE, AD Code & Inspection Agency Liaison',
+    'Export Documentation & Shipping Documentation: Commercial Invoice, Shipping Bill & Certificate of Origin',
   intro:
-    'Accurate documentation and effective liaison with authorities are vital for exporters to ensure compliance, avoid delays, and secure incentives. As an export consultant, the role encompasses end-to-end support in preparing, validating, and coordinating essential paperwork.',
+    'Comprehensive export documentation and import export documentation services, managing commercial invoice preparation, shipping bill processing, bill of lading coordination, and regulatory liaison.',
   bgImage: '/images/services/documentation-liaison.jpg',
+  imageAlt:
+    'Export documentation and shipping documentation - commercial invoice, shipping bill, bill of lading, and certificate of origin | SkyLink Global',
   slug: 'documentation-liaison',
   highlights: [
-    { label: 'Documentation Standard', value: 'Zero-Discrepancy' },
-    { label: 'Customs Gateway', value: 'ICEGATE & e-SANCHIT' },
-    { label: 'Trade Agreements', value: 'FTA / PTA Compliant' },
-    { label: 'Agency Liaison', value: 'Authorized Chambers & CHA' },
+    { label: 'Document Standard', value: 'Export Documentation Review' },
+    { label: 'Port Customs', value: 'ICEGATE Shipping Bill & Filings' },
+    { label: 'Trade Verification', value: 'Certificate of Origin & IEC Code' },
+    { label: 'Cargo Papers', value: 'Shipping Documentation Support' },
   ],
   sections: [
     {
       number: '01',
-      title: 'Custom & Commercial Invoices',
+      title: 'Commercial Invoice & Customs Invoice Preparation',
       icon: FileText,
       points: [
-        'Drafting Custom Invoices aligned with statutory requirements for customs clearance.',
-        'Preparing Commercial Invoices that meet buyer, bank, and regulatory standards.',
-        'Ensuring consistency across invoices, packing lists, and shipping documents.',
+        'Drafting statutory custom invoices aligned with destination customs requirements and foreign trade regulations.',
+        'Preparing accurate commercial invoice documentation meeting buyer, bank, and statutory compliance standards.',
+        'Providing end-to-end shipping documentation consistency across invoices, packing lists, and cargo declarations.',
       ],
     },
     {
       number: '02',
-      title: 'Shipping Bills',
+      title: 'Shipping Bill & Bill of Entry Processing',
       icon: FileSpreadsheet,
       points: [
-        'Filing Shipping Bills electronically through customs portals.',
-        'Correct HS code classification and linkage with duty drawback/incentive schemes.',
-        'Liaison with Customs House Agents (CHA) for smooth clearance.',
+        'Electronic filing of shipping bill documents for export clearance and bill of entry documents for import clearance.',
+        'Correct HS code classification and proper linkage with statutory export remission schemes.',
+        'Coordinating with customs brokers and CHA partners for seamless export documentation clearance.',
       ],
     },
     {
       number: '03',
-      title: 'Certificate of Origin (CoO)',
+      title: 'Certificate of Origin & Preferential Trade Pacts',
       icon: Globe2,
       points: [
-        'Assisting exporters in obtaining CoO from authorized chambers/agencies.',
-        'Ensuring compliance with Free Trade Agreements (FTA) and Preferential Trade Agreements (PTA).',
-        'Supporting electronic CoO submissions where applicable.',
+        'Assisting exporters in obtaining an official certificate of origin from authorized chambers and government agencies.',
+        'Ensuring preferential origin compliance under Free Trade Agreements (FTA) and Preferential Trade Agreements (PTA).',
+        'Supporting electronic certificate of origin submissions and validation across global trade corridors.',
       ],
     },
     {
       number: '04',
-      title: 'ICEGATE Filings',
+      title: 'ICEGATE Shipping Bill Filings & e-SANCHIT',
       icon: Server,
       points: [
-        'Facilitating filings on ICEGATE (Indian Customs Electronic Gateway).',
-        'Uploading invoices, packing lists, and supporting documents via e-SANCHIT.',
-        'Monitoring clearance status and resolving customs queries.',
+        'Facilitating electronic filings and tracking every icegate shipping bill on the Indian Customs Electronic Gateway.',
+        'Uploading commercial invoices, packing lists, and supporting papers via e-SANCHIT for digital customs appraisal.',
+        'Monitoring customs status and resolving queries for complete import export documentation readiness.',
       ],
     },
     {
       number: '05',
-      title: 'AD Code Registration',
+      title: 'IEC Code, AD Code & Bill of Lading Coordination',
       icon: KeyRound,
       points: [
-        'Guiding exporters in registering Authorized Dealer (AD) Code with customs.',
-        'Linking AD Code with ports of export for seamless foreign exchange remittance.',
-        'Coordinating with banks and customs authorities for compliance.',
+        'Assisting new and expanding trading businesses with iec code registration and customs branch linking.',
+        'Guiding Authorized Dealer (AD) Code registration with customs for foreign exchange remittances.',
+        'Ensuring carrier bill of lading (BL) instructions and sea waybills strictly match export invoice records.',
       ],
     },
     {
       number: '06',
-      title: 'Liaison with Inspection Agencies',
+      title: 'Inspection Agency Liaison & Regulatory Approvals',
       icon: ClipboardCheck,
       points: [
-        'Coordinating with agencies for pre-shipment inspection and certification.',
-        'Ensuring compliance with destination country quality and safety standards.',
-        'Managing inspection reports and integrating them into export documentation.',
+        'Delivering structured regulatory liaison services with pre-shipment inspection agencies and certifying authorities.',
+        'Coordinating destination-country product quality and safety standard certifications.',
+        'Integrating official test reports and inspection certificates into the master export documentation dossier.',
       ],
     },
   ],
   conclusion:
-    'By managing invoices, shipping bills, CoO, ICEGATE filings, AD Code registration, and inspection agency liaison, export consultants provide comprehensive compliance support. This ensures exporters avoid penalties, claim incentives, and maintain credibility in international trade.',
+    'By managing commercial invoice preparation, shipping bill and bill of entry filings, bill of lading alignment, IEC code linking, certificate of origin issuance, and icegate shipping bill submissions, SkyLink Global delivers comprehensive import export documentation and shipping documentation support for cross-border commerce.',
 };
 
 export default function DocumentationLiaisonPage() {
@@ -104,9 +106,9 @@ export default function DocumentationLiaisonPage() {
     description: serviceData.intro,
     features: serviceData.sections.flatMap((s) => s.points),
     benefits: [
-      'Zero documentation discrepancy and eliminated bank / customs delays',
-      'Full tariff concessions under Free Trade Agreements via certified Certificate of Origin',
-      'Seamless foreign exchange remittance via authorized AD Code registration',
+      'Comprehensive export documentation and shipping documentation review',
+      'Full tariff concessions under trade agreements via certified Certificate of Origin',
+      'Electronic icegate shipping bill, bill of entry, and bill of lading alignment',
     ],
     faqs: [],
     seoTitle: metadata.title as string,
@@ -121,6 +123,7 @@ export default function DocumentationLiaisonPage() {
         title={serviceData.title}
         intro={serviceData.intro}
         bgImage={serviceData.bgImage}
+        imageAlt={serviceData.imageAlt}
         sections={serviceData.sections}
         conclusion={serviceData.conclusion}
         highlights={serviceData.highlights}

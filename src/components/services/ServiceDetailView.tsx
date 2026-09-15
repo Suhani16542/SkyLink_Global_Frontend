@@ -29,6 +29,7 @@ export interface ServiceDetailViewProps {
   title: string;
   intro: string;
   bgImage: string;
+  imageAlt?: string;
   sections: ServiceSectionItem[];
   conclusion: string;
   highlights?: Array<{ label: string; value: string }>;
@@ -41,6 +42,7 @@ export function ServiceDetailView({
   title,
   intro,
   bgImage,
+  imageAlt,
   sections,
   conclusion,
   highlights = [
@@ -188,7 +190,7 @@ export function ServiceDetailView({
                 <div className="relative aspect-[4/3] sm:aspect-[16/11] lg:aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border border-white/20 bg-neutral-900 group w-full">
                   <Image
                     src={bgImage}
-                    alt={`${title} visual`}
+                    alt={imageAlt || `${title} visual`}
                     fill
                     priority
                     sizes="(max-width: 1024px) 100vw, 42vw"

@@ -5,3 +5,4 @@ export * from './LocalBusinessSchema';
 export * from './ServiceSchema';
 export * from './BreadcrumbSchema';
 export * from './ArticleSchema';
+export * from './BlogListingSchema';

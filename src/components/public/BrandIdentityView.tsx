@@ -85,9 +85,9 @@ export function BrandIdentityView() {
 
         {/* Sequence Highlights Card */}
         <div className={`p-6 rounded-2xl border ${variant === 'light' ? 'bg-white border-neutral-200 text-neutral-800' : 'bg-white/5 border-white/10 text-neutral-300'} space-y-4 text-xs`}>
-          <h3 className={`text-sm font-bold uppercase tracking-wider ${variant === 'light' ? 'text-neutral-900' : 'text-white'}`}>
+          <h2 className={`text-sm font-bold uppercase tracking-wider ${variant === 'light' ? 'text-neutral-900' : 'text-white'}`}>
             12-Stage Motion Sequence Breakdown
-          </h3>
+          </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
             {[
               { num: '01', title: 'Globe Genesis', desc: 'Subtle light glow and latitude meridian reveal.' },

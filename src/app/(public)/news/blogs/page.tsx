@@ -5,7 +5,7 @@ import type { Metadata } from 'next';
 import { getPageMetadata } from '@/lib/seo/metadata';
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs';
 import { Button } from '@/components/ui/Button';
-import { Card } from '@/components/ui/Card';
+import { BlogListingSchema } from '@/components/seo/BlogListingSchema';
 import { ScrollReveal } from '@/components/animation/ScrollReveal';
 import { getAllBlogPosts } from '@/data/blog';
 import { formatDate } from '@/lib/utils/formatters';
@@ -15,9 +15,8 @@ import {
   User,
   ArrowRight,
   Newspaper,
-  Tag,
-  Search,
-  Sparkles,
+  Ship,
+  ShieldCheck,
   BookOpen,
 } from 'lucide-react';
 
@@ -31,11 +30,22 @@ const blogImages: Record<string, string> = {
   'reducing-export-logistics-costs-direct-carrier-contracting': 'https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=1200&auto=format&fit=crop',
 };
 
+const blogImageAlts: Record<string, string> = {
+  'navigating-global-trade-compliance-2026':
+    'International shipping news and global trade compliance regulations | SkyLink Global',
+  'optimizing-cold-chain-pharmaceutical-shipments':
+    'Temperature controlled logistics and pharmaceutical cold chain monitoring | SkyLink Global',
+  'reducing-export-logistics-costs-direct-carrier-contracting':
+    'World maritime news and ocean freight carrier rate management | SkyLink Global',
+};
+
 export default async function NewsBlogsPage() {
   const posts = await getAllBlogPosts();
 
   return (
     <div className="bg-white">
+      <BlogListingSchema posts={posts} path="/news/blogs" />
+
       {/* 1. HERO SECTION */}
       <section className="relative bg-gradient-to-b from-[#07192D] via-[#0A2540] to-[#07192D] text-white py-16 sm:py-24 border-b border-white/10 overflow-hidden">
         <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
@@ -50,7 +60,7 @@ export default async function NewsBlogsPage() {
                 items={[
                   { name: 'Home', item: '/' },
                   { name: 'News', item: '/news/blogs' },
-                  { name: 'Blogs', item: '/news/blogs' },
+                  { name: 'International Shipping News', item: '/news/blogs' },
                 ]}
                 className="text-neutral-400 mb-6 justify-center"
               />
@@ -61,19 +71,19 @@ export default async function NewsBlogsPage() {
             <ScrollReveal effect="fade-up" delay={80}>
               <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-sky-400 bg-sky-400/10 px-3.5 py-1.5 rounded-full border border-sky-400/30">
                 <Newspaper className="w-3.5 h-3.5" />
-                Industry Thought Leadership
+                World Maritime News &amp; Market Intelligence
               </span>
             </ScrollReveal>
 
             <ScrollReveal effect="fade-up" delay={140}>
               <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-tight">
-                SkyLink Trade &amp; Logistics Blogs
+                International Shipping News &amp; Global Maritime Industry Updates
               </h1>
             </ScrollReveal>
 
             <ScrollReveal effect="fade-up" delay={200}>
               <p className="text-base sm:text-lg text-neutral-300 leading-relaxed max-w-3xl mx-auto">
-                Perspectives, tactical guidance, and field insights from our trade compliance officers, cold-chain engineers, and maritime freight analysts.
+                Stay ahead with authoritative International Shipping News, timely World Maritime News, and in-depth analysis across the International Shipping Industry. Our trade intelligence desk tracks global carrier corridors, World Shipping News, and verified International Maritime News.
               </p>
             </ScrollReveal>
 
@@ -98,9 +108,55 @@ export default async function NewsBlogsPage() {
         </div>
       </section>
 
-      {/* 2. MAIN BLOG DIRECTORY GRID */}
+      {/* 2. Maritime Regulatory Insights & Advisory Context */}
+      <section className="border-b border-neutral-200 bg-white py-10 sm:py-12">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+            <div className="p-6 rounded-2xl bg-neutral-50 border border-neutral-200 space-y-3">
+              <div className="flex items-center gap-2 text-[#0284C7]">
+                <Ship className="w-4 h-4" />
+                <span className="text-xs font-bold uppercase tracking-wider">
+                  Environmental Decarbonization Mandates
+                </span>
+              </div>
+              <h2 className="text-lg sm:text-xl font-bold text-neutral-900 leading-snug">
+                IMO Regulations, GHG Emissions Strategy &amp; MEPC Updates
+              </h2>
+              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                Critical briefings on compliance benchmarks under the IMO 2023 Regulation and the IMO GHG Emissions Strategy, examining technical energy efficiency requirements adopted at IMO MEPC 76 and reinforced through MEPC 79 IMO.
+              </p>
+            </div>
+
+            <div className="p-6 rounded-2xl bg-neutral-50 border border-neutral-200 space-y-3">
+              <div className="flex items-center gap-2 text-emerald-600">
+                <ShieldCheck className="w-4 h-4" />
+                <span className="text-xs font-bold uppercase tracking-wider">
+                  Global Trade Governance
+                </span>
+              </div>
+              <h2 className="text-lg sm:text-xl font-bold text-neutral-900 leading-snug">
+                International Chamber of Shipping and Maritime Compliance Insights
+              </h2>
+              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                Advisory guidance aligned with operational frameworks from the International Chamber of Shipping, helping shippers navigate cross-border customs declarations, maritime safety, and trade lane resilience.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. MAIN BLOG DIRECTORY GRID */}
       <section className="py-14 sm:py-20 bg-[#F8FAFC]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-8">
+          <div className="border-b border-neutral-200 pb-4">
+            <h2 className="text-2xl sm:text-3xl font-black text-neutral-900 tracking-tight">
+              World Maritime News &amp; International Shipping Industry Updates
+            </h2>
+            <p className="mt-1 text-sm text-neutral-600">
+              Browse the latest editorial features, trade advisory whitepapers, and operational logistics guidance.
+            </p>
+          </div>
+
           {posts.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 sm:gap-8">
               {posts.map((post) => (
@@ -116,7 +172,10 @@ export default async function NewsBlogsPage() {
                         blogImages[post.slug] ||
                         'https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=1200&auto=format&fit=crop'
                       }
-                      alt={post.title}
+                      alt={
+                        blogImageAlts[post.slug] ||
+                        `${post.title} - International Shipping News | SkyLink Global`
+                      }
                       fill
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       className="object-cover object-center group-hover:scale-105 transition-transform duration-500"
@@ -145,11 +204,11 @@ export default async function NewsBlogsPage() {
                       </div>
 
                       {/* Title */}
-                      <h2 className="text-base sm:text-lg font-bold text-[#0A2540] group-hover:text-[#0284C7] transition-colors line-clamp-2 leading-snug">
+                      <h3 className="text-base sm:text-lg font-bold text-[#0A2540] group-hover:text-[#0284C7] transition-colors line-clamp-2 leading-snug">
                         <Link href={`/blog/${post.slug}`}>
                           {post.title}
                         </Link>
-                      </h2>
+                      </h3>
 
                       {/* Excerpt */}
                       <p className="text-xs sm:text-[13px] text-neutral-600 line-clamp-3 leading-relaxed">
@@ -188,7 +247,7 @@ export default async function NewsBlogsPage() {
         </div>
       </section>
 
-      {/* 3. CTA */}
+      {/* 4. CTA */}
       <section className="py-16 sm:py-20 bg-[#07192D] text-white text-center">
         <div className="mx-auto max-w-3xl px-4 space-y-4">
           <h2 className="text-2xl sm:text-4xl font-extrabold text-white">
@@ -211,3 +270,4 @@ export default async function NewsBlogsPage() {
     </div>
   );
 }
+

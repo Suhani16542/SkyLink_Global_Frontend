@@ -177,3 +177,35 @@ export function generateArticleSchema(post: BlogPost) {
     },
   };
 }
+
+/**
+ * Builds Schema.org CollectionPage / Blog Listing JSON-LD
+ */
+export function generateBlogListingSchema(posts: BlogPost[], path = '/blog') {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'International Shipping News & Maritime Industry Updates',
+    description:
+      'Read international shipping news, world maritime news, IMO 2023 regulations, IMO GHG emissions strategy, MEPC 76, MEPC 79 and global shipping industry updates from SkyLink Global.',
+    url: getCanonicalUrl(path),
+    publisher: {
+      '@type': 'Organization',
+      name: siteConfig.name,
+      url: env.siteUrl,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${env.siteUrl}/logos/logo.png`,
+      },
+    },
+    mainEntity: {
+      '@type': 'ItemList',
+      itemListElement: posts.map((post, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        url: getCanonicalUrl(`/blog/${post.slug}`),
+        name: post.title,
+      })),
+    },
+  };
+}

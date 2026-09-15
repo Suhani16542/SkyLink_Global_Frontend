@@ -15,52 +15,54 @@ export const metadata: Metadata = getPageMetadata('servicesRiskManagement');
 
 
 const serviceData = {
-  badge: 'Trade Defense & Risk Advisory',
-  title: 'Risk Management in Exports: Insurance, Contingency Planning & Claims Support',
+  badge: 'Trade Risk Management & Insurance Practice',
+  title: 'Risk Management in Exports: Marine Insurance, Contingency Planning & Claims Support',
   intro:
-    'Effective risk management is essential for exporters to safeguard against financial losses, shipment delays, and unforeseen disruptions.',
+    'Effective trade risk management is essential for exporters to safeguard international cargo through comprehensive marine insurance, proactive contingency planning, and dedicated claims support.',
   bgImage: '/images/services/risk-management.jpg',
+  imageAlt:
+    'Risk management in exports - marine cargo insurance, cargo insurance, contingency planning, and export insurance | SkyLink Global',
   slug: 'risk-management',
   highlights: [
-    { label: 'Insurance Advisory', value: 'Marine & Specialized Policies' },
-    { label: 'Contingency Model', value: 'Scenario Planning & Backups' },
-    { label: 'Claims Recovery', value: 'Timely Settlement Support' },
-    { label: 'Liquidity Protection', value: 'Zero Financial Disruption' },
+    { label: 'Insurance Scope', value: 'Marine Cargo Insurance & Cover' },
+    { label: 'Contingency Model', value: 'Contingency Planning & Backups' },
+    { label: 'Cargo Protection', value: 'Export Insurance & Claims Support' },
+    { label: 'Risk Advisory', value: 'Trade Risk Management Protocols' },
   ],
   sections: [
     {
       number: '01',
-      title: 'Insurance Coverage',
+      title: 'Marine Cargo Insurance & Cargo Insurance Coverage',
       icon: ShieldCheck,
       points: [
-        'Marine cargo insurance protects goods against theft, damage, or loss during transit.',
-        'Specialized policies (e.g., cold chain insurance, political risk insurance) provide coverage for sensitive cargo and high-risk destinations.',
-        'Adequate insurance ensures exporters can recover costs and maintain business continuity.',
+        'Structured marine cargo insurance policies protecting shipments against physical damage, theft, or general average declarations during international transit.',
+        'Tailored cargo insurance and marine transit insurance endorsements designed for temperature-sensitive commodities, high-value machinery, and project cargo.',
+        'Comprehensive freight insurance and shipment insurance advisory ensuring seamless policy coverage across ocean, air, and multimodal transport corridors.',
       ],
     },
     {
       number: '02',
-      title: 'Contingency Planning',
+      title: 'Contingency Planning & Supply Chain Continuity',
       icon: Compass,
       points: [
-        'Developing backup logistics arrangements (alternate carriers, routes, or warehouses) minimizes disruption during strikes, port congestion, or natural disasters.',
-        'Risk assessments and scenario planning help exporters prepare for currency fluctuations, regulatory changes, or geopolitical instability.',
-        'Contingency plans reduce downtime and safeguard contractual obligations.',
+        'Developing robust contingency planning frameworks with alternate carriers, backup corridors, and secondary logistics hubs to minimize disruption.',
+        'Scenario evaluations assessing geopolitical fluctuations, port congestion risks, and trade lane liabilities.',
+        'Proactive operational mitigation strategies that reduce transit downtime and maintain contractual delivery schedules under disciplined trade risk management.',
       ],
     },
     {
       number: '03',
-      title: 'Claims Support',
+      title: 'Export Credit Insurance, Export Insurance & Claims Support',
       icon: LifeBuoy,
       points: [
-        'Proper documentation (shipping bills, invoices, insurance certificates) is critical for smooth claims processing.',
-        'Consultants assist exporters in filing claims, negotiating settlements, and ensuring timely compensation.',
-        'Efficient claims handling prevents liquidity crunch and sustains trust with overseas buyers.',
+        'Advising trading enterprises on export credit insurance and export insurance frameworks to mitigate buyer payment defaults and commercial insolvency risks.',
+        'End-to-end documentation support—including shipping bills, commercial invoices, and survey reports—for accelerated insurance claims processing.',
+        'Direct assistance in negotiating settlements with underwriters to protect cash flow and sustain business continuity under marine insurance contracts.',
       ],
     },
   ],
   conclusion:
-    'By combining insurance coverage, proactive contingency planning, and strong claims support, exporters can mitigate risks, protect their financial interests, and maintain reliability in global trade.',
+    'By combining marine insurance, marine cargo insurance, freight insurance, export credit insurance, and proactive contingency planning, SkyLink Global delivers comprehensive trade risk management to protect exporters against transit losses and financial disruptions.',
 };
 
 export default function RiskManagementPage() {
@@ -72,9 +74,9 @@ export default function RiskManagementPage() {
     description: serviceData.intro,
     features: serviceData.sections.flatMap((s) => s.points),
     benefits: [
-      'Comprehensive marine and specialized cargo insurance coverage',
-      'Backup logistics and scenario contingency reducing shipment downtime',
-      'End-to-end documentation and negotiation for accelerated claims settlement',
+      'Comprehensive marine cargo insurance and tailored cargo insurance coverage',
+      'Disruption mitigation through proactive contingency planning and backup logistics',
+      'Dedicated claims support and export credit insurance advisory',
     ],
     faqs: [],
     seoTitle: metadata.title as string,
@@ -89,6 +91,7 @@ export default function RiskManagementPage() {
         title={serviceData.title}
         intro={serviceData.intro}
         bgImage={serviceData.bgImage}
+        imageAlt={serviceData.imageAlt}
         sections={serviceData.sections}
         conclusion={serviceData.conclusion}
         highlights={serviceData.highlights}

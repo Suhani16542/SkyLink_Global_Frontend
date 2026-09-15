@@ -25,6 +25,8 @@ export interface PageSeoEntry {
   title: string;
   description: string;
   path: string;
+  /** Explicit canonical URL or path if different from path */
+  canonical?: string;
   /** Primary target keyword for the page (to be populated during keyword research) */
   primaryKeyword?: string;
   /** Secondary supporting keywords for the page (to be populated during keyword research) */
@@ -59,6 +61,7 @@ export interface SEOMetadataParams {
   title?: string;
   description?: string;
   path?: string;
+  canonical?: string;
   image?: string;
   keywords?: string[];
   primaryKeyword?: string;

@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { getPageMetadata } from '@/lib/seo/metadata';
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs';
+import { BreadcrumbSchema } from '@/components/seo/BreadcrumbSchema';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
@@ -33,30 +34,38 @@ export default function EcoRoutePage() {
       title: 'Electrified Rail Freight & ICD Corridors',
       icon: Train,
       metric: '65% CO2 Reduction',
-      desc: 'Shifting heavy inland container haulage from long-distance highway diesel trucking to electrified rail container trains (CONCOR/Private CTOs) directly connecting Inland Container Depots to gateway seaports.',
+      desc: 'Shifting heavy inland container haulage from long-distance highway diesel trucking to electrified rail container trains directly connecting Inland Container Depots to gateway seaports, optimizing multimodal logistics.',
     },
     {
       title: 'Coastal Shipping & Short-Sea Feeder',
       icon: Ship,
       metric: '50% Lower Emission Intensity',
-      desc: 'Utilizing domestic coastal maritime routes between western and eastern peninsular ports for bulk and domestic cargo, bypassing congested highway transit corridors.',
+      desc: 'Utilizing domestic coastal maritime routes between western and eastern peninsular ports for bulk and domestic cargo, implementing sustainable logistics and bypassing highway congestion.',
     },
     {
       title: 'Multimodal Consolidation Hubs',
       icon: Compass,
       metric: '30% Fuel Optimization',
-      desc: 'Consolidating LCL shipments at strategically located bonded ICDs to maximize full container load (FCL) density and minimize deadhead vehicular trips.',
+      desc: 'Consolidating LCL shipments at strategically located bonded ICDs to maximize full container load density, delivering low carbon logistics and minimizing deadhead vehicular trips.',
     },
     {
       title: 'Scope 3 Supply Chain Carbon Reporting',
       icon: BarChart3,
       metric: 'ISO 14064 Aligned',
-      desc: 'Providing exporters and multinational buyers with accurate carbon footprint accounting per ton-kilometer across every ocean, air, and overland leg of the journey.',
+      desc: 'Providing exporters and multinational buyers with accurate supply chain carbon footprint accounting per ton-kilometer across every ocean, air, and overland leg of the journey.',
     },
   ];
 
   return (
     <div className="bg-white">
+      <BreadcrumbSchema
+        items={[
+          { name: 'Home', item: '/' },
+          { name: 'Sustainability', item: '/sustainability/eco-route' },
+          { name: 'Eco-Route', item: '/sustainability/eco-route' },
+        ]}
+      />
+
       {/* 1. HERO SECTION */}
       <section className="relative bg-gradient-to-b from-[#07192D] via-[#0A2540] to-[#07192D] text-white py-16 sm:py-24 border-b border-white/10 overflow-hidden">
         <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
@@ -87,13 +96,13 @@ export default function EcoRoutePage() {
 
               <ScrollReveal effect="fade-up" delay={140}>
                 <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-[1.12] text-balance">
-                  Eco-Route: Low-Carbon Multimodal Trade Corridors
+                  Multimodal Transportation &amp; Sustainable Logistics: Low-Carbon Trade Corridors
                 </h1>
               </ScrollReveal>
 
               <ScrollReveal effect="fade-up" delay={200}>
                 <p className="text-sm sm:text-base lg:text-lg text-neutral-300 leading-relaxed max-w-2xl text-pretty font-normal">
-                  Decarbonize your global supply chain without sacrificing transit speed. SkyLink designs carbon-efficient multimodal routes leveraging coastal shipping, electrified rail, and intelligent cargo consolidation.
+                  Discover how Multimodal Transportation and Sustainable Logistics accelerate cross-border trade while decarbonizing global operations. SkyLink Global’s Eco-Route solutions combine coastal sea freight, electrified rail transit, and intelligent route modeling to deliver actionable Green Logistics and Low Carbon Logistics across your Sustainable Supply Chain.
                 </p>
               </ScrollReveal>
 
@@ -120,6 +129,7 @@ export default function EcoRoutePage() {
                       muted
                       playsInline
                       poster="/images/sustainability/eco-route.jpg"
+                      aria-label="Multimodal transportation and sustainable green logistics trade corridor | SkyLink Global"
                       className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
                     >
                       <source src="/videos/transportation.mp4" type="video/mp4" />
@@ -154,13 +164,28 @@ export default function EcoRoutePage() {
       {/* 2. THE 4 MULTIMODAL INITIATIVES */}
       <section className="py-16 sm:py-24 bg-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <SectionHeading
-            badge="Green Framework"
-            title="How Eco-Route Optimizes Carbon & Cost"
-            subtitle="Strategic route shifts that reduce greenhouse emissions while protecting cargo transit integrity."
-          />
+          <div className="text-center max-w-3xl mx-auto space-y-3 mb-12">
+            <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-3.5 py-1.5 rounded-full border border-emerald-200">
+              Green Logistics Framework
+            </span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight text-balance text-center mx-auto text-[#0A2540]">
+              Sustainable Supply Chain Management Through Green Logistics
+            </h2>
+            <p className="text-base sm:text-lg text-neutral-600 max-w-2xl mx-auto leading-relaxed">
+              Strategic route shifts and low carbon logistics initiatives that reduce greenhouse emissions while protecting cargo transit integrity.
+            </p>
+          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
+          <div className="border-b border-neutral-200 pb-4 mb-8">
+            <h2 className="text-2xl sm:text-3xl font-black text-neutral-900 tracking-tight">
+              Multimodal Logistics for Low Carbon Transportation
+            </h2>
+            <p className="mt-1 text-sm text-neutral-600">
+              Electrified rail routes, coastal sea transit, and smart consolidation hubs engineered to optimize ton-kilometer efficiency.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {multimodalSolutions.map((item, idx) => {
               const IconComp = item.icon;
               return (
@@ -198,17 +223,17 @@ export default function EcoRoutePage() {
                 Corporate ESG Alignment
               </span>
               <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0A2540] tracking-tight">
-                Empowering Exporters for Global ESG Audits
+                Green Supply Chain Management &amp; Carbon Footprint Reduction
               </h2>
               <p className="text-base text-neutral-600 leading-relaxed">
-                International buyers across the European Union and North America increasingly evaluate supplier carbon footprints. SkyLink gives your business substantiated green logistics metrics.
+                International buyers across the European Union and North America increasingly evaluate your supply chain carbon footprint. SkyLink gives your business substantiated green supply chain management and verifiable metrics.
               </p>
 
               <div className="space-y-3 pt-2">
                 {[
-                  'Verified ton-kilometer carbon data for corporate sustainability disclosures',
-                  'Prioritized allocation on eco-class vessels and modern container fleets',
-                  'Optimized inland routing reducing avoidable empty container hauling',
+                  'Verified ton-kilometer carbon data for corporate sustainability disclosures and supply chain carbon footprint audits',
+                  'Prioritized allocation on eco-class vessels and modern container fleets driving sustainable supply chain management',
+                  'Optimized inland routing reducing avoidable empty container hauling through multimodal logistics',
                   'Paperless customs documentation saving thousands of physical paper records',
                 ].map((item, idx) => (
                   <div key={idx} className="flex items-start gap-3 text-sm text-neutral-800 font-medium">
@@ -253,10 +278,10 @@ export default function EcoRoutePage() {
       <section className="py-16 sm:py-20 bg-[#07192D] text-white text-center">
         <div className="mx-auto max-w-3xl px-4 space-y-4">
           <h2 className="text-2xl sm:text-4xl font-extrabold text-white">
-            Transform Your Trade Lanes with Eco-Route
+            Eco Friendly Logistics and Sustainable Shipping Solutions
           </h2>
           <p className="text-sm sm:text-base text-neutral-300">
-            Let our multimodal route engineers model low-carbon alternatives for your key domestic and global corridors.
+            Let our multimodal route engineers model low-carbon, eco friendly logistics alternatives for your key domestic and global corridors.
           </p>
           <div className="pt-3 flex flex-wrap justify-center gap-4">
             <Button href="/request-consultation" variant="secondary" size="md">
@@ -272,3 +297,4 @@ export default function EcoRoutePage() {
     </div>
   );
 }
+

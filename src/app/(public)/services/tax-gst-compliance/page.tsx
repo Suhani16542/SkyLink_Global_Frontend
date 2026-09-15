@@ -9,52 +9,54 @@ export const metadata: Metadata = getPageMetadata('servicesTaxGstCompliance');
 
 
 const serviceData = {
-  badge: 'Tax & GST Compliance Practice',
-  title: 'Tax Advisory: GST Refunds, LUT Filing & ITC Reconciliation',
+  badge: 'Customs Clearance & Trade Compliance Practice',
+  title: 'Customs Clearance Services: Trade Compliance & Tax Advisory',
   intro:
-    'Tax advisory is a critical service for exporters, ensuring compliance with GST regulations while optimizing cash flow. As an export consultant, the focus is on simplifying procedures, securing refunds, and maintaining accurate reconciliation.',
+    'Comprehensive customs clearance services and trade compliance advisory ensuring seamless customs documentation, export GST refunds, LUT filings, and accurate ITC reconciliation for international trade.',
   bgImage: '/images/services/tax-gst-compliance.jpg',
+  imageAlt:
+    'Customs clearance services - trade compliance services and import export customs documentation | SkyLink Global',
   slug: 'tax-gst-compliance',
   highlights: [
-    { label: 'Regulatory Framework', value: 'GST & Customs Aligned' },
-    { label: 'Refund Turnaround', value: 'Expedited Processing' },
+    { label: 'Regulatory Scope', value: 'GST & Customs Clearance Aligned' },
+    { label: 'Advisory Mode', value: 'Customs Clearance Support Desk' },
     { label: 'Reconciliation', value: 'GSTR-2B & Invoice Matched' },
-    { label: 'Advisory Mode', value: 'Direct Authority Liaison' },
+    { label: 'Trade Governance', value: 'LUT Filings & EXIM Compliance' },
   ],
   sections: [
     {
       number: '01',
-      title: 'GST Refunds',
+      title: 'Customs Clearance Support & Export GST Advisory',
       icon: Receipt,
       points: [
-        'Assisting exporters in filing claims for GST refunds on zero-rated supplies.',
-        'Ensuring proper documentation (invoices, shipping bills, bank realization certificates) to avoid rejection.',
-        'Liaison with GST authorities for timely processing and release of funds.',
+        'Assisting trading enterprises in filing claims for GST refunds on zero-rated supplies with verified customs documentation.',
+        'Coordinating import export customs clearance paperwork—including shipping bills, commercial invoices, and e-BRC—to avoid regulatory delays.',
+        'Direct liaison with tax and customs authorities providing proactive customs clearance support for timely refund processing.',
       ],
     },
     {
       number: '02',
-      title: 'LUT (Letter of Undertaking) Filing',
+      title: 'LUT Filing & Trade Compliance Services',
       icon: FileCheck,
       points: [
-        'Guiding exporters in filing LUT to enable duty-free exports without upfront tax payment.',
-        'Annual renewal and compliance monitoring to prevent lapses.',
-        'Advisory on conditions and eligibility for LUT submission.',
+        'Guiding exporters in filing Letters of Undertaking (LUT) to enable duty-free exports without upfront tax payments.',
+        'Annual renewal monitoring and regulatory updates maintaining continuous import export compliance.',
+        'Structured trade compliance services aligning cross-border shipments with statutory customs declaration requirements.',
       ],
     },
     {
       number: '03',
-      title: 'ITC (Input Tax Credit) Reconciliation',
+      title: 'Customs Documentation & Compliance Reconciliation',
       icon: RefreshCw,
       points: [
-        'Matching purchase invoices with GSTR-2B to ensure accurate ITC claims.',
-        'Identifying mismatches, pending credits, and supplier non-compliance.',
-        'Maintaining reconciled records to safeguard against penalties and audit issues.',
+        'Matching procurement invoices against GSTR-2B ledgers to ensure accurate Input Tax Credit (ITC) reconciliation.',
+        'Reviewing customs documentation and import declarations to resolve discrepancies, supplier mismatches, and compliance gaps.',
+        'Maintaining audit-ready records to deliver robust customs compliance services across import customs clearance operations.',
       ],
     },
   ],
   conclusion:
-    'Tax advisory services—covering GST refunds, LUT filing, and ITC reconciliation—help exporters maintain compliance, improve liquidity, and avoid disputes. Consultants act as a bridge between businesses and tax authorities, ensuring smooth operations in international trade.',
+    'Our customs clearance services and trade compliance advisory—spanning customs documentation review, LUT filings, ITC reconciliation, and export refund coordination—help businesses maintain complete import export compliance, protect working capital, and avoid cross-border regulatory disputes.',
 };
 
 export default function TaxGstCompliancePage() {
@@ -66,9 +68,9 @@ export default function TaxGstCompliancePage() {
     description: serviceData.intro,
     features: serviceData.sections.flatMap((s) => s.points),
     benefits: [
-      'Expedited GST refund processing and working capital optimization',
-      'Duty-free exports under compliant Letter of Undertaking (LUT)',
-      'Accurate GSTR-2B ITC reconciliation safeguarding against audit penalties',
+      'Structured customs clearance support and expedited export GST refund advisory',
+      'Duty-free exports under compliant Letter of Undertaking (LUT) filings',
+      'Accurate GSTR-2B ITC reconciliation and customs compliance verification',
     ],
     faqs: [],
     seoTitle: metadata.title as string,
@@ -83,6 +85,7 @@ export default function TaxGstCompliancePage() {
         title={serviceData.title}
         intro={serviceData.intro}
         bgImage={serviceData.bgImage}
+        imageAlt={serviceData.imageAlt}
         sections={serviceData.sections}
         conclusion={serviceData.conclusion}
         highlights={serviceData.highlights}

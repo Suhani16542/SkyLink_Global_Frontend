@@ -4,7 +4,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { getPageMetadata } from '@/lib/seo/metadata';
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs';
-import { SectionHeading } from '@/components/ui/SectionHeading';
 import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { ScrollReveal } from '@/components/animation/ScrollReveal';
@@ -23,37 +22,37 @@ import {
 
 export const metadata: Metadata = getPageMetadata('sustainabilityAeoGreen');
 
-
 export default function AeoGreenPage() {
   const aeoTiers = [
     {
       tier: 'AEO-T1 Tier',
       title: 'Digital Fast-Track Importers & Exporters',
-      desc: 'Paperless compliance verification with priority clearance on self-assessment bills and minimal customs intervention.',
+      desc: 'Streamlined documentation fulfilling AEO certification requirements with priority clearance on self-assessment bills and minimal customs intervention.',
       benefits: ['Direct Port Delivery (DPD) eligible', 'Reduced bank guarantee amounts', 'Priority resolution of trade disputes'],
     },
     {
       tier: 'AEO-T2 Tier',
       title: 'Enhanced Physical Security & Green Channel',
-      desc: 'Zero physical examination on green-channel consignments, 24/7 port access, and deferred customs duty payment privileges.',
+      desc: 'Zero physical examination on green-channel consignments, 24/7 port access, and deferred duty payment under statutory AEO customs certification.',
       benefits: ['Zero port physical examination holds', 'Deferred duty payment scheme', '100% bank guarantee waiver for export schemes'],
     },
     {
       tier: 'AEO-T3 Tier',
       title: 'Premier Multi-Corridor Accreditation',
-      desc: 'Highest institutional accreditation level offering Mutual Recognition Agreements (MRA) with global customs authorities.',
+      desc: 'Highest tier of AEO accreditation offering Mutual Recognition Agreements (MRA) with global customs authorities.',
       benefits: ['Global MRA fast-track in USA, EU, Japan & Korea', 'Dedicated Customs Relationship Manager', 'Highest priority container berthing'],
     },
     {
       tier: 'AEO-LO Tier',
       title: 'Logistics Operators & Custodians',
-      desc: 'Accreditation for customs brokers, warehouse custodians, freight forwarders, and terminal operators ensuring unbroken chain security.',
+      desc: 'Dedicated AEO authorization for customs brokers, warehouse custodians, freight forwarders, and terminal operators ensuring unbroken chain security.',
       benefits: ['Waiver of security deposits at port terminals', 'Pre-approved customs bonded operations', 'Priority scanner throughput'],
     },
   ];
 
   return (
     <div className="bg-white">
+
       {/* 1. HERO SECTION */}
       <section className="relative bg-gradient-to-b from-[#07192D] via-[#0A2540] to-[#07192D] text-white py-16 sm:py-24 border-b border-white/10 overflow-hidden">
         <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
@@ -84,13 +83,13 @@ export default function AeoGreenPage() {
 
               <ScrollReveal effect="fade-up" delay={140}>
                 <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-tight">
-                  AEO Green: Paperless Fast-Track Customs Protocols
+                  Authorized Economic Operator: AEO Certification &amp; Green Channel Customs Clearance
                 </h1>
               </ScrollReveal>
 
               <ScrollReveal effect="fade-up" delay={200}>
                 <p className="text-base sm:text-lg text-neutral-300 leading-relaxed max-w-2xl">
-                  Leverage Authorized Economic Operator (AEO) status to achieve zero-delay green-channel clearance, Direct Port Delivery (DPD), paperless customs workflows, and reduced port dwell times.
+                  Achieve competitive advantage through Authorized Economic Operator status. As an AEO accredited enterprise or logistics operator, gain direct access to fast-track AEO customs clearance, paperless customs clearance, and the statutory AEO Green Channel. SkyLink Global guides trading businesses through end-to-end AEO certification, comprehensive AEO compliance, and global supply chain security under the Authorized Economic Operator AEO framework.
                 </p>
               </ScrollReveal>
 
@@ -117,6 +116,7 @@ export default function AeoGreenPage() {
                       muted
                       playsInline
                       poster="/images/sustainability/aeo-green.jpg"
+                      aria-label="Authorized Economic Operator AEO certification and green channel customs clearance | SkyLink Global"
                       className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
                     >
                       <source src="/videos/import-export-port.mp4" type="video/mp4" />
@@ -151,13 +151,28 @@ export default function AeoGreenPage() {
       {/* 2. THE 4 AEO TIERS */}
       <section className="py-16 sm:py-24 bg-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <SectionHeading
-            badge="Institutional Certification"
-            title="AEO Accreditation Tiers"
-            subtitle="Understand the statutory framework and operational privileges across every AEO certification level."
-          />
+          <div className="text-center max-w-3xl mx-auto space-y-3 mb-12">
+            <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-sky-700 bg-sky-50 px-3.5 py-1.5 rounded-full border border-sky-200">
+              Institutional Certification
+            </span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight text-balance text-center mx-auto text-[#0A2540]">
+              AEO Certification and Authorized Economic Operator Benefits
+            </h2>
+            <p className="text-base sm:text-lg text-neutral-600 max-w-2xl mx-auto leading-relaxed">
+              Explore the operational privileges, duty deferment advantages, and strategic AEO certification benefits across all statutory tiers.
+            </p>
+          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
+          <div className="border-b border-neutral-200 pb-4 mb-8">
+            <h2 className="text-2xl sm:text-3xl font-black text-neutral-900 tracking-tight">
+              AEO Customs Clearance &amp; Paperless Customs Compliance
+            </h2>
+            <p className="mt-1 text-sm text-neutral-600">
+              Understand the statutory framework and operational privileges across every AEO accreditation level.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {aeoTiers.map((tierItem, idx) => (
               <Card
                 key={idx}
@@ -199,18 +214,18 @@ export default function AeoGreenPage() {
                 Triple-Bottom-Line Impact
               </span>
               <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0A2540] tracking-tight">
-                How AEO Green Drives Speed and Sustainability
+                AEO Certification India: Requirements and Accreditation
               </h2>
               <p className="text-base text-neutral-600 leading-relaxed">
-                By eliminating paper documentation and avoiding container idling at port container freight stations (CFS), AEO Green delivers immediate operational and environmental wins.
+                Obtaining AEO certification India empowers exporters and importers to streamline cross-border trade. SkyLink conducts institutional gap analyses to ensure your facility and supply chain strictly meet every AEO cert benchmark and statutory standard.
               </p>
 
               <div className="space-y-3 pt-2">
                 {[
-                  'Direct Port Delivery (DPD) bypasses off-dock CFS transfers, cutting truck diesel emissions',
-                  '100% digital faceless assessment eliminating thousands of physical statutory files',
-                  'Deferred duty payments releasing enterprise working capital liquidity',
-                  'Fewer physical cargo examinations preventing container seal breakage and packaging waste',
+                  'Direct Port Delivery (DPD) bypasses off-dock CFS transfers, speeding up AEO customs clearance',
+                  '100% digital faceless assessment providing true paperless customs clearance',
+                  'Deferred duty payments releasing enterprise working capital liquidity for AEO accredited businesses',
+                  'Fewer physical cargo examinations preventing container seal breakage under disciplined AEO compliance',
                 ].map((item, idx) => (
                   <div key={idx} className="flex items-start gap-3 text-sm text-neutral-800 font-medium">
                     <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
@@ -251,13 +266,13 @@ export default function AeoGreenPage() {
       </section>
 
       {/* 4. CTA */}
-      <section className="py-16 sm:py-20 bg-[#07192D] text-white text-center">
+      <section className="py-16 sm:py-24 bg-[#07192D] text-white text-center">
         <div className="mx-auto max-w-3xl px-4 space-y-4">
           <h2 className="text-2xl sm:text-4xl font-extrabold text-white">
-            Ready to Fast-Track Your Customs Clearance?
+            AEO Green Channel for Faster Customs Clearance
           </h2>
           <p className="text-sm sm:text-base text-neutral-300">
-            Let our AEO compliance directors conduct an institutional pre-audit to qualify your business for AEO green-channel status.
+            Let our AEO compliance directors conduct an institutional pre-audit to qualify your business for the AEO Green Channel and fast-track statutory approvals.
           </p>
           <div className="pt-3 flex flex-wrap justify-center gap-4">
             <Button href="/request-consultation" variant="secondary" size="md">
@@ -273,3 +288,4 @@ export default function AeoGreenPage() {
     </div>
   );
 }
+

@@ -16,62 +16,65 @@ export const metadata: Metadata = getPageMetadata('servicesWarehousingSolutions'
 
 
 const serviceData = {
-  badge: 'Strategic Warehousing & Distribution',
-  title: 'Warehousing Solutions for Exporters',
+  badge: 'Warehousing and Logistics Practice',
+  title:
+    'Warehousing Solutions for Exporters: Bonded Warehouse Storage & Inventory Management',
   intro:
-    'As an export consultant, warehousing is not just about storage—it is a strategic function that supports compliance, efficiency, and cost optimization in global trade.',
+    'Comprehensive warehousing solutions and warehouse logistics for exporters, providing bonded warehouse storage, advanced inventory management, and WMS integration.',
   bgImage: '/images/services/warehousing-solutions.jpg',
+  imageAlt:
+    'Warehousing solutions for exporters - bonded warehouse storage, WMS inventory management, and warehouse logistics | SkyLink Global',
   slug: 'warehousing-solutions',
   highlights: [
-    { label: 'Facility Types', value: 'Bonded & Non-Bonded' },
-    { label: 'Inventory Tech', value: 'WMS & RFID/Barcode' },
-    { label: 'Value-Addition', value: 'Kitting, Labeling & QC' },
-    { label: 'Logistics Link', value: 'Port & Forwarder Integrated' },
+    { label: 'Storage Model', value: 'Bonded Warehouse & Storage' },
+    { label: 'Inventory Tech', value: 'WMS & Inventory Management' },
+    { label: 'Operations Scope', value: 'Warehousing and Logistics' },
+    { label: 'Distribution Link', value: 'Export Warehouse Logistics' },
   ],
   sections: [
     {
       number: '01',
-      title: 'Bonded & Non-Bonded Warehouses',
+      title: 'Bonded Warehouse & Warehouse Storage Solutions',
       icon: Warehouse,
       points: [
-        'Bonded warehouses allow duty-free storage until goods are cleared for export, easing cash-flow pressure.',
-        'Non-bonded warehouses provide secure domestic storage before shipment.',
-        'Consultants help exporters choose the right facility based on product type and regulatory requirements.',
+        'Operating bonded warehouse facilities that permit duty-deferred warehouse storage until goods are cleared for export, optimizing working capital.',
+        'Providing secure non-bonded warehousing facilities for domestic cargo staging, consolidation, and pre-shipment preparation.',
+        'Guiding exporters in selecting appropriate warehouse storage options aligned with product specifications, customs regulations, and volume requirements.',
       ],
     },
     {
       number: '02',
-      title: 'Inventory & Compliance Management',
+      title: 'Inventory Management & WMS Tracking Systems',
       icon: Boxes,
       points: [
-        'Implementation of Warehouse Management Systems (WMS) for real-time stock visibility.',
-        'Ensuring compliance with customs, GST, and export documentation requirements.',
-        'RFID/barcode tracking for accuracy and audit readiness.',
+        'Deploying an automated warehouse management system (WMS) for real-time stock visibility and accurate inventory management.',
+        'Utilizing barcode and RFID tracking to support rigorous warehouse management and regulatory audit readiness.',
+        'Aligning digital inventory records with customs, GST, and statutory export documentation requirements.',
       ],
     },
     {
       number: '03',
-      title: 'Value-Added Services',
+      title: 'Value-Added Services & Warehouse Management',
       icon: Layers,
       points: [
-        'Packaging, labeling, palletization tailored to buyer and country-specific standards.',
-        'Quality checks and certifications before dispatch.',
-        'Consolidation and de-consolidation services to optimize freight costs.',
+        'Export packaging, labeling, kitting, and palletization executed under disciplined warehouse management protocols.',
+        'Pre-dispatch quality checks and cargo verification ensuring compliance with buyer and destination country standards.',
+        'Cargo consolidation and de-consolidation operations designed to streamline outbound warehouse logistics.',
       ],
     },
     {
       number: '04',
-      title: 'Distribution & Logistics Integration',
+      title: 'Warehousing and Logistics Integration & Distribution',
       icon: Truck,
       points: [
-        'Coordination with freight forwarders for smooth cargo movement to ports.',
-        'Route planning and last-mile delivery support.',
-        'Contingency arrangements for alternate storage or dispatch in case of disruptions.',
+        'Integrating warehousing and logistics operations with freight forwarders for smooth cargo movement to gateway ports.',
+        'Coordinating transportation routes and dispatch schedules to optimize regional warehouse logistics.',
+        'Establishing contingency storage arrangements to mitigate supply chain disruptions and protect shipment delivery timelines.',
       ],
     },
   ],
   conclusion:
-    'Warehousing solutions form a critical link in the export supply chain. By leveraging bonded facilities, advanced inventory systems, and value-added services, exporters can reduce costs, ensure compliance, and maintain reliability in international markets.',
+    'Strategic warehousing solutions form a critical link in the export supply chain. By combining bonded warehouse storage, an automated warehouse management system (WMS), precise inventory management, and integrated warehousing and logistics, exporters optimize costs and maintain reliable international delivery.',
 };
 
 export default function WarehousingSolutionsPage() {
@@ -83,9 +86,9 @@ export default function WarehousingSolutionsPage() {
     description: serviceData.intro,
     features: serviceData.sections.flatMap((s) => s.points),
     benefits: [
-      'Duty-free storage in bonded facilities easing cash-flow pressure',
-      'Real-time inventory visibility via advanced WMS tracking',
-      'Country-specific packaging, palletization, and quality compliance',
+      'Duty-deferred storage in bonded warehouse facilities easing cash flow',
+      'Real-time inventory management and tracking via an advanced warehouse management system (WMS)',
+      'Value-added packaging, palletization, and export warehouse logistics integration',
     ],
     faqs: [],
     seoTitle: metadata.title as string,
@@ -100,6 +103,7 @@ export default function WarehousingSolutionsPage() {
         title={serviceData.title}
         intro={serviceData.intro}
         bgImage={serviceData.bgImage}
+        imageAlt={serviceData.imageAlt}
         sections={serviceData.sections}
         conclusion={serviceData.conclusion}
         highlights={serviceData.highlights}

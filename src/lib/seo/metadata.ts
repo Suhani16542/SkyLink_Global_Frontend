@@ -25,6 +25,7 @@ export function constructMetadata(params: SEOMetadataParams = {}): Metadata {
     title,
     description = SEO_DEFAULTS.description,
     path = '',
+    canonical: explicitCanonical,
     image = siteConfig.ogImage,
     keywords = [],
     primaryKeyword,
@@ -40,7 +41,7 @@ export function constructMetadata(params: SEOMetadataParams = {}): Metadata {
     authors,
   } = params;
 
-  const canonical = getCanonicalUrl(path);
+  const canonical = getCanonicalUrl(explicitCanonical || path);
   const formattedTitle = title || SEO_DEFAULTS.defaultTitle;
   const metaDescription = description || SEO_DEFAULTS.description;
   const resolvedOgTitle = ogTitle || formattedTitle;
@@ -152,6 +153,7 @@ export function getPageMetadata(
     title: overrides.title || entry.title,
     description: overrides.description || entry.description,
     path: overrides.path || entry.path,
+    canonical: overrides.canonical || entry.canonical,
     image: overrides.image || entry.ogImage,
     primaryKeyword: overrides.primaryKeyword ?? entry.primaryKeyword,
     secondaryKeywords: overrides.secondaryKeywords ?? entry.secondaryKeywords,
