@@ -277,10 +277,12 @@ export function mapBackendBlogToEnriched(b: any): EnrichedBlogPost {
   };
 }
 
-export async function getAllBlogPosts(): Promise<EnrichedBlogPost[]> {
+export async function getAllBlogPosts(options?: { timeoutMs?: number }): Promise<EnrichedBlogPost[]> {
   try {
     const { getPublicBlogs } = await import('@/lib/api/blogs');
-    const res = await getPublicBlogs();
+    const res = await getPublicBlogs(undefined, {
+      timeoutMs: options?.timeoutMs ?? 5000,
+    });
     if (res.success && res.data) {
       const list = Array.isArray(res.data) ? res.data : (res.data as any).blogs;
       if (Array.isArray(list) && list.length > 0) {
@@ -291,13 +293,38 @@ export async function getAllBlogPosts(): Promise<EnrichedBlogPost[]> {
   return blogPostsData;
 }
 
-export async function getBlogPostBySlug(slug: string): Promise<EnrichedBlogPost | undefined> {
+export async function getPublishedBlogPostsForSitemap(): Promise<EnrichedBlogPost[]> {
+  try {
+    const { getPublicBlogs } = await import('@/lib/api/blogs');
+    const res = await getPublicBlogs(undefined, {
+      timeoutMs: 3500,
+      next: { revalidate: 3600 },
+    });
+    if (res.success && res.data) {
+      const list = Array.isArray(res.data) ? res.data : (res.data as any).blogs;
+      if (Array.isArray(list) && list.length > 0) {
+        return list
+          .filter((item: any) => !item.status || item.status.toLowerCase() === 'published')
+          .map(mapBackendBlogToEnriched);
+      }
+    }
+  } catch {}
+  // Return empty list on complete API failure to avoid injecting unverified/stale mock URLs into sitemap
+  return [];
+}
+
+export async function getBlogPostBySlug(
+  slug: string,
+  options?: { timeoutMs?: number }
+): Promise<EnrichedBlogPost | undefined> {
   const cleanSlug = typeof slug === 'string' ? slug.trim() : String(slug || '');
   if (!cleanSlug || cleanSlug === '[object Object]') return undefined;
 
   try {
     const { getPublicBlogBySlug } = await import('@/lib/api/blogs');
-    const res = await getPublicBlogBySlug(cleanSlug);
+    const res = await getPublicBlogBySlug(cleanSlug, {
+      timeoutMs: options?.timeoutMs ?? 5000,
+    });
     if (res.success && res.data) {
       return mapBackendBlogToEnriched(res.data);
     }

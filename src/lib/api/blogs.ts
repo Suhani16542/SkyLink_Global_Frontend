@@ -84,19 +84,28 @@ export interface ImageUploadResponse {
 /**
  * Fetch all public blogs
  */
-export async function getPublicBlogs(params?: {
-  page?: number;
-  limit?: number;
-  category?: string;
-  search?: string;
-}): Promise<ApiResponse<BlogItem[] | { blogs: BlogItem[]; pagination?: any }>> {
+export async function getPublicBlogs(
+  params?: {
+    page?: number;
+    limit?: number;
+    category?: string;
+    search?: string;
+  },
+  options?: {
+    timeoutMs?: number;
+    cache?: RequestCache;
+    next?: { revalidate?: number | false; tags?: string[] };
+  }
+): Promise<ApiResponse<BlogItem[] | { blogs: BlogItem[]; pagination?: any }>> {
   return apiClient<BlogItem[] | { blogs: BlogItem[]; pagination?: any }>(
     API_ENDPOINTS.blogs.list,
     {
       method: 'GET',
       params,
       skipAuth: true,
-      cache: 'no-store',
+      cache: options?.cache ?? 'no-store',
+      timeoutMs: options?.timeoutMs ?? 8000,
+      ...(options?.next ? { next: options.next } : {}),
     }
   );
 }
@@ -104,11 +113,20 @@ export async function getPublicBlogs(params?: {
 /**
  * Fetch a single public blog by slug
  */
-export async function getPublicBlogBySlug(slug: string): Promise<ApiResponse<BlogItem>> {
+export async function getPublicBlogBySlug(
+  slug: string,
+  options?: {
+    timeoutMs?: number;
+    cache?: RequestCache;
+    next?: { revalidate?: number | false; tags?: string[] };
+  }
+): Promise<ApiResponse<BlogItem>> {
   return apiClient<BlogItem>(API_ENDPOINTS.blogs.bySlug(slug), {
     method: 'GET',
     skipAuth: true,
-    cache: 'no-store',
+    cache: options?.cache ?? 'no-store',
+    timeoutMs: options?.timeoutMs ?? 8000,
+    ...(options?.next ? { next: options.next } : {}),
   });
 }
 

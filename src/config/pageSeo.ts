@@ -207,6 +207,30 @@ export const pageSeoRegistry: Record<string, PageSeoEntry> = {
     keywords: [],
   },
 
+  servicesColdChainSolutions: {
+    path: '/services/cold-chain-solutions',
+    title: 'Cold Chain Solutions: GDP Reefer Logistics & IoT Telemetry | SkyLink Global',
+    description:
+      'End-to-end temperature-controlled cold chain logistics for pharmaceuticals, seafood, and perishables with real-time IoT monitoring and priority port release.',
+    primaryKeyword: 'cold chain solutions',
+    secondaryKeywords: [
+      'cold chain logistics',
+      'temperature controlled logistics',
+      'pharma cold chain',
+      'reefer container shipping',
+    ],
+    keywords: [
+      'cold chain solutions',
+      'cold chain logistics',
+      'temperature controlled logistics',
+      'pharma cold chain',
+      'reefer container shipping',
+    ],
+    ogTitle: 'Cold Chain Solutions: GDP Reefer Logistics & IoT Telemetry | SkyLink Global',
+    ogDescription:
+      'End-to-end temperature-controlled cold chain logistics for pharmaceuticals, seafood, and perishables with real-time IoT monitoring and priority port release.',
+  },
+
   servicesWarehousingSolutions: {
     path: '/services/warehousing-solutions',
     title: 'Warehousing Solutions for Exporters | Bonded & Non-Bonded Storage',

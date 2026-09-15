@@ -18,6 +18,7 @@ export interface ApiRequestOptions extends Omit<RequestInit, 'body'> {
   body?: any;
   token?: string;
   skipAuth?: boolean;
+  timeoutMs?: number;
 }
 
 export const AUTH_TOKEN_KEY = 'skylink_jwt_token';
@@ -54,7 +55,7 @@ export async function apiClient<T = unknown>(
   endpoint: string,
   options: ApiRequestOptions = {}
 ): Promise<ApiResponse<T>> {
-  const { params, headers = {}, body, token, skipAuth, ...restOptions } = options;
+  const { params, headers = {}, body, token, skipAuth, timeoutMs = 8000, signal, ...restOptions } = options;
 
   // Build the full URL
   let fullUrl: string;
@@ -121,12 +122,23 @@ export async function apiClient<T = unknown>(
     reqHeaders['Accept'] = 'application/json';
   }
 
+  const controller = new AbortController();
+  let timer: NodeJS.Timeout | null = null;
+  if (timeoutMs > 0) {
+    timer = setTimeout(() => controller.abort(), timeoutMs);
+  }
+  if (signal) {
+    signal.addEventListener('abort', () => controller.abort());
+  }
+
   try {
     const response = await fetch(fullUrl, {
       ...restOptions,
       headers: reqHeaders,
       body: reqBody,
+      signal: controller.signal,
     });
+    if (timer) clearTimeout(timer);
 
     const contentType = response.headers.get('content-type') || '';
     let parsedData: any = null;
