@@ -10,7 +10,7 @@ export const siteConfig = {
   ogImage: `${env.siteUrl}/images/og-image.jpg`,
   contact: {
     email: 'connect@skylinkglobal.in',
-    phone: '+91-9512114113',
+    phone: '+91 95121 14113',
     whatsapp: '+919512114113',
     supportHours: 'Mon - Sat: 9:00 AM - 7:00 PM IST',
     address: 'International Trade Tower, Corporate Logistics Hub, India',
