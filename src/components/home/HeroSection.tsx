@@ -79,6 +79,7 @@ const PLAYBACK_RATE = 1.15; // 1.15x energetic playback speed
 
 export function HeroSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isMounted, setIsMounted] = useState(false);
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
 
   const nextSlide = useCallback(() => {
@@ -87,6 +88,11 @@ export function HeroSection() {
 
   const prevSlide = useCallback(() => {
     setCurrentIndex((prev) => (prev - 1 + HERO_SLIDES.length) % HERO_SLIDES.length);
+  }, []);
+
+  // Set isMounted on client hydration
+  useEffect(() => {
+    setIsMounted(true);
   }, []);
 
   // Automatic slide rotation
@@ -100,6 +106,8 @@ export function HeroSection() {
 
   // Ensure active video is playing and preheat upcoming video
   useEffect(() => {
+    if (!isMounted) return;
+
     const activeVideo = videoRefs.current[currentIndex];
     if (activeVideo) {
       activeVideo.muted = true;
@@ -121,7 +129,7 @@ export function HeroSection() {
       nextVideo.playbackRate = PLAYBACK_RATE;
       nextVideo.play().catch(() => {});
     }
-  }, [currentIndex]);
+  }, [currentIndex, isMounted]);
 
   const activeSlide = HERO_SLIDES[currentIndex];
 
@@ -133,6 +141,9 @@ export function HeroSection() {
       {/* ========================================================================= */}
       {HERO_SLIDES.map((slide, idx) => {
         const isActive = idx === currentIndex;
+        const isNext = idx === (currentIndex + 1) % HERO_SLIDES.length;
+        const shouldRenderVideo = isMounted && (isActive || isNext);
+
         return (
           <div
             key={slide.id}
@@ -153,21 +164,23 @@ export function HeroSection() {
             </div>
 
             {/* Pure logistics video element - clear, bright, uninterrupted at 1.15x speed */}
-            <video
-              ref={(el) => {
-                videoRefs.current[idx] = el;
-              }}
-              autoPlay
-              loop
-              muted
-              playsInline
-              preload={isActive ? 'metadata' : 'none'}
-              poster={slide.fallbackPoster}
-              className="absolute inset-0 w-full h-full object-cover"
-            >
-              <source src={slide.videoLocal} type="video/mp4" />
-              <source src={slide.videoCdn} type="video/mp4" />
-            </video>
+            {shouldRenderVideo && (
+              <video
+                ref={(el) => {
+                  videoRefs.current[idx] = el;
+                }}
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload={isActive ? 'metadata' : 'none'}
+                poster={slide.fallbackPoster}
+                className="absolute inset-0 w-full h-full object-cover"
+              >
+                <source src={slide.videoLocal} type="video/mp4" />
+                <source src={slide.videoCdn} type="video/mp4" />
+              </video>
+            )}
           </div>
         );
       })}
