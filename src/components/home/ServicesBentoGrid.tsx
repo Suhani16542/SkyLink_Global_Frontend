@@ -256,7 +256,6 @@ export function ServicesBentoGrid({ services }: ServicesBentoGridProps) {
                     fill
                     sizes="(max-width: 1024px) 100vw, 40vw"
                     className="object-cover object-center transition-all duration-700 hover:scale-105"
-                    priority
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#07192D]/95 via-[#07192D]/40 to-transparent" />
 

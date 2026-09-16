@@ -115,7 +115,6 @@ export function BuiltToBridgeSection() {
                   fill
                   sizes="(max-width: 768px) 100vw, 42vw"
                   className="object-cover object-center group-hover:scale-104 transition-transform duration-700"
-                  priority
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#07192D]/85 via-transparent to-transparent" />
                 

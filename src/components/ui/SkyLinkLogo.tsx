@@ -47,8 +47,7 @@ export function SkyLinkLogo({
         height={378}
         priority={priority}
         className={`${selectedSizeClass} object-contain`}
-        quality={100}
-        unoptimized
+        quality={90}
       />
     </div>
   );

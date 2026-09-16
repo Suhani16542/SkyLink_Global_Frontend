@@ -155,7 +155,7 @@ export const otherIndustriesDetailData: Record<string, OtherIndustryDetail> = {
     ctaTitle: 'Synchronize Your Automotive Supply Line Today',
     ctaDescription:
       'Connect with our automotive logistics desk to design zero-stoppage JIT transport routes and optimized customs clearance protocols.',
-    seoTitle: 'Automotive & Auto Components Logistics | SkyLink Global Services',
+    seoTitle: 'Automotive & Auto Components Logistics',
     seoDescription:
       'JIT line-side delivery, CKD/SKD automotive component forwarding, IATF 16949 compliance, and expedited customs clearance for global OEMs.',
   },
@@ -262,7 +262,7 @@ export const otherIndustriesDetailData: Record<string, OtherIndustryDetail> = {
     ctaTitle: 'Plan Your Heavy Industrial Cargo Project',
     ctaDescription:
       'Speak to our project cargo engineers for route feasibility surveys, breakbulk vessel bookings, and EPCG statutory exemptions.',
-    seoTitle: 'Heavy Engineering & Project Cargo Logistics | SkyLink Global Services',
+    seoTitle: 'Heavy Engineering & Project Cargo Logistics',
     seoDescription:
       'Over-Dimensional Cargo (ODC) shipping, breakbulk vessel chartering, EPCG zero-duty clearance, and turnkey factory relocation logistics.',
   },
@@ -369,7 +369,7 @@ export const otherIndustriesDetailData: Record<string, OtherIndustryDetail> = {
     ctaTitle: 'Safeguard Your High-Tech Cargo Movements',
     ctaDescription:
       'Consult our high tech logistics specialists for electronics supply chain solutions, anti-static packaging, TAPA-certified transit security, and fast-track BIS compliance.',
-    seoTitle: 'High Tech Logistics & Electronics Supply Chain Solutions | SkyLink',
+    seoTitle: 'High Tech Logistics & Electronics Supply Chain Solutions',
     seoDescription:
       'SkyLink Global provides high tech logistics, electronics supply chain solutions and semiconductor logistics for secure, climate-controlled global shipments.',
   },
@@ -378,52 +378,53 @@ export const otherIndustriesDetailData: Record<string, OtherIndustryDetail> = {
     id: 'textiles-apparel',
     title: 'Textiles, Apparel & Garments',
     badge: 'Fashion & Global Apparel EXIM',
-    heroTitle: 'Rapid Seasonal Fashion & Garment-on-Hanger (GOH) Logistics',
+    heroTitle: 'Global Textile Logistics & Garment Export Shipping Solutions',
     heroDescription:
-      'Wrinkle-free Garment-on-Hanger containerization, high-velocity seasonal air charters to European and American retail hubs, and optimized duty drawback / RoSCTL incentive maximization.',
+      'Specialized apparel export logistics with wrinkle-free Garment-on-Hanger (GOH) containerization, high-velocity fashion logistics solutions, and dedicated air charters to global retail hubs with optimized RoSCTL compliance.',
     telemetryProtocol: 'GOH & RoSCTL Fast-Track Active',
     heroImage:
       'https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?q=80&w=1200&auto=format&fit=crop',
-    heroImageAlt: 'Designer clothing racks and garment manufacturing export warehouse',
+    heroImageAlt:
+      'Textile logistics and apparel export logistics warehouse with garment-on-hanger racks | SkyLink Global',
     metrics: [
       { label: 'Air Transit to EU/US', value: '48 - 72 Hrs', subtext: 'Dedicated apparel air cargo allocations' },
       { label: 'RoSCTL & Drawback', value: '100% Audit', subtext: 'Maximizing export duty incentives' },
       { label: 'GOH Container Capacity', value: '15,000+ pcs', subtext: 'Custom string and bar configurations' },
     ],
     capabilitiesBadge: 'Retail Velocity',
-    capabilitiesTitle: 'End-to-End Apparel & Fabric Logistics',
+    capabilitiesTitle: 'Comprehensive Fashion Logistics Services & Supply Chain Capabilities',
     capabilitiesSubtitle:
-      'Speed-to-shelf distribution models engineered to keep fast-fashion retailers ahead of seasonal demand.',
+      'Speed-to-shelf fashion retail logistics and garment logistics models engineered to keep apparel brands ahead of seasonal consumer demand.',
     capabilities: [
       {
-        title: 'Garment-on-Hanger (GOH) Systems',
+        title: 'Garment-on-Hanger (GOH) & Apparel Logistics',
         badge: 'Store-Ready Delivery',
         description:
-          'Converted ocean and air containers fitted with multi-tier bar and string systems allowing apparel to ship without pressing or folding.',
+          'Converted ocean and air containers fitted with multi-tier bar and string systems, delivering store-ready apparel logistics without creasing or folding.',
         highlights: ['Single & double tier bar configurations', 'Zero creasing / store ready', 'Anti-mildew moisture liners'],
         iconName: 'Shirt',
       },
       {
-        title: 'Fast-Fashion Peak Season Charters',
+        title: 'Fast-Fashion Logistics & Peak Charters',
         badge: 'Time-Critical Air',
         description:
-          'Guaranteed space commitments and split-charter options during Autumn/Winter and Spring/Summer retail launch deadlines.',
+          'Guaranteed space allocations and dedicated air charters supporting time-sensitive fashion logistics during Autumn/Winter and Spring/Summer retail launch windows.',
         highlights: ['Direct-to-store hub routing', 'Priority tarmac boarding', 'Real-time carton-level tracking'],
         iconName: 'Clock',
       },
       {
-        title: 'Duty Drawback & RoSCTL Advisory',
+        title: 'Textile Freight Forwarding & RoSCTL Advisory',
         badge: 'Export Incentive Desk',
         description:
-          'Seamless management of Rebate of State and Central Taxes and Levies (RoSCTL), duty drawback filings, and Advance Authorizations.',
+          'Seamless textile freight forwarding backed by expert management of Rebate of State and Central Taxes and Levies (RoSCTL), duty drawback filings, and export incentive compliance.',
         highlights: ['Automated EDI drawback claim reconciliation', 'Advance Authorization closure audits', 'Zero tax leakage'],
         iconName: 'ShieldCheck',
       },
     ],
     challengesBadge: 'Textile Risk Governance',
-    challengesTitle: 'Addressing Apparel Supply Chain Complexities',
+    challengesTitle: 'Overcoming Textile & Garment Logistics Challenges',
     challengesSubtitle:
-      'How SkyLink prevents humidity-induced mold, season-miss penalties, and customs documentation delays.',
+      'How SkyLink provides resilient fashion logistics solutions to prevent ocean transit mold, missed retail launch windows, and customs clearance bottlenecks.',
     challengesAndSolutions: [
       {
         challenge:
@@ -473,12 +474,12 @@ export const otherIndustriesDetailData: Record<string, OtherIndustryDetail> = {
         skylinkStandard: 'High-cube container volumetric optimization, ISPM-15 certified fumigation',
       },
     ],
-    ctaTitle: 'Accelerate Your Apparel To Global Shelves',
+    ctaTitle: 'Optimize Your Textile & Garment Export Shipping Today',
     ctaDescription:
-      'Contact our fashion logistics specialists for GOH ocean container bookings, seasonal air allocations, and export incentive optimization.',
-    seoTitle: 'Textiles & Apparel Logistics | SkyLink Global Services',
+      'Connect with our textile logistics specialists for advanced apparel logistics, Garment-on-Hanger container bookings, fashion retail logistics, and export incentive optimization.',
+    seoTitle: 'Textile Logistics, Apparel & Fashion Logistics Solutions',
     seoDescription:
-      'Garment-on-Hanger (GOH) shipping, fashion air charters, RoSCTL and duty drawback compliance, and fast-fashion global distribution.',
+      'SkyLink Global delivers expert textile logistics, apparel logistics, fashion logistics services, textile freight forwarding, and garment export shipping.',
   },
 
   'food-beverages': {
@@ -583,7 +584,7 @@ export const otherIndustriesDetailData: Record<string, OtherIndustryDetail> = {
     ctaTitle: 'Protect Your Food & Beverage Supply Chain Today',
     ctaDescription:
       'Connect with our food logistics companies desk for refrigerated food transportation, FSSAI clearance, and frozen food logistics solutions.',
-    seoTitle: 'Food Logistics & Cold Chain Transportation Services | SkyLink Global',
+    seoTitle: 'Food Logistics & Cold Chain Transportation Services',
     seoDescription:
       'SkyLink Global delivers reliable food logistics, food cold chain logistics, and refrigerated transportation services for global food and beverage exporters.',
   },
@@ -592,52 +593,53 @@ export const otherIndustriesDetailData: Record<string, OtherIndustryDetail> = {
     id: 'agriculture-agro',
     title: 'Agriculture & Agro Commodities',
     badge: 'Bulk Agro & Perishables EXIM',
-    heroTitle: 'Global Agricultural Commodity Freight & APEDA Compliance',
+    heroTitle: 'Global Agricultural Logistics & Bulk Commodity Shipping Solutions',
     heroDescription:
-      'Bulk grain vessel chartering, containerized pulse and spice exports, plant quarantine inspection coordination, and seamless APEDA / Phytosanitary certification for agribusiness leaders.',
+      'Reliable agricultural logistics and agricultural commodity logistics, offering bulk grain vessel charters, containerized pulse and spice export handling, and seamless APEDA and phytosanitary trade compliance.',
     telemetryProtocol: 'APEDA & Phytosanitary Protocol Active',
     heroImage:
       'https://images.unsplash.com/photo-1574943320219-553eb213f72d?q=80&w=1200&auto=format&fit=crop',
-    heroImageAlt: 'Golden wheat and grain harvest agricultural commodities field',
+    heroImageAlt:
+      'Agricultural logistics and bulk agricultural cargo shipping for global grain exports | SkyLink Global',
     metrics: [
       { label: 'Bulk Vessel Charters', value: '50k+ MT', subtext: 'Handysize and Supramax chartering' },
       { label: 'Phyto Certificate Turnaround', value: 'Same Day', subtext: 'Direct plant quarantine liaison' },
       { label: 'Container Cleanliness', value: 'Food-Grade', subtext: 'Fumigated and silica-lined containers' },
     ],
     capabilitiesBadge: 'Commodity Flow',
-    capabilitiesTitle: 'Agribusiness Freight Capabilities',
+    capabilitiesTitle: 'Agri Export Logistics & Agricultural Freight Forwarding Capabilities',
     capabilitiesSubtitle:
-      'High-tonnage handling, multi-modal rail rakes, and statutory certification for raw agricultural exports.',
+      'High-tonnage bulk agricultural cargo handling, multimodal rail transport, and agriculture supply chain logistics for export markets.',
     capabilities: [
       {
-        title: 'Bulk & Breakbulk Vessel Charters',
-        badge: 'Chartering Desk',
+        title: 'Bulk & Breakbulk Agricultural Cargo Shipping',
+        badge: 'Vessel Charter Desk',
         description:
-          'Full and part-cargo chartering for bulk wheat, rice, corn, sugar, and soy meal with high-speed port grab discharge.',
+          'Full and part-cargo chartering for bulk agricultural cargo, including wheat, rice, corn, sugar, and soy meal with high-speed port grab discharge.',
         highlights: ['Supramax / Panamax chartering', 'Laytime & demurrage management', 'Stevedoring & draft surveys'],
         iconName: 'Sprout',
       },
       {
-        title: 'Containerized Agri Freight & Liners',
+        title: 'Containerized Agri Commodity Shipping & Liners',
         badge: 'Food-Grade Containers',
         description:
-          'Heavy-duty liner bags and moisture-absorbing container blankets safeguarding containerized basmati rice, spices, and coffee beans.',
+          'Specialized containerized agri commodity shipping utilizing heavy-duty dry liner bags and moisture-absorbing blankets for rice, spices, and coffee.',
         highlights: ['Bulk dry liner installation', 'Kraft paper container lining', 'Pre-stuffing container odor wash'],
         iconName: 'Layers',
       },
       {
-        title: 'APEDA, Plant Quarantine & Fumigation',
+        title: 'Agricultural Export Shipping & APEDA Compliance',
         badge: 'Statutory Liaison',
         description:
-          'End-to-end processing of Phytosanitary Certificates (PSC), Methyl Bromide / Phosphine fumigation certificates, and APEDA clearance.',
+          'End-to-end agricultural export shipping support with phytosanitary inspection liaison, fumigation certificates, and APEDA clearance.',
         highlights: ['Certified pest management', 'Export inspection council compliance', 'Non-GMO traceability audits'],
         iconName: 'ShieldCheck',
       },
     ],
     challengesBadge: 'Agro Risk Governance',
-    challengesTitle: 'Preventing Infestation & Grain Deterioration',
+    challengesTitle: 'Overcoming Agricultural Commodity Logistics Challenges',
     challengesSubtitle:
-      'How SkyLink overcomes insect infestation, sweating, and strict international phytosanitary quarantine restrictions.',
+      'How SkyLink ranks among trusted agriculture logistics companies to prevent insect infestation, condensation decay, and export quarantine delays.',
     challengesAndSolutions: [
       {
         challenge:
@@ -687,12 +689,12 @@ export const otherIndustriesDetailData: Record<string, OtherIndustryDetail> = {
         skylinkStandard: 'End-to-end phytosanitary inspection liaison, green-channel port clearance',
       },
     ],
-    ctaTitle: 'Export Your Agricultural Produce With Confidence',
+    ctaTitle: 'Optimize Your Agricultural Export Shipping Today',
     ctaDescription:
-      'Connect with our agribusiness trade desk for bulk vessel charter rates, containerized agro freight, and APEDA phytosanitary approvals.',
-    seoTitle: 'Agriculture & Agro Commodities Logistics | SkyLink Global Services',
+      'Partner with our agricultural logistics specialists for reliable agricultural cargo shipping, vessel charters, containerized freight, and end-to-end agriculture supply chain logistics.',
+    seoTitle: 'Agricultural Logistics & Cargo Shipping',
     seoDescription:
-      'Bulk agricultural shipping, APEDA compliance, grain vessel charters, containerized spices freight, and phytosanitary certification.',
+      'SkyLink Global provides agricultural logistics and agricultural freight forwarding, delivering expert agricultural cargo shipping and agri export logistics.',
   },
 
   'chemicals-petrochemicals': {
@@ -797,7 +799,7 @@ export const otherIndustriesDetailData: Record<string, OtherIndustryDetail> = {
     ctaTitle: 'Safely Streamline Your Chemical Supply Chain Logistics',
     ctaDescription:
       'Consult our chemical logistics companies desk for ISO tank logistics, dangerous goods shipping approvals, and expedited port customs clearance.',
-    seoTitle: 'Chemical Logistics & Dangerous Goods Transportation | SkyLink Global',
+    seoTitle: 'Chemical Logistics & Dangerous Goods Transportation',
     seoDescription:
       'SkyLink Global delivers certified chemical logistics, dangerous goods transportation, and ISO tank logistics for hazardous and specialty chemical exporters.',
   },
@@ -806,52 +808,53 @@ export const otherIndustriesDetailData: Record<string, OtherIndustryDetail> = {
     id: 'retail-consumer-goods',
     title: 'Retail & Fast-Moving Consumer Goods',
     badge: 'FMCG & Retail Logistics',
-    heroTitle: 'High-Velocity Multi-Vendor Consolidation & Retail Fulfillment',
+    heroTitle: 'Global Retail Logistics & High-Velocity FMCG Fulfillment Solutions',
     heroDescription:
-      'End-to-end LCL/FCL ocean consolidation, cross-dock barcode labeling, bonded warehousing, and scheduled line-haul replenishment for global retail chains.',
+      'End-to-end retail logistics and consumer goods logistics, providing LCL/FCL buyer consolidation, cross-dock labeling, bonded warehousing, and retail supply chain logistics for global chains.',
     telemetryProtocol: 'EDI & Carton-Level Barcode Tracking Active',
     heroImage:
       'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1200&auto=format&fit=crop',
-    heroImageAlt: 'Modern automated retail distribution warehouse with stacked cargo pallets',
+    heroImageAlt:
+      'Retail logistics and FMCG supply chain warehouse with palletized consumer goods | SkyLink Global',
     metrics: [
       { label: 'Consolidation Hubs', value: 'Global', subtext: 'Key ports across Asia, Europe, and Middle East' },
       { label: 'Order Picking Accuracy', value: '99.9%', subtext: 'Automated barcode scanner validation' },
       { label: 'Port-to-DC Velocity', value: '24 - 48 Hrs', subtext: 'Rapid de-stuffing and cross-dock dispatch' },
     ],
     capabilitiesBadge: 'Omnichannel Precision',
-    capabilitiesTitle: 'Retail Distribution Capabilities',
+    capabilitiesTitle: 'Retail Logistics Services & FMCG Supply Chain Capabilities',
     capabilitiesSubtitle:
-      'Agile supply chain architectures built to reduce inventory holding costs and prevent out-of-stock retail events.',
+      'Agile retail supply chain logistics and 3PL retail logistics architectures built to minimize inventory dwell and prevent stockouts.',
     capabilities: [
       {
-        title: 'Multi-Vendor Buyer’s Consolidation',
+        title: 'Multi-Vendor Buyer’s Consolidation & FMCG Logistics',
         badge: 'Cost Optimization',
         description:
-          'Gathering shipments from dozens of disparate factories into optimized full-container loads (FCL), drastically minimizing ocean freight expenses.',
+          'Gathering shipments from multiple factories into optimized full-container loads (FCL), streamlining FMCG logistics and lowering ocean freight costs.',
         highlights: ['PO management & factory tracking', 'Volumetric container stuffing optimization', 'Single consolidated shipping invoice'],
         iconName: 'ShoppingBag',
       },
       {
-        title: 'Cross-Docking & Value-Added Services',
+        title: 'Cross-Docking & Retail Fulfillment Services',
         badge: 'Zero Storage Dwell',
         description:
-          'Direct transfer of inbound cargo from ocean containers to outbound domestic trucks with palletization, ticketing, and store-ready kitting.',
+          'High-velocity cross-docking and retail fulfillment services providing container de-stuffing, barcoding, security ticketing, and store-ready kitting.',
         highlights: ['Price stickering & retail labeling', 'Security tagging & shrink wrapping', 'Automated sortation by retail zone'],
         iconName: 'Layers',
       },
       {
-        title: 'Bonded Warehouse Distribution',
+        title: 'Bonded Warehouse & 3PL Retail Logistics Distribution',
         badge: 'Duty Deferment',
         description:
-          'Duty-deferred storage at bonded public warehouses, enabling payment of customs duty only when stock is dispatched to retail stores.',
+          'Duty-deferred bonded storage and specialized 3PL retail logistics enabling seamless replenishment and partial customs clearance upon store dispatch.',
         highlights: ['Cash flow duty deferral', 'Customs bonded re-packaging', 'Partial dispatch customs clearances'],
         iconName: 'ShieldCheck',
       },
     ],
     challengesBadge: 'Retail Risk Governance',
-    challengesTitle: 'Eliminating Retail Supply Chain Inefficiencies',
+    challengesTitle: 'Overcoming Retail Supply Chain Logistics Challenges',
     challengesSubtitle:
-      'How SkyLink solves vendor dispatch delays, carton mislabeling, and peak season inventory bottlenecks.',
+      'How SkyLink leads among retail logistics companies and fmcg logistics companies to resolve supplier delays, barcode errors, and seasonal surges.',
     challengesAndSolutions: [
       {
         challenge:
@@ -901,12 +904,12 @@ export const otherIndustriesDetailData: Record<string, OtherIndustryDetail> = {
         skylinkStandard: 'Pre-shipment ISI mark audit, direct port lab liaison, zero customs hold',
       },
     ],
-    ctaTitle: 'Optimize Your Retail Supply Chain Velocity',
+    ctaTitle: 'Elevate Your Retail Logistics & FMCG Supply Chain Today',
     ctaDescription:
-      'Partner with our retail logistics specialists for multi-vendor buyer consolidation, cross-docking, and duty-deferred bonded fulfillment.',
-    seoTitle: 'Retail & Consumer Goods Logistics | SkyLink Global Services',
+      'Partner with our retail logistics specialists for comprehensive consumer goods logistics, multi-vendor buyer consolidation, cross-docking, and retail fulfillment services.',
+    seoTitle: 'Retail Logistics & FMCG Supply Chain Solutions',
     seoDescription:
-      'Buyer consolidation, retail cross-docking, bonded warehouse fulfillment, and FMCG supply chain management.',
+      'SkyLink Global delivers end-to-end retail logistics and FMCG logistics, offering retail fulfillment services and consumer goods logistics worldwide.',
   },
 
   'construction-infrastructure': {
@@ -1011,7 +1014,7 @@ export const otherIndustriesDetailData: Record<string, OtherIndustryDetail> = {
     ctaTitle: 'Safely Mobilize Your Construction Equipment Logistics',
     ctaDescription:
       'Connect with our project cargo freight forwarders for hydraulic trailer planning, breakbulk shipping quotes, and heavy equipment transportation services.',
-    seoTitle: 'Construction Equipment Logistics & Heavy Haul Transportation | SkyLink Global',
+    seoTitle: 'Construction Equipment Logistics & Heavy Haul Transportation',
     seoDescription:
       'SkyLink Global offers construction equipment logistics, heavy haul transportation, breakbulk shipping, and oversized cargo delivery for infrastructure projects.',
   },
@@ -1020,36 +1023,37 @@ export const otherIndustriesDetailData: Record<string, OtherIndustryDetail> = {
     id: 'renewable-energy',
     title: 'Renewable Energy & Clean Tech',
     badge: 'Solar, Wind & Clean Energy EXIM',
-    heroTitle: 'Turnkey Solar PV & Wind Power Infrastructure Logistics',
+    heroTitle: 'Turnkey Renewable Energy Logistics & Clean Power Infrastructure',
     heroDescription:
-      'Dedicated ocean chartering for ultra-long wind turbine blades, high-cube container flows for photovoltaic solar modules, and concessional ALMM / BCD customs duty optimization.',
+      'End-to-end renewable energy logistics delivering specialized wind turbine transportation, high-cube solar panel logistics, and concessional ALMM / BCD customs duty optimization.',
     telemetryProtocol: 'Clean Energy Fast-Track Protocol Active',
     heroImage:
       'https://images.unsplash.com/photo-1509391365360-2e959784a276?q=80&w=1200&auto=format&fit=crop',
-    heroImageAlt: 'Large scale solar farm photovoltaic panels under blue sky with wind turbines',
+    heroImageAlt:
+      'Renewable energy logistics for solar panel logistics and wind turbine transportation | SkyLink Global',
     metrics: [
       { label: 'Solar Capacity Moved', value: '2.5+ GW', subtext: 'Modules and inverters handled' },
       { label: 'Wind Blade Length', value: 'Up to 85m', subtext: 'Specialized steerable blade trailers' },
       { label: 'ALMM / BCD Clearance', value: 'Zero-Hold', subtext: 'Approved List of Module Manufacturers audit' },
     ],
     capabilitiesBadge: 'Clean Energy Execution',
-    capabilitiesTitle: 'Renewable Energy Supply Chain Capabilities',
+    capabilitiesTitle: 'Renewable Energy Project Logistics & Supply Chain Capabilities',
     capabilitiesSubtitle:
-      'Specialized engineering and policy compliance tailored to the high-velocity requirements of mega renewable parks.',
+      'Specialized solar logistics and wind energy logistics engineered to meet the heavy-haul requirements of utility-scale clean energy parks.',
     capabilities: [
       {
-        title: 'High-Volume Solar PV Module Logistics',
+        title: 'High-Volume Solar Panel Logistics & PV Modules',
         badge: 'Massive Container Flows',
         description:
-          'Managing thousands of 40ft High-Cube container arrivals per project with prioritized port terminal discharge and off-dock staging.',
+          'Dedicated solar panel logistics managing thousands of 40ft High-Cube containers per project with prioritized terminal discharge and secure staging.',
         highlights: ['Vertical pallet vibration mitigation', 'Off-dock dedicated staging yard', 'Synchronized multi-truck site convoys'],
         iconName: 'Sun',
       },
       {
-        title: 'Wind Turbine Generator (WTG) Transport',
+        title: 'Wind Turbine Logistics & Heavy Transportation',
         badge: 'Extreme ODC Haulage',
         description:
-          'Transporting 70m to 85m blades, nacelles, and tower sections using specialized extendable trailers with hydraulic steerable dollies.',
+          'Comprehensive wind turbine logistics and wind turbine transportation for 70m–85m blades, nacelles, and tower sections using steerable multi-axle trailers.',
         highlights: ['Extendable triple-telescopic trailers', 'Hydraulic blade lifters for tight mountain bends', 'Complete civil route clearance'],
         iconName: 'Layers',
       },
@@ -1057,15 +1061,15 @@ export const otherIndustriesDetailData: Record<string, OtherIndustryDetail> = {
         title: 'ALMM, BCD & Concessional Customs Advisory',
         badge: 'Regulatory Mastery',
         description:
-          'Navigating Basic Customs Duty (BCD) exemptions, ALMM certification verification, and MNRE project import concessions.',
+          'Navigating Basic Customs Duty (BCD) exemptions, ALMM certification verification, and MNRE project import concessions for renewable installations.',
         highlights: ['MNRE project certificate liaison', 'Advance BCD duty optimization', 'Bonded warehouse project staging'],
         iconName: 'ShieldCheck',
       },
     ],
     challengesBadge: 'Renewable Risk Governance',
-    challengesTitle: 'Preventing Micro-Cracking & Extreme Haulage Hurdles',
+    challengesTitle: 'Overcoming Solar & Wind Farm Logistics Challenges',
     challengesSubtitle:
-      'How SkyLink neutralizes hidden cell micro-fractures, remote site bottlenecks, and changing duty regulations.',
+      'How SkyLink deploys advanced solar energy logistics and offshore wind logistics expertise to eliminate cell micro-cracks, route hurdles, and customs holds.',
     challengesAndSolutions: [
       {
         challenge:
@@ -1115,12 +1119,12 @@ export const otherIndustriesDetailData: Record<string, OtherIndustryDetail> = {
         skylinkStandard: 'IMDG dangerous goods shipping, thermal management audits, site foundation placement',
       },
     ],
-    ctaTitle: 'Energize Your Clean Tech Project Logistics',
+    ctaTitle: 'Power Your Renewable Energy Logistics Projects Today',
     ctaDescription:
-      'Consult our renewable energy logistics team for high-cube solar module allocations, wind blade route engineering, and BCD duty deferment.',
-    seoTitle: 'Renewable Energy & Clean Tech Logistics | SkyLink Global Services',
+      'Consult our renewable energy project logistics specialists for high-volume solar logistics, wind turbine transportation, route surveys, and BCD duty optimization.',
+    seoTitle: 'Renewable Energy Logistics & Solar Freight',
     seoDescription:
-      'Solar PV module ocean freight, wind turbine blade heavy-haul transport, ALMM customs clearance, and BESS energy storage logistics.',
+      'SkyLink Global delivers renewable energy logistics, solar panel logistics, and wind turbine transportation for large-scale renewable energy project logistics.',
   },
 
   'mining-metals': {
@@ -1225,7 +1229,7 @@ export const otherIndustriesDetailData: Record<string, OtherIndustryDetail> = {
     ctaTitle: 'Safely Mobilize Your Bulk Cargo Shipping & Steel Freight',
     ctaDescription:
       'Connect with our bulk cargo shipping companies desk for dry bulk shipping charter rates, break bulk freight quotes, and steel coil shipping allocations.',
-    seoTitle: 'Bulk Cargo Shipping & Steel Coil Freight Services | SkyLink Global',
+    seoTitle: 'Bulk Cargo Shipping & Steel Coil Freight Services',
     seoDescription:
       'SkyLink Global provides bulk cargo shipping, dry bulk transportation, break bulk freight, mineral cargo handling, and specialized steel coil shipping solutions.',
   },
@@ -1332,7 +1336,7 @@ export const otherIndustriesDetailData: Record<string, OtherIndustryDetail> = {
     ctaTitle: 'Partner With a Trusted Ecommerce Logistics Company',
     ctaDescription:
       'Connect with our cross-border team for international ecommerce shipping rates, CSB-V automated customs integration, and scalable ecommerce fulfillment services.',
-    seoTitle: 'E-commerce Logistics Services & Cross-Border Shipping | SkyLink Global',
+    seoTitle: 'E-commerce Logistics Services & Cross-Border Shipping',
     seoDescription:
       'SkyLink Global provides ecommerce logistics services, international shipping, cross-border parcel delivery, and global order fulfillment solutions for brands.',
   },
@@ -1341,52 +1345,53 @@ export const otherIndustriesDetailData: Record<string, OtherIndustryDetail> = {
     id: 'industrial-equipment',
     title: 'Industrial Equipment & Machinery',
     badge: 'Industrial Machinery & Spares EXIM',
-    heroTitle: 'Industrial Machine Tool Forwarding & Duty-Deferred MOOWR Advisory',
+    heroTitle: 'Global Industrial Equipment Logistics & Heavy Machinery Shipping',
     heroDescription:
-      'Precision machine tool forwarding, 24/7 Aircraft-on-Ground (AOG) and emergency plant spare parts couriers, and MOOWR customs bonded manufacturing duty deferral.',
+      'Specialized industrial equipment transportation and machinery shipping, offering 24/7 emergency plant spare parts couriers, precision rigging, and MOOWR duty-deferred customs compliance.',
     telemetryProtocol: 'MOOWR & Precision Rigging Active',
     heroImage:
       'https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=1200&auto=format&fit=crop',
-    heroImageAlt: 'Industrial automated robotic arms and precision factory machinery equipment',
+    heroImageAlt:
+      'Industrial equipment logistics and heavy machinery transportation in modern manufacturing plant | SkyLink Global',
     metrics: [
       { label: 'Emergency Spares Dispatch', value: '< 4 Hours', subtext: 'Immediate tarmac onboarding' },
       { label: 'MOOWR Duty Deferral', value: '100% Deferral', subtext: 'Zero upfront customs duty on imported machinery' },
       { label: 'Calibration Maintenance', value: 'Zero Shock', subtext: 'Air-ride suspension equipped fleet' },
     ],
     capabilitiesBadge: 'Industrial Continuity',
-    capabilitiesTitle: 'Machinery Logistics Capabilities',
+    capabilitiesTitle: 'Machinery Transport Services & Heavy Equipment Shipping Capabilities',
     capabilitiesSubtitle:
-      'Precision transport for delicate electronics-integrated machinery and high-velocity critical spare parts.',
+      'Precision machinery transport and heavy equipment transport engineered for delicate CNC systems, robotic tooling, and critical plant spares.',
     capabilities: [
       {
-        title: 'Precision Machine Tool Handling',
+        title: 'Precision Industrial Equipment Transportation',
         badge: 'Calibrated Equipment',
         description:
-          'Transporting laser cutting machines, robotic cells, and 5-axis CNC machines with shock-cushioned bases preventing calibration loss.',
+          'Specialized industrial equipment transportation for laser cutters, robotic cells, and CNC milling tools with air-ride vibration dampening.',
         highlights: ['Air-ride suspension transport', 'Vibration telemetry logging', 'Cleanroom uncrating and positioning'],
         iconName: 'Wrench',
       },
       {
-        title: 'Critical Spare Parts & Emergency Courier',
+        title: 'Heavy Machinery Shipping & Urgent Spares',
         badge: 'Mission-Critical Speed',
         description:
-          'Rapid air shipment of replacement turbines, hydraulic valves, and electrical boards to resolve plant machinery breakdowns immediately.',
+          'Expedited heavy machinery shipping and next-flight-out couriers for replacement turbine assemblies, hydraulic pumps, and plant controllers.',
         highlights: ['Hand-carry on-board couriers (OBC)', 'Dedicated next-flight-out (NFO) booking', 'Tarmac priority customs clearance'],
         iconName: 'Clock',
       },
       {
-        title: 'MOOWR Scheme Implementation',
+        title: 'MOOWR Scheme & Heavy Machinery Transportation Advisory',
         badge: 'Customs Duty Deferment',
         description:
-          'End-to-end guidance under the Manufacture and Other Operations in Warehouse Regulations (MOOWR), eliminating upfront import duties on capital machinery.',
+          'Comprehensive MOOWR duty deferral implementation paired with international heavy machinery shipping services to eliminate upfront capital import tariffs.',
         highlights: ['MOOWR license application & bond filing', 'Customs bonded warehouse demarcation', 'Duty exemption on exported production'],
         iconName: 'ShieldCheck',
       },
     ],
     challengesBadge: 'Machinery Risk Governance',
-    challengesTitle: 'Protecting Precision Calibration & Avoiding Shutdowns',
+    challengesTitle: 'Overcoming Industrial Equipment Logistics Challenges',
     challengesSubtitle:
-      'How SkyLink prevents optical alignment distortion, hydraulic contamination, and customs classification disputes.',
+      'How SkyLink delivers heavy machinery transportation and heavy equipment shipping solutions that eliminate transit shock, calibration drift, and customs holds.',
     challengesAndSolutions: [
       {
         challenge:
@@ -1436,64 +1441,65 @@ export const otherIndustriesDetailData: Record<string, OtherIndustryDetail> = {
         skylinkStandard: 'Low-bed hydraulic trailers, port mobile crane handling, route civil permits',
       },
     ],
-    ctaTitle: 'Secure Your Machinery Supply Line',
+    ctaTitle: 'Secure Your Industrial Equipment Logistics & Machinery Transport Today',
     ctaDescription:
-      'Consult our industrial equipment specialists for MOOWR duty deferment advice, precision machinery shipping, and urgent spares logistics.',
-    seoTitle: 'Industrial Equipment & Machinery Logistics | SkyLink Global Services',
+      'Partner with our industrial equipment logistics specialists for precision machinery shipping, heavy equipment transport, and MOOWR customs duty deferral.',
+    seoTitle: 'Industrial Equipment Logistics & Machinery Shipping',
     seoDescription:
-      'Machine tool freight forwarding, MOOWR duty deferral scheme, urgent plant spare parts courier, and precision machinery transport.',
+      'SkyLink Global delivers expert industrial equipment logistics, heavy machinery transportation, and international heavy machinery shipping services worldwide.',
   },
 
   other: {
     id: 'other',
     title: 'Other Specialized Industries & Bespoke Trade',
     badge: 'Custom Logistics & Niche Verticals',
-    heroTitle: 'Bespoke Multi-Modal Freight & Niche Trade Advisory',
+    heroTitle: 'Bespoke Custom Logistics & Specialized Shipping Services',
     heroDescription:
-      'Tailored freight forwarding architectures, customized HS code classification, and dedicated trade liaison for unique, emerging, or non-standard commercial cargo verticals.',
+      'Delivering custom logistics solutions and multimodal freight forwarding tailored for non-standard commodities, backed by dedicated trade liaison and customs and logistics expertise.',
     telemetryProtocol: 'Bespoke Trade Protocol Active',
     heroImage:
       'https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=1200&auto=format&fit=crop',
-    heroImageAlt: 'Global cargo container port terminal under dramatic sunset sky',
+    heroImageAlt:
+      'Custom logistics and multimodal freight forwarding at global container terminal | SkyLink Global',
     metrics: [
       { label: 'Custom Trade Protocols', value: '100% Tailored', subtext: 'Customized SOPs for non-standard commodities' },
       { label: 'HS Classification Accuracy', value: 'Guaranteed', subtext: 'In-house customs legal team validation' },
       { label: 'Global Corridor Reach', value: '150+ Countries', subtext: 'Comprehensive partner agency network' },
     ],
     capabilitiesBadge: 'Bespoke Architecture',
-    capabilitiesTitle: 'Custom Trade Engineering Capabilities',
+    capabilitiesTitle: 'Specialized Logistics Services & Custom Trade Capabilities',
     capabilitiesSubtitle:
-      'Solving complex cross-border logistics challenges for innovative, highly regulated, or uncommon commercial goods.',
+      'Comprehensive logistics and customs services designed to solve cross-border challenges for oversized, highly regulated, or uncommon commercial goods.',
     capabilities: [
       {
-        title: 'Bespoke Route & Stowage Engineering',
+        title: 'Oversized Cargo Logistics & Route Engineering',
         badge: 'Non-Standard Cargo',
         description:
-          'Designing tailored multi-modal transport configurations combining air, sea, rail, and road for cargo with unique dimensions or handling requirements.',
+          'Engineering tailored oversized cargo logistics combining air, sea, rail, and road transport for shipments with unique dimensions and handling demands.',
         highlights: ['Hybrid Sea-Air corridor routing', 'Customized container modifications', 'Dedicated transit insurance underwriting'],
         iconName: 'Sparkles',
       },
       {
-        title: 'Tariff Engineering & Classification Advisory',
+        title: 'Tariff Engineering & Customs Advisory Services',
         badge: 'Legal Customs Defense',
         description:
-          'Deep legal and technical analysis of complex multi-part goods to determine optimum HS codes, duty concessions, and statutory documentation.',
+          'In-depth customs advisory services and technical classification analysis to optimize HS codes, statutory documentation, and duty concessions.',
         highlights: ['Advance Ruling applications with customs authorities', 'Exemption notification optimization', 'Anti-dumping duty mitigation'],
         iconName: 'ShieldCheck',
       },
       {
-        title: 'Turnkey Regulatory Liaison',
+        title: 'International Customs & Logistics Regulatory Liaison',
         badge: 'Government Desk',
         description:
-          'Direct coordination with specialized regulatory bodies including DGFT, Wildlife Crime Control, Legal Metrology, and Atomic Energy Regulatory Board.',
+          'Dedicated international customs & logistics liaison managing specialized approvals with DGFT, Legal Metrology, and dual-use SCOMET licensing bodies.',
         highlights: ['SCOMET dual-use license processing', 'Legal Metrology packaged commodity compliance', 'Carnet temporary import clearance'],
         iconName: 'CheckCircle2',
       },
     ],
     challengesBadge: 'Bespoke Risk Governance',
-    challengesTitle: 'Navigating Unprecedented Cross-Border Challenges',
+    challengesTitle: 'Overcoming Complex Customs and Logistics Hurdles',
     challengesSubtitle:
-      'How SkyLink creates new logistics pathways for commodities that standard freight forwarders decline.',
+      'How SkyLink provides custom logistics solutions to establish secure transport corridors for unique commodities that standard freight forwarders decline.',
     challengesAndSolutions: [
       {
         challenge:
@@ -1543,11 +1549,11 @@ export const otherIndustriesDetailData: Record<string, OtherIndustryDetail> = {
         skylinkStandard: 'Technical classification dossier drafting, custom containerized transport',
       },
     ],
-    ctaTitle: 'Have a Unique Logistics Challenge?',
+    ctaTitle: 'Need Tailored Custom Logistics for Your Specialized Cargo?',
     ctaDescription:
-      'Reach out to our bespoke logistics advisory team to design custom trade corridors, regulatory approvals, and specialized transport plans.',
-    seoTitle: 'Bespoke Trade & Specialized Industry Logistics | SkyLink Global Services',
+      'Connect with our custom logistics team for tailored multimodal freight forwarding, specialized shipping services, and expert customs advisory services.',
+    seoTitle: 'Custom Logistics & Specialized Logistics Services',
     seoDescription:
-      'Custom freight forwarding, SCOMET licensing, ATA Carnet handling, tariff engineering, and bespoke multi-modal transport solutions.',
+      'SkyLink Global delivers tailored custom logistics and multimodal freight forwarding, specialized shipping services, and expert customs advisory solutions.',
   },
 };

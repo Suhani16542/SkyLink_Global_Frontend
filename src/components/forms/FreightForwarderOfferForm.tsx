@@ -131,11 +131,12 @@ export function FreightForwarderOfferForm() {
         {/* Row 1: Full Name & Company Name */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label className="block text-xs font-bold text-neutral-700 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
+            <label htmlFor="ff-name" className="block text-xs font-bold text-neutral-700 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
               <User className="w-3.5 h-3.5 text-sky-600" />
               <span>Full Name *</span>
             </label>
             <Input
+              id="ff-name"
               type="text"
               required
               placeholder="e.g. Rahul Sharma"
@@ -146,11 +147,12 @@ export function FreightForwarderOfferForm() {
           </div>
 
           <div>
-            <label className="block text-xs font-bold text-neutral-700 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
+            <label htmlFor="ff-company" className="block text-xs font-bold text-neutral-700 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
               <Building2 className="w-3.5 h-3.5 text-sky-600" />
               <span>Company Name *</span>
             </label>
             <Input
+              id="ff-company"
               type="text"
               required
               placeholder="e.g. Pacific Logistics Pvt Ltd"
@@ -164,11 +166,12 @@ export function FreightForwarderOfferForm() {
         {/* Row 2: Official Email & Phone / WhatsApp */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label className="block text-xs font-bold text-neutral-700 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
+            <label htmlFor="ff-email" className="block text-xs font-bold text-neutral-700 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
               <Mail className="w-3.5 h-3.5 text-sky-600" />
               <span>Official Email *</span>
             </label>
             <Input
+              id="ff-email"
               type="email"
               required
               placeholder="partner@company.com"
@@ -179,11 +182,12 @@ export function FreightForwarderOfferForm() {
           </div>
 
           <div>
-            <label className="block text-xs font-bold text-neutral-700 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
+            <label htmlFor="ff-phone" className="block text-xs font-bold text-neutral-700 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
               <Phone className="w-3.5 h-3.5 text-sky-600" />
               <span>Phone / WhatsApp *</span>
             </label>
             <Input
+              id="ff-phone"
               type="tel"
               required
               placeholder="+91 98765 43210"
@@ -197,11 +201,12 @@ export function FreightForwarderOfferForm() {
         {/* Row 3: Service / Trade Lane & Proposed Freight Offer / Rate */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label className="block text-xs font-bold text-neutral-700 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
+            <label htmlFor="ff-tradelane" className="block text-xs font-bold text-neutral-700 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
               <Globe2 className="w-3.5 h-3.5 text-sky-600" />
               <span>Service / Trade Lane *</span>
             </label>
             <Input
+              id="ff-tradelane"
               type="text"
               required
               placeholder="e.g. Ocean FCL: Nhava Sheva to Rotterdam"
@@ -212,11 +217,12 @@ export function FreightForwarderOfferForm() {
           </div>
 
           <div>
-            <label className="block text-xs font-bold text-neutral-700 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
+            <label htmlFor="ff-rate" className="block text-xs font-bold text-neutral-700 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
               <DollarSign className="w-3.5 h-3.5 text-emerald-600" />
               <span>Proposed Freight Offer / Rate *</span>
             </label>
             <Input
+              id="ff-rate"
               type="text"
               required
               placeholder="e.g. $1,450 / 40HC or $1.85 / kg (Air)"
@@ -229,11 +235,12 @@ export function FreightForwarderOfferForm() {
 
         {/* Row 4: Message */}
         <div>
-          <label className="block text-xs font-bold text-neutral-700 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
+          <label htmlFor="ff-message" className="block text-xs font-bold text-neutral-700 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
             <MessageSquare className="w-3.5 h-3.5 text-sky-600" />
             <span>Message</span>
           </label>
           <textarea
+            id="ff-message"
             rows={3}
             placeholder="Provide carrier contracts, transit times, free detention days at POD, equipment capacity, or special terms..."
             className="w-full rounded-xl border border-neutral-300 bg-neutral-50/60 focus:bg-white p-3 text-sm text-neutral-900 focus:border-[#0284C7] focus:outline-none focus:ring-1 focus:ring-[#0284C7] transition-all"

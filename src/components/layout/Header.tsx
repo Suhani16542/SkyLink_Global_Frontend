@@ -474,6 +474,8 @@ export function Header() {
                 >
                   <button
                     type="button"
+                    aria-expanded={isOpen}
+                    aria-haspopup="true"
                     className={`inline-flex items-center gap-1 transition-colors py-1 relative whitespace-nowrap cursor-pointer ${isSectionActive || isOpen
                         ? 'text-[#0284C7] font-bold'
                         : 'text-neutral-700 hover:text-[#0A2540]'
@@ -528,6 +530,8 @@ export function Header() {
                               <div
                                 role="button"
                                 tabIndex={0}
+                                aria-expanded={isOtherIndustriesHovered}
+                                aria-haspopup="true"
                                 onClick={() => setIsOtherIndustriesHovered(!isOtherIndustriesHovered)}
                                 className={`w-full flex items-start justify-between gap-2.5 p-2 rounded-xl transition-all cursor-pointer group ${isOtherIndustriesHovered
                                     ? 'bg-sky-50 text-[#0284C7] shadow-xs'

@@ -141,6 +141,7 @@ export function RequestConsultationView() {
                     <button
                       type="button"
                       onClick={() => setErrorMessage(null)}
+                      aria-label="Dismiss error message"
                       className="text-red-400 hover:text-red-700 cursor-pointer"
                     >
                       <X className="w-4 h-4" />

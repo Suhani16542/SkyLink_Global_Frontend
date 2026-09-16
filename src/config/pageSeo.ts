@@ -10,7 +10,7 @@ import type { PageSeoEntry } from '@/types';
 export const pageSeoRegistry: Record<string, PageSeoEntry> = {
   home: {
     path: '/',
-    title: 'Global Logistics Company & Freight Forwarding Services | SkyLink Global',
+    title: 'Global Logistics Company & Freight Forwarding Services',
     description:
       'SkyLink Global is a leading global logistics company providing international shipping, ocean & air freight forwarding, customs clearance, and supply chain solutions.',
     primaryKeyword: 'global logistics company',
@@ -77,9 +77,9 @@ export const pageSeoRegistry: Record<string, PageSeoEntry> = {
 
   about: {
     path: '/about',
-    title: 'About SkyLink Global | Global Logistics Company & Supply Chain Partner',
+    title: 'About Us | Global Logistics Company & Supply Chain Partner',
     description:
-      'SkyLink Global is a premier global logistics company providing international shipping, overseas logistics, freight forwarding, and global supply chain management.',
+      'SkyLink Global is a premier global logistics company providing international shipping, freight forwarding, and comprehensive global supply chain solutions.',
     primaryKeyword: 'global logistics company',
     secondaryKeywords: [
       'international logistics company',
@@ -111,7 +111,7 @@ export const pageSeoRegistry: Record<string, PageSeoEntry> = {
 
   aboutOverview: {
     path: '/about/overview',
-    title: 'Corporate Overview & Governance | SkyLink Global Services',
+    title: 'Corporate Overview & Governance',
     description:
       'Learn about SkyLink Global Services leadership, global infrastructure, trade compliance standards, and our vision for streamlined international commerce.',
     primaryKeyword: 'global supply chain management',
@@ -176,7 +176,7 @@ export const pageSeoRegistry: Record<string, PageSeoEntry> = {
     path: '/why-choose-us/traditional-vs-skylink',
     title: 'Traditional Logistics vs SkyLink | Customs Clearance & Freight Forwarding Benchmark',
     description:
-      'Compare traditional forwarding with SkyLink Global: expert customs clearance services, import export consulting, fast-track customs house agent services, and compliance.',
+      'Compare traditional forwarding with SkyLink Global: expert customs clearance services, import export consulting, and fast-track customs compliance.',
     primaryKeyword: 'customs clearance',
     secondaryKeywords: [
       'import export consulting',
@@ -209,9 +209,9 @@ export const pageSeoRegistry: Record<string, PageSeoEntry> = {
   services: {
     path: '/services',
     canonical: '/services',
-    title: 'EXIM & Global Logistics Services Portfolio | SkyLink Global Services',
+    title: 'EXIM & Global Logistics Services Portfolio',
     description:
-      'Explore SkyLink Global comprehensive services: international freight forwarding, customs brokerage, bonded warehousing, cold-chain solutions, and trade compliance.',
+      'Explore SkyLink Global services: international freight forwarding, customs clearance, bonded warehousing, cold chain logistics, and trade compliance.',
     primaryKeyword: 'EXIM Consultancy & Global Logistics Services',
     secondaryKeywords: [
       'international freight forwarding services',
@@ -281,7 +281,7 @@ export const pageSeoRegistry: Record<string, PageSeoEntry> = {
     path: '/services/cold-chain-solutions',
     title: 'Cold Chain Logistics & Solutions',
     description:
-      'SkyLink Global provides cold chain logistics and temperature controlled logistics, including cold chain transportation, cold chain monitoring, and pharmaceutical logistics.',
+      'SkyLink Global delivers cold chain logistics, temperature controlled logistics, cold chain monitoring, and certified pharmaceutical logistics solutions.',
     primaryKeyword: 'cold chain logistics',
     secondaryKeywords: [
       'cold chain solutions',
@@ -575,7 +575,7 @@ export const pageSeoRegistry: Record<string, PageSeoEntry> = {
     path: '/industries',
     title: 'Industry Solutions | Specialized EXIM & Logistics Support',
     description:
-      'Tailored trade logistics and regulatory compliance frameworks for pharmaceuticals, seafood & aquaculture, specialty chemicals, agro-fertilizers, and perishables.',
+      'Tailored trade logistics and regulatory compliance for pharmaceuticals, seafood, specialty chemicals, agro-fertilizers, and perishable global exports.',
     primaryKeyword: 'Industry Logistics Solutions',
     secondaryKeywords: [
       'Specialized Industry Logistics',
@@ -604,7 +604,7 @@ export const pageSeoRegistry: Record<string, PageSeoEntry> = {
 
   industriesPharma: {
     path: '/industries/pharma',
-    title: 'Pharmaceutical Logistics & Cold Chain Solutions | SkyLink Global',
+    title: 'Pharmaceutical Logistics & Cold Chain Solutions',
     description:
       'SkyLink Global delivers certified pharmaceutical logistics, cold chain shipping, and temperature-controlled supply chain transportation for pharma exporters.',
     primaryKeyword: 'Pharmaceutical Logistics',
@@ -648,7 +648,7 @@ export const pageSeoRegistry: Record<string, PageSeoEntry> = {
 
   industriesSeafoods: {
     path: '/industries/seafoods',
-    title: 'Marine Logistics & Seafood Cold Chain Solutions | SkyLink Global',
+    title: 'Marine Logistics & Seafood Cold Chain Solutions',
     description:
       'SkyLink Global provides marine logistics, seafood cold chain solutions and temperature-controlled shipping for global seafood exporters and marine cargo.',
     primaryKeyword: 'Marine Logistics',
@@ -692,7 +692,7 @@ export const pageSeoRegistry: Record<string, PageSeoEntry> = {
 
   industriesChemicalsAgro: {
     path: '/industries/specialty-chemicals-agro-fertilizers-perishables',
-    title: 'Specialty Chemicals, Agro-Fertilizers & Perishables Logistics | SkyLink Global',
+    title: 'Specialty Chemicals, Agro-Fertilizers & Perishables Logistics',
     description:
       'Hazchem handling (IMDG code), fertilizer movement regulatory support, and humidity-controlled transit for perishable agro-commodities.',
     primaryKeyword: 'Specialty Chemicals & Agro Logistics',
@@ -719,9 +719,77 @@ export const pageSeoRegistry: Record<string, PageSeoEntry> = {
     ],
   },
 
+  industriesAutomotive: {
+    path: '/industries/automotive',
+    title: 'Automotive & Auto Components Logistics',
+    description:
+      'JIT line-side delivery, CKD/SKD automotive component forwarding, IATF 16949 compliance, and expedited customs clearance for global OEMs.',
+    primaryKeyword: 'automotive logistics',
+    secondaryKeywords: [
+      'auto components logistics',
+      'automotive supply chain',
+      'JIT logistics',
+      'automotive freight forwarding',
+      'automotive parts shipping',
+      'OEM logistics',
+      'CKD logistics',
+      'SKD logistics',
+      'automotive logistics services',
+    ],
+    keywords: [
+      'automotive logistics',
+      'auto components logistics',
+      'automotive supply chain',
+      'JIT logistics',
+      'automotive freight forwarding',
+      'automotive parts shipping',
+      'OEM logistics',
+      'CKD logistics',
+      'SKD logistics',
+      'automotive logistics services',
+    ],
+    ogTitle: 'Automotive & Auto Components Logistics | SkyLink Global Services',
+    ogDescription:
+      'JIT line-side delivery, CKD/SKD automotive component forwarding, IATF 16949 compliance, and expedited customs clearance for global OEMs.',
+  },
+
+  industriesEngineeringManufacturing: {
+    path: '/industries/engineering-manufacturing',
+    title: 'Heavy Engineering & Machinery Logistics',
+    description:
+      'Turnkey project cargo logistics, heavy machinery transportation, ODC ocean chartering, and EPCG duty exemption management for manufacturers.',
+    primaryKeyword: 'project cargo logistics',
+    secondaryKeywords: [
+      'heavy engineering logistics',
+      'heavy machinery transportation',
+      'over dimensional cargo',
+      'ODC logistics',
+      'breakbulk shipping',
+      'EPCG customs clearance',
+      'plant machinery transport',
+      'heavy lift logistics',
+      'industrial project cargo',
+    ],
+    keywords: [
+      'project cargo logistics',
+      'heavy engineering logistics',
+      'heavy machinery transportation',
+      'over dimensional cargo',
+      'ODC logistics',
+      'breakbulk shipping',
+      'EPCG customs clearance',
+      'plant machinery transport',
+      'heavy lift logistics',
+      'industrial project cargo',
+    ],
+    ogTitle: 'Heavy Engineering & Machinery Logistics | SkyLink Global Services',
+    ogDescription:
+      'Turnkey project cargo logistics, heavy machinery transportation, ODC ocean chartering, and EPCG duty exemption management for manufacturers.',
+  },
+
   industriesElectronicsElectrical: {
     path: '/industries/electronics-electrical',
-    title: 'High Tech Logistics & Electronics Supply Chain Solutions | SkyLink',
+    title: 'High Tech Logistics & Electronics Supply Chain Solutions',
     description:
       'SkyLink Global provides high tech logistics, electronics supply chain solutions and semiconductor logistics for secure, climate-controlled global shipments.',
     primaryKeyword: 'High Tech Logistics',
@@ -763,9 +831,43 @@ export const pageSeoRegistry: Record<string, PageSeoEntry> = {
       'SkyLink Global provides high tech logistics, electronics supply chain solutions and semiconductor logistics for secure, climate-controlled global shipments.',
   },
 
+  industriesTextilesApparel: {
+    path: '/industries/textiles-apparel',
+    title: 'Textile Logistics, Apparel & Fashion Logistics Solutions',
+    description:
+      'SkyLink Global delivers expert textile logistics, apparel logistics, fashion logistics services, textile freight forwarding, and garment export shipping.',
+    primaryKeyword: 'textile logistics',
+    secondaryKeywords: [
+      'apparel logistics',
+      'garment logistics',
+      'fashion logistics',
+      'fashion logistics services',
+      'fashion logistics solutions',
+      'fashion retail logistics',
+      'textile freight forwarding',
+      'apparel export logistics',
+      'garment export shipping',
+    ],
+    keywords: [
+      'textile logistics',
+      'apparel logistics',
+      'garment logistics',
+      'fashion logistics',
+      'fashion logistics services',
+      'fashion logistics solutions',
+      'fashion retail logistics',
+      'textile freight forwarding',
+      'apparel export logistics',
+      'garment export shipping',
+    ],
+    ogTitle: 'Textile Logistics, Apparel & Fashion Logistics Solutions | SkyLink Global',
+    ogDescription:
+      'SkyLink Global delivers comprehensive textile logistics, apparel logistics, and fashion logistics services, offering expert textile freight forwarding and garment export shipping.',
+  },
+
   industriesFoodBeverages: {
     path: '/industries/food-beverages',
-    title: 'Food Logistics & Cold Chain Transportation Services | SkyLink Global',
+    title: 'Food Logistics & Cold Chain Transportation Services',
     description:
       'SkyLink Global delivers reliable food logistics, food cold chain logistics, and refrigerated transportation services for global food and beverage exporters.',
     primaryKeyword: 'food logistics',
@@ -807,9 +909,43 @@ export const pageSeoRegistry: Record<string, PageSeoEntry> = {
       'SkyLink Global delivers reliable food logistics, food cold chain logistics, and refrigerated transportation services for global food and beverage exporters.',
   },
 
+  industriesAgricultureAgro: {
+    path: '/industries/agriculture-agro',
+    title: 'Agricultural Logistics & Cargo Shipping',
+    description:
+      'SkyLink Global provides agricultural logistics and agricultural freight forwarding, delivering expert agricultural cargo shipping and agri export logistics.',
+    primaryKeyword: 'agricultural logistics',
+    secondaryKeywords: [
+      'agriculture logistics companies',
+      'agri export logistics',
+      'agricultural commodity logistics',
+      'agricultural freight forwarding',
+      'agricultural cargo shipping',
+      'agri commodity shipping',
+      'bulk agricultural cargo',
+      'agricultural export shipping',
+      'agriculture supply chain logistics',
+    ],
+    keywords: [
+      'agricultural logistics',
+      'agriculture logistics companies',
+      'agri export logistics',
+      'agricultural commodity logistics',
+      'agricultural freight forwarding',
+      'agricultural cargo shipping',
+      'agri commodity shipping',
+      'bulk agricultural cargo',
+      'agricultural export shipping',
+      'agriculture supply chain logistics',
+    ],
+    ogTitle: 'Agricultural Logistics & Cargo Shipping | SkyLink Global',
+    ogDescription:
+      'SkyLink Global provides agricultural logistics and agricultural freight forwarding, delivering expert agricultural cargo shipping and agri export logistics.',
+  },
+
   industriesChemicalsPetrochemicals: {
     path: '/industries/chemicals-petrochemicals',
-    title: 'Chemical Logistics & Dangerous Goods Transportation | SkyLink Global',
+    title: 'Chemical Logistics & Dangerous Goods Transportation',
     description:
       'SkyLink Global delivers certified chemical logistics, dangerous goods transportation, and ISO tank logistics for hazardous and specialty chemical exporters.',
     primaryKeyword: 'chemical logistics',
@@ -851,9 +987,43 @@ export const pageSeoRegistry: Record<string, PageSeoEntry> = {
       'SkyLink Global delivers certified chemical logistics, dangerous goods transportation, and ISO tank logistics for hazardous and specialty chemical exporters.',
   },
 
+  industriesRetailConsumerGoods: {
+    path: '/industries/retail-consumer-goods',
+    title: 'Retail Logistics & FMCG Supply Chain Solutions',
+    description:
+      'SkyLink Global delivers end-to-end retail logistics and FMCG logistics, offering retail fulfillment services and consumer goods logistics worldwide.',
+    primaryKeyword: 'retail logistics',
+    secondaryKeywords: [
+      'FMCG logistics',
+      'retail supply chain logistics',
+      'retail fulfillment services',
+      'retail logistics services',
+      'consumer goods logistics',
+      'FMCG supply chain',
+      'fmcg logistics companies',
+      'retail logistics companies',
+      '3PL retail logistics',
+    ],
+    keywords: [
+      'retail logistics',
+      'FMCG logistics',
+      'retail supply chain logistics',
+      'retail fulfillment services',
+      'retail logistics services',
+      'consumer goods logistics',
+      'FMCG supply chain',
+      'fmcg logistics companies',
+      'retail logistics companies',
+      '3PL retail logistics',
+    ],
+    ogTitle: 'Retail Logistics & FMCG Supply Chain Solutions | SkyLink Global',
+    ogDescription:
+      'SkyLink Global delivers end-to-end retail logistics and FMCG logistics, offering retail fulfillment services and consumer goods logistics worldwide.',
+  },
+
   industriesConstructionInfrastructure: {
     path: '/industries/construction-infrastructure',
-    title: 'Construction Equipment Logistics & Heavy Haul Transportation | SkyLink Global',
+    title: 'Construction Equipment Logistics & Heavy Haul Transportation',
     description:
       'SkyLink Global offers construction equipment logistics, heavy haul transportation, breakbulk shipping, and oversized cargo delivery for infrastructure projects.',
     primaryKeyword: 'construction equipment logistics',
@@ -939,9 +1109,43 @@ export const pageSeoRegistry: Record<string, PageSeoEntry> = {
       'SkyLink Global offers construction equipment logistics, heavy haul transportation, breakbulk shipping, and oversized cargo delivery for infrastructure projects.',
   },
 
+  industriesRenewableEnergy: {
+    path: '/industries/renewable-energy',
+    title: 'Renewable Energy Logistics & Solar Freight',
+    description:
+      'SkyLink Global delivers renewable energy logistics, solar panel logistics, and wind turbine transportation for large-scale renewable energy project logistics.',
+    primaryKeyword: 'renewable energy logistics',
+    secondaryKeywords: [
+      'solar logistics',
+      'solar panel logistics',
+      'wind energy logistics',
+      'wind turbine logistics',
+      'wind turbine transportation',
+      'offshore wind logistics',
+      'solar energy logistics',
+      'wind farm logistics',
+      'renewable energy project logistics',
+    ],
+    keywords: [
+      'renewable energy logistics',
+      'solar logistics',
+      'solar panel logistics',
+      'wind energy logistics',
+      'wind turbine logistics',
+      'wind turbine transportation',
+      'offshore wind logistics',
+      'solar energy logistics',
+      'wind farm logistics',
+      'renewable energy project logistics',
+    ],
+    ogTitle: 'Renewable Energy Logistics & Solar Freight | SkyLink Global',
+    ogDescription:
+      'SkyLink Global delivers renewable energy logistics, solar panel logistics, and wind turbine transportation for large-scale renewable energy project logistics.',
+  },
+
   industriesMiningMetals: {
     path: '/industries/mining-metals',
-    title: 'Bulk Cargo Shipping & Steel Coil Freight Services | SkyLink Global',
+    title: 'Bulk Cargo Shipping & Steel Coil Freight Services',
     description:
       'SkyLink Global provides bulk cargo shipping, dry bulk transportation, break bulk freight, mineral cargo handling, and specialized steel coil shipping solutions.',
     primaryKeyword: 'bulk cargo shipping',
@@ -975,7 +1179,7 @@ export const pageSeoRegistry: Record<string, PageSeoEntry> = {
 
   industriesEcommerce: {
     path: '/industries/ecommerce',
-    title: 'E-commerce Logistics Services & Cross-Border Shipping | SkyLink Global',
+    title: 'E-commerce Logistics Services & Cross-Border Shipping',
     description:
       'SkyLink Global provides ecommerce logistics services, international shipping, cross-border parcel delivery, and global order fulfillment solutions for brands.',
     primaryKeyword: 'ecommerce logistics services',
@@ -1007,12 +1211,80 @@ export const pageSeoRegistry: Record<string, PageSeoEntry> = {
       'SkyLink Global provides ecommerce logistics services, international shipping, cross-border parcel delivery, and global order fulfillment solutions for brands.',
   },
 
+  industriesIndustrialEquipment: {
+    path: '/industries/industrial-equipment',
+    title: 'Industrial Equipment Logistics & Machinery Shipping',
+    description:
+      'SkyLink Global delivers expert industrial equipment logistics, heavy machinery transportation, and international heavy machinery shipping services worldwide.',
+    primaryKeyword: 'industrial equipment logistics',
+    secondaryKeywords: [
+      'machinery shipping',
+      'heavy machinery transportation',
+      'industrial equipment transportation',
+      'heavy equipment shipping',
+      'heavy equipment transport',
+      'machinery transport',
+      'machinery transport services',
+      'heavy machinery shipping',
+      'international heavy machinery shipping services',
+    ],
+    keywords: [
+      'industrial equipment logistics',
+      'machinery shipping',
+      'heavy machinery transportation',
+      'industrial equipment transportation',
+      'heavy equipment shipping',
+      'heavy equipment transport',
+      'machinery transport',
+      'machinery transport services',
+      'heavy machinery shipping',
+      'international heavy machinery shipping services',
+    ],
+    ogTitle: 'Industrial Equipment Logistics & Machinery Shipping | SkyLink Global',
+    ogDescription:
+      'SkyLink Global delivers expert industrial equipment logistics, heavy machinery transportation, and international heavy machinery shipping services worldwide.',
+  },
+
+  industriesOther: {
+    path: '/industries/other',
+    title: 'Custom Logistics & Specialized Logistics Services',
+    description:
+      'SkyLink Global delivers tailored custom logistics and multimodal freight forwarding, specialized shipping services, and expert customs advisory solutions.',
+    primaryKeyword: 'custom logistics',
+    secondaryKeywords: [
+      'specialized logistics services',
+      'multimodal freight forwarding',
+      'customs advisory services',
+      'oversized cargo logistics',
+      'custom logistics solutions',
+      'customs and logistics',
+      'logistics and customs services',
+      'specialized shipping services',
+      'international customs & logistics',
+    ],
+    keywords: [
+      'custom logistics',
+      'specialized logistics services',
+      'multimodal freight forwarding',
+      'customs advisory services',
+      'oversized cargo logistics',
+      'custom logistics solutions',
+      'customs and logistics',
+      'logistics and customs services',
+      'specialized shipping services',
+      'international customs & logistics',
+    ],
+    ogTitle: 'Custom Logistics & Specialized Logistics Services | SkyLink Global',
+    ogDescription:
+      'SkyLink Global delivers tailored custom logistics and multimodal freight forwarding, offering specialized shipping services and expert customs advisory services.',
+  },
+
   sustainabilityAeoGreen: {
     path: '/sustainability/aeo-green',
     canonical: '/sustainability/aeo-green',
-    title: 'Authorized Economic Operator & AEO Certification | SkyLink Global',
+    title: 'Authorized Economic Operator & AEO Certification',
     description:
-      'Explore Authorized Economic Operator services, AEO certification, AEO compliance, AEO customs clearance, paperless customs clearance and AEO Green Channel benefits with SkyLink Global.',
+      'Explore Authorized Economic Operator services, AEO certification, AEO compliance, customs clearance, and Green Channel benefits with SkyLink Global.',
     primaryKeyword: 'Authorized Economic Operator',
     secondaryKeywords: [
       'AEO Certification',
@@ -1055,9 +1327,9 @@ export const pageSeoRegistry: Record<string, PageSeoEntry> = {
   sustainabilityEcoRoute: {
     path: '/sustainability/eco-route',
     canonical: '/sustainability/eco-route',
-    title: 'Multimodal Transportation & Sustainable Logistics Solutions | SkyLink Global',
+    title: 'Multimodal Transportation & Sustainable Logistics Solutions',
     description:
-      'Discover multimodal transportation, sustainable logistics, green logistics, low carbon logistics and sustainable supply chain solutions with SkyLink Global’s Eco-Route services.',
+      'Discover multimodal transportation, sustainable logistics, green logistics, and low carbon supply chain solutions with SkyLink Global’s Eco-Route.',
     primaryKeyword: 'Multimodal Transportation',
     secondaryKeywords: [
       'Sustainable Logistics',
@@ -1123,7 +1395,7 @@ export const pageSeoRegistry: Record<string, PageSeoEntry> = {
 
   collaborateEnquiry: {
     path: '/collaborate/enquiry',
-    title: 'Freight Forwarder Collaboration Enquiry | SkyLink Global Services',
+    title: 'Freight Forwarder Collaboration Enquiry',
     description:
       'Connect with our global alliances desk to explore freight forwarding partnerships, agency agreements, and cross-border trade cooperation.',
     primaryKeyword: 'freight forwarder partnership',
@@ -1147,7 +1419,7 @@ export const pageSeoRegistry: Record<string, PageSeoEntry> = {
   newsBlogs: {
     path: '/news/blogs',
     canonical: '/news/blogs',
-    title: 'International Shipping News & Maritime Industry Updates | SkyLink Global',
+    title: 'International Shipping News & Maritime Industry Updates',
     description:
       'Read international shipping news, world maritime news, IMO 2023 regulations, IMO GHG emissions strategy, MEPC 76, MEPC 79 and global shipping industry updates from SkyLink Global.',
     primaryKeyword: 'International Shipping News',
@@ -1181,7 +1453,7 @@ export const pageSeoRegistry: Record<string, PageSeoEntry> = {
 
   newsArticles: {
     path: '/news/articles',
-    title: 'Trade Intelligence & Industry Articles | SkyLink Global Services',
+    title: 'Trade Intelligence & Industry Articles',
     description:
       'In-depth whitepapers and articles covering customs tariff revisions, supply chain resilience, free trade agreements, and global market dynamics.',
     primaryKeyword: 'international trade compliance',
@@ -1239,7 +1511,7 @@ export const pageSeoRegistry: Record<string, PageSeoEntry> = {
 
   contact: {
     path: '/contact',
-    title: 'Contact SkyLink Global Services | B2B Trade & Logistics Advisory',
+    title: 'Contact Us | B2B Trade & Logistics Advisory',
     description:
       'Get in touch with our global trade advisory team. Schedule a consultation or reach our offices in India for freight, customs, and compliance support.',
     primaryKeyword: 'trade advisory services',
@@ -1262,7 +1534,7 @@ export const pageSeoRegistry: Record<string, PageSeoEntry> = {
 
   requestConsultation: {
     path: '/request-consultation',
-    title: 'Request an EXIM Consultation & Freight Quote | SkyLink Global Services',
+    title: 'Request an EXIM Consultation & Freight Quote',
     description:
       'Submit your shipment parameters or trade compliance requirements to receive a customized strategic advisory proposal from our specialists.',
     primaryKeyword: 'EXIM consultation',
@@ -1285,7 +1557,7 @@ export const pageSeoRegistry: Record<string, PageSeoEntry> = {
 
   brand: {
     path: '/brand',
-    title: 'Brand Identity & Assets | SkyLink Global Services',
+    title: 'Brand Identity & Assets',
     description:
       'Official brand assets, typography, color systems, and corporate identity guidelines for SkyLink Global Services.',
     primaryKeyword: 'SkyLink Global brand identity',

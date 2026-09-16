@@ -161,7 +161,7 @@ export function HeroSection() {
               loop
               muted
               playsInline
-              preload="auto"
+              preload={isActive ? 'metadata' : 'none'}
               poster={slide.fallbackPoster}
               className="absolute inset-0 w-full h-full object-cover"
             >
