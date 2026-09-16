@@ -212,7 +212,6 @@ export default function FreightForwardersCollaborationPage() {
                     alt="Global freight forwarding and multimodal logistics operations with cargo ships, containers, trucks, and port handling"
                     fill
                     sizes="(max-width: 1024px) 100vw, 50vw"
-                    priority
                     className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#07192D]/90 via-black/20 to-transparent" />

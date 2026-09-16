@@ -99,7 +99,7 @@ export function Footer() {
           {/* Brand Col */}
           <div className="lg:col-span-2 space-y-3.5">
             <div className="inline-block transition-transform duration-300 hover:scale-105">
-              <SkyLinkLogo variant="light" size="footer" />
+              <SkyLinkLogo variant="light" size="footer" priority={false} />
             </div>
             <p className="text-xs sm:text-[13px] text-neutral-300 leading-relaxed max-w-sm font-normal transition-colors duration-300 hover:text-white cursor-default">
               {siteConfig.description}

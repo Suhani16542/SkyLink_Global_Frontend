@@ -104,7 +104,7 @@ export default function AdminLoginPage() {
 
             <div>
               <div className="flex items-center justify-between mb-1.5">
-                <label className="block text-xs font-semibold text-neutral-800">
+                <label htmlFor="admin-password" className="block text-xs font-semibold text-neutral-800">
                   Password
                 </label>
                 <button
@@ -130,6 +130,7 @@ export default function AdminLoginPage() {
                   <Lock className="w-4 h-4" />
                 </div>
                 <input
+                  id="admin-password"
                   type={showPassword ? 'text' : 'password'}
                   required
                   placeholder="Enter your security credentials"

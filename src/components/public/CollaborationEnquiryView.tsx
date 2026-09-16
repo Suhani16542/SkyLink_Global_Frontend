@@ -199,11 +199,12 @@ export function CollaborationEnquiryView() {
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
-                        <label className="block text-xs font-bold text-neutral-700 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
+                        <label htmlFor="collab-name" className="block text-xs font-bold text-neutral-700 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
                           <User className="w-3.5 h-3.5 text-sky-600" />
                           <span>Your Name *</span>
                         </label>
                         <Input
+                          id="collab-name"
                           type="text"
                           required
                           placeholder="e.g. Rahul Sharma"
@@ -213,11 +214,12 @@ export function CollaborationEnquiryView() {
                       </div>
 
                       <div>
-                        <label className="block text-xs font-bold text-neutral-700 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
+                        <label htmlFor="collab-company" className="block text-xs font-bold text-neutral-700 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
                           <Building2 className="w-3.5 h-3.5 text-sky-600" />
                           <span>Company Name *</span>
                         </label>
                         <Input
+                          id="collab-company"
                           type="text"
                           required
                           placeholder="e.g. Pacific Logistics Pvt Ltd"
@@ -229,11 +231,12 @@ export function CollaborationEnquiryView() {
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
-                        <label className="block text-xs font-bold text-neutral-700 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
+                        <label htmlFor="collab-email" className="block text-xs font-bold text-neutral-700 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
                           <Mail className="w-3.5 h-3.5 text-sky-600" />
                           <span>Work Email *</span>
                         </label>
                         <Input
+                          id="collab-email"
                           type="email"
                           required
                           placeholder="partner@company.com"
@@ -243,11 +246,12 @@ export function CollaborationEnquiryView() {
                       </div>
 
                       <div>
-                        <label className="block text-xs font-bold text-neutral-700 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
+                        <label htmlFor="collab-phone" className="block text-xs font-bold text-neutral-700 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
                           <Phone className="w-3.5 h-3.5 text-sky-600" />
                           <span>Phone / WhatsApp *</span>
                         </label>
                         <Input
+                          id="collab-phone"
                           type="tel"
                           required
                           placeholder="+91 98765 43210"
@@ -259,11 +263,12 @@ export function CollaborationEnquiryView() {
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
-                        <label className="block text-xs font-bold text-neutral-700 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
+                        <label htmlFor="collab-tradelane" className="block text-xs font-bold text-neutral-700 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
                           <Globe2 className="w-3.5 h-3.5 text-sky-600" />
                           <span>Service / Trade Lane *</span>
                         </label>
                         <Input
+                          id="collab-tradelane"
                           type="text"
                           required
                           placeholder="e.g. Ocean FCL: Nhava Sheva to Rotterdam"
@@ -273,11 +278,12 @@ export function CollaborationEnquiryView() {
                       </div>
 
                       <div>
-                        <label className="block text-xs font-bold text-neutral-700 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
+                        <label htmlFor="collab-proposedrate" className="block text-xs font-bold text-neutral-700 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
                           <DollarSign className="w-3.5 h-3.5 text-emerald-600" />
                           <span>Proposed Freight Offer / Rate *</span>
                         </label>
                         <Input
+                          id="collab-proposedrate"
                           type="text"
                           required
                           placeholder="e.g. $1,450 / 40HC (Spot) or Contract Rate"
@@ -288,11 +294,12 @@ export function CollaborationEnquiryView() {
                     </div>
 
                     <div>
-                      <label className="block text-xs font-bold text-neutral-700 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
+                      <label htmlFor="collab-message" className="block text-xs font-bold text-neutral-700 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
                         <MessageSquare className="w-3.5 h-3.5 text-sky-600" />
                         <span>Message / Scope of Solution</span>
                       </label>
                       <textarea
+                        id="collab-message"
                         rows={3}
                         placeholder="Detail carrier lines, transit time, free days at POD, equipment availability, or special terms..."
                         className="w-full rounded-xl border border-neutral-300 p-3 text-sm text-neutral-900 focus:border-[#0284C7] focus:outline-none focus:ring-1 focus:ring-[#0284C7]"

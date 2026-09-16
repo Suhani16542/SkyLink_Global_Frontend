@@ -104,7 +104,7 @@ export function HeroSection() {
     return () => clearInterval(timer);
   }, [nextSlide]);
 
-  // Ensure active video is playing and preheat upcoming video
+  // Ensure active video is playing smoothly
   useEffect(() => {
     if (!isMounted) return;
 
@@ -115,19 +115,12 @@ export function HeroSection() {
       const playPromise = activeVideo.play();
       if (playPromise !== undefined) {
         playPromise.catch(() => {
-          activeVideo.muted = true;
-          activeVideo.play().catch(() => {});
+          if (activeVideo) {
+            activeVideo.muted = true;
+            activeVideo.play().catch(() => {});
+          }
         });
       }
-    }
-
-    // Pre-buffer next video
-    const nextIdx = (currentIndex + 1) % HERO_SLIDES.length;
-    const nextVideo = videoRefs.current[nextIdx];
-    if (nextVideo && nextVideo.paused) {
-      nextVideo.muted = true;
-      nextVideo.playbackRate = PLAYBACK_RATE;
-      nextVideo.play().catch(() => {});
     }
   }, [currentIndex, isMounted]);
 
@@ -141,8 +134,7 @@ export function HeroSection() {
       {/* ========================================================================= */}
       {HERO_SLIDES.map((slide, idx) => {
         const isActive = idx === currentIndex;
-        const isNext = idx === (currentIndex + 1) % HERO_SLIDES.length;
-        const shouldRenderVideo = isMounted && (isActive || isNext);
+        const shouldRenderVideo = isMounted && isActive;
 
         return (
           <div
@@ -173,7 +165,7 @@ export function HeroSection() {
                 loop
                 muted
                 playsInline
-                preload={isActive ? 'metadata' : 'none'}
+                preload="metadata"
                 poster={slide.fallbackPoster}
                 className="absolute inset-0 w-full h-full object-cover"
               >

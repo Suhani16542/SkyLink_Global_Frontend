@@ -115,6 +115,7 @@ export default function AeoGreenPage() {
                       loop
                       muted
                       playsInline
+                      preload="metadata"
                       poster="/images/sustainability/aeo-green.jpg"
                       aria-label="Authorized Economic Operator AEO certification and green channel customs clearance | SkyLink Global"
                       className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"

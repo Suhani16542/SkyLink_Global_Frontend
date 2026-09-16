@@ -128,6 +128,7 @@ export default function EcoRoutePage() {
                       loop
                       muted
                       playsInline
+                      preload="metadata"
                       poster="/images/sustainability/eco-route.jpg"
                       aria-label="Multimodal transportation and sustainable green logistics trade corridor | SkyLink Global"
                       className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"

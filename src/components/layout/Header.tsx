@@ -533,6 +533,12 @@ export function Header() {
                                 aria-expanded={isOtherIndustriesHovered}
                                 aria-haspopup="true"
                                 onClick={() => setIsOtherIndustriesHovered(!isOtherIndustriesHovered)}
+                                onKeyDown={(e) => {
+                                  if (e.key === 'Enter' || e.key === ' ') {
+                                    e.preventDefault();
+                                    setIsOtherIndustriesHovered((prev) => !prev);
+                                  }
+                                }}
                                 className={`w-full flex items-start justify-between gap-2.5 p-2 rounded-xl transition-all cursor-pointer group ${isOtherIndustriesHovered
                                     ? 'bg-sky-50 text-[#0284C7] shadow-xs'
                                     : 'hover:bg-neutral-50 text-neutral-800'
