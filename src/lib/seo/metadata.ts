@@ -201,11 +201,28 @@ export function constructBlogMetadata(post: BlogPost): Metadata {
       ? post.author
       : 'Skylink Team';
 
+  const isDigitalFreightTracking =
+    (typeof post.title === 'string' && post.title.toLowerCase().includes('digital freight tracking')) ||
+    cleanSlug.toLowerCase().includes('digital-freight-tracking');
+
+  const articleKeywords = isDigitalFreightTracking
+    ? [
+        'digital freight tracking',
+        'shipment visibility',
+        'freight tracking',
+        'logistics technology',
+        'supply chain visibility',
+        'international logistics',
+        'cargo tracking',
+      ]
+    : post.keywords;
+
   return constructMetadata({
     title: post.seoTitle || post.title,
     description: post.seoDescription || post.excerpt,
     path: `/blog/${cleanSlug}`,
     image: post.featuredImage || siteConfig.ogImage,
+    keywords: articleKeywords,
     type: 'article',
     publishedTime: post.publishedAt,
     authors: [authorName],

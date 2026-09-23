@@ -62,10 +62,12 @@ export function BlogDetailView({ post, relatedPosts }: BlogDetailViewProps) {
   // Dynamically extract Table of Contents from headings (H2, H3, H4) in the blog content
   const { processedHtml, tocItems } = useMemo(() => {
     const rawContent = post.content || '';
+    // Convert any duplicate <h1> in the article content to a non-heading paragraph element
+    const sanitizedContent = rawContent.replace(/<h1(\s+[^>]*)?>(.*?)<\/h1>/gi, '<p$1>$2</p>');
     const items: TocItem[] = [];
     const usedIds = new Set<string>();
 
-    const processed = rawContent.replace(
+    const processed = sanitizedContent.replace(
       /<(h[234])(\s+[^>]*)?>(.*?)<\/\1>/gi,
       (match, tag, attrs = '', innerText) => {
         const level = parseInt(tag[1], 10) as 2 | 3 | 4;
