@@ -1,11 +1,15 @@
-const PRODUCTION_SITE_URL = 'https://skylinkglobal.in';
+const PRODUCTION_SITE_URL = 'https://www.skylinkglobal.in';
 
 const getSiteUrl = (): string => {
   const envUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim();
 
   if (process.env.NODE_ENV === 'production') {
     if (envUrl && !envUrl.includes('localhost') && !envUrl.includes('127.0.0.1')) {
-      return envUrl.replace(/\/+$/, '');
+      const cleanUrl = envUrl.replace(/\/+$/, '');
+      if (cleanUrl === 'https://skylinkglobal.in' || cleanUrl === 'http://skylinkglobal.in') {
+        return PRODUCTION_SITE_URL;
+      }
+      return cleanUrl;
     }
     return PRODUCTION_SITE_URL;
   }

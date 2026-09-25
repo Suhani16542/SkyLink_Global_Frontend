@@ -11,7 +11,7 @@ import { getAllIndustries, getOtherIndustries } from '@/data/industries';
 export const revalidate = 3600;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = env.siteUrl || 'https://skylinkglobal.in';
+  const baseUrl = env.siteUrl || 'https://www.skylinkglobal.in';
   const staticContentDate = new Date('2026-03-01T00:00:00.000Z');
 
   // Base public static routes

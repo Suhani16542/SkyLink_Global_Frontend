@@ -4,7 +4,7 @@ import { env } from '@/config/env';
 export const revalidate = 86400;
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = env.siteUrl || 'https://skylinkglobal.in';
+  const baseUrl = env.siteUrl || 'https://www.skylinkglobal.in';
 
   return {
     rules: [

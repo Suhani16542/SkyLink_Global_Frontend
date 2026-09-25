@@ -357,6 +357,16 @@ export async function getAllBlogPosts(options?: { timeoutMs?: number }): Promise
 }
 
 export async function getPublishedBlogPostsForSitemap(): Promise<EnrichedBlogPost[]> {
+  const postsMap = new Map<string, EnrichedBlogPost>();
+
+  // 1. Seed with bundled published blog posts as resilient baseline
+  for (const post of blogPostsData) {
+    if (post.slug) {
+      postsMap.set(post.slug, post);
+    }
+  }
+
+  // 2. Fetch latest published blog posts from backend API if available
   try {
     const { getPublicBlogs } = await import('@/lib/api/blogs');
     const res = await getPublicBlogs(undefined, {
@@ -366,14 +376,22 @@ export async function getPublishedBlogPostsForSitemap(): Promise<EnrichedBlogPos
     if (res.success && res.data) {
       const list = Array.isArray(res.data) ? res.data : (res.data as any).blogs;
       if (Array.isArray(list) && list.length > 0) {
-        return list
+        const publishedBackend = list
           .filter((item: any) => !item.status || item.status.toLowerCase() === 'published')
           .map(mapBackendBlogToEnriched);
+
+        for (const post of publishedBackend) {
+          if (post.slug) {
+            postsMap.set(post.slug, post);
+          }
+        }
       }
     }
-  } catch {}
-  // Return empty list on complete API failure to avoid injecting unverified/stale mock URLs into sitemap
-  return [];
+  } catch {
+    // Preserve bundled static published posts on API error or timeout
+  }
+
+  return Array.from(postsMap.values());
 }
 
 export async function getBlogPostBySlug(
