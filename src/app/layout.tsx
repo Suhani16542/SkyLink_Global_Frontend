@@ -20,6 +20,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`h-full antialiased ${inter.variable}`}>
+      <head>
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+      </head>
       <body className={`min-h-full flex flex-col ${inter.className} font-sans bg-white text-neutral-900`}>
         <WebSiteSchema />
         {children}

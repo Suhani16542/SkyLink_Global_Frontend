@@ -120,6 +120,19 @@ export function constructMetadata(params: SEOMetadataParams = {}): Metadata {
       description: resolvedTwitterDescription,
       images: [resolvedImageUrl],
     },
+    icons: {
+      icon: [
+        { url: '/favicon.svg', type: 'image/svg+xml' },
+        { url: '/favicon.ico', sizes: 'any' },
+        { url: '/icon-192.png', sizes: '192x192', type: 'image/png' },
+        { url: '/icon-512.png', sizes: '512x512', type: 'image/png' },
+      ],
+      shortcut: '/favicon.ico',
+      apple: [
+        { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+      ],
+    },
+    manifest: '/manifest.json',
     robots: noIndex ? SEO_DEFAULTS.robotsAdmin : SEO_DEFAULTS.robotsDefault,
     metadataBase: new URL(env.siteUrl),
   };
