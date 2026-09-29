@@ -24,12 +24,14 @@ import {
   ShieldCheck,
   PlusCircle,
   Loader2,
+  Tag,
 } from 'lucide-react';
 
 const adminNavItems = [
   { title: 'Dashboard', href: '/admin/dashboard', icon: LayoutDashboard },
   { title: 'Create Blog', href: '/admin/blogs/create', icon: PlusCircle },
   { title: 'Blogs', href: '/admin/blogs', icon: FileText },
+  { title: 'Categories', href: '/admin/blogs/categories/create', icon: Tag },
   { title: 'Leads Pipeline', href: '/admin/leads', icon: Inbox, badge: '7' },
   { title: 'Customers', href: '/admin/customers', icon: Users },
   { title: 'Quotations', href: '/admin/quotations', icon: FileText, badge: '4' },
@@ -91,12 +93,16 @@ export function AdminLayoutShell({
         pathname === '/admin/blog/create'
       );
     }
+    if (itemHref === '/admin/blogs/categories/create') {
+      return pathname.startsWith('/admin/blogs/categories');
+    }
     if (itemHref === '/admin/blogs') {
       return (
         (pathname === '/admin/blogs' || pathname.startsWith('/admin/blogs/')) &&
         pathname !== '/admin/blogs/create' &&
         pathname !== '/admin/create-blog' &&
-        pathname !== '/admin/blog/create'
+        pathname !== '/admin/blog/create' &&
+        !pathname.startsWith('/admin/blogs/categories')
       );
     }
     return pathname === itemHref || pathname.startsWith(itemHref);

@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useId, useRef } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import {
   getAdminBlogById,
   createBlog,
@@ -11,6 +11,7 @@ import {
   uploadBlogImages,
   BlogPayload,
 } from '@/lib/api/blogs';
+import { getCategories, DEFAULT_BLOG_CATEGORIES } from '@/lib/api/categories';
 import {
   ArrowLeft,
   Eye,
@@ -54,16 +55,7 @@ export interface BlogImageItem {
   size?: number;
 }
 
-const CATEGORIES = [
-  'EXIM Consultancy',
-  'Global Logistics',
-  'Trade Compliance',
-  'Import Export',
-  'Shipping & Freight',
-  'Customs',
-  'Supply Chain',
-  'Industry Insights',
-];
+const DEFAULT_CATEGORIES = DEFAULT_BLOG_CATEGORIES.map((c) => c.title);
 
 const TECH_TOPICS = [
   'Logistics Technology',
@@ -94,6 +86,11 @@ export function CreateBlogView({ blogId }: CreateBlogViewProps) {
   const isEditMode = !!blogId;
   const editorRef = useRef<HTMLDivElement>(null);
 
+  const searchParams = useSearchParams();
+  const categoryParam = searchParams?.get('category') || searchParams?.get('cat');
+  const [categoriesList, setCategoriesList] = useState<string[]>([]);
+  const [isLoadingCategories, setIsLoadingCategories] = useState(false);
+
   // Form State
   const [title, setTitle] = useState('');
   const [slug, setSlug] = useState('');
@@ -104,7 +101,9 @@ export function CreateBlogView({ blogId }: CreateBlogViewProps) {
 
   // Sidebar Form State
   const [publicationStatus, setPublicationStatus] = useState<'Draft' | 'Published'>('Draft');
-  const [category, setCategory] = useState('EXIM Consultancy');
+  const [category, setCategory] = useState(
+    categoryParam ? decodeURIComponent(categoryParam).trim() : ''
+  );
   const [technology, setTechnology] = useState('Logistics Technology');
   const [isFeatured, setIsFeatured] = useState(false);
   const [authorName, setAuthorName] = useState('Skylink Team');
@@ -126,7 +125,70 @@ export function CreateBlogView({ blogId }: CreateBlogViewProps) {
   const [isUploadingImage, setIsUploadingImage] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [uploadError, setUploadError] = useState<string | null>(null);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
+
+  // Fetch categories dynamically from backend API (GET /api/v1/categories)
+  useEffect(() => {
+    let isMounted = true;
+    const loadCategories = async () => {
+      setIsLoadingCategories(true);
+      try {
+        const res = await getCategories();
+        if (isMounted && res.success && res.data) {
+          let fetched: string[] = [];
+          if (Array.isArray(res.data)) {
+            fetched = res.data
+              .map((c: any) => c.title || c.name || String(c))
+              .filter(Boolean);
+          } else if (res.data && Array.isArray((res.data as any).categories)) {
+            fetched = (res.data as any).categories
+              .map((c: any) => c.title || c.name || String(c))
+              .filter(Boolean);
+          } else if (res.data && Array.isArray((res.data as any).data)) {
+            fetched = (res.data as any).data
+              .map((c: any) => c.title || c.name || String(c))
+              .filter(Boolean);
+          }
+
+          if (fetched.length > 0) {
+            setCategoriesList(fetched);
+            setCategory((currentCat) => {
+              if (currentCat && fetched.includes(currentCat)) return currentCat;
+              if (categoryParam) {
+                const cleanParam = decodeURIComponent(categoryParam).trim();
+                if (cleanParam && fetched.includes(cleanParam)) return cleanParam;
+              }
+              return fetched[0] || '';
+            });
+          }
+        }
+      } catch {
+        // Fallback gracefully
+      } finally {
+        if (isMounted) {
+          setIsLoadingCategories(false);
+        }
+      }
+    };
+
+    loadCategories();
+
+    return () => {
+      isMounted = false;
+    };
+  }, [categoryParam]);
+
+  // Auto-select category if passed in query param (e.g. after creating category)
+  useEffect(() => {
+    if (categoryParam && !isEditMode) {
+      const clean = decodeURIComponent(categoryParam).trim();
+      if (clean) {
+        setCategory(clean);
+        setCategoriesList((prev) => (prev.includes(clean) ? prev : [clean, ...prev]));
+      }
+    }
+  }, [categoryParam, isEditMode]);
 
   const showToast = (msg: string) => {
     setToastMessage(msg);
@@ -157,6 +219,7 @@ export function CreateBlogView({ blogId }: CreateBlogViewProps) {
     setSelectedHeading('Paragraph');
     setActiveFormats([]);
     setErrorMessage(null);
+    setUploadError(null);
     setIsUploadingImage(false);
     setIsSubmitting(false);
     setActiveTab('visual');
@@ -449,9 +512,9 @@ export function CreateBlogView({ blogId }: CreateBlogViewProps) {
     // 1. Check total count
     const currentCount = uploadedImages.length;
     if (currentCount + fileList.length > 10) {
-      setErrorMessage(
-        `Maximum 10 images allowed. You have ${currentCount} and selected ${fileList.length} more (total ${currentCount + fileList.length}).`
-      );
+      const err = `Maximum 10 images allowed. You have ${currentCount} and selected ${fileList.length} more (total ${currentCount + fileList.length}).`;
+      setErrorMessage(err);
+      setUploadError(err);
       return;
     }
 
@@ -465,23 +528,24 @@ export function CreateBlogView({ blogId }: CreateBlogViewProps) {
         allowedMimeTypes.includes(file.type.toLowerCase()) || allowedExtensions.includes(ext);
 
       if (!isTypeValid) {
-        setErrorMessage(
-          `Only JPG, JPEG, PNG and WEBP images are allowed. "${file.name}" is not supported.`
-        );
+        const err = `Only JPG, JPEG, PNG and WEBP images are allowed. "${file.name}" is not supported.`;
+        setErrorMessage(err);
+        setUploadError(err);
         return;
       }
 
       if (file.size > 10 * 1024 * 1024) {
         const sizeMb = (file.size / (1024 * 1024)).toFixed(1);
-        setErrorMessage(
-          `Each image must be 10MB or smaller. "${file.name}" is ${sizeMb}MB.`
-        );
+        const err = `Each image must be 10MB or smaller. "${file.name}" is ${sizeMb}MB.`;
+        setErrorMessage(err);
+        setUploadError(err);
         return;
       }
     }
 
     setIsUploadingImage(true);
     setErrorMessage(null);
+    setUploadError(null);
 
     try {
       const res = await uploadBlogImages(fileList);
@@ -507,6 +571,7 @@ export function CreateBlogView({ blogId }: CreateBlogViewProps) {
         );
 
         if (validUrls.length > 0) {
+          setUploadError(null);
           const hasExistingFeatured = uploadedImages.some((img) => img.isFeatured);
 
           const newItems: BlogImageItem[] = validUrls.map((url, idx) => {
@@ -540,13 +605,19 @@ export function CreateBlogView({ blogId }: CreateBlogViewProps) {
             `${validUrls.length} image${validUrls.length > 1 ? 's' : ''} uploaded successfully!`
           );
         } else {
-          setErrorMessage('Server did not return uploaded image URLs. Please try again.');
+          const err = 'Server did not return uploaded image URLs. Please try again.';
+          setErrorMessage(err);
+          setUploadError(err);
         }
       } else {
-        setErrorMessage(res.error || 'Failed to upload images. Please check backend logs.');
+        const err = res.error || 'Failed to upload images. Please check backend logs.';
+        setErrorMessage(err);
+        setUploadError(err);
       }
     } catch (err: any) {
-      setErrorMessage(err.message || 'Image upload failed due to a network error.');
+      const errText = err?.message || 'Image upload failed due to a network error.';
+      setErrorMessage(errText);
+      setUploadError(errText);
     } finally {
       setIsUploadingImage(false);
     }
@@ -1269,49 +1340,41 @@ export function CreateBlogView({ blogId }: CreateBlogViewProps) {
 
             {/* Category * */}
             <div className="space-y-1.5">
-              <label
-                htmlFor={`${compId}-category`}
-                className="block text-xs font-bold text-neutral-700"
-              >
-                Category <span className="text-red-500">*</span>
-              </label>
+              <div className="flex items-center justify-between">
+                <label
+                  htmlFor={`${compId}-category`}
+                  className="block text-xs font-bold text-neutral-700"
+                >
+                  Category <span className="text-red-500">*</span>
+                </label>
+                <Link
+                  href="/admin/blogs/categories/create"
+                  className="inline-flex items-center gap-1 text-[11px] font-semibold text-[#0284C7] hover:text-[#0369A1] hover:underline"
+                  title="Add a new blog category"
+                >
+                  <Plus className="w-3 h-3" />
+                  <span>New Category</span>
+                </Link>
+              </div>
               <div className="relative">
                 <select
                   id={`${compId}-category`}
                   value={category}
                   onChange={(e) => setCategory(e.target.value)}
-                  className="w-full appearance-none bg-neutral-50/60 hover:bg-white border border-neutral-200 text-xs font-semibold text-neutral-900 rounded-xl px-3.5 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#0284C7]/20 focus:border-[#0284C7] cursor-pointer shadow-2xs transition-all"
+                  disabled={isLoadingCategories}
+                  className="w-full appearance-none bg-neutral-50/60 hover:bg-white border border-neutral-200 text-xs font-semibold text-neutral-900 rounded-xl px-3.5 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#0284C7]/20 focus:border-[#0284C7] cursor-pointer shadow-2xs transition-all disabled:opacity-70"
                 >
-                  {CATEGORIES.map((cat) => (
-                    <option key={cat} value={cat}>
-                      {cat}
-                    </option>
-                  ))}
-                </select>
-                <ChevronDown className="w-3.5 h-3.5 text-neutral-400 absolute right-3 top-3 pointer-events-none" />
-              </div>
-            </div>
-
-            {/* Technology */}
-            <div className="space-y-1.5">
-              <label
-                htmlFor={`${compId}-tech-topic`}
-                className="block text-xs font-bold text-neutral-700"
-              >
-                Technology
-              </label>
-              <div className="relative">
-                <select
-                  id={`${compId}-tech-topic`}
-                  value={technology}
-                  onChange={(e) => setTechnology(e.target.value)}
-                  className="w-full appearance-none bg-neutral-50/60 hover:bg-white border border-neutral-200 text-xs font-semibold text-neutral-900 rounded-xl px-3.5 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#0284C7]/20 focus:border-[#0284C7] cursor-pointer shadow-2xs transition-all"
-                >
-                  {TECH_TOPICS.map((topic) => (
-                    <option key={topic} value={topic}>
-                      {topic}
-                    </option>
-                  ))}
+                  {isLoadingCategories ? (
+                    <option value="">Loading categories...</option>
+                  ) : categoriesList.length === 0 ? (
+                    <option value="">No categories found — please create one</option>
+                  ) : (
+                    categoriesList.map((cat) => (
+                      <option key={cat} value={cat}>
+                        {cat}
+                      </option>
+                    ))
+                  )}
                 </select>
                 <ChevronDown className="w-3.5 h-3.5 text-neutral-400 absolute right-3 top-3 pointer-events-none" />
               </div>
@@ -1474,6 +1537,26 @@ export function CreateBlogView({ blogId }: CreateBlogViewProps) {
 
             {/* Multiple Image Upload Input */}
             <div className="space-y-3">
+              {uploadError && (
+                <div className="p-3 rounded-xl bg-red-50 border border-red-200 text-xs text-red-700 flex items-start justify-between gap-2 shadow-2xs">
+                  <div className="flex items-start gap-2">
+                    <AlertCircle className="w-4 h-4 text-red-600 shrink-0 mt-0.5" />
+                    <div>
+                      <div className="font-bold">Image Upload Failed</div>
+                      <div className="mt-0.5 text-xs text-red-600 font-medium break-words">{uploadError}</div>
+                    </div>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setUploadError(null)}
+                    className="text-red-400 hover:text-red-700 ml-1 cursor-pointer shrink-0"
+                    title="Dismiss"
+                  >
+                    <X className="w-3.5 h-3.5" />
+                  </button>
+                </div>
+              )}
+
               {uploadedImages.length < 10 && (
                 <label
                   className={`border-2 border-dashed rounded-xl p-5 text-center cursor-pointer transition-all flex flex-col items-center justify-center gap-2 group ${

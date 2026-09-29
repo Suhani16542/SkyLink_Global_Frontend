@@ -208,9 +208,12 @@ export async function deleteBlog(id: string): Promise<ApiResponse<{ message?: st
 }
 
 /**
- * Upload multiple images for blog (up to 10 images)
+ * Upload multiple images for blog (up to 10 images) with dedicated 60-second timeout
  */
-export async function uploadBlogImages(files: File[] | FileList): Promise<ApiResponse<ImageUploadResponse>> {
+export async function uploadBlogImages(
+  files: File[] | FileList,
+  options?: { timeoutMs?: number }
+): Promise<ApiResponse<ImageUploadResponse>> {
   const formData = new FormData();
   const fileArray = Array.from(files);
 
@@ -221,12 +224,16 @@ export async function uploadBlogImages(files: File[] | FileList): Promise<ApiRes
   return apiClient<ImageUploadResponse>(API_ENDPOINTS.adminBlogs.uploadImage, {
     method: 'POST',
     body: formData,
+    timeoutMs: options?.timeoutMs ?? 60000,
   });
 }
 
 /**
  * Upload single featured image for blog
  */
-export async function uploadBlogImage(file: File): Promise<ApiResponse<ImageUploadResponse>> {
-  return uploadBlogImages([file]);
+export async function uploadBlogImage(
+  file: File,
+  options?: { timeoutMs?: number }
+): Promise<ApiResponse<ImageUploadResponse>> {
+  return uploadBlogImages([file], options);
 }

@@ -27,6 +27,12 @@ export const API_ENDPOINTS = {
     delete: (id: string) => `/api/blogs/${id}`,
     uploadImage: '/api/blogs/upload-image',
   },
+  // Blog Categories endpoints
+  categories: {
+    list: '/api/v1/categories',
+    create: '/api/v1/categories',
+    bySlug: (slug: string) => `/api/v1/categories/${slug}`,
+  },
   // General public endpoints
   public: {
     services: '/api/services',

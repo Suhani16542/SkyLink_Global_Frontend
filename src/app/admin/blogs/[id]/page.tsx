@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import type { Metadata } from 'next';
 import { constructMetadata } from '@/lib/seo/metadata';
 import { CreateBlogView } from '@/components/admin/CreateBlogView';
@@ -18,5 +18,9 @@ interface EditBlogPageProps {
 
 export default async function AdminEditBlogPage({ params }: EditBlogPageProps) {
   const { id } = await params;
-  return <CreateBlogView blogId={id} />;
+  return (
+    <Suspense fallback={<div className="py-12 text-center text-xs text-neutral-400">Loading editor...</div>}>
+      <CreateBlogView blogId={id} />
+    </Suspense>
+  );
 }

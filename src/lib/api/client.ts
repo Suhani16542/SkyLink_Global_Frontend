@@ -176,9 +176,26 @@ export async function apiClient<T = unknown>(
     if (!response.ok) {
       let errorMessage = 'An unexpected API error occurred';
       if (parsedData && typeof parsedData === 'object') {
-        errorMessage = parsedData.message || parsedData.error || errorMessage;
+        if (typeof parsedData.message === 'string' && parsedData.message.trim().length > 0) {
+          errorMessage = parsedData.message.trim();
+        } else if (typeof parsedData.error === 'string' && parsedData.error.trim().length > 0) {
+          errorMessage = parsedData.error.trim();
+        } else if (parsedData.error && typeof parsedData.error === 'object' && typeof parsedData.error.message === 'string') {
+          errorMessage = parsedData.error.message.trim();
+        } else if (typeof parsedData.msg === 'string' && parsedData.msg.trim().length > 0) {
+          errorMessage = parsedData.msg.trim();
+        } else if (Array.isArray(parsedData.errors) && parsedData.errors.length > 0) {
+          errorMessage = parsedData.errors
+            .map((e: any) => (typeof e === 'string' ? e : e?.message || e?.msg || JSON.stringify(e)))
+            .join(', ');
+        }
       } else if (typeof parsedData === 'string' && parsedData.trim().length > 0) {
-        errorMessage = parsedData;
+        const cleanText = parsedData.replace(/<[^>]*>?/gm, ' ').replace(/\s+/g, ' ').trim();
+        if (cleanText.length > 0 && cleanText.length < 300) {
+          errorMessage = cleanText;
+        } else if (cleanText.length >= 300) {
+          errorMessage = `Server error (${response.status} ${response.statusText}): ${cleanText.slice(0, 200)}...`;
+        }
       }
 
       return {
@@ -204,10 +221,18 @@ export async function apiClient<T = unknown>(
       data: parsedData as T,
     };
   } catch (error) {
+    let errorMsg = 'Unable to connect to server. Please check your connection.';
+    if (error instanceof Error) {
+      if (error.name === 'AbortError') {
+        errorMsg = 'Request timed out waiting for server response. Please try again or upload smaller images.';
+      } else {
+        errorMsg = error.message;
+      }
+    }
     return {
       success: false,
       status: 500,
-      error: error instanceof Error ? error.message : 'Unable to connect to server. Please check your connection.',
+      error: errorMsg,
     };
   }
 }

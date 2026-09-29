@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import type { Metadata } from 'next';
 import { constructMetadata } from '@/lib/seo/metadata';
 import { CreateBlogView } from '@/components/admin/CreateBlogView';
@@ -11,5 +11,9 @@ export const metadata: Metadata = constructMetadata({
 });
 
 export default function CreateBlogPage() {
-  return <CreateBlogView />;
+  return (
+    <Suspense fallback={<div className="py-12 text-center text-xs text-neutral-400">Loading editor...</div>}>
+      <CreateBlogView />
+    </Suspense>
+  );
 }
